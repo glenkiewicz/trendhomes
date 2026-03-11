@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --pink-primary: #d2245f;
+  --dark-primary: #1b1b1b;
+  --light-primary: #fff0e5;
+  --card-bg: rgba(217, 217, 217, 0.5);
+  --section-light: #faf7f4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-pink: var(--pink-primary);
+  --color-dark: var(--dark-primary);
+  --color-light: var(--light-primary);
+  --color-card: var(--card-bg);
+  --color-section-light: var(--section-light);
+  --font-sans: "Inter", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--dark-primary);
+  font-family: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Shared button hover styles */
+.btn-pink {
+  @apply inline-flex items-center justify-center bg-pink text-[#f6f6f6] transition-all duration-300 hover:shadow-lg hover:shadow-pink/25 hover:brightness-110 active:scale-[0.97];
+}
+
+.btn-light {
+  @apply inline-flex items-center justify-center bg-light text-dark transition-all duration-300 hover:shadow-lg hover:shadow-dark/10 hover:brightness-95 active:scale-[0.97];
+}
+
+/* Footer link hover shift */
+.footer-link {
+  @apply transition-all duration-200 hover:translate-x-1 hover:text-white;
 }

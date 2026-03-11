@@ -1,0 +1,423 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useCallback, useEffect, useRef } from "react";
+import TopBar from "../components/TopBar";
+import Navbar from "../components/Navbar";
+import SectionHeading from "../components/SectionHeading";
+import ContactSection from "../components/ContactSection";
+import MapSection from "../components/MapSection";
+import Footer from "../components/Footer";
+import AnimateOnScroll from "../components/AnimateOnScroll";
+
+const newBuilds = [
+  {
+    title: "Dom jednorodzinny\nw Sanoku",
+    image: "/images/realizacje-1.jpg",
+  },
+  {
+    title: "Dom typu stodoła\nw Zagórzu",
+    image: "/images/realizacje-2.jpg",
+  },
+  {
+    title: "Loft w centrum\nSanoka",
+    image: "/images/realizacje-3.jpg",
+  },
+  {
+    title: "Dom jednorodzinny\nw Lesku",
+    image: "/images/realizacje-4.jpg",
+  },
+  {
+    title: "Dom jednorodzinny\nw Sanoku",
+    image: "/images/realizacje-1.jpg",
+  },
+  {
+    title: "Dom typu stodoła\nw Zagórzu",
+    image: "/images/realizacje-2.jpg",
+  },
+];
+
+const renovations = [
+  {
+    title: "Wymiana okien\nw bloku w Sanoku",
+    image: "/images/realizacje-5.jpg",
+  },
+  {
+    title: "Modernizacja stolarki\nw kamienicy",
+    image: "/images/realizacje-6.jpg",
+  },
+  {
+    title: "Remont mieszkania\nw Lesku",
+    image: "/images/realizacje-hero.jpg",
+  },
+  {
+    title: "Wymiana okien\nw domu jednorodzinnym",
+    image: "/images/realizacje-7.jpg",
+  },
+  {
+    title: "Wymiana okien\nw bloku w Sanoku",
+    image: "/images/realizacje-5.jpg",
+  },
+  {
+    title: "Modernizacja stolarki\nw kamienicy",
+    image: "/images/realizacje-6.jpg",
+  },
+];
+
+const b2bProjects = [
+  {
+    title: "Lokal usługowy\nw Sanoku",
+    image: "/images/realizacje-5.jpg",
+  },
+  {
+    title: "Biurowiec\nw Rzeszowie",
+    image: "/images/realizacje-6.jpg",
+  },
+  {
+    title: "Szkoła podstawowa\nw Zagórzu",
+    image: "/images/realizacje-hero.jpg",
+  },
+  {
+    title: "Galeria handlowa\nw Sanoku",
+    image: "/images/realizacje-7.jpg",
+  },
+  {
+    title: "Lokal usługowy\nw Sanoku",
+    image: "/images/realizacje-5.jpg",
+  },
+  {
+    title: "Biurowiec\nw Rzeszowie",
+    image: "/images/realizacje-6.jpg",
+  },
+];
+
+const GAP_LG = 32;
+const GAP_SM = 24;
+
+function ProjectCarousel({
+  items,
+  heading,
+}: {
+  items: { title: string; image: string }[];
+  heading: string[];
+}) {
+  const [current, setCurrent] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [itemWidth, setItemWidth] = useState(0);
+  const [gap, setGap] = useState(GAP_LG);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  const maxIndex = Math.max(0, items.length - visibleCount);
+
+  const measure = useCallback(() => {
+    if (!trackRef.current) return;
+    const container = trackRef.current.parentElement;
+    if (!container) return;
+    const w = container.clientWidth;
+    let cols = 3;
+    let g = GAP_LG;
+    if (w < 640) {
+      cols = 1;
+      g = GAP_SM;
+    } else if (w < 1024) {
+      cols = 2;
+      g = GAP_SM;
+    }
+    setVisibleCount(cols);
+    setGap(g);
+    setItemWidth((w - g * (cols - 1)) / cols);
+  }, []);
+
+  useEffect(() => {
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
+
+  useEffect(() => {
+    if (current > maxIndex) setCurrent(maxIndex);
+  }, [maxIndex, current]);
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c > 0 ? c - 1 : maxIndex));
+  }, [maxIndex]);
+
+  const next = useCallback(() => {
+    setCurrent((c) => (c < maxIndex ? c + 1 : 0));
+  }, [maxIndex]);
+
+  const totalDots = maxIndex + 1;
+
+  return (
+    <section className="bg-white py-12 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          <SectionHeading lines={heading} />
+          <div className="flex items-center gap-3">
+            <button
+              onClick={prev}
+              aria-label="Poprzedni"
+              className="flex size-[30px] items-center justify-center border border-dark/20 transition-colors hover:border-dark hover:bg-dark/5"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M9 3L5 7L9 11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              aria-label="Następny"
+              className="flex size-[30px] items-center justify-center border border-dark/20 transition-colors hover:border-dark hover:bg-dark/5"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M5 3L9 7L5 11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 overflow-hidden md:mt-10">
+          <div
+            ref={trackRef}
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              gap: `${gap}px`,
+              transform: `translateX(-${current * (itemWidth + gap)}px)`,
+            }}
+          >
+            {items.map((item, i) => (
+              <div
+                key={i}
+                className="group shrink-0 cursor-pointer"
+                style={{
+                  width: itemWidth > 0 ? `${itemWidth}px` : "100%",
+                }}
+              >
+                <div className="relative aspect-square overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="mt-4 whitespace-pre-line text-xl font-bold leading-tight text-dark md:mt-6 md:text-2xl lg:text-[32px] lg:leading-[42px]">
+                  {item.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {totalDots > 1 && (
+          <div className="mt-8 flex items-center justify-center gap-3 md:mt-12">
+            {Array.from({ length: totalDots }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                aria-label={`Pozycja ${i + 1}`}
+                className="flex h-6 items-center py-2"
+              >
+                <span
+                  className={`block h-[3px] rounded-full transition-all duration-300 ${
+                    i === current
+                      ? "w-10 bg-pink"
+                      : "w-6 bg-dark/20 hover:bg-dark/40"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export default function RealizacjePage() {
+  return (
+    <>
+      <TopBar />
+      <Navbar />
+
+      {/* Hero */}
+      <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
+        <Image
+          src="/images/realizacje-hero.jpg"
+          alt="Realizacje Trendhomes"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+            <Link href="/" className="transition-colors hover:text-white">
+              home
+            </Link>
+            <span>|</span>
+            <span className="text-white">realizacje</span>
+          </nav>
+
+          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+            Realizacje Trendhomes:
+            <br />
+            przestrze&#324; w najlepszej oprawie
+          </h1>
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+            Ka&#380;dy projekt to inny dom, inne mieszkanie i inne potrzeby.
+            Zobacz wybrane realizacje Trendhomes w Sanoku i okolicach &ndash; od
+            nowych dom&oacute;w jednorodzinnych, przez mieszkania w blokach,
+            a&#380; po lokale us&#322;ugowe i pergole w ogrodzie.
+          </p>
+          <div className="mt-6 md:mt-8">
+            <Link
+              href="/kontakt"
+              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+            >
+              Um&oacute;w pomiar w 48 h
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Nowopowstałe obiekty */}
+      <AnimateOnScroll>
+        <ProjectCarousel
+          items={newBuilds}
+          heading={["Realizacje Trendhomes:", "nowopowstałe obiekty"]}
+        />
+      </AnimateOnScroll>
+
+      {/* Pink banner: Rozwiązania all in one */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/realizacje-banner.png"
+            alt=""
+            fill
+            className="object-cover object-right"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, #d32360 0%, #d32360 62%, rgba(211,35,96,0.88) 68%, rgba(211,35,96,0.64) 75%, rgba(211,35,96,0.42) 83%, rgba(211,35,96,0) 91%)",
+            }}
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24">
+          <SectionHeading
+            lines={[
+              "Rozwiązania all in one:",
+              "spójność i prostota",
+            ]}
+            light
+          />
+          <p className="mt-6 max-w-[728px] text-base leading-relaxed text-white md:text-2xl">
+            Coraz wi&#281;cej klient&oacute;w decyduje si&#281; na kompletny
+            pakiet stolarki z jednego &x17A;r&oacute;d&#322;a. Okna, drzwi
+            wej&#347;ciowe, rolety zewn&#281;trzne, brama gara&#380;owa &ndash;
+            wszystko dopasowane kolorystycznie i technicznie, zamontowane
+            w jednym terminie, z jednym punktem kontaktu.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/produkty/okna"
+              className="btn-light h-[52px] px-[42px] text-base"
+            >
+              Okna PVC
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Remonty i modernizacje */}
+      <AnimateOnScroll>
+        <ProjectCarousel
+          items={renovations}
+          heading={["Remonty i modernizacje", "w realizacjach Trendhomes"]}
+        />
+      </AnimateOnScroll>
+
+      {/* Produkty, które dopasowują się do Ciebie */}
+      <AnimateOnScroll>
+        <section className="bg-white py-12 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+            <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
+              <div>
+                <SectionHeading
+                  lines={[
+                    "Produkty, które",
+                    "dopasowują się do Ciebie",
+                  ]}
+                />
+                <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-2xl">
+                  <p>
+                    Ka&#380;da realizacja zaczyna si&#281; od dobrego doboru
+                    materia&#322;&oacute;w. W Trendhomes pracujemy ze sprawdzonymi
+                    systemami profili okiennych, drzwiowych, roletowych
+                    i bram gara&#380;owych, kt&oacute;re dobieramy pod konkretny
+                    obiekt.
+                  </p>
+                  <p>
+                    Nie proponujemy jednego rozwi&#261;zania dla wszystkich.
+                    Zamiast tego dopasowujemy system, kolor, szklenie
+                    i akcesoria do Twoich potrzeb &ndash; niezale&#380;nie
+                    od tego, czy budujesz nowy dom, remontujesz mieszkanie
+                    czy urz&#261;dzasz lokal us&#322;ugowy.
+                  </p>
+                </div>
+                <div className="mt-8">
+                  <Link
+                    href="/produkty/okna"
+                    className="btn-pink h-[52px] px-[42px] text-base"
+                  >
+                    Zobacz produkty dla Ciebie
+                  </Link>
+                </div>
+              </div>
+              <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[600px]">
+                <Image
+                  src="/images/realizacje-products.jpg"
+                  alt="Produkty Trendhomes"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimateOnScroll>
+
+      {/* Realizacje B2B */}
+      <AnimateOnScroll>
+        <ProjectCarousel
+          items={b2bProjects}
+          heading={["Realizacje B2B", "od Trendhomes"]}
+        />
+      </AnimateOnScroll>
+
+      {/* Contact */}
+      <AnimateOnScroll>
+        <ContactSection />
+      </AnimateOnScroll>
+      <MapSection />
+      <Footer />
+    </>
+  );
+}

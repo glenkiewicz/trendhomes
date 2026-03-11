@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1920 568" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 114">
+<path id="Rectangle 110" d="M0 0H1920V568H0V0Z" fill="url(#paint0_linear_0_137)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_137" x1="1263.75" y1="24" x2="1263.75" y2="631" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D2245F"/>
+<stop offset="0.441829" stop-color="#D2245F"/>
+<stop offset="0.922046" stop-color="#F78F2A"/>
+</linearGradient>
+</defs>
+</svg>
