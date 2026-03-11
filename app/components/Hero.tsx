@@ -155,8 +155,8 @@ export default function Hero() {
 				</div>
 
 				{/* Vertical slide navigation */}
-				<div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center gap-3 py-4 md:right-8 md:gap-4 md:py-6 lg:right-12">
-					<span className="text-sm font-bold text-dark md:text-xl">
+				<div className="absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-4 py-6 sm:flex md:right-8 lg:right-12">
+					<span className="text-sm font-bold text-white/80 md:text-xl">
 						1
 					</span>
 					{Array.from({ length: NAV_TOTAL }).map((_, i) => (
@@ -171,13 +171,13 @@ export default function Hero() {
 							<span
 								className={`block w-0.5 rounded-full transition-all duration-300 md:w-[3px] ${
 									i === current
-										? "h-10 bg-dark md:h-16"
-										: "h-5 bg-dark/30 hover:bg-dark/50 md:h-8"
+										? "h-10 bg-white md:h-16"
+										: "h-5 bg-white/30 hover:bg-white/50 md:h-8"
 								}`}
 							/>
 						</button>
 					))}
-					<span className="text-sm font-bold text-dark md:text-xl">
+					<span className="text-sm font-bold text-white/80 md:text-xl">
 						{NAV_TOTAL}
 					</span>
 				</div>
@@ -192,7 +192,7 @@ export default function Hero() {
 						)}
 						<button
 							onClick={() => goTo(i)}
-							className={`px-4 py-3 text-center text-sm font-bold text-white transition-opacity sm:px-6 sm:py-4 sm:text-base md:px-10 md:text-lg ${
+							className={`px-3 py-3 text-center text-xs font-bold text-white sm:px-4 sm:text-sm transition-opacity sm:px-6 sm:py-4 sm:text-base md:px-10 md:text-lg ${
 								i === current
 									? "opacity-100"
 									: "opacity-60 hover:opacity-80"
