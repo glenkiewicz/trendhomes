@@ -43,6 +43,8 @@ export default function BrandsSection() {
               src="/images/about-team.jpg"
               alt="Zespół Trendhomes w salonie w Sanoku"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="lazy"
               className="object-cover"
             />
           </div>

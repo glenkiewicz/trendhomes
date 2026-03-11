@@ -10,6 +10,8 @@ export default function CleanAirSection() {
           src="/images/czyste-powietrze-banner.jpg"
           alt="Czyste Powietrze"
           fill
+          sizes="100vw"
+          loading="lazy"
           className="object-cover object-right"
         />
       </div>

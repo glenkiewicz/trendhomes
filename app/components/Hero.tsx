@@ -6,7 +6,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const slides = [
 	{
-		image: "/images/hero-bg.jpg",
+		image: "/images/hero-bg.webp",
 		title: (
 			<>
 				Okna, drzwi i rolety
@@ -19,7 +19,7 @@ const slides = [
 			"Projektujemy, dostarczamy i montujemy stolarkę okienną oraz drzwiową dla nowych domów, remontów i lokali usługowych. Otrzymujesz kompletny pakiet: okna, rolety zewnętrzne, drzwi i bramę garażową z jednym terminem montażu i lokalnym serwisem.",
 	},
 	{
-		image: "/images/hero-bg-2.jpg",
+		image: "/images/hero-bg-2.webp",
 		title: (
 			<>
 				Zadbaj o przyszłość już teraz! Dołącz do programu Czyste
@@ -30,7 +30,7 @@ const slides = [
 			"Skorzystaj z dofinansowania na wymianę okien i drzwi. Pomagamy przejść przez cały proces – od wniosku po montaż. Sprawdź, ile możesz zaoszczędzić.",
 	},
 	{
-		image: "/images/hero-bg-3.jpg",
+		image: "/images/hero-bg-3.webp",
 		title: (
 			<>
 				Trendhomes dla biznesu
@@ -54,12 +54,6 @@ const bottomTabs = [
 
 export default function Hero() {
 	const [current, setCurrent] = useState(0);
-	const [mounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		// Enable transitions only after first paint
-		requestAnimationFrame(() => setMounted(true));
-	}, []);
 
 	const goTo = useCallback((index: number) => {
 		setCurrent(index);
@@ -76,11 +70,11 @@ export default function Hero() {
 
 	return (
 		<section className="relative h-[480px] w-full overflow-hidden sm:h-[560px] md:h-[650px] lg:h-[714px]">
-			{/* Slide backgrounds — smooth crossfade + subtle Ken Burns zoom */}
+			{/* Slide backgrounds */}
 			{slides.map((slide, i) => (
 				<div
 					key={i}
-					className={`absolute inset-0 transition-opacity duration-[1500ms] ease-in-out ${
+					className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
 						i === current ? "z-10 opacity-100" : "z-0 opacity-0"
 					}`}
 				>
@@ -88,10 +82,11 @@ export default function Hero() {
 						src={slide.image}
 						alt=""
 						fill
-						className={`object-cover transition-transform duration-[10000ms] ease-out ${
-							i === current ? "scale-105" : "scale-100"
-						}`}
+						sizes="100vw"
+						className="object-cover"
 						priority={i === 0}
+						loading={i === 0 ? "eager" : "lazy"}
+						{...(i === 0 ? { unoptimized: true } : {})}
 					/>
 				</div>
 			))}
@@ -118,40 +113,28 @@ export default function Hero() {
 							}`}
 						>
 							<h1
-								className={`text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px] ${
-									mounted
-										? "transition-all duration-[800ms] ease-out"
-										: ""
-								} ${
+								className={`text-[28px] font-semibold leading-[1.15] text-white transition-opacity duration-500 sm:text-[36px] md:text-[44px] lg:text-[52px] ${
 									i === current
-										? "translate-y-0 opacity-100"
-										: "translate-y-6 opacity-0"
+										? "opacity-100"
+										: "opacity-0"
 								}`}
 							>
 								{slide.title}
 							</h1>
 							<p
-								className={`max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:text-lg lg:text-xl ${
-									mounted
-										? "transition-all delay-200 duration-[800ms] ease-out"
-										: ""
-								} ${
+								className={`max-w-[552px] text-sm leading-relaxed text-white transition-opacity delay-100 duration-500 sm:text-base md:text-lg lg:text-xl ${
 									i === current
-										? "translate-y-0 opacity-100"
-										: "translate-y-6 opacity-0"
+										? "opacity-100"
+										: "opacity-0"
 								}`}
 							>
 								{slide.description}
 							</p>
 							<div
-								className={`flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6 ${
-									mounted
-										? "transition-all delay-[400ms] duration-[800ms] ease-out"
-										: ""
-								} ${
+								className={`flex flex-col items-start gap-3 transition-opacity delay-200 duration-500 sm:flex-row sm:items-center sm:gap-6 ${
 									i === current
-										? "translate-y-0 opacity-100"
-										: "translate-y-6 opacity-0"
+										? "opacity-100"
+										: "opacity-0"
 								}`}
 							>
 								<Link
@@ -171,7 +154,7 @@ export default function Hero() {
 					))}
 				</div>
 
-				{/* Vertical slide navigation – range 1 to 4 */}
+				{/* Vertical slide navigation */}
 				<div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center gap-3 py-4 md:right-8 md:gap-4 md:py-6 lg:right-12">
 					<span className="text-sm font-bold text-dark md:text-xl">
 						1
@@ -200,7 +183,7 @@ export default function Hero() {
 				</div>
 			</div>
 
-			{/* Bottom tabs – clickable, switch slides */}
+			{/* Bottom tabs */}
 			<div className="absolute bottom-0 left-0 right-0 z-30 flex items-stretch justify-center overflow-x-auto">
 				{bottomTabs.map((label, i) => (
 					<div key={i} className="flex shrink-0 items-center">

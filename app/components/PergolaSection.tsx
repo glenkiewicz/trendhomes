@@ -10,6 +10,8 @@ export default function PergolaSection() {
           src="/images/pergola-banner.jpg"
           alt="Pergola ogrodowa"
           fill
+          sizes="100vw"
+          loading="lazy"
           className="object-cover object-right"
         />
       </div>

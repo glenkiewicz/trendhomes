@@ -75,6 +75,8 @@ export default function WhySection() {
 									src={benefit.image}
 									alt={benefit.title}
 									fill
+									sizes="(max-width: 768px) 100vw, 50vw"
+									loading="lazy"
 									className="object-cover"
 								/>
 							</div>

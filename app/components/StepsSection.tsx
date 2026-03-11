@@ -90,9 +90,20 @@ export default function StepsSection() {
 	}, []);
 
 	useEffect(() => {
-		measure();
-		window.addEventListener("resize", measure);
-		return () => window.removeEventListener("resize", measure);
+		const ric = typeof requestIdleCallback === "function"
+			? requestIdleCallback : (cb: () => void) => setTimeout(cb, 1);
+		const id = ric(measure);
+		let timer: ReturnType<typeof setTimeout>;
+		const onResize = () => {
+			clearTimeout(timer);
+			timer = setTimeout(measure, 150);
+		};
+		window.addEventListener("resize", onResize);
+		return () => {
+			clearTimeout(timer);
+			window.removeEventListener("resize", onResize);
+			if (typeof cancelIdleCallback === "function") cancelIdleCallback(id as number);
+		};
 	}, [measure]);
 
 	useEffect(() => {
@@ -172,7 +183,7 @@ export default function StepsSection() {
 						className="flex transition-transform duration-500 ease-in-out"
 						style={{
 							gap: `${gap}px`,
-							transform: `translateX(-${current * (itemWidth + gap)}px)`,
+							transform: `translate3d(-${current * (itemWidth + gap)}px, 0, 0)`, willChange: "transform",
 						}}
 					>
 						{steps.map((step, i) => (
@@ -252,6 +263,7 @@ export default function StepsSection() {
 										src={item.icon}
 										alt={item.title}
 										fill
+										sizes="100px"
 										className="object-contain"
 									/>
 								</div>

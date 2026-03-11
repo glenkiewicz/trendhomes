@@ -9,6 +9,29 @@ interface AnimateOnScrollProps {
   direction?: "up" | "left" | "right" | "none";
 }
 
+let sharedObserver: IntersectionObserver | null = null;
+const callbacks = new Map<Element, () => void>();
+
+function getObserver() {
+  if (sharedObserver) return sharedObserver;
+  sharedObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const cb = callbacks.get(entry.target);
+          if (cb) {
+            cb();
+            callbacks.delete(entry.target);
+            sharedObserver!.unobserve(entry.target);
+          }
+        }
+      }
+    },
+    { threshold: 0.1 }
+  );
+  return sharedObserver;
+}
+
 export default function AnimateOnScroll({
   children,
   className = "",
@@ -22,36 +45,33 @@ export default function AnimateOnScroll({
     const el = ref.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.15 }
-    );
-
+    const observer = getObserver();
+    callbacks.set(el, () => setVisible(true));
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      callbacks.delete(el);
+      observer.unobserve(el);
+    };
   }, []);
 
   const translate = {
-    up: "translate-y-8",
-    left: "translate-x-8",
-    right: "-translate-x-8",
-    none: "",
+    up: "translateY(16px)",
+    left: "translateX(16px)",
+    right: "translateX(-16px)",
+    none: "none",
   };
 
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-700 ease-out ${
-        visible
-          ? "translate-x-0 translate-y-0 opacity-100"
-          : `opacity-0 ${translate[direction]}`
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : translate[direction],
+        transition: `opacity 0.5s ease-out ${delay}ms, transform 0.5s ease-out ${delay}ms`,
+        willChange: visible ? "auto" : "opacity, transform",
+      }}
     >
       {children}
     </div>

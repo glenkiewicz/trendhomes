@@ -23,6 +23,8 @@ export default function ProductsSection() {
                     alt={product.name}
                     width={300}
                     height={280}
+                    sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 300px"
+                    loading="lazy"
                     className="h-auto max-h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

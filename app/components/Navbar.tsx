@@ -39,6 +39,7 @@ export default function Navbar() {
 	}, [open]);
 
 	useEffect(() => {
+		if (!dropdownOpen) return;
 		const handleClick = (e: MouseEvent) => {
 			if (
 				dropdownRef.current &&
@@ -49,7 +50,7 @@ export default function Navbar() {
 		};
 		document.addEventListener("mousedown", handleClick);
 		return () => document.removeEventListener("mousedown", handleClick);
-	}, []);
+	}, [dropdownOpen]);
 
 	const handleDropdownEnter = () => {
 		if (timeoutRef.current) clearTimeout(timeoutRef.current);

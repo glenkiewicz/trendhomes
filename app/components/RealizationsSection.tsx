@@ -25,6 +25,8 @@ export default function RealizationsSection() {
                 src="/images/real-1.jpg"
                 alt="Realizacja – nowoczesny dom"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -33,6 +35,8 @@ export default function RealizationsSection() {
                 src="/images/real-2.jpg"
                 alt="Realizacja – dom z pergolą"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -41,6 +45,8 @@ export default function RealizationsSection() {
                 src="/images/real-3.jpg"
                 alt="Realizacja – drzwi wejściowe"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -55,6 +61,8 @@ export default function RealizationsSection() {
                 src="/images/real-4.jpg"
                 alt="Realizacja – klamka drzwi"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -63,6 +71,8 @@ export default function RealizationsSection() {
                 src="/images/real-5.jpg"
                 alt="Realizacja – okna w domu"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -77,6 +87,8 @@ export default function RealizationsSection() {
                 src="/images/real-6.jpg"
                 alt="Realizacja – okno z widokiem"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -85,6 +97,8 @@ export default function RealizationsSection() {
                 src="/images/real-7.jpg"
                 alt="Realizacja – ściana szklana w biurze"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>

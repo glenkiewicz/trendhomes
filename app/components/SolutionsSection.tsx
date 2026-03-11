@@ -70,9 +70,20 @@ export default function SolutionsSection() {
 	}, []);
 
 	useEffect(() => {
-		measure();
-		window.addEventListener("resize", measure);
-		return () => window.removeEventListener("resize", measure);
+		const ric = typeof requestIdleCallback === "function"
+			? requestIdleCallback : (cb: () => void) => setTimeout(cb, 1);
+		const id = ric(measure);
+		let timer: ReturnType<typeof setTimeout>;
+		const onResize = () => {
+			clearTimeout(timer);
+			timer = setTimeout(measure, 150);
+		};
+		window.addEventListener("resize", onResize);
+		return () => {
+			clearTimeout(timer);
+			window.removeEventListener("resize", onResize);
+			if (typeof cancelIdleCallback === "function") cancelIdleCallback(id as number);
+		};
 	}, [measure]);
 
 	// clamp current if resize reduces maxIndex
@@ -144,7 +155,7 @@ export default function SolutionsSection() {
 						className="flex transition-transform duration-500 ease-in-out"
 						style={{
 							gap: `${gap}px`,
-							transform: `translateX(-${current * (itemWidth + gap)}px)`,
+							transform: `translate3d(-${current * (itemWidth + gap)}px, 0, 0)`, willChange: "transform",
 						}}
 					>
 						{solutions.map((solution, i) => (
@@ -171,6 +182,8 @@ export default function SolutionsSection() {
 										src={solution.image}
 										alt={solution.title}
 										fill
+										sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										loading="lazy"
 										className="object-cover transition-transform duration-500 group-hover:scale-105"
 									/>
 								</div>
