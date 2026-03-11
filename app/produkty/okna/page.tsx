@@ -33,7 +33,7 @@ const manufacturers = [
       {
         name: "System 92",
         description:
-          "System 92 mm Salamander kierujemy do klientów, którzy planują budynek o bardzo wysokim standardzie cieplnym. Taki profil pozwala mocniej ograniczyć straty energii przez okna, co ma znaczenie przy rosnących kosztach ogrzewania. To rozwiązanie, które warto rozważyć w projektach, gdzie stolarka ma realnie „pracować” na bilans energetyczny domu.",
+          "System 92 mm Salamander kierujemy do klientów, którzy planują budynek o bardzo wysokim standardzie cieplnym. Taki profil pozwala mocniej ograniczyć straty energii przez okna, co ma znaczenie przy rosnących kosztach ogrzewania. To rozwiązanie, które warto rozważyć w projektach, gdzie stolarka ma realnie \u201Epracować\u201D na bilans energetyczny domu.",
       },
     ],
   },
@@ -79,7 +79,7 @@ const manufacturers = [
     id: "ekosun",
     name: "EkoSun",
     description:
-      "Systemy EkoSun wybieramy, gdy ważne są dobre parametry przy zachowaniu rozsądnego budżetu i możliwość spójnego dopasowania stolarki w całym budynku. To często rozwiązanie dla klientów, którzy chcą „po prostu mieć dobre okna”, nie wchodząc w najwyższe widełki cenowe. Dobrze sprawdza się zarówno w domach, jak i mieszkaniach.",
+      "Systemy EkoSun wybieramy, gdy ważne są dobre parametry przy zachowaniu rozsądnego budżetu i możliwość spójnego dopasowania stolarki w całym budynku. To często rozwiązanie dla klientów, którzy chcą \u201Epo prostu mieć dobre okna\u201D, nie wchodząc w najwyższe widełki cenowe. Dobrze sprawdza się zarówno w domach, jak i mieszkaniach.",
     cta: "Napisz do nas, a dobierzemy system EkoSun (76, 82 albo 92) do Twojego domu lub mieszkania na podstawie krótkiego wywiadu.",
     systems: [
       {
@@ -90,7 +90,7 @@ const manufacturers = [
       {
         name: "EkoSun 6",
         description:
-          "System 81 mm celuje w inwestycje, w których chcesz mieć wyraźnie lepszą izolacyjność okien niż podstawowa. Dobrze współgra z nowoczesnymi instalacjami grzewczymi i rekuperacją, bo pomaga lepiej utrzymać ciepło wewnątrz. Polecamy go przy nowych domach i bardziej „świadomych” remontach.",
+          "System 81 mm celuje w inwestycje, w których chcesz mieć wyraźnie lepszą izolacyjność okien niż podstawowa. Dobrze współgra z nowoczesnymi instalacjami grzewczymi i rekuperacją, bo pomaga lepiej utrzymać ciepło wewnątrz. Polecamy go przy nowych domach i bardziej \u201Eświadomych\u201D remontach.",
       },
       {
         name: "EkoSun 7",
@@ -137,7 +137,7 @@ const whyItems = [
     icon: "/images/icon-helmet.svg",
     title: "Montaż i serwis lokalnej ekipy",
     description:
-      "Nie sprzedajemy samych okien „na dostawę”. Odpowiadamy za montaż, regulację i późniejszy serwis. Działamy lokalnie, więc w razie potrzeby łatwiej się z nami skontaktować.",
+      "Nie sprzedajemy samych okien \u201Ena dostawę\u201D. Odpowiadamy za montaż, regulację i późniejszy serwis. Działamy lokalnie, więc w razie potrzeby łatwiej się z nami skontaktować.",
   },
   {
     icon: "/images/icon-profile.svg",

@@ -17,7 +17,7 @@ const forWhom = [
   },
   {
     label: "Dom z pięknym widokiem (Bieszczady, okolice Sanoka)",
-    text: "Widok z okien aż się prosi, żeby go wykorzystać, ale pogoda nie zawsze współpracuje. Ogród zimowy pozwala siedzieć „w ogrodzie”, nawet kiedy jest chłodniej, a deszcz stuka w szyby.",
+    text: "Widok z okien aż się prosi, żeby go wykorzystać, ale pogoda nie zawsze współpracuje. Ogród zimowy pozwala siedzieć \u201Ew ogrodzie\u201D, nawet kiedy jest chłodniej, a deszcz stuka w szyby.",
   },
   {
     label: "Rodziny z dziećmi",
@@ -72,7 +72,7 @@ export default function PergolePage() {
           </nav>
           <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">Pergole i ogrody zimowe</h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
-            Taras i ogród to dziś pełnoprawna część domu, a nie tylko miejsce na suszarkę do prania. Dobrze zaprojektowana pergola albo ogród zimowy pozwalają korzystać z tej przestrzeni dużo dłużej niż tylko w lipcu i sierpniu. W Trendhomes pomagamy zamienić zwykły taras w strefę wypoczynku, jadalnię na świeżym powietrzu albo domowe „spa” z widokiem na Bieszczady.
+            Taras i ogród to dziś pełnoprawna część domu, a nie tylko miejsce na suszarkę do prania. Dobrze zaprojektowana pergola albo ogród zimowy pozwalają korzystać z tej przestrzeni dużo dłużej niż tylko w lipcu i sierpniu. W Trendhomes pomagamy zamienić zwykły taras w strefę wypoczynku, jadalnię na świeżym powietrzu albo domowe \u201Espa\u201D z widokiem na Bieszczady.
           </p>
           <p className="mt-3 max-w-[552px] text-sm leading-relaxed text-white/80 sm:text-base md:text-lg">
             Zamiast katalogu systemów skupiamy się na Twoim domu, ogrodzie i sposobie, w jaki faktycznie chcesz z tej przestrzeni korzystać.

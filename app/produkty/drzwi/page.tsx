@@ -60,7 +60,7 @@ const manufacturers = [
       "Drzwi drewniane zewnętrzne Węgrzyn kierujemy głównie do klientów, którzy cenią solidny, bardziej tradycyjny charakter stolarki. Dobrze odnajdują się w domach o klasycznej architekturze, budynkach z dachem wielospadowym, elewacjami z cegły lub tynku strukturalnego.",
     features: [
       {
-        name: "Mocniejszy, „pełniejszy” wygląd skrzydeł",
+        name: "Mocniejszy, \u201Epełniejszy\u201D wygląd skrzydeł",
         description:
           "Drzwi Węgrzyn wyróżniają się solidną konstrukcją i pełnym, masywnym wyglądem, który dobrze komponuje się z tradycyjną architekturą.",
       },
@@ -114,7 +114,7 @@ const whyItems = [
     icon: "/images/icon-profile.svg",
     title: "Kilku producentów, jedno miejsce kontaktu",
     description:
-      "Pracujemy na ofercie kilku marek, dzięki czemu możemy dobrać drzwi do konkretnej sytuacji, a nie wciskać jednego „ulubionego” katalogu.",
+      "Pracujemy na ofercie kilku marek, dzięki czemu możemy dobrać drzwi do konkretnej sytuacji, a nie wciskać jednego \u201Eulubionego\u201D katalogu.",
   },
   {
     icon: "/images/icon-measure.svg",
@@ -132,7 +132,7 @@ const whyItems = [
     icon: "/images/icon-profile.svg",
     title: "Jasny zakres prac i odpowiedzialności",
     description:
-      "Już w ofercie rozpisujemy, co dokładnie obejmuje montaż: demontaż starych drzwi, przygotowanie otworu, obróbki, wykończenie. Dzięki temu nie ma „ukrytych” pozycji.",
+      "Już w ofercie rozpisujemy, co dokładnie obejmuje montaż: demontaż starych drzwi, przygotowanie otworu, obróbki, wykończenie. Dzięki temu nie ma \u201Eukrytych\u201D pozycji.",
   },
 ];
 

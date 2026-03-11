@@ -106,7 +106,7 @@ const whyItems = [
   },
   {
     icon: "/images/icon-helmet.svg",
-    title: "Pomoc przy „technicznych" decyzjach",
+    title: "Pomoc przy \u201Etechnicznych\u201D decyzjach",
     description:
       "Ościeżnice regulowane czy stałe, kierunek otwierania, podcięcia wentylacyjne, przesuwki – pomagamy ogarnąć detale, żebyś nie musiał się w to wgryzać.",
   },
@@ -129,7 +129,7 @@ const forWhom = [
   },
   {
     label: "Mieszkanie od dewelopera",
-    text: "Jeśli odbierasz lokal „pod biały montaż", pomagamy szybko przejść od katalogu do konkretnych modeli, które pasują do metrażu, rozkładu i planowanej aranżacji.",
+    text: "Jeśli odbierasz lokal \u201Epod biały montaż\u201D, pomagamy szybko przejść od katalogu do konkretnych modeli, które pasują do metrażu, rozkładu i planowanej aranżacji.",
   },
   {
     label: "Biuro lub lokal usługowy",

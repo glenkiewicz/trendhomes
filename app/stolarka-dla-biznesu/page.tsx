@@ -65,7 +65,7 @@ const serviceCategories = [
   {
     title: "Drzwi p.poż.",
     intro:
-      "Drzwi przeciwpożarowe to przede wszystkim bezpieczeństwo i przepisy. W obiektach biznesowych i publicznych drzwi przeciwpożarowe nie są „opcją”, tylko obowiązkiem. Dobór nieodpowiedniego systemu potrafi zablokować odbiór budynku. Dlatego ten temat traktujemy bardzo poważnie.",
+      "Drzwi przeciwpożarowe to przede wszystkim bezpieczeństwo i przepisy. W obiektach biznesowych i publicznych drzwi przeciwpożarowe nie są \u201Eopcją\u201D, tylko obowiązkiem. Dobór nieodpowiedniego systemu potrafi zablokować odbiór budynku. Dlatego ten temat traktujemy bardzo poważnie.",
   },
   {
     title: "Fasady",

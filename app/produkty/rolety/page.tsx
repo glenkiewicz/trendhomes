@@ -34,7 +34,7 @@ const zewnetrzneItems = [
   {
     name: "Rolety adaptacyjne",
     description:
-      "Rolety adaptacyjne to rozwiązanie, które najczęściej stosujemy przy: istniejących domach i mieszkaniach, gdzie elewacja jest już gotowa; remontach, kiedy nie ma możliwości ingerencji w ocieplenie; sytuacjach, w których inwestor chce założyć rolety „po fakcie”, bez dużych prac budowlanych. Kaseta montowana jest na zewnątrz okna, a prowadnice przykręca się do ościeżnicy lub ściany. Dobór koloru kasety i prowadnic do elewacji pozwala zachować estetykę budynku. Sterowanie może być ręczne (pasek, sprężyna) lub elektryczne (napęd rurowy z pilotem, integracja ze smart home).",
+      "Rolety adaptacyjne to rozwiązanie, które najczęściej stosujemy przy: istniejących domach i mieszkaniach, gdzie elewacja jest już gotowa; remontach, kiedy nie ma możliwości ingerencji w ocieplenie; sytuacjach, w których inwestor chce założyć rolety \u201Epo fakcie\u201D, bez dużych prac budowlanych. Kaseta montowana jest na zewnątrz okna, a prowadnice przykręca się do ościeżnicy lub ściany. Dobór koloru kasety i prowadnic do elewacji pozwala zachować estetykę budynku. Sterowanie może być ręczne (pasek, sprężyna) lub elektryczne (napęd rurowy z pilotem, integracja ze smart home).",
   },
   {
     name: "Rolety podtynkowe",

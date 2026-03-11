@@ -135,7 +135,7 @@ export default function OknaDrewnianePage() {
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
             Okna drewniane są dla klientów, którzy chcą połączyć solidne
             parametry techniczne z naturalnym materiałem i bardziej
-            „przytulnym" wyglądem stolarki. Dobrze sprawdzają się w domach
+            \u201Eprzytulnym\u201D wyglądem stolarki. Dobrze sprawdzają się w domach
             jednorodzinnych, budynkach z historią oraz wszędzie tam, gdzie
             drewno pojawia się już w elewacji albo wewnątrz. Pracujemy na
             siedmiu systemach drewnianych jednego z największych producentów

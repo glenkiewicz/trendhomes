@@ -25,7 +25,7 @@ const steps = [
   {
     number: "3.",
     title: "Wycena i termin",
-    text: "Dostajesz konkretną wycenę wraz z zakresem prac i terminem montażu. Bez „może w przyszłym tygodniu” - ustalamy dzień, który wpisujemy w kalendarz.",
+    text: "Dostajesz konkretną wycenę wraz z zakresem prac i terminem montażu. Bez \u201Emoże w przyszłym tygodniu\u201D - ustalamy dzień, który wpisujemy w kalendarz.",
     opacity: "opacity-60",
   },
 ];
@@ -33,12 +33,12 @@ const steps = [
 const team = [
   {
     name: "Mateusz: właściciel i doradca",
-    text: "Mateusz jest twarzą firmy i pierwszym kontaktem przy większości inwestycji. Przyjeżdża na pomiar, ogląda budowę lub mieszkanie, zadaje dużo pytań i pomaga poukładać temat stolarki tak, żeby pasował do projektu i etapu prac. Nie sprzedaje „najdroższego, bo najdroższe jest najlepsze”, tylko szuka rozwiązań, które mają sens na lata. Pilnuje też, żeby to, co ustalicie na początku, nie rozmyło się po drodze.",
+    text: "Mateusz jest twarzą firmy i pierwszym kontaktem przy większości inwestycji. Przyjeżdża na pomiar, ogląda budowę lub mieszkanie, zadaje dużo pytań i pomaga poukładać temat stolarki tak, żeby pasował do projektu i etapu prac. Nie sprzedaje \u201Enajdroższego, bo najdroższe jest najlepsze\u201D, tylko szuka rozwiązań, które mają sens na lata. Pilnuje też, żeby to, co ustalicie na początku, nie rozmyło się po drodze.",
     image: "/images/onas-person.png",
   },
   {
     name: "Monika: wyceny, terminy, kontakt",
-    text: "Monika jest tą osobą, która sprawia, że wszystko się spina w kalendarzu i w dokumentach. Dopina zamówienia, dzwoni w sprawie terminów. Jeśli chcesz wiedzieć, na jakim etapie jest Twoje zlecenie i kiedy dokładnie będzie montaż - najczęściej rozmawiasz właśnie z nią. Dba o to, żeby informacje nie ginęły „pomiędzy”, tylko wracały do klienta na czas.",
+    text: "Monika jest tą osobą, która sprawia, że wszystko się spina w kalendarzu i w dokumentach. Dopina zamówienia, dzwoni w sprawie terminów. Jeśli chcesz wiedzieć, na jakim etapie jest Twoje zlecenie i kiedy dokładnie będzie montaż - najczęściej rozmawiasz właśnie z nią. Dba o to, żeby informacje nie ginęły \u201Epomiędzy\u201D, tylko wracały do klienta na czas.",
     image: "/images/onas-person.png",
   },
   {
