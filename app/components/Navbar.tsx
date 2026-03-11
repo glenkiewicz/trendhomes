@@ -228,7 +228,7 @@ export default function Navbar() {
 									onClick={() =>
 										setMobileProductsOpen((v) => !v)
 									}
-									className={`flex w-full items-center justify-between border-b border-white/10 py-4 text-2xl text-white hover:pl-2 hover:text-pink sm:text-3xl md:py-5 md:text-4xl ${
+									className={`flex w-full items-center justify-between border-b border-white/10 py-3 text-lg text-white hover:pl-2 hover:text-pink sm:text-xl md:py-4 md:text-2xl ${
 										item.bold
 											? "font-semibold"
 											: "font-light"
@@ -292,7 +292,7 @@ export default function Navbar() {
 																		false,
 																	)
 																}
-																className="py-2 pl-4 text-lg text-white/70 transition-colors hover:pl-6 hover:text-pink sm:text-xl md:text-2xl block"
+																className="py-1.5 pl-4 text-base text-white/70 transition-colors hover:pl-6 hover:text-pink sm:text-lg md:text-xl block"
 															>
 																{product.name}
 															</Link>
@@ -309,7 +309,7 @@ export default function Navbar() {
 								key={item.label}
 								href={item.href}
 								onClick={() => setOpen(false)}
-								className={`border-b border-white/10 py-4 text-2xl text-white hover:pl-2 hover:text-pink sm:text-3xl md:py-5 md:text-4xl ${
+								className={`border-b border-white/10 py-3 text-lg text-white hover:pl-2 hover:text-pink sm:text-xl md:py-4 md:text-2xl ${
 									item.bold ? "font-semibold" : "font-light"
 								}`}
 								style={{
