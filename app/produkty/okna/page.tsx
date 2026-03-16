@@ -11,6 +11,7 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { pvcSystems } from "../../lib/product-systems";
 
 const manufacturers = [
   {
@@ -166,58 +167,118 @@ const forWhom = [
   },
 ];
 
-function SystemAccordion({
-  system,
-}: {
-  system: { name: string; description: string };
-}) {
-  const [open, setOpen] = useState(false);
+const manufacturerFilters = [
+  "Wszystkie",
+  "Salamander",
+  "Rehau",
+  "Aluplast",
+  "EkoSun",
+  "Gealan",
+] as const;
+
+function ProductsGrid() {
+  const [active, setActive] = useState<string>("Wszystkie");
+
+  const filtered =
+    active === "Wszystkie"
+      ? pvcSystems
+      : pvcSystems.filter((s) => s.manufacturer === active);
 
   return (
-    <div className="border-b border-dark/10">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-4 text-left"
-      >
-        <h4 className="text-base font-bold text-dark md:text-lg">
-          {system.name}
-        </h4>
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        >
-          <path
-            d="M3 5L7 9L11 5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-        </svg>
-      </button>
-      <div
-        className={`grid transition-all duration-300 ${
-          open
-            ? "grid-rows-[1fr] opacity-100"
-            : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
-            {system.description}
-          </p>
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <AnimateOnScroll>
+          <SectionHeading lines={["Poznaj nasze", "produkty"]} />
+        </AnimateOnScroll>
+
+        {/* Manufacturer filter */}
+        <AnimateOnScroll delay={100}>
+          <div className="mt-8 bg-gray-200/50 md:mt-12">
+            <div className="flex items-center gap-2 overflow-x-auto px-3 py-4 md:gap-6 md:px-5 md:py-5">
+              {manufacturerFilters.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`flex items-center gap-2 whitespace-nowrap px-3 py-2 text-sm transition-colors md:text-lg lg:text-xl ${
+                    active === cat
+                      ? "font-bold text-dark"
+                      : "text-dark/60 hover:text-dark"
+                  }`}
+                >
+                  <span
+                    className={`flex size-4 shrink-0 items-center justify-center border transition-colors ${
+                      active === cat
+                        ? "border-pink bg-pink"
+                        : "border-dark/30"
+                    }`}
+                  >
+                    {active === cat && (
+                      <svg
+                        width="10"
+                        height="8"
+                        viewBox="0 0 10 8"
+                        fill="none"
+                      >
+                        <path
+                          d="M1 3.5L3.5 6L9 1"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </span>
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+        </AnimateOnScroll>
+
+        {/* Product cards grid */}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:gap-8">
+          {filtered.map((system) => (
+            <AnimateOnScroll key={system.slug}>
+              <Link
+                href={`/produkty/okna/${system.slug}`}
+                className="group flex flex-col overflow-hidden bg-white shadow-[0_0_12px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-lg"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50">
+                  <Image
+                    src={system.image}
+                    alt={system.fullName}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-dark md:text-2xl">
+                    {system.name}
+                  </h3>
+                  <div className="mt-3 border-t border-dark/10 pt-3">
+                    <p className="text-sm text-dark">
+                      Głębokość zabudowy: {system.depth}
+                    </p>
+                    <p className="mt-1 text-sm text-dark">
+                      Szklenie pakietami o szerokości {system.glazing}
+                    </p>
+                    <p className="mt-1 text-sm text-dark">
+                      {system.seals} uszczelki, {system.chambers} komór
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </AnimateOnScroll>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
 export default function OknaPage() {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const activeManufacturer = manufacturers[activeTab];
-
   return (
     <>
       <TopBar />
@@ -273,84 +334,8 @@ export default function OknaPage() {
         </div>
       </section>
 
-      {/* Systems Section with Tabs */}
-      <section className="bg-white py-10 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-          <AnimateOnScroll>
-            <SectionHeading
-              lines={["Systemy okien PVC,", "na których pracujemy"]}
-            />
-          </AnimateOnScroll>
-
-          <AnimateOnScroll delay={100}>
-            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-              Pracujemy na systemach profili kilku sprawdzonych producentów. Każdy
-              z nich oferuje różne głębokości systemów – od 54 mm aż do
-              120 mm – co pozwala dobrać okno do standardu budynku, budżetu oraz
-              oczekiwań dotyczących energooszczędności. Na tej podstawie
-              dobieramy konkretne rozwiązanie do Twojej inwestycji – inny system
-              polecimy do mieszkania w bloku, a inny do nowego domu z pompą
-              ciepła.
-            </p>
-          </AnimateOnScroll>
-
-          {/* Manufacturer Tabs */}
-          <AnimateOnScroll delay={200}>
-            <div className="mt-8 overflow-x-auto scrollbar-hide md:mt-12">
-              <div className="flex min-w-max items-center gap-1 bg-card px-2.5 py-2.5 md:gap-2 md:px-3">
-                {manufacturers.map((m, i) => (
-                  <button
-                    key={m.id}
-                    onClick={() => setActiveTab(i)}
-                    className={`whitespace-nowrap rounded-sm px-4 py-2.5 text-sm transition-all duration-200 md:px-5 md:py-2.5.5 md:text-lg ${
-                      activeTab === i
-                        ? "bg-white font-semibold text-dark shadow-sm"
-                        : "text-dark/50 hover:bg-white/60 hover:text-dark/80"
-                    }`}
-                  >
-                    {m.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          {/* Active Manufacturer Content */}
-          <div className="mt-8 md:mt-12">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-              <div>
-                <h3 className="text-xl font-bold text-dark md:text-[26px]">
-                  {activeManufacturer.name}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
-                  {activeManufacturer.description}
-                </p>
-                <div className="mt-6 rounded-sm bg-section-light p-4 text-sm leading-relaxed text-dark/80 md:p-5 md:text-base">
-                  {activeManufacturer.cta}
-                </div>
-                <div className="mt-6">
-                  <Link
-                    href="/kontakt"
-                    className="btn-pink h-[52px] px-[34px] text-sm"
-                  >
-                    Napisz do nas
-                  </Link>
-                </div>
-              </div>
-              <div>
-                <h4 className="mb-2 text-base font-semibold text-dark/60 uppercase tracking-wide md:text-sm">
-                  Dostępne systemy
-                </h4>
-                <div className="border-t border-dark/10">
-                  {activeManufacturer.systems.map((system) => (
-                    <SystemAccordion key={system.name} system={system} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Products Section */}
+      <ProductsGrid />
 
       {/* Why Trendhomes */}
       <AnimateOnScroll>

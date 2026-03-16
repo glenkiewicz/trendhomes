@@ -1,9 +1,13 @@
+export type BlogCategory = "Porady" | "Inspiracje" | "Aktualności" | "Technologie";
+
 export interface BlogPost {
   slug: string;
   image: string;
   title: string;
   excerpt: string;
   content: string;
+  category: BlogCategory;
+  date: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -13,6 +17,8 @@ export const blogPosts: BlogPost[] = [
     title: "Jak zaplanować montaż okien i drzwi w nowym domu krok po kroku",
     excerpt:
       "Wyjaśniamy, na którym etapie budowy najlepiej montować okna i drzwi, jak dograć terminy z innymi ekipami i czego pilnować...",
+    category: "Porady",
+    date: "24.06.2026",
     content: `<p>Montaż okien i drzwi to jeden z kluczowych etapów budowy domu. Od właściwego zaplanowania tego procesu zależy nie tylko komfort termiczny, ale też trwałość całej stolarki.</p>
 
 <h2>Na jakim etapie budowy montować okna?</h2>
@@ -33,6 +39,8 @@ export const blogPosts: BlogPost[] = [
       "Wymiana okien w bloku w 1 dzień – co warto wiedzieć przed montażem",
     excerpt:
       "Podpowiadamy, jak przygotować mieszkanie do wymiany okien, jak rozmawiać ze wspólnotą i czego wymagać od ekipy...",
+    category: "Porady",
+    date: "24.06.2026",
     content: `<p>Wymiana okien w bloku to proces, który budzi wiele pytań. Czy trzeba informować wspólnotę? Jak przygotować mieszkanie? Ile to trwa? Odpowiadamy na najczęstsze wątpliwości.</p>
 
 <h2>Czy potrzebuję zgody wspólnoty?</h2>
