@@ -91,6 +91,14 @@ export default function SolutionsSection() {
 		if (current > maxIndex) setCurrent(maxIndex);
 	}, [maxIndex, current]);
 
+	// auto-scroll every 5 seconds
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setCurrent((c) => (c < maxIndex ? c + 1 : 0));
+		}, 5000);
+		return () => clearInterval(timer);
+	}, [maxIndex]);
+
 	const prev = useCallback(() => {
 		setCurrent((c) => (c > 0 ? c - 1 : maxIndex));
 	}, [maxIndex]);

@@ -114,27 +114,21 @@ export default function Hero() {
 						>
 							<h1
 								className={`text-[28px] font-semibold leading-[1.15] text-white transition-opacity duration-500 sm:text-[36px] md:text-[44px] lg:text-[52px] ${
-									i === current
-										? "opacity-100"
-										: "opacity-0"
+									i === current ? "opacity-100" : "opacity-0"
 								}`}
 							>
 								{slide.title}
 							</h1>
 							<p
 								className={`max-w-[552px] text-sm leading-relaxed text-white transition-opacity delay-100 duration-500 sm:text-base md:text-lg lg:text-xl ${
-									i === current
-										? "opacity-100"
-										: "opacity-0"
+									i === current ? "opacity-100" : "opacity-0"
 								}`}
 							>
 								{slide.description}
 							</p>
 							<div
 								className={`flex flex-col items-start gap-3 transition-opacity delay-200 duration-500 sm:flex-row sm:items-center sm:gap-6 ${
-									i === current
-										? "opacity-100"
-										: "opacity-0"
+									i === current ? "opacity-100" : "opacity-0"
 								}`}
 							>
 								<Link
@@ -142,12 +136,6 @@ export default function Hero() {
 									className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
 								>
 									Umów pomiar w 48 h
-								</Link>
-								<Link
-									href="#wycena"
-									className="btn-light h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
-								>
-									Wycena online
 								</Link>
 							</div>
 						</div>

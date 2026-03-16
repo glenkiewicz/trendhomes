@@ -104,8 +104,9 @@ export default function Footer() {
 							<p>Telefon: 735 721 222</p>
 						</div>
 						<div className="mt-4 space-y-1 text-base leading-relaxed text-light">
+							<p>Oddział Rzeszów</p>
 							<p>E-mail: rzeszow@trendhomes.pl</p>
-							<p>Telefon: 601 941 619</p>
+							<p>Telefon: 786 421 506 </p>
 						</div>
 						<div className="mt-4 space-y-1 text-base leading-relaxed text-light">
 							<p>NIP 6871126807</p>

@@ -107,7 +107,7 @@ export default function Navbar() {
 
 								{/* Mega-menu dropdown */}
 								<div
-									className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 transition-all duration-200 ${
+									className={`absolute left-0 top-full z-50  pt-3 transition-all duration-200 ${
 										dropdownOpen
 											? "visible translate-y-0 opacity-100"
 											: "invisible -translate-y-1 opacity-0"
