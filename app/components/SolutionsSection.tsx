@@ -110,8 +110,8 @@ export default function SolutionsSection() {
 	const totalDots = maxIndex + 1;
 
 	return (
-		<section id="rozwiazania" className="bg-white py-12 md:py-20">
-			<div className="mx-auto max-w-[1440px] px-4 md:px-6">
+		<section id="rozwiazania" className="bg-white py-10 md:py-20">
+			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				<div className="flex items-center justify-between">
 					<SectionHeading
 						lines={["Rozwiązania dopasowane", "do Twoich potrzeb"]}
@@ -177,11 +177,11 @@ export default function SolutionsSection() {
 											: "100%",
 								}}
 							>
-								<div className="flex-1 p-6 pb-0 md:p-10 md:pb-0">
-									<h3 className="whitespace-pre-line text-[28px] font-bold leading-tight text-dark md:text-[32px] lg:text-[40px]">
+								<div className="flex-1 p-5 pb-0 md:p-8 md:pb-0">
+									<h3 className="whitespace-pre-line text-[22px] font-bold leading-tight text-dark md:text-[26px] lg:text-[26px]">
 										{solution.title}
 									</h3>
-									<p className="mt-4 text-base leading-relaxed text-dark md:mt-6 md:text-lg">
+									<p className="mt-4 text-sm leading-relaxed text-dark md:mt-6 md:text-base">
 										{solution.description}
 									</p>
 								</div>

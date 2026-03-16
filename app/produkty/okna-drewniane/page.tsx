@@ -60,9 +60,9 @@ function SystemAccordion({
     <div className="border-b border-dark/10">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-5 text-left"
+        className="flex w-full items-center justify-between py-4 text-left"
       >
-        <h4 className="text-lg font-bold text-dark md:text-xl">
+        <h4 className="text-base font-bold text-dark md:text-lg">
           {system.name}
         </h4>
         <svg
@@ -87,7 +87,7 @@ function SystemAccordion({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-5 text-base leading-relaxed text-dark/80 md:text-lg">
+          <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
             {system.description}
           </p>
         </div>
@@ -118,8 +118,8 @@ export default function OknaDrewnianePage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -129,10 +129,10 @@ export default function OknaDrewnianePage() {
             <span className="text-white">Okna Drewniane</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Okna drewniane
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Okna drewniane są dla klientów, którzy chcą połączyć solidne
             parametry techniczne z naturalnym materiałem i bardziej
             \u201Eprzytulnym\u201D wyglądem stolarki. Dobrze sprawdzają się w domach
@@ -144,7 +144,7 @@ export default function OknaDrewnianePage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48 h
             </Link>
@@ -153,8 +153,8 @@ export default function OknaDrewnianePage() {
       </section>
 
       {/* Systems Section with Accordion */}
-      <section className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <section className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
               lines={["Systemy okien drewnianych,", "na których pracujemy"]}
@@ -162,7 +162,7 @@ export default function OknaDrewnianePage() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={100}>
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Pracujemy na siedmiu systemach drewnianych z linii Naturo
               i Esperia Life. Każdy z nich różni się głębokością profilu,
               parametrami cieplnymi i konstrukcją – od klasycznych ram
@@ -186,13 +186,13 @@ export default function OknaDrewnianePage() {
 
       {/* Summary Section */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Podsumowanie –", "okna drewniane Naturo i Esperia Life"]}
             />
 
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Okna drewniane z linii Naturo i Esperia Life to rozwiązanie dla
               inwestorów, którzy chcą połączyć naturalny materiał, dobry
               standard techniczny i dopasowanie do charakteru budynku. Na
@@ -206,10 +206,10 @@ export default function OknaDrewnianePage() {
 
       {/* CTA Section */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
-              <p className="text-base leading-relaxed text-dark md:text-xl">
+              <p className="text-sm leading-relaxed text-dark md:text-lg">
                 Prześlij nam rzut domu lub kilka zdjęć budynku –
                 przygotujemy propozycję drewnianych okien Naturo lub
                 Esperia Life dopasowaną do Twojego projektu.
@@ -217,20 +217,20 @@ export default function OknaDrewnianePage() {
               <div className="mt-8">
                 <Link
                   href="/kontakt"
-                  className="btn-pink h-[52px] px-[42px] text-base"
+                  className="btn-pink h-[52px] px-[34px] text-sm"
                 >
                   Wyślij zapytanie
                 </Link>
               </div>
 
-              <p className="mt-10 text-base leading-relaxed text-dark md:text-xl">
+              <p className="mt-10 text-sm leading-relaxed text-dark md:text-lg">
                 Zadzwoń lub napisz, a podpowiemy, który z 7 systemów
                 drewnianych będzie rozsądnym wyborem do Twojego domu.
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
-                  className="btn-pink h-[52px] px-[42px] text-base"
+                  className="btn-pink h-[52px] px-[34px] text-sm"
                 >
                   Skontaktuj się z Nami
                 </Link>

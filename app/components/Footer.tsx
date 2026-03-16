@@ -29,19 +29,19 @@ export default function Footer() {
 					"linear-gradient(90deg, #d32360 0%, #e8574a 50%, #f0a030 100%)",
 			}}
 		>
-			<div className="relative z-10 mx-auto max-w-[1440px] px-4 pb-0 pt-12 md:px-6 md:pt-20">
+			<div className="relative z-10 mx-auto max-w-[1440px] px-3 pb-0 pt-10 md:px-5 md:pt-20">
 				{/* Main grid — 4 columns on desktop */}
 				<div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
 					{/* Column 1: Logo + description */}
 					<div>
 						<Image
-							src="/images/logo-about.png"
+							src="/images/logo-white.png"
 							alt="Trendhomes"
 							width={443}
 							height={70}
 							className="h-auto w-[200px] md:w-[260px]"
 						/>
-						<div className="mt-6 space-y-4 text-base leading-relaxed text-white md:text-lg">
+						<div className="mt-6 space-y-4 text-sm leading-relaxed text-white md:text-base">
 							<p>
 								Projektujemy, dostarczamy i montujemy stolarkę
 								okienną oraz drzwiową dla nowych domów, remontów
@@ -57,7 +57,7 @@ export default function Footer() {
 
 					{/* Column 2: Produkty */}
 					<div>
-						<h3 className="text-xl font-bold tracking-tight text-white">
+						<h3 className="text-lg font-bold tracking-tight text-white">
 							Produkty
 						</h3>
 						<ul className="mt-4 space-y-2 md:mt-6">
@@ -65,7 +65,7 @@ export default function Footer() {
 								<li key={link.label}>
 									<Link
 										href={link.href}
-										className="text-base text-light transition-colors hover:text-white"
+										className="text-sm text-light transition-colors hover:text-white"
 									>
 										{link.label}
 									</Link>
@@ -76,7 +76,7 @@ export default function Footer() {
 
 					{/* Column 3: Przydatne linki */}
 					<div>
-						<h3 className="text-xl font-bold tracking-tight text-white">
+						<h3 className="text-lg font-bold tracking-tight text-white">
 							Przydatne linki
 						</h3>
 						<ul className="mt-4 space-y-2 md:mt-6">
@@ -84,7 +84,7 @@ export default function Footer() {
 								<li key={link.label}>
 									<Link
 										href={link.href}
-										className="text-base text-light transition-colors hover:text-white"
+										className="text-sm text-light transition-colors hover:text-white"
 									>
 										{link.label}
 									</Link>
@@ -95,20 +95,20 @@ export default function Footer() {
 
 					{/* Column 4: Trendhomes contact */}
 					<div>
-						<h3 className="text-xl font-bold tracking-tight text-white">
+						<h3 className="text-lg font-bold tracking-tight text-white">
 							Trendhomes
 						</h3>
-						<div className="mt-4 space-y-1 text-base leading-relaxed text-light md:mt-6">
+						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light md:mt-6">
 							<p>ul. Piastowska 3, 38-500 Sanok</p>
 							<p>E-mail: kontakt@trendhomes.pl</p>
 							<p>Telefon: 735 721 222</p>
 						</div>
-						<div className="mt-4 space-y-1 text-base leading-relaxed text-light">
+						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light">
 							<p>Oddział Rzeszów</p>
 							<p>E-mail: rzeszow@trendhomes.pl</p>
 							<p>Telefon: 786 421 506 </p>
 						</div>
-						<div className="mt-4 space-y-1 text-base leading-relaxed text-light">
+						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light">
 							<p>NIP 6871126807</p>
 							<p>REGON 361509528</p>
 						</div>
@@ -116,21 +116,21 @@ export default function Footer() {
 				</div>
 
 				{/* Bottom bar */}
-				<div className="mt-10 flex flex-col gap-3 border-t border-white/20 py-6 sm:flex-row sm:items-center sm:justify-between md:mt-16">
-					<p className="text-base text-light md:text-lg">
+				<div className="mt-10 flex flex-col gap-3 border-t border-white/20 py-5 sm:flex-row sm:items-center sm:justify-between md:mt-16">
+					<p className="text-sm text-light md:text-base">
 						Polityka prywatności &nbsp;|&nbsp; Polityka cookies
 						&nbsp;|&nbsp; Regulamin strony
 					</p>
-					<p className="text-base text-light md:text-lg">
+					<p className="text-sm text-light md:text-base">
 						&copy; 2026 Trendhomes. Wszelkie prawa zastrzeżone.
 					</p>
 				</div>
 			</div>
 
 			{/* Realizacja bar */}
-			<div className="relative z-10 bg-dark/50 py-2.5">
-				<div className="mx-auto max-w-[1440px] px-4 text-center sm:text-right md:px-6">
-					<p className="text-sm text-dark md:text-base">
+			<div className="relative z-10 bg-dark/50 py-2">
+				<div className="mx-auto max-w-[1440px] px-3 text-center sm:text-right md:px-5">
+					<p className="text-sm text-dark md:text-sm">
 						Projekt: Koala Marketing | Realizacja:{" "}
 						<a href="mailto:grzegorz.lenkiewicz@gmail.com">GL</a>
 					</p>

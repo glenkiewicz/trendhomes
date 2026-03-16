@@ -26,7 +26,7 @@ export default function CleanAirSection() {
       />
 
       {/* Content */}
-      <div className="relative mx-auto max-w-[1440px] px-4 py-12 md:px-6 md:py-16">
+      <div className="relative mx-auto max-w-[1440px] px-3 py-10 md:px-5 md:py-16">
         <SectionHeading
           lines={[
             "Skorzystaj z dofinansowania",
@@ -35,7 +35,7 @@ export default function CleanAirSection() {
           light
         />
 
-        <p className="mt-6 max-w-[728px] text-lg leading-relaxed text-white md:mt-8 md:text-2xl">
+        <p className="mt-6 max-w-[728px] text-base leading-relaxed text-white md:mt-8 md:text-xl">
           Dzięki rządowemu wsparciu możesz zyskać nową stolarkę z dotacją od 40
           do 100% poniesionych kosztów netto! Sprawdź już teraz i wybierz
           produkty Trendhomes z dofinansowaniem.
@@ -44,7 +44,7 @@ export default function CleanAirSection() {
         <div className="mt-8 flex items-center gap-8 md:mt-10">
           <a
             href="#kontakt"
-            className="btn-light h-[52px] px-[42px] text-base font-normal"
+            className="btn-light h-[52px] px-[34px] text-sm font-normal"
           >
             Umów pomiar
           </a>

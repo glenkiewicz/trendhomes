@@ -101,9 +101,9 @@ function AccordionItem({
     <div className="border-b border-dark/10">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-5 text-left"
+        className="flex w-full items-center justify-between py-4 text-left"
       >
-        <h4 className="text-lg font-bold text-dark md:text-xl">
+        <h4 className="text-base font-bold text-dark md:text-lg">
           {item.name}
         </h4>
         <svg
@@ -128,7 +128,7 @@ function AccordionItem({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-5 text-base leading-relaxed text-dark/80 md:text-lg">
+          <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
             {item.description}
           </p>
         </div>
@@ -159,8 +159,8 @@ export default function RoletyPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -170,12 +170,12 @@ export default function RoletyPage() {
             <span className="text-white">Rolety</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Rolety zewnętrzne
             <br />
             i wewnętrzne z montażem
           </h1>
-          <p className="mt-4 max-w-[600px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[600px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Rolety pełnią kilka ról naraz: chronią przed słońcem, poprawiają
             komfort cieplny, dają poczucie prywatności i bezpieczeństwa.
             W Trendhomes dobieramy osłony okienne do okien, elewacji i sposobu
@@ -187,7 +187,7 @@ export default function RoletyPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48 h
             </Link>
@@ -197,8 +197,8 @@ export default function RoletyPage() {
 
       {/* Dla kogo */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Dla kogo są nasze", "rolety"]}
             />
@@ -206,11 +206,11 @@ export default function RoletyPage() {
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-4 lg:gap-8">
               {forWhomCards.map((card, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
-                  <div className="flex h-full flex-col rounded-sm bg-section-light p-6 md:p-8">
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                  <div className="flex h-full flex-col rounded-sm bg-section-light p-5 md:p-6">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {card.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark/80 md:text-lg">
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
                       {card.text}
                     </p>
                   </div>
@@ -223,12 +223,12 @@ export default function RoletyPage() {
 
       {/* Rolety zewnętrzne */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Rolety", "zewnętrzne"]}
             />
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Rolety zewnętrzne chronią przed słońcem, hałasem i próbami
               włamania. Dobieramy je pod typ budynku, sposób montażu
               i oczekiwania inwestora. Pracujemy na dwóch głównych systemach:
@@ -246,7 +246,7 @@ export default function RoletyPage() {
             <div className="mt-10 flex justify-start md:mt-14">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Zapytaj o rolety zewnętrzne
               </Link>
@@ -257,12 +257,12 @@ export default function RoletyPage() {
 
       {/* Rolety wewnętrzne */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Rolety", "wewnętrzne"]}
             />
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Rolety wewnętrzne pozwalają precyzyjnie sterować ilością
               światła, zapewniają prywatność i stanowią element aranżacji
               wnętrza. Oferujemy kilka systemów, które dobieramy pod typ okna,
@@ -280,7 +280,7 @@ export default function RoletyPage() {
             <div className="mt-10 flex justify-start md:mt-14">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Zapytaj o rolety wewnętrzne
               </Link>
@@ -291,12 +291,12 @@ export default function RoletyPage() {
 
       {/* Dobór i montaż rolet wewnętrznych */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Dobór i montaż", "rolet wewnętrznych"]}
             />
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Przy doborze rolet wewnętrznych zwracamy uwagę na kilka
               elementów, które mają bezpośredni wpływ na wybór systemu
               i sposób montażu.
@@ -305,11 +305,11 @@ export default function RoletyPage() {
             <div className="mt-8 md:mt-12">
               {doborDetails.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-6 last:border-b-0 md:grid-cols-[280px_1fr] md:gap-8 md:py-8">
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                  <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[280px_1fr] md:gap-8 md:py-6">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {item.label}
                     </h3>
-                    <p className="text-base leading-relaxed text-dark md:text-xl">
+                    <p className="text-sm leading-relaxed text-dark md:text-lg">
                       {item.text}
                     </p>
                   </div>
@@ -322,14 +322,14 @@ export default function RoletyPage() {
 
       {/* CTA */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
-              <h2 className="text-2xl font-bold text-dark md:text-[36px] md:leading-[1.2]">
+              <h2 className="text-xl font-bold text-dark md:text-[29px] md:leading-[1.2]">
                 Szukasz rolet do domu, mieszkania
                 <br className="hidden md:block" /> albo lokalu w Sanoku?
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-dark/80 md:text-xl">
+              <p className="mt-6 text-sm leading-relaxed text-dark/80 md:text-lg">
                 Szukasz rolet zewnętrznych lub wewnętrznych do domu, mieszkania
                 albo lokalu w Sanoku i okolicach? Dobierzemy rozwiązanie
                 dopasowane do Twoich okien, elewacji i sposobu użytkowania
@@ -338,7 +338,7 @@ export default function RoletyPage() {
               <div className="mt-8 flex justify-center">
                 <Link
                   href="/kontakt"
-                  className="btn-pink h-[52px] px-[42px] text-base"
+                  className="btn-pink h-[52px] px-[34px] text-sm"
                 >
                   Skontaktuj się z Nami
                 </Link>

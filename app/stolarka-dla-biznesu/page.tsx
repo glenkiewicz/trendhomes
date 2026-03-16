@@ -152,10 +152,10 @@ function AudienceCarousel() {
   const totalDots = maxIndex + 1;
 
   return (
-    <section className="bg-white pb-12 md:pb-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section className="bg-white pb-10 md:pb-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <div className="flex items-end justify-between">
-          <p className="text-2xl font-semibold text-dark md:text-[32px]">
+          <p className="text-xl font-semibold text-dark md:text-[26px]">
             Dla kogo jest ta oferta?
           </p>
           <div className="flex items-center gap-3">
@@ -195,8 +195,8 @@ function AudienceCarousel() {
                 className="group shrink-0 cursor-pointer overflow-hidden bg-card transition-shadow duration-300 hover:shadow-lg hover:shadow-dark/10"
                 style={{ width: itemWidth > 0 ? `${itemWidth}px` : "100%" }}
               >
-                <div className="p-6 pb-0 md:p-10 md:pb-0">
-                  <h3 className="text-[28px] font-bold leading-tight text-dark md:text-[32px]">
+                <div className="p-5 pb-0 md:p-8 md:pb-0">
+                  <h3 className="text-[22px] font-bold leading-tight text-dark md:text-[26px]">
                     {item.title}
                   </h3>
                 </div>
@@ -251,12 +251,12 @@ function AccordionItem({
     <div className="border-t border-dark/10">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between py-6 text-left md:py-8"
+        className="flex w-full items-center justify-between py-5 text-left md:py-6"
       >
-        <h3 className="text-2xl font-bold text-dark md:text-[32px] md:leading-[42px]">
+        <h3 className="text-xl font-bold text-dark md:text-[26px] md:leading-[42px]">
           {item.title}
         </h3>
-        <span className="ml-4 flex shrink-0 items-center gap-2 text-base text-dark">
+        <span className="ml-4 flex shrink-0 items-center gap-2 text-sm text-dark">
           <span className="hidden sm:inline">
             {isOpen ? "Zwiń opis" : "Czytaj więcej"}
           </span>
@@ -284,17 +284,17 @@ function AccordionItem({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="pb-8 md:pb-10">
-            <p className="text-base leading-relaxed text-dark md:text-xl">
+          <div className="pb-6 md:pb-8">
+            <p className="text-sm leading-relaxed text-dark md:text-lg">
               {item.intro}
             </p>
 
             {item.details && (
               <div className="mt-6">
-                <p className="mb-3 text-base font-semibold text-dark md:text-xl">
+                <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
                   Co dostarczamy do lokali:
                 </p>
-                <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed text-dark md:text-xl">
+                <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
                   {item.details.map((d, i) => (
                     <li key={i}>{d}</li>
                   ))}
@@ -304,10 +304,10 @@ function AccordionItem({
 
             {item.listTitle && item.list && (
               <div className="mt-6">
-                <p className="mb-3 text-base font-semibold text-dark md:text-xl">
+                <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
                   {item.listTitle}
                 </p>
-                <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed text-dark md:text-xl">
+                <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
                   {item.list.map((l, i) => (
                     <li key={i}>{l}</li>
                   ))}
@@ -317,10 +317,10 @@ function AccordionItem({
 
             {item.considerTitle && item.considerations && (
               <div className="mt-6">
-                <p className="mb-3 text-base font-semibold text-dark md:text-xl">
+                <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
                   {item.considerTitle}
                 </p>
-                <ul className="list-disc space-y-2 pl-6 text-base leading-relaxed text-dark md:text-xl">
+                <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
                   {item.considerations.map((c, i) => (
                     <li key={i}>{c}</li>
                   ))}
@@ -332,7 +332,7 @@ function AccordionItem({
               <div className="mt-8">
                 <Link
                   href="/realizacje"
-                  className="btn-pink h-[52px] px-[42px] text-base"
+                  className="btn-pink h-[52px] px-[34px] text-sm"
                 >
                   Zobacz realizacje witryn
                 </Link>
@@ -369,8 +369,8 @@ export default function StolarkaDlaBiznesuPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -378,14 +378,14 @@ export default function StolarkaDlaBiznesuPage() {
             <span className="text-white">stolarka dla biznesu</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Stolarka dla biznesu
             <br />
             i instytucji publicznych
             <br />
             &ndash; od projektu do monta&#380;u
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             W biznesie stolarka nie jest tylko &bdquo;oknem w &#347;cianie&rdquo;.
             W&nbsp;Trendhomes doskonale o tym wiemy, dlatego od pierwszej koncepcji
             do odbioru technicznego masz po swojej stronie zesp&oacute;&#322;, kt&oacute;ry
@@ -394,7 +394,7 @@ export default function StolarkaDlaBiznesuPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Um&oacute;w pomiar w 48 h
             </Link>
@@ -404,10 +404,10 @@ export default function StolarkaDlaBiznesuPage() {
 
       {/* Trendhomes dla biznesu */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading lines={["Trendhomes", "dla biznesu"]} />
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-2xl">
+            <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-xl">
               <p>
                 Wiemy, &#380;e w biznesie stolarka okienna ma przyci&#261;ga&#263;
                 klient&oacute;w, spe&#322;nia&#263; wymagania przepis&oacute;w,
@@ -433,8 +433,8 @@ export default function StolarkaDlaBiznesuPage() {
 
       {/* Stolarka w pełni dopasowana */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={[
                 "Stolarka w pełni dopasowana",
@@ -461,8 +461,8 @@ export default function StolarkaDlaBiznesuPage() {
 
       {/* Jak wygląda współpraca */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={[
                 "Jak wygląda współpraca",
@@ -473,16 +473,16 @@ export default function StolarkaDlaBiznesuPage() {
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-3 md:gap-10">
               {processSteps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
-                  <div className="border-t-2 border-pink/30 pt-6">
+                  <div className="border-t-2 border-pink/30 pt-5">
                     <span
-                      className={`text-4xl font-black text-pink ${step.opacity}`}
+                      className={`text-3xl font-black text-pink ${step.opacity}`}
                     >
                       {step.number}
                     </span>
-                    <h3 className="mt-2 text-2xl font-light text-dark md:text-4xl">
+                    <h3 className="mt-2 text-xl font-light text-dark md:text-3xl">
                       {step.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark md:text-xl">
+                    <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">
                       {step.text}
                     </p>
                   </div>
@@ -495,8 +495,8 @@ export default function StolarkaDlaBiznesuPage() {
 
       {/* Trendhomes - Twój partner w biznesie */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
@@ -505,7 +505,7 @@ export default function StolarkaDlaBiznesuPage() {
                     "partner w biznesie",
                   ]}
                 />
-                <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-xl">
+                <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
                   <p>
                     &#321;&#261;czymy do&#347;wiadczenie z bud&oacute;w,
                     znajomo&#347;&#263; system&oacute;w stolarki i wymagania
@@ -521,7 +521,7 @@ export default function StolarkaDlaBiznesuPage() {
                 <div className="mt-8">
                   <Link
                     href="/kontakt"
-                    className="btn-pink h-[52px] px-[42px] text-base"
+                    className="btn-pink h-[52px] px-[34px] text-sm"
                   >
                     Skontaktuj si&#281; z Nami
                   </Link>

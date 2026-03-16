@@ -177,9 +177,9 @@ function SystemAccordion({
     <div className="border-b border-dark/10">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-5 text-left"
+        className="flex w-full items-center justify-between py-4 text-left"
       >
-        <h4 className="text-lg font-bold text-dark md:text-xl">
+        <h4 className="text-base font-bold text-dark md:text-lg">
           {system.name}
         </h4>
         <svg
@@ -204,7 +204,7 @@ function SystemAccordion({
         }`}
       >
         <div className="overflow-hidden">
-          <p className="pb-5 text-base leading-relaxed text-dark/80 md:text-lg">
+          <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
             {system.description}
           </p>
         </div>
@@ -239,8 +239,8 @@ export default function OknaPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -250,12 +250,12 @@ export default function OknaPage() {
             <span className="text-white">Okna PVC</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Okna PVC
             <br />
             od Trendhomes
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Wymieniamy i montujemy okna PVC w domach jednorodzinnych, mieszkaniach
             w blokach, lokalach usługowych, czy na inwestycjach deweloperskich w
             Sanoku i okolicy. Dobieramy system profili do projektu, budżetu i
@@ -265,7 +265,7 @@ export default function OknaPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48 h
             </Link>
@@ -274,8 +274,8 @@ export default function OknaPage() {
       </section>
 
       {/* Systems Section with Tabs */}
-      <section className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <section className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
               lines={["Systemy okien PVC,", "na których pracujemy"]}
@@ -283,7 +283,7 @@ export default function OknaPage() {
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={100}>
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Pracujemy na systemach profili kilku sprawdzonych producentów. Każdy
               z nich oferuje różne głębokości systemów – od 54 mm aż do
               120 mm – co pozwala dobrać okno do standardu budynku, budżetu oraz
@@ -297,12 +297,12 @@ export default function OknaPage() {
           {/* Manufacturer Tabs */}
           <AnimateOnScroll delay={200}>
             <div className="mt-8 overflow-x-auto scrollbar-hide md:mt-12">
-              <div className="flex min-w-max items-center gap-1 bg-card px-3 py-3 md:gap-2 md:px-4">
+              <div className="flex min-w-max items-center gap-1 bg-card px-2.5 py-2.5 md:gap-2 md:px-3">
                 {manufacturers.map((m, i) => (
                   <button
                     key={m.id}
                     onClick={() => setActiveTab(i)}
-                    className={`whitespace-nowrap rounded-sm px-5 py-3 text-base transition-all duration-200 md:px-6 md:py-3.5 md:text-xl ${
+                    className={`whitespace-nowrap rounded-sm px-4 py-2.5 text-sm transition-all duration-200 md:px-5 md:py-2.5.5 md:text-lg ${
                       activeTab === i
                         ? "bg-white font-semibold text-dark shadow-sm"
                         : "text-dark/50 hover:bg-white/60 hover:text-dark/80"
@@ -319,26 +319,26 @@ export default function OknaPage() {
           <div className="mt-8 md:mt-12">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
               <div>
-                <h3 className="text-2xl font-bold text-dark md:text-[32px]">
+                <h3 className="text-xl font-bold text-dark md:text-[26px]">
                   {activeManufacturer.name}
                 </h3>
-                <p className="mt-4 text-base leading-relaxed text-dark/80 md:text-lg">
+                <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
                   {activeManufacturer.description}
                 </p>
-                <div className="mt-6 rounded-sm bg-section-light p-5 text-base leading-relaxed text-dark/80 md:p-6 md:text-lg">
+                <div className="mt-6 rounded-sm bg-section-light p-4 text-sm leading-relaxed text-dark/80 md:p-5 md:text-base">
                   {activeManufacturer.cta}
                 </div>
                 <div className="mt-6">
                   <Link
                     href="/kontakt"
-                    className="btn-pink h-[52px] px-[42px] text-base"
+                    className="btn-pink h-[52px] px-[34px] text-sm"
                   >
                     Napisz do nas
                   </Link>
                 </div>
               </div>
               <div>
-                <h4 className="mb-2 text-lg font-semibold text-dark/60 uppercase tracking-wide md:text-base">
+                <h4 className="mb-2 text-base font-semibold text-dark/60 uppercase tracking-wide md:text-sm">
                   Dostępne systemy
                 </h4>
                 <div className="border-t border-dark/10">
@@ -354,8 +354,8 @@ export default function OknaPage() {
 
       {/* Why Trendhomes */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Dlaczego warto zamówić", "okna PVC w Trendhomes"]}
             />
@@ -372,10 +372,10 @@ export default function OknaPage() {
                         className="object-contain"
                       />
                     </div>
-                    <h3 className="mt-6 text-xl font-bold text-dark md:text-2xl">
+                    <h3 className="mt-6 text-lg font-bold text-dark md:text-xl">
                       {item.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark md:text-lg">
+                    <p className="mt-4 text-sm leading-relaxed text-dark md:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -386,7 +386,7 @@ export default function OknaPage() {
             <div className="mt-10 flex justify-start md:mt-14">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Umów pomiar w 48 h
               </Link>
@@ -402,18 +402,18 @@ export default function OknaPage() {
 
       {/* For Whom */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading lines={["Dla kogo są nasze", "okna PVC"]} />
 
             <div className="mt-8 md:mt-12">
               {forWhom.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-6 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-8">
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                  <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-6">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {item.label}
                     </h3>
-                    <p className="text-base leading-relaxed text-dark md:text-2xl">
+                    <p className="text-sm leading-relaxed text-dark md:text-xl">
                       {item.text}
                     </p>
                   </div>
@@ -424,7 +424,7 @@ export default function OknaPage() {
             <div className="mt-10 flex justify-center md:mt-14">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Skontaktuj się z Nami
               </Link>

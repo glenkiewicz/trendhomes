@@ -121,8 +121,8 @@ export default function StepsSection() {
 	const totalDots = maxIndex + 1;
 
 	return (
-		<section className="bg-white py-12 md:py-20">
-			<div className="mx-auto max-w-[1440px] px-4 md:px-6">
+		<section className="bg-white py-10 md:py-20">
+			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				{/* Header with nav arrows */}
 				<div className="flex items-start justify-between">
 					<SectionHeading
@@ -169,7 +169,7 @@ export default function StepsSection() {
 				</div>
 
 				{/* Subtitle */}
-				<p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
 					Niezależnie od tego, czy budujesz nowy dom, remontujesz
 					mieszkanie, czy przygotowujesz lokal usługowy - proces
 					zawsze trzymamy w ryzach. Dzięki temu wiesz, na jakim etapie
@@ -200,7 +200,7 @@ export default function StepsSection() {
 								{/* Step number + title */}
 								<div className="flex items-baseline gap-3">
 									<span
-										className="text-4xl font-black text-pink"
+										className="text-3xl font-black text-pink"
 										style={{
 											opacity:
 												1 - i * 0.2 > 0.3
@@ -210,13 +210,13 @@ export default function StepsSection() {
 									>
 										{step.number}
 									</span>
-									<h3 className="text-2xl font-light text-dark md:text-[36px]">
+									<h3 className="text-xl font-light text-dark md:text-[29px]">
 										{step.title}
 									</h3>
 								</div>
 
 								{/* Description */}
-								<p className="mt-4 text-base leading-relaxed text-dark md:text-xl">
+								<p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">
 									{step.description}
 								</p>
 
@@ -267,10 +267,10 @@ export default function StepsSection() {
 										className="object-contain"
 									/>
 								</div>
-								<h3 className="mt-6 text-2xl font-bold text-dark">
+								<h3 className="mt-6 text-xl font-bold text-dark">
 									{item.title}
 								</h3>
-								<p className="mt-3 text-base leading-relaxed text-dark md:text-xl">
+								<p className="mt-3 text-sm leading-relaxed text-dark md:text-lg">
 									{item.description}
 								</p>
 							</div>

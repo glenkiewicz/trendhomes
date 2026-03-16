@@ -4,13 +4,13 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 export default function RealizationsSection() {
   return (
-    <section id="realizacje" className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section id="realizacje" className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <SectionHeading
           lines={["Realizacje Trendhomes", "w południowej Polsce"]}
         />
 
-        <p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+        <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
           Każdy projekt to inny dom, inne mieszkanie i inne potrzeby. Zobacz
           wybrane realizacje Trendhomes w Sanoku i okolicach – od nowych domów
           jednorodzinnych, przez mieszkania w blokach, aż po lokale usługowe i
@@ -110,7 +110,7 @@ export default function RealizationsSection() {
           <div className="mt-10 flex justify-center md:mt-14">
             <a
               href="#kontakt"
-              className="btn-pink h-12 px-[42px] text-base"
+              className="btn-pink h-12 px-[34px] text-sm"
             >
               Zobacz więcej realizacji
             </a>

@@ -68,8 +68,8 @@ export default function OknaAluminiowePage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -78,10 +78,10 @@ export default function OknaAluminiowePage() {
             <span>|</span>
             <span className="text-white">Okna Aluminiowe</span>
           </nav>
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Okna aluminiowe
           </h1>
-          <p className="mt-4 max-w-[620px] text-sm leading-relaxed text-white/90 sm:text-base md:mt-6 md:text-lg">
+          <p className="mt-4 max-w-[620px] text-sm leading-relaxed text-white/90 sm:text-sm md:mt-6 md:text-base">
             Okna aluminiowe wybieramy przede wszystkim tam, gdzie liczy się duża
             wytrzymałość, sztywność profili i możliwość wykonania większych
             przeszkleń. Sprawdzają się w budynkach użyteczności publicznej,
@@ -92,7 +92,7 @@ export default function OknaAluminiowePage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48&nbsp;h
             </Link>
@@ -102,22 +102,22 @@ export default function OknaAluminiowePage() {
 
       {/* ── Dla kogo są okna aluminiowe ── */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Dla kogo są", "okna aluminiowe"]}
             />
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:gap-8">
               {forWhomItems.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="flex h-full flex-col bg-section-light p-6 md:p-8">
+                  <div className="flex h-full flex-col bg-section-light p-5 md:p-6">
                     <span className="mb-4 flex size-7 shrink-0 items-center justify-center rounded-full bg-pink text-sm font-bold text-white">
                       {i + 1}
                     </span>
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {item.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark/80 md:text-lg">
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -130,8 +130,8 @@ export default function OknaAluminiowePage() {
 
       {/* ── Dlaczego czasem warto wybrać aluminium zamiast PVC ── */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={[
                 "Dlaczego czasem warto wybrać",
@@ -141,11 +141,11 @@ export default function OknaAluminiowePage() {
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:gap-8">
               {advantages.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="bg-white p-6 md:p-8">
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                  <div className="bg-white p-5 md:p-6">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {item.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark/80 md:text-lg">
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -158,8 +158,8 @@ export default function OknaAluminiowePage() {
 
       {/* ── Jak pracujemy z oknami aluminiowymi ── */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={[
                 "Jak pracujemy",
@@ -167,7 +167,7 @@ export default function OknaAluminiowePage() {
               ]}
             />
             <div className="mt-8 max-w-[900px] md:mt-12">
-              <p className="text-base leading-relaxed text-dark md:text-xl">
+              <p className="text-sm leading-relaxed text-dark md:text-lg">
                 Okna aluminiowe proponujemy tam, gdzie ich potencjał naprawdę
                 robi różnicę — w nowoczesnych projektach, dużych przeszkleniach
                 i inwestycjach wymagających maksymalnej trwałości oraz sztywności
@@ -175,7 +175,7 @@ export default function OknaAluminiowePage() {
                 dobrać rozwiązanie, które najlepiej spełni wymagania inwestycji
                 — czy będzie to aluminium, wysokiej klasy PVC, czy inny system.
               </p>
-              <p className="mt-6 text-base leading-relaxed text-dark/80 md:text-lg">
+              <p className="mt-6 text-sm leading-relaxed text-dark/80 md:text-base">
                 Jeśli aluminium jest najlepszym wyborem, dobieramy odpowiedni
                 system profili, technologię montażu i przygotowujemy ofertę
                 z pełnym zakresem prac.
@@ -187,9 +187,9 @@ export default function OknaAluminiowePage() {
 
       {/* ── CTA ── */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 text-center md:px-6">
-            <p className="mx-auto max-w-[720px] text-lg leading-relaxed text-dark md:text-2xl">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 text-center md:px-5">
+            <p className="mx-auto max-w-[720px] text-base leading-relaxed text-dark md:text-xl">
               Szukasz okien aluminiowych do biura, lokalu usługowego albo
               nowoczesnego domu z dużymi przeszkleniami? Napisz do nas,
               przygotujemy propozycję dopasowaną do Twojej inwestycji.
@@ -197,7 +197,7 @@ export default function OknaAluminiowePage() {
             <div className="mt-8 flex justify-center">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Skontaktuj się z Nami
               </Link>

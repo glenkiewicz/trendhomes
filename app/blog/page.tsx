@@ -17,11 +17,11 @@ export default function BlogPage() {
     <>
       <TopBar />
       <Navbar />
-      <main className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <main className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <SectionHeading lines={["Strefa", "wiedzy"]} />
 
-          <p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
             Zanim podejmiesz decyzję o oknach, drzwiach, roletach czy pergoli,
             warto wiedzieć, na co zwrócić uwagę. W naszych materiałach
             pokazujemy praktyczne przykłady z budowy, remontów i lokali
@@ -44,14 +44,14 @@ export default function BlogPage() {
                   />
                 </div>
                 <div className="flex flex-col gap-4 sm:gap-6">
-                  <h3 className="text-xl font-bold leading-tight text-dark transition-colors group-hover:text-pink md:text-2xl">
+                  <h3 className="text-lg font-bold leading-tight text-dark transition-colors group-hover:text-pink md:text-xl">
                     {post.title}
                   </h3>
-                  <p className="text-base leading-relaxed text-dark">
+                  <p className="text-sm leading-relaxed text-dark">
                     {post.excerpt}
                   </p>
-                  <div className="inline-flex flex-col items-start gap-1.5 py-4">
-                    <span className="text-base text-dark">Czytaj więcej</span>
+                  <div className="inline-flex flex-col items-start gap-1.5 py-3">
+                    <span className="text-sm text-dark">Czytaj więcej</span>
                     <span className="block h-[2px] w-[98px] bg-dark" />
                   </div>
                 </div>

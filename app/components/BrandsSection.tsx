@@ -3,8 +3,8 @@ import SectionHeading from "./SectionHeading";
 
 export default function BrandsSection() {
   return (
-    <section className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <div className="grid grid-cols-1 gap-10 md:gap-16 lg:grid-cols-2">
           {/* Left — text */}
           <div>
@@ -12,7 +12,7 @@ export default function BrandsSection() {
               lines={["O Trendhomes:", "ludzie i lokalność"]}
             />
 
-            <p className="mt-6 text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
               Trendhomes to lokalna firma z Sanoka, która od lat pomaga
               właścicielom domów, mieszkań i lokali usługowych dobrze
               zaplanować i bezpiecznie zamontować stolarkę okienną, drzwiową,
@@ -20,7 +20,7 @@ export default function BrandsSection() {
               inwestycji, solidny montaż i opiekę po zakończeniu prac.
             </p>
 
-            <p className="mt-6 text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
               Pracujemy głównie w Sanoku, Bieszczadach i najbliższej okolicy.
               Dzięki temu znamy specyfikę lokalnych inwestycji – od domów
               jednorodzinnych, przez mieszkania w blokach, po małe i większe
@@ -31,7 +31,7 @@ export default function BrandsSection() {
 
             <a
               href="#kontakt"
-              className="btn-pink mt-8 h-12 px-[42px] text-base"
+              className="btn-pink mt-8 h-12 px-[34px] text-sm"
             >
               Poznaj nasz zespół
             </a>

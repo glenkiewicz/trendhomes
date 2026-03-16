@@ -108,8 +108,8 @@ export default function DlaBiznesuPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -118,11 +118,11 @@ export default function DlaBiznesuPage() {
             <span>|</span>
             <span className="text-white">Dla biznesu</span>
           </nav>
-          <h1 className="max-w-[760px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[760px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Stolarka dla biznesu
             <br />i obiektów użyteczności publicznej
           </h1>
-          <p className="mt-4 max-w-[620px] text-sm leading-relaxed text-white/90 sm:text-base md:mt-6 md:text-lg">
+          <p className="mt-4 max-w-[620px] text-sm leading-relaxed text-white/90 sm:text-sm md:mt-6 md:text-base">
             W biznesie stolarka nie jest tylko &bdquo;oknem w ścianie&rdquo;. Ma
             przyciągać klientów, spełniać wymagania przepisów,
             współpracować z systemami przeciwpożarowymi i wytrzymać
@@ -131,7 +131,7 @@ export default function DlaBiznesuPage() {
             handlowych, bloków mieszkalnych, basenów, budynków użyteczności
             publicznej, kościołów i szpitali.
           </p>
-          <p className="mt-3 max-w-[620px] text-sm leading-relaxed text-white/75 sm:text-base md:text-base">
+          <p className="mt-3 max-w-[620px] text-sm leading-relaxed text-white/75 sm:text-sm md:text-sm">
             Pracujemy zarówno z właścicielami pojedynczych lokali, jak
             i z inwestorami oraz generalnymi wykonawcami. Od pierwszej koncepcji
             do odbioru technicznego masz po swojej stronie zespół, który
@@ -140,7 +140,7 @@ export default function DlaBiznesuPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48&nbsp;h
             </Link>
@@ -149,8 +149,8 @@ export default function DlaBiznesuPage() {
       </section>
 
       {/* ── Dla kogo jest ta oferta ── */}
-      <section className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <section className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
               lines={["Dla kogo jest", "ta oferta"]}
@@ -160,11 +160,11 @@ export default function DlaBiznesuPage() {
           <ul className="mt-8 space-y-4 md:mt-12">
             {forWhomItems.map((item, i) => (
               <AnimateOnScroll key={i} delay={i * 80}>
-                <li className="flex items-start gap-4 border-b border-dark/10 pb-4 last:border-b-0 last:pb-0">
+                <li className="flex items-start gap-4 border-b border-dark/10 pb-3 last:border-b-0 last:pb-0">
                   <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-pink text-sm font-bold text-white">
                     {i + 1}
                   </span>
-                  <p className="text-base leading-relaxed text-dark md:text-xl">
+                  <p className="text-sm leading-relaxed text-dark md:text-lg">
                     {item}
                   </p>
                 </li>
@@ -175,8 +175,8 @@ export default function DlaBiznesuPage() {
       </section>
 
       {/* ── Usługi – Accordion ── */}
-      <section className="bg-[#f7f5f3] py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <section className="bg-[#f7f5f3] py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
               lines={["Co robimy", "dla biznesu"]}
@@ -189,9 +189,9 @@ export default function DlaBiznesuPage() {
                 <div className="border-b border-pink/30">
                   <button
                     onClick={() => toggle(i)}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left md:py-6"
+                    className="flex w-full items-center justify-between gap-4 py-4 text-left md:py-5"
                   >
-                    <span className="text-lg font-bold text-dark md:text-2xl">
+                    <span className="text-base font-bold text-dark md:text-xl">
                       {item.title}
                     </span>
                     <svg
@@ -218,7 +218,7 @@ export default function DlaBiznesuPage() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="pb-5 text-base leading-relaxed text-dark md:pb-6 md:text-lg">
+                      <p className="pb-4 text-sm leading-relaxed text-dark md:pb-5 md:text-base">
                         {item.content}
                       </p>
                     </div>
@@ -231,8 +231,8 @@ export default function DlaBiznesuPage() {
       </section>
 
       {/* ── Jak wygląda współpraca ── */}
-      <section className="bg-white py-12 md:py-20">
-        <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <section className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
               lines={[
@@ -246,13 +246,13 @@ export default function DlaBiznesuPage() {
             {processSteps.map((step, i) => (
               <AnimateOnScroll key={i} delay={i * 100}>
                 <div className="flex flex-col">
-                  <span className="text-[40px] font-bold leading-none text-pink md:text-[48px]">
+                  <span className="text-[26px] font-bold leading-none text-pink md:text-[38px]">
                     {step.number}
                   </span>
-                  <h3 className="mt-3 text-lg font-bold text-dark md:text-xl">
+                  <h3 className="mt-3 text-base font-bold text-dark md:text-lg">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-base leading-relaxed text-dark/80">
+                  <p className="mt-2 text-sm leading-relaxed text-dark/80">
                     {step.description}
                   </p>
                 </div>
@@ -264,9 +264,9 @@ export default function DlaBiznesuPage() {
 
       {/* ── CTA ── */}
       <AnimateOnScroll>
-        <section className="bg-[#f7f5f3] py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 text-center md:px-6">
-            <p className="mx-auto max-w-[720px] text-lg leading-relaxed text-dark md:text-2xl">
+        <section className="bg-[#f7f5f3] py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 text-center md:px-5">
+            <p className="mx-auto max-w-[720px] text-base leading-relaxed text-dark md:text-xl">
               Szukasz partnera do stolarki w lokalu, galerii, obiekcie
               usługowym albo budynku użyteczności publicznej? W Trendhomes
               łączymy doświadczenie z budów, znajomość systemów stolarki
@@ -275,7 +275,7 @@ export default function DlaBiznesuPage() {
             <div className="mt-8 flex justify-center">
               <Link
                 href="/kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Skontaktuj się z Nami
               </Link>

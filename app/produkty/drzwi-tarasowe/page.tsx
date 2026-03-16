@@ -70,8 +70,8 @@ export default function DrzwiTarasowePage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -80,12 +80,12 @@ export default function DrzwiTarasowePage() {
             <span>|</span>
             <span className="text-white">Drzwi tarasowe</span>
           </nav>
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Drzwi tarasowe
             <br />
             przesuwne
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Drzwi tarasowe to dziś jeden z najważniejszych elementów domu. To
             przez nie wpada najwięcej światła i to one decydują, czy z salonu
             faktycznie korzystasz razem z tarasem, czy tylko patrzysz na niego
@@ -93,7 +93,7 @@ export default function DrzwiTarasowePage() {
             pasowały do projektu domu, wielkości otworu, stylu elewacji i
             budżetu inwestora.
           </p>
-          <p className="mt-3 max-w-[552px] text-sm leading-relaxed text-white/80 sm:text-base md:text-lg">
+          <p className="mt-3 max-w-[552px] text-sm leading-relaxed text-white/80 sm:text-sm md:text-base">
             Pracujemy zarówno na rozwiązaniach z PCV, jak i aluminium. Dzięki
             temu możemy dobrać drzwi tarasowe do różnych domów – od klasycznych
             po nowoczesne, z dużymi przeszkleniami.
@@ -101,7 +101,7 @@ export default function DrzwiTarasowePage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48 h
             </Link>
@@ -111,17 +111,17 @@ export default function DrzwiTarasowePage() {
 
       {/* Dla kogo */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading lines={["Dla kogo są", "drzwi przesuwne"]} />
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
               {forWhom.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="flex h-full items-start gap-3 bg-section-light p-5 md:p-6">
+                  <div className="flex h-full items-start gap-3 bg-section-light p-4 md:p-5">
                     <span className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-pink text-xs font-bold text-white">
                       {i + 1}
                     </span>
-                    <p className="text-base leading-relaxed text-dark md:text-lg">
+                    <p className="text-sm leading-relaxed text-dark md:text-base">
                       {item}
                     </p>
                   </div>
@@ -134,15 +134,15 @@ export default function DrzwiTarasowePage() {
 
       {/* Typy systemów */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={[
                 "Typy systemów przesuwnych,",
                 "które najczęściej stosujemy",
               ]}
             />
-            <p className="mt-6 max-w-[900px] text-base leading-relaxed text-dark md:text-xl">
+            <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
               Przy każdym projekcie dobieramy system do: szerokości i wysokości
               planowanego przeszklenia, tego, w którą stronę ma się otwierać
               skrzydło, oraz tego, czy w salonie będzie miejsce na meble przy
@@ -151,11 +151,11 @@ export default function DrzwiTarasowePage() {
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 lg:gap-8">
               {systemTypes.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
-                  <div className="bg-white p-6 md:p-8">
-                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                  <div className="bg-white p-5 md:p-6">
+                    <h3 className="text-lg font-bold text-dark md:text-xl">
                       {item.name}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark/80 md:text-lg">
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -168,22 +168,22 @@ export default function DrzwiTarasowePage() {
 
       {/* PCV vs Aluminium */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
               {/* PCV */}
               <div>
                 <SectionHeading lines={["Drzwi tarasowe", "przesuwne PCV"]} />
-                <p className="mt-4 text-base leading-relaxed text-dark md:text-lg">
+                <p className="mt-4 text-sm leading-relaxed text-dark md:text-base">
                   Drzwi przesuwne z PCV dobrze sprawdzają się w domach
                   jednorodzinnych, w których okna są również w systemie PCV,
                   ważna jest dobra izolacyjność cieplna przy rozsądnym budżecie,
                   a inwestorowi zależy na prostym, sprawdzonym rozwiązaniu.
                 </p>
-                <h4 className="mt-6 text-lg font-semibold text-dark">
+                <h4 className="mt-6 text-base font-semibold text-dark">
                   Zalety drzwi tarasowych z PCV:
                 </h4>
-                <ul className="mt-3 space-y-2 text-base leading-relaxed text-dark/80 md:text-lg">
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-dark/80 md:text-base">
                   <li className="flex items-start gap-2">
                     <span className="mt-2 block size-1.5 shrink-0 rounded-full bg-pink" />
                     dobre parametry cieplne przy korzystnej cenie
@@ -198,7 +198,7 @@ export default function DrzwiTarasowePage() {
                     łatwa pielęgnacja i odporność na codzienne użytkowanie
                   </li>
                 </ul>
-                <p className="mt-4 text-base leading-relaxed text-dark/70 md:text-lg">
+                <p className="mt-4 text-sm leading-relaxed text-dark/70 md:text-base">
                   Drzwi tarasowe z PCV są dobrym wyborem, jeśli budujesz dom
                   w klasycznym lub nowoczesnym stylu i całą stolarkę planujesz
                   w PCV, chcesz mieć wygodne wyjście na taras bez wchodzenia
@@ -212,16 +212,16 @@ export default function DrzwiTarasowePage() {
                 <SectionHeading
                   lines={["Drzwi tarasowe", "przesuwne aluminiowe"]}
                 />
-                <p className="mt-4 text-base leading-relaxed text-dark md:text-lg">
+                <p className="mt-4 text-sm leading-relaxed text-dark md:text-base">
                   Drzwi aluminiowe polecamy tam, gdzie planujesz naprawdę duże
                   przeszklenia z wąskimi profilami, bryła domu jest bardzo
                   nowoczesna z dużą ilością szkła, a ważna jest maksymalna
                   stabilność konstrukcji i sztywność przy dużych wymiarach.
                 </p>
-                <h4 className="mt-6 text-lg font-semibold text-dark">
+                <h4 className="mt-6 text-base font-semibold text-dark">
                   Zalety drzwi tarasowych aluminiowych:
                 </h4>
-                <ul className="mt-3 space-y-2 text-base leading-relaxed text-dark/80 md:text-lg">
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-dark/80 md:text-base">
                   <li className="flex items-start gap-2">
                     <span className="mt-2 block size-1.5 shrink-0 rounded-full bg-pink" />
                     możliwość tworzenia większych przeszkleń niż w PCV
@@ -236,7 +236,7 @@ export default function DrzwiTarasowePage() {
                     przeszkleniami stałymi
                   </li>
                 </ul>
-                <p className="mt-4 text-base leading-relaxed text-dark/70 md:text-lg">
+                <p className="mt-4 text-sm leading-relaxed text-dark/70 md:text-base">
                   To dobry kierunek, jeśli masz projekt domu z dużymi oknami
                   tarasowymi na całą wysokość kondygnacji, zależy Ci na bardzo
                   nowoczesnym efekcie wizualnym (wąskie ramy, duże tafle szkła),
@@ -250,8 +250,8 @@ export default function DrzwiTarasowePage() {
 
       {/* Na co patrzymy */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-section-light py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Na co patrzymy", "przy doborze drzwi tarasowych"]}
             />
@@ -259,12 +259,12 @@ export default function DrzwiTarasowePage() {
               {considerations.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-4 border-b border-dark/10 py-4 last:border-b-0 md:py-5"
+                  className="flex items-start gap-4 border-b border-dark/10 py-3 last:border-b-0 md:py-4"
                 >
                   <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-pink text-sm font-bold text-white">
                     {i + 1}
                   </span>
-                  <p className="text-base leading-relaxed text-dark md:text-xl">
+                  <p className="text-sm leading-relaxed text-dark md:text-lg">
                     {item}
                   </p>
                 </div>
@@ -276,16 +276,16 @@ export default function DrzwiTarasowePage() {
 
       {/* CTA */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
-              <p className="text-base leading-relaxed text-dark md:text-xl">
+              <p className="text-sm leading-relaxed text-dark md:text-lg">
                 Planujesz duże drzwi tarasowe w nowym domu albo wymianę starego
                 wyjścia na taras na system przesuwny? Pomożemy dobrać odpowiedni
                 system PCV lub aluminium, który udźwignie gabaryt, wpisze się
                 w projekt domu i będzie wygodny w codziennym użytkowaniu.
               </p>
-              <p className="mt-4 text-base leading-relaxed text-dark/70 md:text-lg">
+              <p className="mt-4 text-sm leading-relaxed text-dark/70 md:text-base">
                 Prześlij nam fragment projektu z zaznaczonym wyjściem na taras lub
                 zdjęcia obecnego przeszklenia – przygotujemy propozycję drzwi
                 przesuwnych z wyceną.
@@ -293,7 +293,7 @@ export default function DrzwiTarasowePage() {
               <div className="mt-8">
                 <Link
                   href="/kontakt"
-                  className="btn-pink h-[52px] px-[42px] text-base"
+                  className="btn-pink h-[52px] px-[34px] text-sm"
                 >
                   Skontaktuj się z Nami
                 </Link>

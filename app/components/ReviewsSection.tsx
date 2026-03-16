@@ -138,8 +138,8 @@ export default function ReviewsSection() {
 	const totalDots = maxIndex + 1;
 
 	return (
-		<section id="opinie" className="bg-white py-12 md:py-20">
-			<div className="mx-auto max-w-[1440px] px-4 md:px-6">
+		<section id="opinie" className="bg-white py-10 md:py-20">
+			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				{/* Header with nav */}
 				<div className="flex items-start justify-between">
 					<SectionHeading lines={["Opinie naszych", "klientów"]} />
@@ -184,7 +184,7 @@ export default function ReviewsSection() {
 				</div>
 
 				{/* Subtitle */}
-				<p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
 					Przy wyborze wykonawcy stolarki liczy się nie tylko oferta
 					na papierze, ale też doświadczenia innych. Dlatego
 					zachęcamy, żeby sprawdzić, co o współpracy z Trendhomes
@@ -204,7 +204,7 @@ export default function ReviewsSection() {
 						{reviews.map((review, i) => (
 							<div
 								key={i}
-								className="flex shrink-0 flex-col gap-4 border border-dark/20 p-6 transition-shadow duration-300 hover:shadow-lg hover:shadow-dark/10 md:p-10"
+								className="flex shrink-0 flex-col gap-4 border border-dark/20 p-5 transition-shadow duration-300 hover:shadow-lg hover:shadow-dark/10 md:p-8"
 								style={{
 									width:
 										itemWidth > 0
@@ -223,7 +223,7 @@ export default function ReviewsSection() {
 											className="object-cover"
 										/>
 									</div>
-									<span className="text-xl font-bold text-dark md:text-2xl">
+									<span className="text-lg font-bold text-dark md:text-xl">
 										{review.name}
 									</span>
 								</div>
@@ -232,12 +232,12 @@ export default function ReviewsSection() {
 								<Stars />
 
 								{/* Review text */}
-								<p className="flex-1 text-base leading-relaxed text-dark md:text-lg">
+								<p className="flex-1 text-sm leading-relaxed text-dark md:text-base">
 									{review.text}
 								</p>
 
 								{/* Date */}
-								<span className="text-sm text-dark/50 md:text-base">
+								<span className="text-sm text-dark/50 md:text-sm">
 									{review.date}
 								</span>
 							</div>

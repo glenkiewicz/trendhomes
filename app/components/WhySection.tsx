@@ -38,13 +38,13 @@ const benefits = [
 
 export default function WhySection() {
 	return (
-		<section className="bg-white py-12 md:py-20">
-			<div className="mx-auto max-w-[1440px] px-4 md:px-6">
+		<section className="bg-white py-10 md:py-20">
+			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				<SectionHeading
 					lines={["Dlaczego warto", "wybrać Trendhomes"]}
 				/>
 
-				<p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
 					Przy budowie nowego domu, remoncie mieszkania albo pracy nad
 					lokalem usługowym liczy się coś więcej niż sama stolarka.
 					Klienci wybierają nas, bo łączymy dobry produkt z terminami,
@@ -55,13 +55,13 @@ export default function WhySection() {
 					{benefits.map((benefit, i) => {
 						const textBlock = (
 							<div
-								className="flex flex-col gap-3 p-4 md:gap-6 md:p-6"
+								className="flex flex-col gap-3 p-3 md:gap-6 md:p-5"
 								key="text"
 							>
-								<h3 className="text-2xl font-light text-dark sm:text-3xl md:text-[36px]">
+								<h3 className="text-xl font-light text-dark sm:text-2xl md:text-[29px]">
 									{benefit.title}
 								</h3>
-								<p className="text-base leading-relaxed text-dark/80 md:text-xl">
+								<p className="text-sm leading-relaxed text-dark/80 md:text-lg">
 									{benefit.description}
 								</p>
 							</div>
@@ -88,7 +88,7 @@ export default function WhySection() {
 								delay={i * 100}
 								direction={i % 2 === 0 ? "left" : "right"}
 							>
-								<div className="grid grid-cols-1 border-t border-dark/10 md:grid-cols-2 items-center py-10">
+								<div className="grid grid-cols-1 border-t border-dark/10 md:grid-cols-2 items-center py-8">
 									{/* On mobile: always text then image. On desktop: alternate */}
 									<div className="md:hidden">
 										{textBlock}
@@ -116,7 +116,7 @@ export default function WhySection() {
 				<div className="mt-8 flex justify-center md:mt-14">
 					<Link
 						href="#kontakt"
-						className="btn-pink h-12 px-8 text-base md:px-10"
+						className="btn-pink h-12 px-6 text-sm md:px-8"
 					>
 						Skontaktuj się z Nami
 					</Link>

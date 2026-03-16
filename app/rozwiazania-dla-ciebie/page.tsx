@@ -74,8 +74,8 @@ export default function RozwiazaniaPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -83,12 +83,12 @@ export default function RozwiazaniaPage() {
             <span className="text-white">rozwiązania dla ciebie</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Rozwiązania dopasowane
             <br />
             do Twoich potrzeb
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Niezależnie od tego, czy budujesz nowy dom, remontujesz mieszkanie,
             prowadzisz biznes, czy planujesz pergolę — dobieramy stolarkę i
             rozwiązania dopasowane do Twojej sytuacji.
@@ -96,7 +96,7 @@ export default function RozwiazaniaPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Umów pomiar w 48 h
             </Link>
@@ -108,8 +108,8 @@ export default function RozwiazaniaPage() {
       {solutions.map((solution, i) => (
         <div key={i}>
           <AnimateOnScroll>
-            <section className="bg-white py-12 md:py-20">
-              <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+            <section className="bg-white py-10 md:py-20">
+              <div className="mx-auto max-w-[1440px] px-3 md:px-5">
                 <div
                   className={`grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2 ${
                     !solution.imageRight ? "lg:direction-rtl" : ""
@@ -118,7 +118,7 @@ export default function RozwiazaniaPage() {
                   {/* Text */}
                   <div className={solution.imageRight ? "order-1" : "order-1 lg:order-2"}>
                     <SectionHeading lines={solution.heading} />
-                    <p className="mt-6 text-base leading-relaxed text-dark md:text-2xl">
+                    <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
                       {solution.text}
                     </p>
                   </div>
@@ -144,8 +144,8 @@ export default function RozwiazaniaPage() {
           {/* Pink CTA banner */}
           <AnimateOnScroll>
             <div className="bg-pink">
-              <div className="mx-auto max-w-[1440px] px-4 py-6 md:px-6 md:py-7">
-                <p className="text-center text-lg font-normal text-white md:text-[32px]">
+              <div className="mx-auto max-w-[1440px] px-3 py-5 md:px-5 md:py-7">
+                <p className="text-center text-base font-normal text-white md:text-[26px]">
                   {solution.banner}
                 </p>
               </div>
@@ -156,16 +156,16 @@ export default function RozwiazaniaPage() {
 
       {/* Business solutions grid */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading lines={["Rozwiązania", "dla biznesu"]} />
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
               {businessCards.map((card, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="group flex flex-col bg-card">
-                    <div className="p-6 pb-0 md:p-10 md:pb-0">
-                      <h3 className="text-xl font-bold leading-tight text-dark md:text-[32px] md:leading-[42px]">
+                    <div className="p-5 pb-0 md:p-8 md:pb-0">
+                      <h3 className="text-lg font-bold leading-tight text-dark md:text-[26px] md:leading-[42px]">
                         {card.title}
                       </h3>
                     </div>
@@ -187,14 +187,14 @@ export default function RozwiazaniaPage() {
 
       {/* Pergola section */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
                   lines={["Dom z pergolą", "rozwiązania od Trendhomes"]}
                 />
-                <p className="mt-6 text-base leading-relaxed text-dark md:text-2xl">
+                <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
                   Pergola albo ogród zimowy to dodatkowy pokój, który żyje razem
                   z Twoim ogrodem. Pomagamy dobrać konstrukcję, przeszklenia i
                   zacienienie tak, żeby dało się tam odpocząć i latem, i w
@@ -218,8 +218,8 @@ export default function RozwiazaniaPage() {
       {/* Pergola CTA banner */}
       <AnimateOnScroll>
         <div className="bg-pink">
-          <div className="mx-auto max-w-[1440px] px-4 py-6 md:px-6 md:py-7">
-            <p className="text-center text-lg font-normal text-white md:text-[32px]">
+          <div className="mx-auto max-w-[1440px] px-3 py-5 md:px-5 md:py-7">
+            <p className="text-center text-base font-normal text-white md:text-[26px]">
               Zobacz, jak projektujemy pergole i ogrody zimowe w okolicach Sanoka
             </p>
           </div>
@@ -228,8 +228,8 @@ export default function RozwiazaniaPage() {
 
       {/* Pergola gallery */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Zobacz jakie pergole", "stworzyliśmy dla klientów"]}
             />

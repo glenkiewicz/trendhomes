@@ -54,8 +54,8 @@ export default function OpiniePage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -63,12 +63,12 @@ export default function OpiniePage() {
             <span className="text-white">opinie</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Opinie, które mówią
             <br />
             więcej niż 1000 słów
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Zanim zaprosisz ekipę do domu, mieszkania albo lokalu, chcesz
             wiedzieć, jak poradziła sobie u innych. Tutaj znajdziesz opinie
             klientów Trendhomes z Sanoka i okolic.
@@ -76,7 +76,7 @@ export default function OpiniePage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Skontaktuj się z Nami
             </Link>
@@ -91,8 +91,8 @@ export default function OpiniePage() {
 
       {/* B2B testimonials */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Tak o współpracy", "mówią klienci B2B"]}
             />
@@ -116,19 +116,19 @@ export default function OpiniePage() {
                 );
 
                 const textBlock = (
-                  <div key="text" className="flex gap-6 p-4 md:p-6">
+                  <div key="text" className="flex gap-6 p-3 md:p-5">
                     <div className="hidden w-px shrink-0 bg-pink md:block" />
                     <div className="flex flex-col gap-6">
-                      <p className="text-base leading-relaxed text-dark whitespace-pre-line md:text-xl">
+                      <p className="text-sm leading-relaxed text-dark whitespace-pre-line md:text-lg">
                         {item.text}
                       </p>
                       <div className="flex items-center gap-4">
                         <div className="hidden h-px w-14 bg-pink md:block" />
                         <div>
-                          <p className="text-lg font-bold text-dark md:text-2xl">
+                          <p className="text-base font-bold text-dark md:text-xl">
                             {item.name}
                           </p>
-                          <p className="text-lg font-bold text-dark md:text-2xl">
+                          <p className="text-base font-bold text-dark md:text-xl">
                             {item.role}
                           </p>
                         </div>

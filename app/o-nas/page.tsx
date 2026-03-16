@@ -70,8 +70,8 @@ export default function ONasPage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -79,12 +79,12 @@ export default function ONasPage() {
             <span className="text-white">o nas</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Trendhomes:
             <br />
             ludzie i lokalność
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Trendhomes to ekipa ze stolarką z Sanoka. Pomagamy ogarnąć okna,
             drzwi, rolety, bramy i pergole w jednym miejscu, tak żeby temat był
             po prostu zrobiony, a nie wisiał miesiącami w powietrzu.
@@ -92,7 +92,7 @@ export default function ONasPage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Skontaktuj się z Nami
             </Link>
@@ -102,8 +102,8 @@ export default function ONasPage() {
 
       {/* About section - Ludzie od stolarki */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
@@ -112,7 +112,7 @@ export default function ONasPage() {
                     "wolą dowozić niż obiecywać",
                   ]}
                 />
-                <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-xl">
+                <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
                   <p>
                     Pracujemy lokalnie - w Sanoku, Bieszczadach i okolicznych
                     miejscowościach. Dzięki temu znamy tutejsze projekty, typowe
@@ -126,7 +126,7 @@ export default function ONasPage() {
                     od pierwszej rozmowy do montażu odpowiada jedna firma.
                   </p>
                   <p>Nie obiecujemy cudów. Zamiast tego wolimy:</p>
-                  <ul className="list-disc space-y-2 pl-6">
+                  <ul className="list-disc space-y-2 pl-5">
                     <li>
                       powiedzieć uczciwie, co ma sens przy Twoim budżecie,
                     </li>
@@ -140,7 +140,7 @@ export default function ONasPage() {
                 <div className="mt-8">
                   <Link
                     href="#kontakt"
-                    className="btn-pink h-12 px-[42px] text-base"
+                    className="btn-pink h-12 px-[34px] text-sm"
                   >
                     Poznaj nasz zespół
                   </Link>
@@ -161,12 +161,12 @@ export default function ONasPage() {
 
       {/* Jak pracujemy */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Jak pracujemy", "dostarczając Ci stolarkę"]}
             />
-            <p className="mt-6 text-base leading-relaxed text-dark md:text-2xl">
+            <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
               Niezależnie od tego, czy budujesz nowy dom, remontujesz mieszkanie,
               czy przygotowujesz lokal usługowy - proces zawsze trzymamy w
               ryzach. Dzięki temu wiesz, na jakim etapie jesteśmy i czego możesz
@@ -176,16 +176,16 @@ export default function ONasPage() {
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-3 md:gap-10">
               {steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
-                  <div className="border-t-2 border-pink/30 pt-6">
+                  <div className="border-t-2 border-pink/30 pt-5">
                     <span
-                      className={`text-4xl font-black text-pink ${step.opacity}`}
+                      className={`text-3xl font-black text-pink ${step.opacity}`}
                     >
                       {step.number}
                     </span>
-                    <h3 className="mt-2 text-2xl font-light text-dark md:text-4xl">
+                    <h3 className="mt-2 text-xl font-light text-dark md:text-3xl">
                       {step.title}
                     </h3>
-                    <p className="mt-4 text-base leading-relaxed text-dark md:text-xl">
+                    <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">
                       {step.text}
                     </p>
                   </div>
@@ -198,12 +198,12 @@ export default function ONasPage() {
 
       {/* Dlaczego warto wybrać Trendhomes */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
               lines={["Dlaczego warto", "wybrać Trendhomes"]}
             />
-            <p className="mt-6 text-base leading-relaxed text-dark md:text-2xl">
+            <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
               Za Trendhomes stoją konkretne osoby, z którymi rozmawiasz po
               imieniu. To ważne szczególnie dla klientów, którzy chcą wiedzieć,
               kto realnie odpowiada za ich inwestycję.
@@ -213,7 +213,7 @@ export default function ONasPage() {
               {team.map((member, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div
-                    className={`grid grid-cols-1 gap-6 border-b border-dark/10 py-8 last:border-b-0 md:grid-cols-[1fr_342px] md:gap-10 md:py-10 ${
+                    className={`grid grid-cols-1 gap-6 border-b border-dark/10 py-6 last:border-b-0 md:grid-cols-[1fr_342px] md:gap-10 md:py-8 ${
                       i === 1 ? "md:grid-cols-[342px_1fr]" : ""
                     }`}
                   >
@@ -222,10 +222,10 @@ export default function ONasPage() {
                         i === 1 ? "order-2 md:order-2" : "order-2 md:order-1"
                       }
                     >
-                      <h3 className="text-2xl font-light text-dark md:text-4xl">
+                      <h3 className="text-xl font-light text-dark md:text-3xl">
                         {member.name}
                       </h3>
-                      <p className="mt-4 text-base leading-relaxed text-dark md:text-xl">
+                      <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">
                         {member.text}
                       </p>
                     </div>
@@ -249,7 +249,7 @@ export default function ONasPage() {
             <div className="mt-10 flex justify-center md:mt-14">
               <Link
                 href="#kontakt"
-                className="btn-pink h-[52px] px-[42px] text-base"
+                className="btn-pink h-[52px] px-[34px] text-sm"
               >
                 Skontaktuj się z Nami
               </Link>
@@ -260,16 +260,16 @@ export default function ONasPage() {
 
       {/* Zobacz gdzie działamy */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
                   lines={["Zobacz gdzie działamy", "i zróbmy coś razem"]}
                 />
-                <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-xl">
+                <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
                   <p>Skupiamy się na regionie, który znamy najlepiej:</p>
-                  <ul className="list-disc space-y-2 pl-6">
+                  <ul className="list-disc space-y-2 pl-5">
                     <li>Sanok i najbliższe okolice,</li>
                     <li>miejscowości w kierunku Bieszczad,</li>
                     <li>
@@ -287,7 +287,7 @@ export default function ONasPage() {
                 <div className="mt-8">
                   <Link
                     href="#kontakt"
-                    className="btn-pink h-[52px] px-[42px] text-base"
+                    className="btn-pink h-[52px] px-[34px] text-sm"
                   >
                     Umów pomiar w 48 h
                   </Link>

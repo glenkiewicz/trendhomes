@@ -8,7 +8,7 @@ import SectionHeading from "./SectionHeading";
 import { contactSchema, type ContactFormData } from "../lib/contact-schema";
 
 const inputBase =
-  "h-[42px] w-full bg-[#d9d9d9]/50 px-6 text-sm text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink";
+  "h-[42px] w-full bg-[#d9d9d9]/50 px-5 text-sm text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink";
 const inputError = "ring-1 ring-red-500";
 
 export default function ContactSection() {
@@ -57,11 +57,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section id="kontakt" className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <SectionHeading lines={["Skontaktuj się", "z Nami"]} />
 
-        <p className="mt-4 max-w-[867px] text-lg leading-relaxed text-dark md:mt-6 md:text-2xl">
+        <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
           Napisz, zadzwoń albo umów spotkanie w salonie w Sanoku. Im więcej
           powiesz nam o swojej inwestycji, tym lepiej dopasujemy stolarkę
           i terminy.
@@ -72,25 +72,25 @@ export default function ContactSection() {
           <div className="flex flex-col gap-8">
             {/* Address */}
             <div>
-              <h3 className="text-2xl font-bold text-dark">
+              <h3 className="text-xl font-bold text-dark">
                 Adres i siedziba firmy
               </h3>
-              <div className="mt-4 text-xl leading-relaxed text-dark">
+              <div className="mt-4 text-lg leading-relaxed text-dark">
                 <p>Piastowska 3,</p>
                 <p>38-500 Sanok</p>
               </div>
-              <p className="mt-4 text-xl leading-relaxed text-dark">
+              <p className="mt-4 text-lg leading-relaxed text-dark">
                 Pracujemy głównie w Sanoku, Bieszczadach, Rzeszowie
                 i okolicznych miejscowościach.
               </p>
-              <p className="mt-6 text-xl font-bold text-dark">
+              <p className="mt-6 text-lg font-bold text-dark">
                 Godziny otwarcia salonu:
               </p>
-              <div className="mt-2 text-xl leading-relaxed text-dark">
+              <div className="mt-2 text-lg leading-relaxed text-dark">
                 <p>Poniedziałek – piątek:</p>
                 <p>8:00–16:00</p>
               </div>
-              <div className="mt-4 text-xl leading-relaxed text-dark">
+              <div className="mt-4 text-lg leading-relaxed text-dark">
                 <p>Sobota:</p>
                 <p>po wcześniejszym umówieniu</p>
               </div>
@@ -98,14 +98,14 @@ export default function ContactSection() {
 
             {/* Contact details */}
             <div>
-              <h3 className="text-2xl font-bold text-dark">
+              <h3 className="text-xl font-bold text-dark">
                 Dane kontaktowe
               </h3>
-              <div className="mt-4 text-xl leading-relaxed text-dark">
+              <div className="mt-4 text-lg leading-relaxed text-dark">
                 <p>Telefon: 735 721 222</p>
                 <p>E-mail: kontakt@trendhomes.pl</p>
               </div>
-              <div className="mt-3 text-xl leading-relaxed text-dark">
+              <div className="mt-3 text-lg leading-relaxed text-dark">
                 <p>Telefon: 601 941 619</p>
                 <p>E-mail: rzeszow@trendhomes.pl</p>
               </div>
@@ -147,16 +147,16 @@ export default function ContactSection() {
           {/* Right — contact form */}
           <div>
             {status === "success" ? (
-              <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-green-50 p-10 text-center">
+              <div className="flex flex-col items-center justify-center gap-4 rounded-lg bg-green-50 p-8 text-center">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
-                <p className="text-xl font-bold text-green-700">Wiadomość wysłana!</p>
+                <p className="text-lg font-bold text-green-700">Wiadomość wysłana!</p>
                 <p className="text-dark/70">Odpowiemy najszybciej jak to możliwe.</p>
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
-                  className="btn-pink mt-2 h-[42px] px-8 text-sm"
+                  className="btn-pink mt-2 h-[42px] px-6 text-sm"
                 >
                   Wyślij kolejną wiadomość
                 </button>
@@ -202,7 +202,7 @@ export default function ContactSection() {
                   <div className="relative">
                     <select
                       {...register("category")}
-                      className={`h-[42px] w-full appearance-none border border-dark/15 bg-white px-6 pr-12 text-sm text-dark outline-none focus:ring-1 focus:ring-pink ${errors.category ? inputError : ""}`}
+                      className={`h-[42px] w-full appearance-none border border-dark/15 bg-white px-5 pr-10 text-sm text-dark outline-none focus:ring-1 focus:ring-pink ${errors.category ? inputError : ""}`}
                     >
                       <option value="">Wybierz z listy czego dotyczy zapytanie</option>
                       <option value="Okna">Okna</option>
@@ -235,7 +235,7 @@ export default function ContactSection() {
                     placeholder="Napisz nam, czego dokładnie potrzebujesz"
                     rows={7}
                     {...register("message")}
-                    className={`w-full bg-[#d9d9d9]/50 p-6 text-base leading-relaxed text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink ${errors.message ? inputError : ""}`}
+                    className={`w-full bg-[#d9d9d9]/50 p-5 text-sm leading-relaxed text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink ${errors.message ? inputError : ""}`}
                   />
                   {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>}
                 </div>
@@ -275,7 +275,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="btn-pink h-[55px] w-full px-[42px] text-base sm:w-auto disabled:opacity-50"
+                    className="btn-pink h-[55px] w-full px-[34px] text-sm sm:w-auto disabled:opacity-50"
                   >
                     {status === "sending" ? "Wysyłanie..." : "Wyślij zapytanie"}
                   </button>

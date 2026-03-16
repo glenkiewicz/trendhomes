@@ -26,13 +26,13 @@ export default function PergolaSection() {
       />
 
       {/* Content */}
-      <div className="relative mx-auto max-w-[1440px] px-4 py-12 md:px-6 md:py-16">
+      <div className="relative mx-auto max-w-[1440px] px-3 py-10 md:px-5 md:py-16">
         <SectionHeading
           lines={["Nowoczesne i designerskie", "pergole ogrodowe"]}
           light
         />
 
-        <p className="mt-6 max-w-[732px] text-lg leading-relaxed text-white md:mt-8 md:text-2xl">
+        <p className="mt-6 max-w-[732px] text-base leading-relaxed text-white md:mt-8 md:text-xl">
           Miejsce błogiego odpoczynku i niezapomnianych spotkań z przyjaciółmi.
           Poznaj możliwości naszych pergol tarasowych i postaw na pewne
           rozwiązania od Trendhomes.
@@ -40,7 +40,7 @@ export default function PergolaSection() {
 
         <a
           href="#kontakt"
-          className="btn-light mt-8 h-[52px] px-[42px] text-base font-normal md:mt-10"
+          className="btn-light mt-8 h-[52px] px-[34px] text-sm font-normal md:mt-10"
         >
           Umów pomiar
         </a>

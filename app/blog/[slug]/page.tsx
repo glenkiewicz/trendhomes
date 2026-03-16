@@ -37,12 +37,12 @@ export default async function BlogPostPage({
     <>
       <TopBar />
       <Navbar />
-      <main className="bg-white py-12 md:py-20">
-        <article className="mx-auto max-w-[1440px] px-4 md:px-6">
+      <main className="bg-white py-10 md:py-20">
+        <article className="mx-auto max-w-[1440px] px-3 md:px-5">
           {/* Back link */}
           <Link
             href="/blog"
-            className="mb-8 inline-flex items-center gap-2 text-base text-dark/60 transition-colors hover:text-pink md:mb-12"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-dark/60 transition-colors hover:text-pink md:mb-12"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path
@@ -55,7 +55,7 @@ export default async function BlogPostPage({
           </Link>
 
           {/* Title */}
-          <h1 className="max-w-[867px] text-[28px] font-bold leading-tight text-dark sm:text-[32px] md:text-[40px]">
+          <h1 className="max-w-[867px] text-[22px] font-bold leading-tight text-dark sm:text-[26px] md:text-[26px]">
             {post.title}
           </h1>
 
@@ -71,7 +71,7 @@ export default async function BlogPostPage({
 
           {/* Content */}
           <div
-            className="prose prose-lg mx-auto mt-8 max-w-[867px] text-dark md:mt-12 [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-dark [&_p]:mb-4 [&_p]:leading-relaxed"
+            className="prose prose-lg mx-auto mt-8 max-w-[867px] text-dark md:mt-12 [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-dark [&_p]:mb-4 [&_p]:leading-relaxed"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
@@ -79,7 +79,7 @@ export default async function BlogPostPage({
           <div className="mt-12 flex justify-center md:mt-16">
             <Link
               href="/#kontakt"
-              className="inline-flex h-12 items-center justify-center bg-pink px-[42px] text-base text-[#f6f6f6] transition-opacity hover:opacity-90"
+              className="inline-flex h-12 items-center justify-center bg-pink px-[34px] text-sm text-[#f6f6f6] transition-opacity hover:opacity-90"
             >
               Umów pomiar
             </Link>

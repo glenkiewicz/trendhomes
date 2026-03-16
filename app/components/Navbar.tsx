@@ -63,7 +63,7 @@ export default function Navbar() {
 
 	return (
 		<nav className="sticky top-0 z-50 border-b border-gray-100 bg-white">
-			<div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 md:px-6 md:py-4">
+			<div className="mx-auto flex max-w-[1440px] items-center justify-between px-3 py-2.5 md:px-5 md:py-3">
 				<Link href="/" className="shrink-0">
 					<Image
 						src="/images/logo.svg"
@@ -75,7 +75,7 @@ export default function Navbar() {
 				</Link>
 
 				{/* Desktop menu */}
-				<div className="hidden items-center gap-5 text-base text-dark lg:flex">
+				<div className="hidden items-center gap-5 text-sm text-dark lg:flex">
 					{menuItems.map((item) =>
 						item.hasDropdown ? (
 							<div
@@ -107,7 +107,7 @@ export default function Navbar() {
 
 								{/* Mega-menu dropdown */}
 								<div
-									className={`absolute left-0 top-full z-50  pt-3 transition-all duration-200 ${
+									className={`absolute left-0 top-full z-50  pt-2.5 transition-all duration-200 ${
 										dropdownOpen
 											? "visible translate-y-0 opacity-100"
 											: "invisible -translate-y-1 opacity-0"
@@ -117,9 +117,9 @@ export default function Navbar() {
 										{productCategories.map((group) => (
 											<div
 												key={group.group}
-												className="min-w-[240px] border-r border-gray-100 py-4 last:border-r-0"
+												className="min-w-[240px] border-r border-gray-100 py-3 last:border-r-0"
 											>
-												<span className="block px-6 pb-3 text-xs font-semibold uppercase tracking-wider text-dark/40">
+												<span className="block px-5 pb-2.5 text-xs font-semibold uppercase tracking-wider text-dark/40">
 													{group.group}
 												</span>
 												{group.items.map((product) => (
@@ -131,7 +131,7 @@ export default function Navbar() {
 																false,
 															)
 														}
-														className="flex items-center gap-3 px-6 py-2.5 text-[15px] text-dark transition-colors hover:bg-section-light hover:text-pink"
+														className="flex items-center gap-3 px-5 py-2 text-[12px] text-dark transition-colors hover:bg-section-light hover:text-pink"
 													>
 														<Image
 															src={product.image}
@@ -164,7 +164,7 @@ export default function Navbar() {
 
 				<Link
 					href="/kontakt"
-					className="btn-pink hidden shrink-0 px-6 py-3 text-sm font-normal md:block md:px-10 md:py-3.5 md:text-base"
+					className="btn-pink hidden shrink-0 px-5 py-2.5 text-sm font-normal md:block md:px-8 md:py-2.5.5 md:text-sm"
 				>
 					Umów pomiar
 				</Link>
@@ -204,7 +204,7 @@ export default function Navbar() {
 				}`}
 			>
 				{/* Top area with logo */}
-				<div className="flex items-center px-4 py-3 md:px-6 md:py-4">
+				<div className="flex items-center px-3 py-2.5 md:px-5 md:py-3">
 					<Link
 						href="/"
 						onClick={() => setOpen(false)}
@@ -221,7 +221,7 @@ export default function Navbar() {
 				</div>
 
 				{/* Menu items */}
-				<div className="flex flex-1 flex-col justify-center overflow-y-auto px-8 md:px-12">
+				<div className="flex flex-1 flex-col justify-center overflow-y-auto px-6 md:px-10">
 					{menuItems.map((item, i) =>
 						item.hasDropdown ? (
 							<div key={item.label}>
@@ -229,7 +229,7 @@ export default function Navbar() {
 									onClick={() =>
 										setMobileProductsOpen((v) => !v)
 									}
-									className={`flex w-full items-center justify-between border-b border-white/10 py-3 text-lg text-white hover:pl-2 hover:text-pink sm:text-xl md:py-4 md:text-2xl ${
+									className={`flex w-full items-center justify-between border-b border-white/10 py-2.5 text-base text-white hover:pl-2 hover:text-pink sm:text-lg md:py-3 md:text-xl ${
 										item.bold
 											? "font-semibold"
 											: "font-light"
@@ -276,7 +276,7 @@ export default function Navbar() {
 										<div className="flex flex-col border-b border-white/10 py-2">
 											{productCategories.map((group) => (
 												<div key={group.group}>
-													<span className="block px-4 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-white/30">
+													<span className="block px-3 pb-1 pt-2.5 text-xs font-semibold uppercase tracking-wider text-white/30">
 														{group.group}
 													</span>
 													{group.items.map(
@@ -293,7 +293,7 @@ export default function Navbar() {
 																		false,
 																	)
 																}
-																className="py-1.5 pl-4 text-base text-white/70 transition-colors hover:pl-6 hover:text-pink sm:text-lg md:text-xl block"
+																className="py-1.5 pl-3 text-sm text-white/70 transition-colors hover:pl-5 hover:text-pink sm:text-base md:text-lg block"
 															>
 																{product.name}
 															</Link>
@@ -310,7 +310,7 @@ export default function Navbar() {
 								key={item.label}
 								href={item.href}
 								onClick={() => setOpen(false)}
-								className={`border-b border-white/10 py-3 text-lg text-white hover:pl-2 hover:text-pink sm:text-xl md:py-4 md:text-2xl ${
+								className={`border-b border-white/10 py-2.5 text-base text-white hover:pl-2 hover:text-pink sm:text-lg md:py-3 md:text-xl ${
 									item.bold ? "font-semibold" : "font-light"
 								}`}
 								style={{
@@ -335,7 +335,7 @@ export default function Navbar() {
 
 				{/* Bottom CTA + contact info */}
 				<div
-					className="px-8 pb-8 md:px-12 md:pb-12"
+					className="px-6 pb-6 md:px-10 md:pb-10"
 					style={{
 						transitionProperty: "opacity, transform",
 						transitionDuration: "500ms",
@@ -348,7 +348,7 @@ export default function Navbar() {
 					<Link
 						href="/kontakt"
 						onClick={() => setOpen(false)}
-						className="mb-6 inline-flex h-[52px] w-full items-center justify-center bg-pink text-base text-white transition-opacity hover:opacity-90 sm:w-auto sm:px-12"
+						className="mb-6 inline-flex h-[52px] w-full items-center justify-center bg-pink text-sm text-white transition-opacity hover:opacity-90 sm:w-auto sm:px-10"
 					>
 						Umów pomiar
 					</Link>

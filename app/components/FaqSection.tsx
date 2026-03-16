@@ -76,8 +76,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <SectionHeading lines={["Masz wątpliwości?", "Sprawdź FAQ"]} />
 
         {/* Accordion */}
@@ -86,9 +86,9 @@ export default function FaqSection() {
             <div key={i} className="border-b border-pink/30">
               <button
                 onClick={() => toggle(i)}
-                className="flex w-full items-center justify-between gap-4 py-5 text-left md:py-6"
+                className="flex w-full items-center justify-between gap-4 py-4 text-left md:py-5"
               >
-                <span className="text-lg text-dark md:text-2xl">
+                <span className="text-base text-dark md:text-xl">
                   {item.question}
                 </span>
                 <svg
@@ -115,7 +115,7 @@ export default function FaqSection() {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="pb-5 text-base leading-relaxed text-dark md:pb-6 md:text-lg">
+                  <p className="pb-4 text-sm leading-relaxed text-dark md:pb-5 md:text-base">
                     {item.answer}
                   </p>
                 </div>
@@ -128,7 +128,7 @@ export default function FaqSection() {
         <div className="mt-10 flex justify-center md:mt-14">
           <a
             href="#kontakt"
-            className="btn-pink h-12 px-[42px] text-base"
+            className="btn-pink h-12 px-[34px] text-sm"
           >
             Masz więcej pytań? Skontaktuj się
           </a>

@@ -150,8 +150,8 @@ function ProjectCarousel({
   const totalDots = maxIndex + 1;
 
   return (
-    <section className="bg-white py-12 md:py-20">
-      <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <div className="flex items-center justify-between">
           <SectionHeading lines={heading} />
           <div className="flex items-center gap-3">
@@ -209,7 +209,7 @@ function ProjectCarousel({
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="mt-4 whitespace-pre-line text-xl font-bold leading-tight text-dark md:mt-6 md:text-2xl lg:text-[32px] lg:leading-[42px]">
+                <h3 className="mt-4 whitespace-pre-line text-lg font-bold leading-tight text-dark md:mt-6 md:text-xl lg:text-[26px] lg:leading-[42px]">
                   {item.title}
                 </h3>
               </div>
@@ -264,8 +264,8 @@ export default function RealizacjePage() {
               "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-4 md:px-6">
-          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-base">
+        <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
+          <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
               home
             </Link>
@@ -273,12 +273,12 @@ export default function RealizacjePage() {
             <span className="text-white">realizacje</span>
           </nav>
 
-          <h1 className="max-w-[660px] text-[28px] font-semibold leading-[1.15] text-white sm:text-[36px] md:text-[44px] lg:text-[52px]">
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
             Realizacje Trendhomes:
             <br />
             przestrze&#324; w najlepszej oprawie
           </h1>
-          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-base md:mt-6 md:text-xl">
+          <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
             Ka&#380;dy projekt to inny dom, inne mieszkanie i inne potrzeby.
             Zobacz wybrane realizacje Trendhomes w Sanoku i okolicach &ndash; od
             nowych dom&oacute;w jednorodzinnych, przez mieszkania w blokach,
@@ -287,7 +287,7 @@ export default function RealizacjePage() {
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
-              className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-10 sm:text-base"
+              className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
               Um&oacute;w pomiar w 48 h
             </Link>
@@ -320,7 +320,7 @@ export default function RealizacjePage() {
             }}
           />
         </div>
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 py-16 md:px-6 md:py-24">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-3 py-16 md:px-5 md:py-24">
           <SectionHeading
             lines={[
               "Rozwiązania all in one:",
@@ -328,7 +328,7 @@ export default function RealizacjePage() {
             ]}
             light
           />
-          <p className="mt-6 max-w-[728px] text-base leading-relaxed text-white md:text-2xl">
+          <p className="mt-6 max-w-[728px] text-sm leading-relaxed text-white md:text-xl">
             Coraz wi&#281;cej klient&oacute;w decyduje si&#281; na kompletny
             pakiet stolarki z jednego &x17A;r&oacute;d&#322;a. Okna, drzwi
             wej&#347;ciowe, rolety zewn&#281;trzne, brama gara&#380;owa &ndash;
@@ -338,7 +338,7 @@ export default function RealizacjePage() {
           <div className="mt-8">
             <Link
               href="/produkty/okna"
-              className="btn-light h-[52px] px-[42px] text-base"
+              className="btn-light h-[52px] px-[34px] text-sm"
             >
               Okna PVC
             </Link>
@@ -356,8 +356,8 @@ export default function RealizacjePage() {
 
       {/* Produkty, które dopasowują się do Ciebie */}
       <AnimateOnScroll>
-        <section className="bg-white py-12 md:py-20">
-          <div className="mx-auto max-w-[1440px] px-4 md:px-6">
+        <section className="bg-white py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
                 <SectionHeading
@@ -366,7 +366,7 @@ export default function RealizacjePage() {
                     "dopasowują się do Ciebie",
                   ]}
                 />
-                <div className="mt-6 space-y-4 text-base leading-relaxed text-dark md:text-2xl">
+                <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-xl">
                   <p>
                     Ka&#380;da realizacja zaczyna si&#281; od dobrego doboru
                     materia&#322;&oacute;w. W Trendhomes pracujemy ze sprawdzonymi
@@ -385,7 +385,7 @@ export default function RealizacjePage() {
                 <div className="mt-8">
                   <Link
                     href="/produkty/okna"
-                    className="btn-pink h-[52px] px-[42px] text-base"
+                    className="btn-pink h-[52px] px-[34px] text-sm"
                   >
                     Zobacz produkty dla Ciebie
                   </Link>
