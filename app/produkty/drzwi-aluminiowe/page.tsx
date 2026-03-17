@@ -9,64 +9,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const forWhom = [
-  {
-    label: "Lokale usługowe i sklepy",
-    text: "Drzwi aluminiowe wytrzymują intensywny ruch klientów, dobrze wyglądają od strony ulicy i pozwalają na duże przeszklenia, które eksponują wnętrze lokalu.",
-  },
-  {
-    label: "Biura i budynki usługowe",
-    text: "W budynkach biurowych liczy się stabilność, estetyka i możliwość integracji z systemami kontroli dostępu. Aluminium dobrze sprawdza się w takich zastosowaniach.",
-  },
-  {
-    label: "Nowoczesne domy jednorodzinne",
-    text: "Coraz więcej domów powstaje z dużymi przeszkleniami i prostą bryłą. Drzwi aluminiowe z wąskimi profilami idealnie pasują do takiej architektury i dobrze współgrają z oknami aluminiowymi.",
-  },
-  {
-    label: "Wejścia narażone na trudniejsze warunki",
-    text: "Tam, gdzie drzwi muszą wytrzymać wiatr, deszcz, częste otwieranie i zamykanie lub duże gabaryty, aluminium jest bardziej stabilne niż PCV.",
-  },
-];
-
-const dlaczegoWarto = [
-  {
-    title: "Stabilność przy większych gabarytach",
-    description:
-      "Aluminiowe profile utrzymują sztywność nawet przy dużych wymiarach skrzydeł, co pozwala na realizację szerokich i wysokich drzwi bez ryzyka odkształceń.",
-  },
-  {
-    title: "Odporność na intensywne użytkowanie",
-    description:
-      "Aluminium nie odkształca się, nie pęcznieje i nie wymaga malowania. Sprawdza się tam, gdzie drzwi otwiera się dziesiątki razy dziennie.",
-  },
-  {
-    title: "Nowoczesny wygląd i wąskie profile",
-    description:
-      "Wąskie ramy aluminiowe maksymalizują powierzchnię przeszklenia i nadają drzwiom lekki, współczesny charakter, który dobrze komponuje się z nowoczesnymi elewacjami.",
-  },
-  {
-    title: "Dopasowanie do reszty stolarki",
-    description:
-      "Drzwi aluminiowe można zestawić kolorystycznie i stylistycznie z oknami, fasadami i bramami, tworząc spójny wygląd całego budynku.",
-  },
-];
-
-const zastosowania = [
-  "drzwi aluminiowe do lokali usługowych, biur i gabinetów",
-  "drzwi wejściowe aluminiowe do domów jednorodzinnych",
-  "drzwi aluminiowe z dużymi przeszkleniami",
-  "drzwi w zabudowach witrynowych i fasadach",
-  "drzwi z przygotowaniem pod automatykę",
-];
-
-const processSteps = [
-  { number: "1", title: "Rozpoznanie potrzeb i obiektu" },
-  { number: "2", title: "Dobór systemu i wstępna wycena" },
-  { number: "3", title: "Pomiar na miejscu" },
-  { number: "4", title: "Produkcja i montaż" },
-  { number: "5", title: "Odbiór i serwis" },
-];
+const page = MOCKUP_DATA.pages.produktyDrzwiAluminiowe;
 
 export default function DrzwiAluminiowePage() {
   return (
@@ -77,8 +22,8 @@ export default function DrzwiAluminiowePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Drzwi aluminiowe od Trendhomes"
+          src={page.hero.image}
+          alt={page.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -93,29 +38,26 @@ export default function DrzwiAluminiowePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {page.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{page.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Drzwi Aluminiowe</span>
+            <span className="text-white">{page.hero.breadcrumbs[2]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Drzwi aluminiowe
+            {page.hero.heading}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Drzwi aluminiowe wybiera się tam, gdzie liczy się wytrzymałość,
-            stabilność konstrukcji i nowoczesny wygląd. Sprawdzają się
-            w wejściach do lokali usługowych, biur, budynków użyteczności
-            publicznej, a także w części nowoczesnych domów jednorodzinnych.
+            {page.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Zapytaj o wycenę
+              {page.hero.ctaText}
             </Link>
           </div>
         </div>
@@ -126,11 +68,11 @@ export default function DrzwiAluminiowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dla kogo są drzwi", "aluminiowe"]}
+              lines={page.forWhom.heading}
             />
 
             <div className="mt-8 md:mt-12">
-              {forWhom.map((item, i) => (
+              {page.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -149,7 +91,7 @@ export default function DrzwiAluminiowePage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {MOCKUP_DATA.global.cta.skontaktujSie}
               </Link>
             </div>
           </div>
@@ -161,11 +103,11 @@ export default function DrzwiAluminiowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dlaczego warto wybrać", "drzwi aluminiowe"]}
+              lines={page.dlaczegoWarto.heading}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-2 md:gap-12">
-              {dlaczegoWarto.map((item, i) => (
+              {page.dlaczegoWarto.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="rounded-sm bg-white p-5 md:p-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -187,12 +129,12 @@ export default function DrzwiAluminiowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Przykładowe", "zastosowania"]}
+              lines={page.zastosowania.heading}
             />
 
             <div className="mt-8 md:mt-12">
               <ul className="space-y-4">
-                {zastosowania.map((item, i) => (
+                {page.zastosowania.items.map((item, i) => (
                   <AnimateOnScroll key={i} delay={i * 60}>
                     <li className="flex items-start gap-3 text-sm leading-relaxed text-dark md:text-lg">
                       <span className="mt-1.5 block h-2 w-2 shrink-0 rounded-full bg-pink" />
@@ -211,11 +153,11 @@ export default function DrzwiAluminiowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Jak wygląda", "proces realizacji"]}
+              lines={page.processSteps.heading}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:grid-cols-5 md:gap-10">
-              {processSteps.map((step, i) => (
+              {page.processSteps.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col items-start">
                     <span className="flex size-[56px] items-center justify-center rounded-full bg-pink text-xl font-bold text-white">
@@ -238,16 +180,14 @@ export default function DrzwiAluminiowePage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Potrzebujesz drzwi aluminiowych do lokalu, biura albo
-                nowoczesnego domu w Sanoku i okolicach? Dobierzemy rozwiązanie
-                dopasowane do budynku, ruchu klientów i Twojego budżetu.
+                {page.cta.description}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Napisz do nas
+                  {page.cta.ctaText}
                 </Link>
               </div>
             </div>

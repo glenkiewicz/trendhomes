@@ -10,159 +10,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const manufacturers = [
-  {
-    id: "erkado",
-    name: "Erkado",
-    description:
-      "Drzwi wewnętrzne Erkado to szeroki wybór wzorów, oklein i kolorów, które łatwo dopasować do podłóg, ścian i mebli. W ofercie znajdziesz wersje pełne, łazienkowe i przeszklone, a do każdego modelu można dobrać pasującą klamkę i ościeżnicę. To marka, którą często proponujemy klientom szukającym solidnych drzwi w rozsądnym budżecie.",
-    features: [
-      {
-        name: "Dużo oklein i kolorów",
-        description:
-          "Erkado oferuje szeroką gamę oklein i kolorów, dzięki czemu łatwo dopasować drzwi do podłóg, ścian i mebli w każdym wnętrzu.",
-      },
-      {
-        name: "Wersje pełne, łazienkowe i przeszklone",
-        description:
-          "W ofercie znajdziesz modele pełne do sypialni, łazienkowe z odpowiednią wentylacją oraz przeszklone, które doświetlają wnętrza.",
-      },
-      {
-        name: "Dopasowanie klamek do modelu drzwi",
-        description:
-          "Do każdego modelu Erkado można dobrać pasującą klamkę i ościeżnicę, żeby całość wyglądała spójnie.",
-      },
-    ],
-  },
-  {
-    id: "voster",
-    name: "Voster",
-    description:
-      "Voster to drzwi, które często wykorzystujemy w nowoczesnych wnętrzach. Charakteryzują się prostymi liniami, pionowymi lub poziomymi podziałami i dobrym wykończeniem powierzchni. Dobrze komponują się z minimalistycznymi aranżacjami, stylem skandynawskim i nowoczesnymi podłogami.",
-    features: [
-      {
-        name: "Pionowe i poziome podziały",
-        description:
-          "Drzwi Voster wyróżniają się charakterystycznymi pionowymi lub poziomymi podziałami, które nadają im nowoczesny charakter.",
-      },
-      {
-        name: "Styl nowoczesny i skandynawski",
-        description:
-          "Proste linie i dobre wykończenie sprawiają, że drzwi Voster świetnie pasują do minimalistycznych i skandynawskich aranżacji.",
-      },
-    ],
-  },
-  {
-    id: "intenso",
-    name: "Intenso",
-    description:
-      "Drzwi Intenso to propozycja dla osób, które oczekują najwyższej jakości wykończenia i trwałości. Marka oferuje praktyczne modele o prostych, eleganckich wzorach, które dobrze sprawdzają się zarówno w mieszkaniach, jak i domach jednorodzinnych.",
-    features: [
-      {
-        name: "Praktyczne modele",
-        description:
-          "Intenso stawia na funkcjonalność i trwałość, oferując drzwi, które wytrzymują codzienne użytkowanie przez wiele lat.",
-      },
-      {
-        name: "Proste, eleganckie wzory",
-        description:
-          "Minimalistyczne wzornictwo sprawia, że drzwi Intenso pasują do większości stylów wnętrz, od klasycznych po nowoczesne.",
-      },
-    ],
-  },
-  {
-    id: "dre",
-    name: "DRE",
-    description:
-      "DRE to marka, którą często polecamy klientom szukającym ciekawszego wyglądu drzwi wewnętrznych. W ofercie znajdziesz zarówno kolekcje klasyczne, jak i nowoczesne, z opcją ukrytych zawiasów i nietypowych przeszkleń. To dobry wybór, jeśli drzwi mają być widocznym elementem aranżacji.",
-    features: [
-      {
-        name: "Kolekcje klasyczne i nowoczesne",
-        description:
-          "DRE oferuje zarówno klasyczne wzory z frezowaniami, jak i nowoczesne modele z gładkimi powierzchniami i przeszkleniami.",
-      },
-      {
-        name: "Ukryte zawiasy",
-        description:
-          "Opcja ukrytych zawiasów sprawia, że drzwi wyglądają minimalistycznie i nowocześnie, bez widocznych elementów montażowych.",
-      },
-    ],
-  },
-];
-
-const whyItems = [
-  {
-    icon: "/images/icon-profile.svg",
-    title: "Kilku producentów, jeden wykonawca",
-    description:
-      "Pracujemy z Erkado, Voster, Intenso i DRE, dzięki czemu możemy dobrać drzwi do wnętrza, budżetu i stylu, a nie wciskać jednego katalogu.",
-  },
-  {
-    icon: "/images/icon-measure.svg",
-    title: "Patrzymy na całe wnętrze, nie tylko na pojedyncze skrzydło",
-    description:
-      "Dobieramy drzwi razem z podłogami, listwami i kolorystyką ścian, żeby całość wyglądała spójnie i nie trzeba było potem niczego poprawiać.",
-  },
-  {
-    icon: "/images/icon-helmet.svg",
-    title: "Pomoc przy \u201Etechnicznych\u201D decyzjach",
-    description:
-      "Ościeżnice regulowane czy stałe, kierunek otwierania, podcięcia wentylacyjne, przesuwki – pomagamy ogarnąć detale, żebyś nie musiał się w to wgryzać.",
-  },
-  {
-    icon: "/images/icon-profile.svg",
-    title: "Lokalny montaż i serwis",
-    description:
-      "Przyjeżdżamy z ekipą montażową, montujemy drzwi w umówionym terminie i wracamy, kiedy trzeba coś wyregulować. Nie znikamy po odbiorze.",
-  },
-];
-
-const forWhom = [
-  {
-    label: "Nowy dom jednorodzinny",
-    text: "Jeśli wykańczasz nowy dom, drzwi muszą zagrać z podłogami, listwami, kolorystyką ścian i stylem całego wnętrza. Pomagamy dobrać modele, ościeżnice i klamki tak, żeby całość wyglądała spójnie od samego początku.",
-  },
-  {
-    label: "Remont mieszkania lub domu",
-    text: "Przy remoncie często trzeba wpasować nowe drzwi w stare ściany, nierówne otwory i istniejące podłogi. Dobieramy ościeżnice regulowane i modele, które da się zamontować bez przerabiania połowy korytarza.",
-  },
-  {
-    label: "Mieszkanie od dewelopera",
-    text: "Jeśli odbierasz lokal \u201Epod biały montaż\u201D, pomagamy szybko przejść od katalogu do konkretnych modeli, które pasują do metrażu, rozkładu i planowanej aranżacji.",
-  },
-  {
-    label: "Biuro lub lokal usługowy",
-    text: "W biurach i lokalach drzwi wewnętrzne muszą wytrzymać więcej otwierania, a czasem też spełniać dodatkowe wymagania akustyczne lub przeciwpożarowe. Dobieramy rozwiązania dopasowane do charakteru działalności.",
-  },
-];
-
-const doorTypes = [
-  "drzwi pokojowe pełne i z przeszkleniami",
-  "drzwi łazienkowe z podcięciami i tulejami wentylacyjnymi",
-  "drzwi do garderoby i pomieszczeń gospodarczych",
-  "drzwi przesuwne na systemach naściennych i w kasecie",
-  "drzwi z ościeżnicami stałymi i regulowanymi",
-];
-
-const montazSteps = [
-  {
-    number: "1",
-    title: "Pomiar i weryfikacja otworów",
-  },
-  {
-    number: "2",
-    title: "Dobór modeli i ościeżnic",
-  },
-  {
-    number: "3",
-    title: "Montaż w umówionym terminie",
-  },
-  {
-    number: "4",
-    title: "Regulacja i ewentualne poprawki",
-  },
-];
+const page = MOCKUP_DATA.pages.produktyDrzwiWewnetrzne;
 
 function FeatureAccordion({
   feature,
@@ -214,7 +64,7 @@ function FeatureAccordion({
 export default function DrzwiWewnetrznePage() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const activeManufacturer = manufacturers[activeTab];
+  const activeManufacturer = page.manufacturers.items[activeTab];
 
   return (
     <>
@@ -224,8 +74,8 @@ export default function DrzwiWewnetrznePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Drzwi wewnętrzne z montażem od Trendhomes"
+          src={page.hero.image}
+          alt={page.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -240,35 +90,31 @@ export default function DrzwiWewnetrznePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {page.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{page.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Drzwi Wewnętrzne</span>
+            <span className="text-white">{page.hero.breadcrumbs[2]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Drzwi wewnętrzne
-            <br />
-            z montażem
+            {(page.hero.heading as readonly string[]).map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Drzwi wewnętrzne mają trzymać klimat we wnętrzu, pasować do
-            podłóg i ścian, a przy tym po prostu wygodnie działać na co
-            dzień. W Trendhomes dobieramy drzwi do gotowych aranżacji i
-            nowych projektów, pomagamy ogarnąć ościeżnice regulowane,
-            kierunek otwierania, przesuwki i detale wykończeniowe. Na końcu
-            przyjeżdża ekipa, montuje wszystko w umówionym terminie i
-            zostawia mieszkanie w takim stanie, żeby dało się normalnie
-            funkcjonować.
+            {page.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Umów pomiar w 48 h
+              {page.hero.ctaText}
             </Link>
           </div>
         </div>
@@ -279,11 +125,11 @@ export default function DrzwiWewnetrznePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dla kogo są nasze", "drzwi wewnętrzne"]}
+              lines={page.forWhom.heading}
             />
 
             <div className="mt-8 md:mt-12">
-              {forWhom.map((item, i) => (
+              {page.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -302,7 +148,7 @@ export default function DrzwiWewnetrznePage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {MOCKUP_DATA.global.cta.skontaktujSie}
               </Link>
             </div>
           </div>
@@ -314,14 +160,11 @@ export default function DrzwiWewnetrznePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Dlaczego warto zamówić",
-                "drzwi wewnętrzne w Trendhomes",
-              ]}
+              lines={page.whyTrendhomes.heading}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
-              {whyItems.map((item, i) => (
+              {page.whyTrendhomes.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col">
                     <div className="relative size-[80px] md:size-[100px]">
@@ -348,7 +191,7 @@ export default function DrzwiWewnetrznePage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Umów pomiar w 48 h
+                {MOCKUP_DATA.global.cta.umowPomiar48h}
               </Link>
             </div>
           </div>
@@ -360,10 +203,7 @@ export default function DrzwiWewnetrznePage() {
         <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
-              lines={[
-                "Producenci drzwi wewnętrznych,",
-                "z którymi pracujemy",
-              ]}
+              lines={page.manufacturers.heading}
             />
           </AnimateOnScroll>
 
@@ -371,7 +211,7 @@ export default function DrzwiWewnetrznePage() {
           <AnimateOnScroll delay={100}>
             <div className="mt-8 overflow-x-auto scrollbar-hide md:mt-12">
               <div className="flex min-w-max items-center gap-1 bg-card px-2.5 py-2.5 md:gap-2 md:px-3">
-                {manufacturers.map((m, i) => (
+                {page.manufacturers.items.map((m, i) => (
                   <button
                     key={m.id}
                     onClick={() => setActiveTab(i)}
@@ -403,13 +243,13 @@ export default function DrzwiWewnetrznePage() {
                     href="/kontakt"
                     className="btn-pink h-[52px] px-[34px] text-sm"
                   >
-                    Napisz do nas
+                    {MOCKUP_DATA.global.cta.napisz}
                   </Link>
                 </div>
               </div>
               <div>
                 <h4 className="mb-2 text-base font-semibold text-dark/60 uppercase tracking-wide md:text-sm">
-                  Cechy wyróżniające
+                  {page.manufacturers.featuresLabel}
                 </h4>
                 <div className="border-t border-dark/10">
                   {activeManufacturer.features.map((feature) => (
@@ -427,14 +267,11 @@ export default function DrzwiWewnetrznePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Jakie rodzaje drzwi",
-                "wewnętrznych montujemy",
-              ]}
+              lines={page.doorTypes.heading}
             />
 
             <ul className="mt-8 space-y-4 md:mt-12">
-              {doorTypes.map((type, i) => (
+              {page.doorTypes.items.map((type, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <li className="flex items-start gap-3 text-sm leading-relaxed text-dark md:text-lg">
                     <span className="mt-1.5 block size-2.5 shrink-0 rounded-full bg-pink" />
@@ -452,14 +289,11 @@ export default function DrzwiWewnetrznePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Jak wygląda montaż",
-                "drzwi wewnętrznych",
-              ]}
+              lines={page.montaz.heading}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
-              {montazSteps.map((step, i) => (
+              {page.montaz.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col items-start">
                     <span className="flex size-[56px] items-center justify-center rounded-full bg-pink text-xl font-bold text-white">
@@ -482,17 +316,14 @@ export default function DrzwiWewnetrznePage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Wykańczasz dom albo remontujesz mieszkanie i potrzebujesz
-                drzwi wewnętrznych z montażem? Dobierzemy modele z oferty
-                Erkado, Voster, Intenso i DRE tak, żeby pasowały do Twojego
-                wnętrza, planu prac i budżetu.
+                {page.cta.description}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Umów pomiar w 48 h
+                  {page.cta.ctaText}
                 </Link>
               </div>
             </div>

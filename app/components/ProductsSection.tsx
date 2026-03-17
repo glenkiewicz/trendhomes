@@ -3,12 +3,13 @@ import Link from "next/link";
 import SectionHeading from "./SectionHeading";
 import AnimateOnScroll from "./AnimateOnScroll";
 import { mainProducts } from "../lib/products-data";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
 export default function ProductsSection() {
   return (
     <section id="produkty" className="bg-section-light py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <SectionHeading lines={["Poznaj nasze", "produkty"]} />
+        <SectionHeading lines={[...MOCKUP_DATA.home.products.heading]} />
 
         <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 md:mt-10 md:grid-cols-3 md:gap-8">
           {mainProducts.map((product, i) => (

@@ -10,95 +10,11 @@ import ContactSection from "../components/ContactSection";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const targetAudience = [
-  {
-    title: "Dla właścicieli lokali usługowych, sklepów, gabinetów czy biur",
-    image: "/images/biznes-card-1.jpg",
-  },
-  {
-    title: "Dla deweloperów i całych wspólnot mieszkaniowych",
-    image: "/images/biznes-card-2.jpg",
-  },
-  {
-    title: "Dla dużych inwestorów i obiektów publicznych m. in. szkół czy urzędów",
-    image: "/images/biznes-card-3.jpg",
-  },
-  {
-    title: "Dla architektów i biur projektowych szukających partnera do stolarki",
-    image: "/images/biznes-card-4.jpg",
-  },
-];
-
-const serviceCategories = [
-  {
-    title: "Lokale usługowe",
-    intro:
-      "W lokalach usługowych i biurach stolarka pracuje zupełnie inaczej niż w domu. Drzwi otwierają się setki razy dziennie, witryna ma przyciągać wzrok z ulicy, a całość musi spełnić wymagania techniczne budynku i zarządcy.",
-    details: [
-      "drzwi wejściowe aluminiowe (automatyczne i manualne)",
-      "ściany aluminiowo-szklane wewnętrzne",
-      "systemy przesuwne i składane",
-      "okna i fasady z profili ciepłych lub zimnych, zależnie od przeznaczenia",
-      "rolety zewnętrzne i wewnętrzne, żaluzje fasadowe",
-    ],
-  },
-  {
-    title: "Witryny",
-    intro:
-      "Witryna to wizytówka lokalu. Od tego, jak wygląda, zależy, czy klient zatrzyma się choć na chwilę przed Twoim miejscem. Jednocześnie witryna musi być bezpieczna, ciepła i zgodna z projektem budynku.",
-    listTitle: "Jakie witryny realizujemy:",
-    list: [
-      "witryny sklepowe i usługowe w parterach budynków mieszkalnych",
-      "przeszklenia wejść do galerii handlowych i pasaży",
-      "przeszklone fasady w biurowcach i obiektach usługowych",
-      "witryny w budynkach użyteczności publicznej (biblioteki, domy kultury, baseny)",
-    ],
-    considerTitle: "Przy projektowaniu witryn bierzemy pod uwagę:",
-    considerations: [
-      "funkcję lokalu (handel, usługi, gastronomia, medycyna, edukacja)",
-      "wymagania co do izolacyjności cieplnej i akustycznej",
-      "oczekiwania inwestora co do wyglądu i sposobu ekspozycji towaru",
-      "kwestie bezpieczeństwa – rodzaj szyb, podziały, balustrady, zabezpieczenia antywłamaniowe",
-    ],
-  },
-  {
-    title: "Drzwi p.poż.",
-    intro:
-      "Drzwi przeciwpożarowe to przede wszystkim bezpieczeństwo i przepisy. W obiektach biznesowych i publicznych drzwi przeciwpożarowe nie są \u201Eopcją\u201D, tylko obowiązkiem. Dobór nieodpowiedniego systemu potrafi zablokować odbiór budynku. Dlatego ten temat traktujemy bardzo poważnie.",
-  },
-  {
-    title: "Fasady",
-    intro:
-      "Przy większych inwestycjach często pojawia się potrzeba wykonania fasady aluminiowo-szklanej albo dużych przeszkleń łączących kilka kondygnacji. W takich miejscach stolarka jest ważnym elementem architektury budynku.",
-  },
-  {
-    title: "Nietypowe realizacje",
-    intro:
-      "Część zleceń nie mieści się w prostych kategoriach. To są projekty, w których budynek ma trudną historię techniczną albo jest obiektem zabytkowym.",
-  },
-];
-
-const processSteps = [
-  {
-    number: "1.",
-    title: "Rozmowa i analiza obiektu",
-    text: "Ustalamy typ budynku, jego funkcję, status formalny (nowy, modernizacja, zabytek), zakres potrzebnej stolarki oraz harmonogram inwestycji.",
-    opacity: "",
-  },
-  {
-    number: "2.",
-    title: "Propozycja rozwiązań",
-    text: "Przygotowujemy koncepcję: podział na lokale, witryny, drzwi p.poż., fasady, dodatkowe elementy. Omawiamy różne warianty techniczne i budżetowe.",
-    opacity: "opacity-80",
-  },
-  {
-    number: "3.",
-    title: "Pomiar i doprecyzowanie detali",
-    text: "Mierzymy otwory, weryfikujemy warunki techniczne, uzgadniamy podział prac i odpowiedzialności z innymi wykonawcami.",
-    opacity: "opacity-60",
-  },
-];
+const { hero, intro, targetAudience, services, process, partner } =
+  MOCKUP_DATA.pages.stolarkaForBusiness;
+const { cta } = MOCKUP_DATA.global;
 
 const GAP_LG = 32;
 const GAP_SM = 24;
@@ -156,7 +72,7 @@ function AudienceCarousel() {
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <div className="flex items-end justify-between">
           <p className="text-xl font-semibold text-dark md:text-[26px]">
-            Dla kogo jest ta oferta?
+            {intro.subheading}
           </p>
           <div className="flex items-center gap-3">
             <button
@@ -243,7 +159,7 @@ function AccordionItem({
   isOpen,
   onToggle,
 }: {
-  item: (typeof serviceCategories)[0];
+  item: (typeof services.categories)[number];
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -258,7 +174,7 @@ function AccordionItem({
         </h3>
         <span className="ml-4 flex shrink-0 items-center gap-2 text-sm text-dark">
           <span className="hidden sm:inline">
-            {isOpen ? "Zwiń opis" : "Czytaj więcej"}
+            {isOpen ? services.accordionLabels.open : services.accordionLabels.closed}
           </span>
           <svg
             width="30"
@@ -289,39 +205,39 @@ function AccordionItem({
               {item.intro}
             </p>
 
-            {item.details && (
+            {"details" in item && (
               <div className="mt-6">
                 <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
-                  Co dostarczamy do lokali:
+                  {services.detailsLabel}
                 </p>
                 <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
-                  {item.details.map((d, i) => (
+                  {item.details.map((d: string, i: number) => (
                     <li key={i}>{d}</li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {item.listTitle && item.list && (
+            {"listTitle" in item && "list" in item && (
               <div className="mt-6">
                 <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
-                  {item.listTitle}
+                  {item.listTitle as string}
                 </p>
                 <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
-                  {item.list.map((l, i) => (
+                  {(item.list as readonly string[]).map((l: string, i: number) => (
                     <li key={i}>{l}</li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {item.considerTitle && item.considerations && (
+            {"considerTitle" in item && "considerations" in item && (
               <div className="mt-6">
                 <p className="mb-3 text-sm font-semibold text-dark md:text-lg">
-                  {item.considerTitle}
+                  {item.considerTitle as string}
                 </p>
                 <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-dark md:text-lg">
-                  {item.considerations.map((c, i) => (
+                  {(item.considerations as readonly string[]).map((c: string, i: number) => (
                     <li key={i}>{c}</li>
                   ))}
                 </ul>
@@ -334,7 +250,7 @@ function AccordionItem({
                   href="/realizacje"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Zobacz realizacje witryn
+                  {services.vitrineCta}
                 </Link>
               </div>
             )}
@@ -356,8 +272,8 @@ export default function StolarkaDlaBiznesuPage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/biznes-hero.jpg"
-          alt="Stolarka dla biznesu"
+          src={hero.image}
+          alt={hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -372,31 +288,29 @@ export default function StolarkaDlaBiznesuPage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {hero.breadcrumb[0]}
             </Link>
             <span>|</span>
-            <span className="text-white">stolarka dla biznesu</span>
+            <span className="text-white">{hero.breadcrumb[1]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Stolarka dla biznesu
-            <br />
-            i instytucji publicznych
-            <br />
-            &ndash; od projektu do monta&#380;u
+            {hero.titleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            W biznesie stolarka nie jest tylko &bdquo;oknem w &#347;cianie&rdquo;.
-            W&nbsp;Trendhomes doskonale o tym wiemy, dlatego od pierwszej koncepcji
-            do odbioru technicznego masz po swojej stronie zesp&oacute;&#322;, kt&oacute;ry
-            rozumie biznes, przepisy i budow&#281;.
+            {hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Um&oacute;w pomiar w 48 h
+              {cta.umowPomiar48h}
             </Link>
           </div>
         </div>
@@ -406,23 +320,12 @@ export default function StolarkaDlaBiznesuPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Trendhomes", "dla biznesu"]} />
+            <SectionHeading lines={intro.heading} />
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-xl">
-              <p>
-                Wiemy, &#380;e w biznesie stolarka okienna ma przyci&#261;ga&#263;
-                klient&oacute;w, spe&#322;nia&#263; wymagania przepis&oacute;w,
-                wsp&oacute;&#322;pracowa&#263; z systemami przeciwpo&#380;arowymi
-                i wytrzyma&#263; intensywne u&#380;ytkowanie.
-              </p>
-              <p>
-                W Trendhomes projektujemy i dostarczamy rozwi&#261;zania dla lokali
-                us&#322;ugowych, biur, sklep&oacute;w, galerii handlowych, blok&oacute;w
-                mieszkalnych, basen&oacute;w, budynk&oacute;w u&#380;yteczno&#347;ci
-                publicznej, ko&#347;cio&#322;&oacute;w i szpitali. Pracujemy
-                zar&oacute;wno z w&#322;a&#347;cicielami pojedynczych lokali, jak
-                i z inwestorami oraz generalnymi wykonawcami.
-              </p>
-              <p className="font-semibold">Dla kogo jest ta oferta?</p>
+              {intro.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+              <p className="font-semibold">{intro.subheading}</p>
             </div>
           </div>
         </section>
@@ -435,15 +338,10 @@ export default function StolarkaDlaBiznesuPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={[
-                "Stolarka w pełni dopasowana",
-                "do potrzeb Twojej inwestycji",
-              ]}
-            />
+            <SectionHeading lines={services.heading} />
 
             <div className="mt-10 md:mt-14">
-              {serviceCategories.map((item, i) => (
+              {services.categories.map((item, i) => (
                 <AccordionItem
                   key={i}
                   item={item}
@@ -463,19 +361,16 @@ export default function StolarkaDlaBiznesuPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={[
-                "Jak wygląda współpraca",
-                "przy stolarce dla biznesu",
-              ]}
-            />
+            <SectionHeading lines={process.heading} />
 
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-3 md:gap-10">
-              {processSteps.map((step, i) => (
+              {process.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="border-t-2 border-pink/30 pt-5">
                     <span
-                      className={`text-3xl font-black text-pink ${step.opacity}`}
+                      className={`text-3xl font-black text-pink ${
+                        i === 1 ? "opacity-80" : i === 2 ? "opacity-60" : ""
+                      }`}
                     >
                       {step.number}
                     </span>
@@ -499,38 +394,25 @@ export default function StolarkaDlaBiznesuPage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
-                <SectionHeading
-                  lines={[
-                    "Trendhomes – Twój",
-                    "partner w biznesie",
-                  ]}
-                />
+                <SectionHeading lines={partner.heading} />
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
-                  <p>
-                    &#321;&#261;czymy do&#347;wiadczenie z bud&oacute;w,
-                    znajomo&#347;&#263; system&oacute;w stolarki i wymagania
-                    przepis&oacute;w.
-                  </p>
-                  <p>
-                    Napisz, jakiego obiektu dotyczy inwestycja i w jakim jeste&#347;
-                    etapie &ndash; przygotujemy propozycj&#281; rozwi&#261;za&#324;
-                    dla stolarki biznesowej i poka&#380;emy podobne realizacje
-                    z naszej galerii.
-                  </p>
+                  {partner.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                 </div>
                 <div className="mt-8">
                   <Link
                     href="/kontakt"
                     className="btn-pink h-[52px] px-[34px] text-sm"
                   >
-                    Skontaktuj si&#281; z Nami
+                    {cta.skontaktujSie}
                   </Link>
                 </div>
               </div>
               <div className="relative h-[240px] overflow-hidden sm:h-[300px] lg:h-[389px]">
                 <Image
-                  src="/images/biznes-partner.jpg"
-                  alt="Partner w biznesie"
+                  src={partner.image.src}
+                  alt={partner.image.alt}
                   fill
                   className="object-cover"
                 />

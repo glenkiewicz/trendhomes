@@ -7,6 +7,10 @@ import ContactSection from "../components/ContactSection";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const kontakt = MOCKUP_DATA.pages.kontakt;
+const cta = MOCKUP_DATA.global.cta;
 
 export default function KontaktPage() {
   return (
@@ -17,8 +21,8 @@ export default function KontaktPage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/kontakt-hero.jpg"
-          alt="Skontaktuj się z Nami"
+          src={kontakt.hero.image}
+          alt={kontakt.hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -33,27 +37,26 @@ export default function KontaktPage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {kontakt.hero.breadcrumb[0]}
             </Link>
             <span>|</span>
-            <span className="text-white">kontakt</span>
+            <span className="text-white">{kontakt.hero.breadcrumb[1]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Skontaktuj się
+            {kontakt.hero.titleLines[0]}
             <br />
-            z Nami
+            {kontakt.hero.titleLines[1]}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Chcesz porozmawiać o oknach, drzwiach, roletach, bramie albo
-            pergoli w okolicach Sanoka? Napisz, zadzwoń albo umów pomiar.
+            {kontakt.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Skontaktuj się z Nami
+              {cta.skontaktujSie}
             </Link>
           </div>
         </div>
@@ -63,12 +66,9 @@ export default function KontaktPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Jak możemy", "Ci pomóc"]} />
+            <SectionHeading lines={kontakt.howCanWeHelp.heading} />
             <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
-              Najczęściej zaczynamy od krótkiej rozmowy i kilku podstawowych
-              informacji o inwestycji. Na tej podstawie możemy wstępnie doradzić
-              rozwiązania i zaproponować dalsze kroki: wycenę na podstawie
-              projektu albo umówienie pomiaru na miejscu.
+              {kontakt.howCanWeHelp.description}
             </p>
           </div>
         </section>

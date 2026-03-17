@@ -9,6 +9,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
+
+const PAGE = MOCKUP_DATA.pages.produktyOknaStalowe;
 
 export default function OknaStalowePage() {
   return (
@@ -19,8 +22,8 @@ export default function OknaStalowePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Okna stalowe i loftowe od Trendhomes"
+          src={PAGE.hero.image}
+          alt={PAGE.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -35,74 +38,61 @@ export default function OknaStalowePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {PAGE.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{PAGE.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Okna Stalowe</span>
+            <span className="text-white">{PAGE.hero.breadcrumbs[2]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Okna stalowe
+            {PAGE.hero.heading[0]}
             <br />
-            i loftowe
+            {PAGE.hero.heading[1]}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Stalowe okna i konstrukcje loftowe to rozwiązania, które traktujemy
-            jako projekty indywidualne, a nie gotowe produkty z cennika.
-            Wykorzystuje się je tam, gdzie stolarka ma być czymś więcej niż
-            tylko &bdquo;ramą do szyby&rdquo; - jest ważnym elementem architektury,
-            nawiązuje do przemysłowego charakteru budynku albo ma spełnić
-            wymagania techniczne, których nie udźwigną standardowe systemy PCV
-            czy aluminium.
+            {PAGE.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Zapytaj o wycenę
+              {PAGE.hero.ctaText}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Zastosowanie na zewnątrz */}
+      {/* Zastosowanie na zewnatrz */}
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Zastosowanie", "na zewnątrz"]}
+              lines={[...PAGE.zewnatrz.heading]}
             />
 
             <div className="mt-8 md:mt-12">
               <p className="max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-                Na zewnątrz stal pojawia się między innymi w obiektach z historią,
-                budynkach poprzemysłowych, adaptowanych magazynach czy bardziej
-                wymagających projektach architektonicznych. Takie konstrukcje muszą
-                połączyć trwałość, bezpieczeństwo i określony wygląd fasady.
+                {PAGE.zewnatrz.description}
               </p>
             </div>
           </div>
         </section>
       </AnimateOnScroll>
 
-      {/* Zastosowanie we wnętrzach */}
+      {/* Zastosowanie we wnetrzach */}
       <AnimateOnScroll>
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Zastosowanie", "we wnętrzach"]}
+              lines={[...PAGE.wnetrza.heading]}
             />
 
             <div className="mt-8 md:mt-12">
               <p className="max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-                We wnętrzach stalowe profile wykorzystujemy do lekkich,
-                przeszklonych ścian i drzwi w stylu loftowym - dzielą przestrzeń,
-                ale nie zabierają światła. Dobrze sprawdzają się w salonach
-                z antresolą, domowych biurach, garderobach czy mieszkaniach
-                urządzonych w industrialnym klimacie.
+                {PAGE.wnetrza.description}
               </p>
             </div>
           </div>
@@ -114,16 +104,12 @@ export default function OknaStalowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Systemy stalowe", "firmy Forster"]}
+              lines={[...PAGE.forster.heading]}
             />
 
             <div className="mt-8 md:mt-12">
               <p className="max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-                Wszystkie tego typu realizacje wykonujemy w oparciu o systemy
-                stalowe firmy Forster. To rozwiązania zaprojektowane specjalnie
-                do drzwi, okien i przeszkleń o podwyższonych wymaganiach
-                użytkowych. Dobieramy konkretny system i sposób wykonania dopiero
-                po analizie projektu.
+                {PAGE.forster.description}
               </p>
             </div>
           </div>
@@ -135,20 +121,18 @@ export default function OknaStalowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Czego potrzebujemy,", "żeby przygotować wycenę"]}
+              lines={[...PAGE.wycena.heading]}
             />
 
             <div className="mt-8 md:mt-12">
               <p className="max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-                Żeby przygotować sensowną propozycję, potrzebujemy od Ciebie
-                kilku informacji: krótkiego opisu pomysłu, podstawowych wymiarów
-                oraz, jeśli to możliwe, rzutów lub zdjęć budynku czy wnętrza.
+                {PAGE.wycena.description}
               </p>
             </div>
 
             <div className="mt-8 rounded-sm bg-white p-5 md:p-6">
               <p className="text-sm font-semibold text-dark md:text-lg">
-                Wycena indywidualna - prosimy o kontakt
+                {PAGE.wycena.boxText}
               </p>
             </div>
           </div>
@@ -161,32 +145,28 @@ export default function OknaStalowePage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Planujesz stalowe okna lub loftowe przeszklenia w domu,
-                mieszkaniu albo lokalu? Napisz do nas i opisz swój projekt -
-                przygotujemy indywidualną wycenę w oparciu o systemy Forster.
+                {PAGE.cta.description}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Napisz do nas
+                  {PAGE.cta.ctaText}
                 </Link>
               </div>
             </div>
 
             <div className="mx-auto mt-12 max-w-[800px] text-center md:mt-16">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Nie wiesz, czy stolarka stalowa zmieści się w Twoim budżecie?
-                Prześlij rzut lub zdjęcia wnętrza, a podpowiemy, jakie
-                rozwiązania są realne do wykonania.
+                {PAGE.cta.descriptionSecondary}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Prześlij zdjęcia lub rzut
+                  {PAGE.cta.ctaTextSecondary}
                 </Link>
               </div>
             </div>

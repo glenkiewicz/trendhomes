@@ -12,6 +12,7 @@ import {
   getSystemBySlug,
   getRelatedSystems,
 } from "../../../lib/product-systems";
+import ColorCarousel from "../../../components/ColorCarousel";
 
 export function generateStaticParams() {
   return pvcSystems.map((s) => ({ system: s.slug }));
@@ -139,9 +140,7 @@ export default async function SystemDetailPage({
                 {system.uw}
               </span>
               <span className="text-xs text-dark md:text-sm">
-                Uw dla Ug = 0,5
-                <br />
-                (ramka Ultimate)*
+                {system.uwNote}
               </span>
             </div>
             <div className="flex flex-col items-center gap-1 px-2 text-center md:gap-2">
@@ -162,6 +161,18 @@ export default async function SystemDetailPage({
             </div>
           </div>
         </section>
+
+        {/* Dostępne kolory */}
+        {system.colors.length > 0 && (
+          <section className="py-10 md:py-20">
+            <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+              <SectionHeading lines={["Dostępne kolory"]} />
+              <div className="mt-8 md:mt-12">
+                <ColorCarousel colors={system.colors} />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Feature Sections */}
         <section className="py-10 md:py-20">

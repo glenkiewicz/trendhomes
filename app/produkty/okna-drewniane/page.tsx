@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import TopBar from "../../components/TopBar";
 import Navbar from "../../components/Navbar";
 import SectionHeading from "../../components/SectionHeading";
@@ -10,91 +9,11 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import ColorCarousel from "../../components/ColorCarousel";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
+import { woodenSystems, woodenWindowColors } from "../../lib/product-systems";
 
-const systems = [
-  {
-    name: "Naturo 68",
-    description:
-      "Naturo 68 traktujemy jako solidny punkt startowy wśród okien drewnianych. Profil o głębokości 68 mm, wykonany z klejonego warstwowo drewna, dobrze sprawdza się w klasycznych domach i modernizowanych budynkach. To propozycja dla inwestorów, którzy chcą mieć drewnianą stolarkę o porządnych parametrach bez wchodzenia od razu w najwyższe systemy. Jeśli budynek nie wymaga ekstremalnej izolacyjności, a zależy Ci na naturalnym wyglądzie okien – Naturo 68 będzie rozsądnym wyborem na start.",
-  },
-  {
-    name: "Naturo 68 ALU",
-    description:
-      "Naturo 68 ALU to ten sam drewniany rdzeń, ale z zewnętrzną nakładką aluminiową. Od środka wciąż widzisz naturalne drewno, a od strony elewacji pracuje aluminium, które nie wymaga malowania i lepiej znosi warunki atmosferyczne. To rozwiązanie dla klientów, którzy lubią drewno w środku, ale nie chcą się martwić o konserwację od zewnątrz. Sprawdza się szczególnie w budynkach narażonych na silne opady, nasłonecznienie lub tam, gdzie dostęp do okien od strony elewacji jest utrudniony.",
-  },
-  {
-    name: "Naturo 80",
-    description:
-      "Naturo 80 jest rozwinięciem systemu 68 – z większą głębokością profilu i możliwością zastosowania szerszych pakietów szybowych. Dzięki temu okna lepiej izolują cieplnie i akustycznie, co ma znaczenie w domach z pompą ciepła lub w lokalizacjach, gdzie liczy się cisza. Wybieramy ten system, gdy budynek wymaga lepszych parametrów niż podstawowa klasa, ale inwestor nie potrzebuje jeszcze najgrubszego profilu 92 mm.",
-  },
-  {
-    name: "Naturo 80 ALU",
-    description:
-      "Naturo 80 ALU łączy wyższy standard cieplny z ochroną drewna przez nakładkę aluminiową po stronie zewnętrznej. To kompromis między komfortem użytkowania drewna wewnątrz a trwałością i bezobsługowością od strony pogody. Polecamy go w domach, gdzie zależy na dobrym Uw okna, a jednocześnie inwestor nie chce wracać do tematu malowania ram co kilka lat.",
-  },
-  {
-    name: "Naturo 92",
-    description:
-      "Naturo 92 to system z najwyższej półki w linii Naturo. Grubość profilu 92 mm pozwala na montaż potrójnych pakietów szybowych o bardzo dobrych parametrach cieplnych i akustycznych. To rozwiązanie kierujemy do domów energooszczędnych, budynków pasywnych lub inwestycji, w których stolarka ma realnie wpływać na bilans energetyczny. Jeśli projektujesz dom z myślą o niskich kosztach ogrzewania w dłuższej perspektywie – Naturo 92 będzie jednym z pierwszych systemów, które zaproponujemy.",
-  },
-  {
-    name: "Esperia Life 74 ALU",
-    description:
-      "Esperia Life 74 ALU to system dla klientów, którzy oczekują od stolarki drewnianej bardziej wyrafinowanego wyglądu i smuklejszych profili. Konstrukcja drewniano-aluminiowa daje czystą, nowoczesną linię od zewnątrz, zachowując ciepło drewna w środku. Sprawdza się w projektach architektonicznych, gdzie liczy się proporcja i detal – np. w domach z dużymi przeszkleniami, minimalistycznymi elewacjami lub tam, gdzie stolarka ma współgrać z aluminiowymi elementami budynku.",
-  },
-  {
-    name: "Esperia Life 80",
-    description:
-      "Esperia Life 80 to linia premium wśród drewnianych okien producenta. Głębszy profil pozwala na jeszcze lepsze parametry cieplne i akustyczne, a linia Esperia Life wyróżnia się smukłymi kształtami i dopracowanymi detalami. Ten system wybieramy do domów, w których stolarka ma być nie tylko funkcjonalna, ale też stanowić widoczny element architektury. Dobrze współgra z nowoczesnymi projektami, dużymi formatami okien i inwestycjami, gdzie jakość wykończenia ma kluczowe znaczenie.",
-  },
-];
-
-function SystemAccordion({
-  system,
-}: {
-  system: { name: string; description: string };
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="border-b border-dark/10">
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-4 text-left"
-      >
-        <h4 className="text-base font-bold text-dark md:text-lg">
-          {system.name}
-        </h4>
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        >
-          <path
-            d="M3 5L7 9L11 5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-        </svg>
-      </button>
-      <div
-        className={`grid transition-all duration-300 ${
-          open
-            ? "grid-rows-[1fr] opacity-100"
-            : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
-            {system.description}
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
+const PAGE = MOCKUP_DATA.pages.produktyOknaDrewniane;
 
 export default function OknaDrewnianePage() {
   return (
@@ -105,8 +24,8 @@ export default function OknaDrewnianePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Okna drewniane od Trendhomes"
+          src={PAGE.hero.image}
+          alt={PAGE.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -121,64 +40,97 @@ export default function OknaDrewnianePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {PAGE.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{PAGE.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Okna Drewniane</span>
+            <span className="text-white">{PAGE.hero.breadcrumbs[2]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Okna drewniane
+            {PAGE.hero.heading}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Okna drewniane są dla klientów, którzy chcą połączyć solidne
-            parametry techniczne z naturalnym materiałem i bardziej
-            \u201Eprzytulnym\u201D wyglądem stolarki. Dobrze sprawdzają się w domach
-            jednorodzinnych, budynkach z historią oraz wszędzie tam, gdzie
-            drewno pojawia się już w elewacji albo wewnątrz. Pracujemy na
-            siedmiu systemach drewnianych jednego z największych producentów
-            na rynku – seriach Naturo i Esperia Life.
+            {PAGE.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Umów pomiar w 48 h
+              {PAGE.hero.ctaText}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Systems Section with Accordion */}
+      {/* Systems Section with Product Cards */}
       <section className="bg-white py-10 md:py-20">
         <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
-            <SectionHeading
-              lines={["Systemy okien drewnianych,", "na których pracujemy"]}
-            />
+            <SectionHeading lines={[...PAGE.systems.heading]} />
           </AnimateOnScroll>
 
           <AnimateOnScroll delay={100}>
             <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-              Pracujemy na siedmiu systemach drewnianych z linii Naturo
-              i Esperia Life. Każdy z nich różni się głębokością profilu,
-              parametrami cieplnymi i konstrukcją – od klasycznych ram
-              drewnianych po rozwiązania drewniano-aluminiowe. Na podstawie
-              projektu, standardu energetycznego domu i budżetu dobieramy
-              konkretny system do Twojej inwestycji.
+              {PAGE.systems.description}
             </p>
           </AnimateOnScroll>
 
-          <AnimateOnScroll delay={200}>
+          {/* Product cards grid */}
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:gap-8">
+            {woodenSystems.map((system) => (
+              <AnimateOnScroll key={system.slug}>
+                <Link
+                  href={`/produkty/okna-drewniane/${system.slug}`}
+                  className="group flex flex-col overflow-hidden bg-white shadow-[0_0_12px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-lg"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50">
+                    <Image
+                      src={system.image}
+                      alt={system.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-xl font-bold text-dark md:text-2xl">
+                      {system.name}
+                    </h3>
+                    <div className="mt-3 border-t border-dark/10 pt-3">
+                      <p className="text-sm text-dark">
+                        Głębokość zabudowy: {system.depth}
+                      </p>
+                      <p className="mt-1 text-sm text-dark">
+                        Szklenie pakietami o szerokości {system.glazing}
+                      </p>
+                      <p className="mt-1 text-sm text-dark">
+                        {system.seals} uszczelki, {system.layers} warstwy
+                        drewna
+                      </p>
+                      <p className="mt-1 text-sm font-bold text-pink">
+                        Uw {system.uw}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dostępne kolory */}
+      <section className="bg-section-light py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+          <AnimateOnScroll>
+            <SectionHeading lines={["Dostępne kolory"]} />
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={100}>
             <div className="mt-8 md:mt-12">
-              <div className="border-t border-dark/10">
-                {systems.map((system) => (
-                  <SystemAccordion key={system.name} system={system} />
-                ))}
-              </div>
+              <ColorCarousel colors={woodenWindowColors} />
             </div>
           </AnimateOnScroll>
         </div>
@@ -186,19 +138,12 @@ export default function OknaDrewnianePage() {
 
       {/* Summary Section */}
       <AnimateOnScroll>
-        <section className="bg-section-light py-10 md:py-20">
+        <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={["Podsumowanie –", "okna drewniane Naturo i Esperia Life"]}
-            />
+            <SectionHeading lines={[...PAGE.summary.heading]} />
 
             <p className="mt-6 max-w-[900px] text-sm leading-relaxed text-dark md:text-lg">
-              Okna drewniane z linii Naturo i Esperia Life to rozwiązanie dla
-              inwestorów, którzy chcą połączyć naturalny materiał, dobry
-              standard techniczny i dopasowanie do charakteru budynku. Na
-              podstawie projektu, standardu energetycznego domu i budżetu
-              dobieramy 2–3 konkretne systemy, zamiast zasypywać Cię pełnym
-              katalogiem.
+              {PAGE.summary.description}
             </p>
           </div>
         </section>
@@ -206,33 +151,30 @@ export default function OknaDrewnianePage() {
 
       {/* CTA Section */}
       <AnimateOnScroll>
-        <section className="bg-white py-10 md:py-20">
+        <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Prześlij nam rzut domu lub kilka zdjęć budynku –
-                przygotujemy propozycję drewnianych okien Naturo lub
-                Esperia Life dopasowaną do Twojego projektu.
+                {PAGE.cta.description}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Wyślij zapytanie
+                  {PAGE.cta.ctaText}
                 </Link>
               </div>
 
               <p className="mt-10 text-sm leading-relaxed text-dark md:text-lg">
-                Zadzwoń lub napisz, a podpowiemy, który z 7 systemów
-                drewnianych będzie rozsądnym wyborem do Twojego domu.
+                {PAGE.cta.descriptionSecondary}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Skontaktuj się z Nami
+                  {PAGE.cta.ctaTextSecondary}
                 </Link>
               </div>
             </div>

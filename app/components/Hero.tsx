@@ -3,54 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const slides = [
-	{
-		image: "/images/hero-bg.webp",
-		title: (
-			<>
-				Okna, drzwi i rolety
-				<br />
-				z montażem.
-				<br />W Bieszczadach.
-			</>
-		),
-		description:
-			"Projektujemy, dostarczamy i montujemy stolarkę okienną oraz drzwiową dla nowych domów, remontów i lokali usługowych. Otrzymujesz kompletny pakiet: okna, rolety zewnętrzne, drzwi i bramę garażową z jednym terminem montażu i lokalnym serwisem.",
-	},
-	{
-		image: "/images/hero-bg-2.webp",
-		title: (
-			<>
-				Zadbaj o przyszłość już teraz! Dołącz do programu Czyste
-				Powietrze
-			</>
-		),
-		description:
-			"Skorzystaj z dofinansowania na wymianę okien i drzwi. Pomagamy przejść przez cały proces – od wniosku po montaż. Sprawdź, ile możesz zaoszczędzić.",
-	},
-	{
-		image: "/images/hero-bg-3.webp",
-		title: (
-			<>
-				Trendhomes dla biznesu
-				<br className="hidden md:block" /> Stolarka dopasowana do
-				potrzeb inwestycyjnych
-			</>
-		),
-		description:
-			"Trwałe okna i drzwi dla lokali usługowych, biur i obiektów komercyjnych. Zgodność z normami ppoż., terminowość i pełna dokumentacja odbiorcza.",
-	},
-];
+const d = MOCKUP_DATA.home.hero;
+const slides = d.slides;
 
-const NAV_TOTAL = 3;
+const NAV_TOTAL = slides.length;
 const AUTO_PLAY_MS = 10000;
-
-const bottomTabs = [
-	"Buduję nowy dom",
-	"Remontuję mieszkanie",
-	"Trendhomes dla biznesu",
-];
 
 export default function Hero() {
 	const [current, setCurrent] = useState(0);
@@ -117,7 +76,12 @@ export default function Hero() {
 									i === current ? "opacity-100" : "opacity-0"
 								}`}
 							>
-								{slide.title}
+								{slide.titleLines.map((line, j) => (
+									<span key={j}>
+										{j > 0 && <br />}
+										{line}
+									</span>
+								))}
 							</h1>
 							<p
 								className={`max-w-[552px] text-sm leading-relaxed text-white transition-opacity delay-100 duration-500 sm:text-sm md:text-base lg:text-lg ${
@@ -135,7 +99,7 @@ export default function Hero() {
 									href="#kontakt"
 									className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
 								>
-									Umów pomiar w 48 h
+									{MOCKUP_DATA.global.cta.umowPomiar48h}
 								</Link>
 							</div>
 						</div>
@@ -173,7 +137,7 @@ export default function Hero() {
 
 			{/* Bottom tabs */}
 			<div className="absolute bottom-0 left-0 right-0 z-30 flex items-stretch justify-center">
-				{bottomTabs.map((label, i) => (
+				{d.bottomTabs.map((label, i) => (
 					<div key={i} className="flex min-w-0 flex-1 items-center sm:flex-none">
 						{i > 0 && (
 							<div className="mx-0 hidden h-[40px] w-px rotate-[24deg] bg-white/40 sm:block" />

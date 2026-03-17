@@ -4,25 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { BlogPost, BlogCategory } from "../lib/blog-data";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const categories: ("Wszystkie" | BlogCategory)[] = [
-  "Wszystkie",
-  "Porady",
-  "Inspiracje",
-  "Aktualności",
-  "Technologie",
-];
+const d = MOCKUP_DATA.pages.blog;
+const categories = d.filters;
 
 const POSTS_PER_PAGE = 9;
 
 export default function BlogContent({ posts }: { posts: BlogPost[] }) {
-  const [active, setActive] = useState<"Wszystkie" | BlogCategory>(
-    "Wszystkie"
+  const [active, setActive] = useState<(typeof categories)[number]>(
+    categories[0]
   );
   const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
 
   const filtered =
-    active === "Wszystkie"
+    active === categories[0]
       ? posts
       : posts.filter((p) => p.category === active);
 
@@ -100,7 +96,7 @@ export default function BlogContent({ posts }: { posts: BlogPost[] }) {
               </p>
               <div className="mt-4 inline-flex flex-col items-start gap-1">
                 <span className="text-sm text-dark md:text-base">
-                  Czytaj artykuł
+                  {d.readArticle}
                 </span>
                 <span className="block h-[2px] w-[131px] bg-dark" />
               </div>
@@ -154,7 +150,7 @@ export default function BlogContent({ posts }: { posts: BlogPost[] }) {
                 }
                 className="btn-pink h-12 px-8 text-sm md:text-base"
               >
-                Wczytaj więcej wpisów
+                {d.loadMore}
               </button>
             </div>
           )}

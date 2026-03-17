@@ -2,18 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "./SectionHeading";
 import { blogPosts } from "../lib/blog-data";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const d = MOCKUP_DATA.home.blog;
 
 export default function BlogSection() {
   return (
     <section id="blog" className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <SectionHeading lines={["Strefa", "wiedzy"]} />
+        <SectionHeading lines={[...d.heading]} />
 
         <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-          Zanim podejmiesz decyzję o oknach, drzwiach, roletach czy pergoli,
-          warto wiedzieć, na co zwrócić uwagę. W naszych materiałach pokazujemy
-          praktyczne przykłady z budowy, remontów i lokali usługowych w Sanoku
-          i okolicach.
+          {d.description}
         </p>
 
         {/* Blog cards */}
@@ -45,7 +45,7 @@ export default function BlogSection() {
                   {post.excerpt}
                 </p>
                 <div className="inline-flex flex-col items-start gap-1.5 py-3">
-                  <span className="text-sm text-dark">Czytaj więcej</span>
+                  <span className="text-sm text-dark">{d.readMore}</span>
                   <span className="block h-[2px] w-[98px] bg-dark" />
                 </div>
               </div>
@@ -59,7 +59,7 @@ export default function BlogSection() {
             href="/blog"
             className="btn-pink h-12 px-[34px] text-sm"
           >
-            Zobacz wszystkie porady
+            {d.cta}
           </Link>
         </div>
       </div>

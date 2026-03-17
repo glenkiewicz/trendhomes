@@ -9,52 +9,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const forWhom = [
-  {
-    label: "Dom z ogrodem i tarasem",
-    text: "Masz taras, ale w praktyce korzystasz z niego tylko w kilka najcieplejszych tygodni w roku. Chcesz mieć miejsce, gdzie można spokojnie napić się kawy, zjeść kolację, posiedzieć z gośćmi, nawet kiedy słońce świeci zbyt mocno albo wieje.",
-  },
-  {
-    label: "Dom z pięknym widokiem (Bieszczady, okolice Sanoka)",
-    text: "Widok z okien aż się prosi, żeby go wykorzystać, ale pogoda nie zawsze współpracuje. Ogród zimowy pozwala siedzieć \u201Ew ogrodzie\u201D, nawet kiedy jest chłodniej, a deszcz stuka w szyby.",
-  },
-  {
-    label: "Rodziny z dziećmi",
-    text: "Pergola lub ogród zimowy to bezpieczna przestrzeń do zabawy blisko domu, gdzie można rozłożyć zabawki, stolik czy wygodne fotele, bez wnoszenia wszystkiego do środka przy każdej zmianie pogody.",
-  },
-  {
-    label: "Osoby, które lubią zapraszać gości",
-    text: "Grille, spotkania, wieczory przy winie – dobrze zaprojektowana strefa zadaszonego tarasu robi ogromną różnicę. To po prostu dodatkowy salon na zewnątrz.",
-  },
-];
-
-const solutions = [
-  {
-    title: "Pergole przyścienne nad tarasem",
-    text: "Montowane bezpośrednio przy elewacji domu, tworzą naturalne przedłużenie salonu lub jadalni. Dzięki regulowanym lamelom lub tkaninie możesz kontrolować ilość światła i cienia, a odprowadzanie wody chroni przed deszczem. To najczęściej wybierane rozwiązanie przy domach jednorodzinnych w naszym regionie.",
-  },
-  {
-    title: "Pergole wolnostojące w ogrodzie",
-    text: "Dobre rozwiązanie, kiedy chcesz mieć dodatkową strefę wypoczynku trochę dalej od domu – na przykład przy jacuzzi, grillu lub nad stawem. Konstrukcja stoi niezależnie, więc nie ingeruje w elewację i można ją postawić w dowolnym miejscu ogrodu.",
-  },
-  {
-    title: "Zabudowy tarasów – lekkie ogrody zimowe",
-    text: "Przeszklone konstrukcje, które pozwalają korzystać z tarasu od wczesnej wiosny do późnej jesieni. Szyby osłaniają przed wiatrem i deszczem, a systemy wentylacji zapewniają komfort w cieplejsze dni. To świetna alternatywa dla tych, którzy chcą więcej niż pergolę, ale nie potrzebują pełnego ogrodu zimowego.",
-  },
-  {
-    title: "Ogrody zimowe całoroczne",
-    text: "Rozwiązania projektowane z myślą o użytkowaniu także zimą. Izolowane termicznie profile, szyby zespolone i ogrzewanie sprawiają, że ogród zimowy działa jak pełnoprawny pokój – możesz w nim pracować, czytać albo po prostu siedzieć z kawą, patrząc na zaśnieżony ogród.",
-  },
-];
-
-const projectFactors = [
-  "Położenie domu i kierunki świata",
-  "Sposób, w jaki obecnie korzystasz z tarasu i ogrodu",
-  "Różnice poziomów, istniejące schody, balustrady",
-  "Bryłę domu i kolorystykę elewacji oraz stolarki",
-  "Budżet i etap prac",
-];
+const pageData = MOCKUP_DATA.pages.produktyPergole;
 
 export default function PergolePage() {
   return (
@@ -64,21 +21,21 @@ export default function PergolePage() {
 
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
-        <Image src="/images/pergola-banner.jpg" alt="Pergole i ogrody zimowe od Trendhomes" fill priority className="object-cover" />
+        <Image src={pageData.hero.image} alt={pageData.hero.imageAlt} fill priority className="object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(27,27,27,0.72) 15%, rgba(27,27,27,0.58) 43%, rgba(107,101,98,0.24) 79%, rgba(255,240,229,0) 100%)" }} />
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
-            <Link href="/" className="transition-colors hover:text-white">home</Link><span>|</span><span>Produkty</span><span>|</span><span className="text-white">Pergole</span>
+            <Link href="/" className="transition-colors hover:text-white">{pageData.hero.breadcrumbs[0]}</Link><span>|</span><span>{pageData.hero.breadcrumbs[1]}</span><span>|</span><span className="text-white">{pageData.hero.breadcrumbs[2]}</span>
           </nav>
-          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">Pergole i ogrody zimowe</h1>
+          <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">{pageData.hero.heading}</h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Taras i ogród to dziś pełnoprawna część domu, a nie tylko miejsce na suszarkę do prania. Dobrze zaprojektowana pergola albo ogród zimowy pozwalają korzystać z tej przestrzeni dużo dłużej niż tylko w lipcu i sierpniu. W Trendhomes pomagamy zamienić zwykły taras w strefę wypoczynku, jadalnię na świeżym powietrzu albo domowe \u201Espa\u201D z widokiem na Bieszczady.
+            {pageData.hero.description}
           </p>
           <p className="mt-3 max-w-[552px] text-sm leading-relaxed text-white/80 sm:text-sm md:text-base">
-            Zamiast katalogu systemów skupiamy się na Twoim domu, ogrodzie i sposobie, w jaki faktycznie chcesz z tej przestrzeni korzystać.
+            {pageData.hero.descriptionSecondary}
           </p>
           <div className="mt-6 md:mt-8">
-            <Link href="/kontakt" className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm">Umów pomiar w 48 h</Link>
+            <Link href="/kontakt" className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm">{pageData.hero.ctaText}</Link>
           </div>
         </div>
       </section>
@@ -87,9 +44,9 @@ export default function PergolePage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Dla kogo są pergole", "i ogrody zimowe"]} />
+            <SectionHeading lines={pageData.forWhom.heading} />
             <div className="mt-8 md:mt-12">
-              {forWhom.map((item, i) => (
+              {pageData.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[300px_1fr] md:gap-8 md:py-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">{item.label}</h3>
@@ -106,9 +63,9 @@ export default function PergolePage() {
       <AnimateOnScroll>
         <section className="bg-card py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Jakie rozwiązania", "projektujemy najczęściej"]} />
+            <SectionHeading lines={pageData.solutions.heading} />
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:gap-8">
-              {solutions.map((item, i) => (
+              {pageData.solutions.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col bg-white p-5 shadow-[0_0_12px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,0,0,0.08)] md:p-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">{item.title}</h3>
@@ -125,9 +82,9 @@ export default function PergolePage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Co bierzemy pod uwagę", "przy projekcie"]} />
+            <SectionHeading lines={pageData.projectFactors.heading} />
             <ul className="mt-8 space-y-4 md:mt-12">
-              {projectFactors.map((item, i) => (
+              {pageData.projectFactors.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 60}>
                   <li className="flex items-start gap-4 border-b border-dark/10 pb-3 last:border-b-0">
                     <span className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-pink text-sm font-bold text-white">{i + 1}</span>
@@ -145,10 +102,10 @@ export default function PergolePage() {
         <section className="bg-card py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5 text-center">
             <p className="mx-auto max-w-[720px] text-sm leading-relaxed text-dark md:text-xl">
-              Masz dom z tarasem lub ogrodem i czujesz, że ta przestrzeń mogłaby robić dużo więcej niż dziś? W Trendhomes projektujemy pergole i ogrody zimowe pod konkretny dom, widok i sposób życia domowników.
+              {pageData.cta.description}
             </p>
             <div className="mt-8 flex justify-center md:mt-10">
-              <Link href="/kontakt" className="btn-pink h-[52px] px-[34px] text-sm">Skontaktuj się z nami</Link>
+              <Link href="/kontakt" className="btn-pink h-[52px] px-[34px] text-sm">{pageData.cta.ctaText}</Link>
             </div>
           </div>
         </section>

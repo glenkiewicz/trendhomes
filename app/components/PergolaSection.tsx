@@ -1,5 +1,8 @@
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const d = MOCKUP_DATA.home.pergola;
 
 export default function PergolaSection() {
   return (
@@ -28,21 +31,19 @@ export default function PergolaSection() {
       {/* Content */}
       <div className="relative mx-auto max-w-[1440px] px-3 py-10 md:px-5 md:py-16">
         <SectionHeading
-          lines={["Nowoczesne i designerskie", "pergole ogrodowe"]}
+          lines={[...d.heading]}
           light
         />
 
         <p className="mt-6 max-w-[732px] text-base leading-relaxed text-white md:mt-8 md:text-xl">
-          Miejsce błogiego odpoczynku i niezapomnianych spotkań z przyjaciółmi.
-          Poznaj możliwości naszych pergol tarasowych i postaw na pewne
-          rozwiązania od Trendhomes.
+          {d.description}
         </p>
 
         <a
           href="#kontakt"
           className="btn-light mt-8 h-[52px] px-[34px] text-sm font-normal md:mt-10"
         >
-          Umów pomiar
+          {MOCKUP_DATA.global.cta.umowPomiar}
         </a>
       </div>
     </section>

@@ -1,3 +1,7 @@
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const g = MOCKUP_DATA.global;
+
 export default function MapSection() {
   return (
     <section className="w-full">
@@ -9,7 +13,7 @@ export default function MapSection() {
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Trendhomes - Piastowska 3, 38-500 Sanok"
+        title={`${g.companyName} - ${g.address.street}, ${g.address.city}`}
       />
     </section>
   );

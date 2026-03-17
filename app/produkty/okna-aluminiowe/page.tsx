@@ -9,42 +9,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const forWhomItems = [
-  {
-    title: "Budynki użyteczności publicznej i biurowce",
-    description:
-      "Aluminium dobrze znosi intensywne użytkowanie, zmiany temperatury i większe obciążenia konstrukcyjne. Dlatego wykorzystuje się je w budynkach, które muszą być trwałe i bezpieczne przez lata, przy dużej liczbie użytkowników.",
-  },
-  {
-    title: "Lokale usługowe i witryny",
-    description:
-      "W lokalach usługowych i na parterach budynków okna aluminiowe pozwalają uzyskać duże, stabilne przeszklenia i wąskie profile. Dzięki temu witryna lepiej eksponuje wnętrze, a stolarka jest bardziej odporna na uszkodzenia mechaniczne niż standardowe okna domowe.",
-  },
-  {
-    title: "Nowoczesne domy z dużymi przeszkleniami",
-    description:
-      "W części projektów rezydencjonalnych aluminium wykorzystuje się do dużych, często sięgających od podłogi do sufitu przeszkleń. To rozwiązanie droższe niż PVC, ale pozwalające uzyskać efekt wizualny, którego nie da się łatwo osiągnąć na klasycznych systemach.",
-  },
-];
-
-const advantages = [
-  {
-    title: "Stabilność przy dużych gabarytach",
-    description:
-      "Aluminium lepiej znosi duże wymiary skrzydeł i ciężkie pakiety szybowe, co ma znaczenie przy witrynach, fasadach i przeszkleniach w lokalach usługowych.",
-  },
-  {
-    title: "Odporność mechaniczna",
-    description:
-      "Profile aluminiowe są bardziej odporne na uszkodzenia mechaniczne niż typowa stolarka okienna w domach. To ważne w miejscach o większym natężeniu ruchu.",
-  },
-  {
-    title: "Nowoczesny wygląd",
-    description:
-      "Aluminium daje możliwość uzyskania bardzo wąskich ram i nowoczesnego, minimalistycznego efektu. Dobrze komponuje się z nowoczesną architekturą i dużą ilością szkła.",
-  },
-];
+const page = MOCKUP_DATA.pages.produktyOknaAluminiowe;
 
 export default function OknaAluminiowePage() {
   return (
@@ -55,8 +22,8 @@ export default function OknaAluminiowePage() {
       {/* ── Hero ── */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Okna aluminiowe od Trendhomes"
+          src={page.hero.image}
+          alt={page.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -71,30 +38,25 @@ export default function OknaAluminiowePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {page.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{page.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Okna Aluminiowe</span>
+            <span className="text-white">{page.hero.breadcrumbs[2]}</span>
           </nav>
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Okna aluminiowe
+            {page.hero.heading}
           </h1>
           <p className="mt-4 max-w-[620px] text-sm leading-relaxed text-white/90 sm:text-sm md:mt-6 md:text-base">
-            Okna aluminiowe wybieramy przede wszystkim tam, gdzie liczy się duża
-            wytrzymałość, sztywność profili i możliwość wykonania większych
-            przeszkleń. Sprawdzają się w budynkach użyteczności publicznej,
-            biurowcach, lokalach usługowych oraz w nowoczesnych domach z dużymi
-            powierzchniami szkła. To rozwiązanie bardziej inwestycyjne niż
-            masowe, z wyższej półki cenowej niż standardowe okna PCV.
+            {page.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Umów pomiar w 48&nbsp;h
+              {page.hero.ctaText}
             </Link>
           </div>
         </div>
@@ -105,10 +67,10 @@ export default function OknaAluminiowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dla kogo są", "okna aluminiowe"]}
+              lines={page.forWhom.heading}
             />
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:gap-8">
-              {forWhomItems.map((item, i) => (
+              {page.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="flex h-full flex-col bg-section-light p-5 md:p-6">
                     <span className="mb-4 flex size-7 shrink-0 items-center justify-center rounded-full bg-pink text-sm font-bold text-white">
@@ -133,13 +95,10 @@ export default function OknaAluminiowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Dlaczego czasem warto wybrać",
-                "aluminium zamiast PVC",
-              ]}
+              lines={page.advantages.heading}
             />
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:gap-8">
-              {advantages.map((item, i) => (
+              {page.advantages.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="bg-white p-5 md:p-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -161,24 +120,14 @@ export default function OknaAluminiowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Jak pracujemy",
-                "z oknami aluminiowymi",
-              ]}
+              lines={page.howWeWork.heading}
             />
             <div className="mt-8 max-w-[900px] md:mt-12">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Okna aluminiowe proponujemy tam, gdzie ich potencjał naprawdę
-                robi różnicę — w nowoczesnych projektach, dużych przeszkleniach
-                i inwestycjach wymagających maksymalnej trwałości oraz sztywności
-                konstrukcji. Na etapie rozmowy analizujemy projekt i pomagamy
-                dobrać rozwiązanie, które najlepiej spełni wymagania inwestycji
-                — czy będzie to aluminium, wysokiej klasy PVC, czy inny system.
+                {page.howWeWork.description}
               </p>
               <p className="mt-6 text-sm leading-relaxed text-dark/80 md:text-base">
-                Jeśli aluminium jest najlepszym wyborem, dobieramy odpowiedni
-                system profili, technologię montażu i przygotowujemy ofertę
-                z pełnym zakresem prac.
+                {page.howWeWork.descriptionSecondary}
               </p>
             </div>
           </div>
@@ -190,16 +139,14 @@ export default function OknaAluminiowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 text-center md:px-5">
             <p className="mx-auto max-w-[720px] text-base leading-relaxed text-dark md:text-xl">
-              Szukasz okien aluminiowych do biura, lokalu usługowego albo
-              nowoczesnego domu z dużymi przeszkleniami? Napisz do nas,
-              przygotujemy propozycję dopasowaną do Twojej inwestycji.
+              {page.cta.description}
             </p>
             <div className="mt-8 flex justify-center">
               <Link
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {page.cta.ctaText}
               </Link>
             </div>
           </div>

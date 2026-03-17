@@ -9,41 +9,9 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const forWhom = [
-  {
-    label: "Adaptacje budynków z historią i obiektów przemysłowych",
-    text: "Stalowe drzwi doskonale wpisują się w charakter kamienic, dawnych fabryk czy magazynów, gdzie ważne jest zachowanie klimatu budynku przy jednoczesnym spełnieniu współczesnych wymagań.",
-  },
-  {
-    label: "Nowoczesne domy i mieszkania w stylu loft",
-    text: "Loftowe drzwi przeszklone dzielą przestrzeń, nie zabierając światła. Sprawdzają się w salonach z antresolą, garderobach, domowych biurach i wszędzie tam, gdzie zależy Ci na industrialnym charakterze wnętrza.",
-  },
-  {
-    label: "Biura, showroomy, lokale premium",
-    text: "Stalowe konstrukcje nadają wnętrzom reprezentacyjny charakter i dobrze znoszą intensywne użytkowanie. Idealne do przestrzeni, które mają robić wrażenie na klientach i gościach.",
-  },
-  {
-    label: "Inwestorzy i architekci szukający niestandardowych rozwiązań",
-    text: "Jeśli standardowa stolarka nie spełnia wymagań projektu, drzwi stalowe pozwalają na realizację nietypowych gabarytów, kształtów i podziałów przeszkleń.",
-  },
-];
-
-const realizacje = [
-  "drzwi stalowe zewnętrzne do budynków usługowych",
-  "drzwi stalowe wewnętrzne w ciągach komunikacyjnych",
-  "drzwi loftowe do mieszkań i domów",
-  "przeszklone zabudowy stalowe",
-  "drzwi do pomieszczeń technicznych",
-];
-
-const processSteps = [
-  { number: "1", title: "Rozmowa i koncepcja" },
-  { number: "2", title: "Dobór systemu i wstępna wycena" },
-  { number: "3", title: "Ustalenie szczegółów technicznych" },
-  { number: "4", title: "Produkcja i montaż" },
-  { number: "5", title: "Odbiór i ewentualne regulacje" },
-];
+const PAGE = MOCKUP_DATA.pages.produktyDrzwiStalowe;
 
 export default function DrzwiStalowePage() {
   return (
@@ -54,8 +22,8 @@ export default function DrzwiStalowePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Drzwi stalowe i loftowe od Trendhomes"
+          src={PAGE.hero.image}
+          alt={PAGE.hero.imageAlt}
           fill
           priority
           className="object-cover"
@@ -70,33 +38,28 @@ export default function DrzwiStalowePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {PAGE.hero.breadcrumbs[0]}
             </Link>
             <span>|</span>
-            <span>Produkty</span>
+            <span>{PAGE.hero.breadcrumbs[1]}</span>
             <span>|</span>
-            <span className="text-white">Drzwi Stalowe</span>
+            <span className="text-white">{PAGE.hero.breadcrumbs[2]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Drzwi stalowe
+            {PAGE.hero.heading[0]}
             <br />
-            i loftowe na wymiar
+            {PAGE.hero.heading[1]}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Drzwi stalowe i loftowe to rozwiązania dla inwestorów, którym zależy
-            na konkretnym efekcie wizualnym albo na wytrzymałej konstrukcji
-            dopasowanej do budynku. W Trendhomes realizujemy takie projekty
-            w oparciu o systemy stalowe Forster (drzwi zewnętrzne i wewnętrzne)
-            oraz rozwiązania loftowe stosowane wewnątrz budynków, również we
-            współpracy z firmą Furmaniak.
+            {PAGE.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Zapytaj o wycenę
+              {PAGE.hero.ctaText}
             </Link>
           </div>
         </div>
@@ -107,11 +70,11 @@ export default function DrzwiStalowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dla kogo są drzwi", "stalowe i loftowe"]}
+              lines={[...PAGE.forWhom.heading]}
             />
 
             <div className="mt-8 md:mt-12">
-              {forWhom.map((item, i) => (
+              {PAGE.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -130,7 +93,7 @@ export default function DrzwiStalowePage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {MOCKUP_DATA.global.cta.skontaktujSie}
               </Link>
             </div>
           </div>
@@ -142,39 +105,22 @@ export default function DrzwiStalowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Systemy, na których", "pracujemy"]}
+              lines={[...PAGE.systemy.heading]}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-2 md:gap-12">
-              <AnimateOnScroll delay={0}>
-                <div className="rounded-sm bg-white p-5 md:p-6">
-                  <h3 className="text-xl font-bold text-dark md:text-[26px]">
-                    Forster
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
-                    Systemy stalowe Forster stosujemy zarówno w drzwiach
-                    zewnętrznych, jak i wewnętrznych. To rozwiązania
-                    zaprojektowane do konstrukcji o podwyższonych wymaganiach
-                    użytkowych, wytrzymałościowych i estetycznych. Dobieramy
-                    konkretny system dopiero po analizie projektu i warunków
-                    montażu.
-                  </p>
-                </div>
-              </AnimateOnScroll>
-              <AnimateOnScroll delay={100}>
-                <div className="rounded-sm bg-white p-5 md:p-6">
-                  <h3 className="text-xl font-bold text-dark md:text-[26px]">
-                    Furmaniak
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
-                    Rozwiązania loftowe firmy Furmaniak stosujemy wewnątrz
-                    budynków. Sprawdzają się w mieszkaniach, domach i lokalach,
-                    gdzie zależy na przeszklonych ścianach i drzwiach
-                    w industrialnym stylu. Lekkie profile, duże tafle szkła
-                    i spójny wygląd z resztą wnętrza.
-                  </p>
-                </div>
-              </AnimateOnScroll>
+              {PAGE.systemy.items.map((item, i) => (
+                <AnimateOnScroll key={i} delay={i * 100}>
+                  <div className="rounded-sm bg-white p-5 md:p-6">
+                    <h3 className="text-xl font-bold text-dark md:text-[26px]">
+                      {item.name}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">
+                      {item.description}
+                    </p>
+                  </div>
+                </AnimateOnScroll>
+              ))}
             </div>
           </div>
         </section>
@@ -185,12 +131,12 @@ export default function DrzwiStalowePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Jakie realizacje", "wykonujemy"]}
+              lines={[...PAGE.realizacje.heading]}
             />
 
             <div className="mt-8 md:mt-12">
               <ul className="space-y-4">
-                {realizacje.map((item, i) => (
+                {PAGE.realizacje.items.map((item, i) => (
                   <AnimateOnScroll key={i} delay={i * 60}>
                     <li className="flex items-start gap-3 text-sm leading-relaxed text-dark md:text-lg">
                       <span className="mt-1.5 block h-2 w-2 shrink-0 rounded-full bg-pink" />
@@ -209,11 +155,11 @@ export default function DrzwiStalowePage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Jak wygląda", "proces realizacji"]}
+              lines={[...PAGE.processSteps.heading]}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3 lg:grid-cols-5 md:gap-10">
-              {processSteps.map((step, i) => (
+              {PAGE.processSteps.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col items-start">
                     <span className="flex size-[56px] items-center justify-center rounded-full bg-pink text-xl font-bold text-white">
@@ -236,16 +182,14 @@ export default function DrzwiStalowePage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Masz w głowie projekt drzwi stalowych lub loftowych do domu,
-                mieszkania albo lokalu? Napisz do nas, dołącz rzut lub zdjęcia
-                miejsca – przygotujemy indywidualną propozycję i wycenę.
+                {PAGE.cta.description}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Napisz do nas
+                  {PAGE.cta.ctaText}
                 </Link>
               </div>
             </div>

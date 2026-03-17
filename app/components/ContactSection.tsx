@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import SectionHeading from "./SectionHeading";
 import { contactSchema, type ContactFormData } from "../lib/contact-schema";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const g = MOCKUP_DATA.global;
+const d = MOCKUP_DATA.home.contact;
 
 const inputBase =
   "h-[42px] w-full bg-[#d9d9d9]/50 px-5 text-sm text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink";
@@ -59,12 +63,10 @@ export default function ContactSection() {
   return (
     <section id="kontakt" className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <SectionHeading lines={["Skontaktuj się", "z Nami"]} />
+        <SectionHeading lines={[...d.heading]} />
 
         <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-          Napisz, zadzwoń albo umów spotkanie w salonie w Sanoku. Im więcej
-          powiesz nam o swojej inwestycji, tym lepiej dopasujemy stolarkę
-          i terminy.
+          {d.description}
         </p>
 
         <div className="mt-8 grid grid-cols-1 gap-10 md:mt-12 md:gap-16 lg:grid-cols-2">
@@ -73,18 +75,17 @@ export default function ContactSection() {
             {/* Address */}
             <div>
               <h3 className="text-xl font-bold text-dark">
-                Adres i siedziba firmy
+                {d.addressHeading}
               </h3>
               <div className="mt-4 text-lg leading-relaxed text-dark">
-                <p>Piastowska 3,</p>
-                <p>38-500 Sanok</p>
+                <p>{g.address.street.replace("ul. ", "")},</p>
+                <p>{g.address.city}</p>
               </div>
               <p className="mt-4 text-lg leading-relaxed text-dark">
-                Pracujemy głównie w Sanoku, Bieszczadach, Rzeszowie
-                i okolicznych miejscowościach.
+                {d.serviceArea}
               </p>
               <p className="mt-6 text-lg font-bold text-dark">
-                Godziny otwarcia salonu:
+                {d.openingHoursHeading}
               </p>
               <div className="mt-2 text-lg leading-relaxed text-dark">
                 <p>Poniedziałek – piątek:</p>
@@ -99,22 +100,22 @@ export default function ContactSection() {
             {/* Contact details */}
             <div>
               <h3 className="text-xl font-bold text-dark">
-                Dane kontaktowe
+                {d.contactHeading}
               </h3>
               <div className="mt-4 text-lg leading-relaxed text-dark">
-                <p>Telefon: 735 721 222</p>
-                <p>E-mail: kontakt@trendhomes.pl</p>
+                <p>Telefon: {g.branches.sanok.phone}</p>
+                <p>E-mail: {g.branches.sanok.email}</p>
               </div>
               <div className="mt-3 text-lg leading-relaxed text-dark">
-                <p>Telefon: 601 941 619</p>
-                <p>E-mail: rzeszow@trendhomes.pl</p>
+                <p>Telefon: {g.phoneMobile}</p>
+                <p>E-mail: {g.branches.rzeszow.email}</p>
               </div>
             </div>
 
             {/* Socials */}
             <div className="flex items-center gap-4">
               <a
-                href="https://facebook.com"
+                href={g.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -128,7 +129,7 @@ export default function ContactSection() {
                 />
               </a>
               <a
-                href="https://instagram.com"
+                href={g.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -151,14 +152,14 @@ export default function ContactSection() {
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
-                <p className="text-lg font-bold text-green-700">Wiadomość wysłana!</p>
-                <p className="text-dark/70">Odpowiemy najszybciej jak to możliwe.</p>
+                <p className="text-lg font-bold text-green-700">{d.form.successTitle}</p>
+                <p className="text-dark/70">{d.form.successDescription}</p>
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
                   className="btn-pink mt-2 h-[42px] px-6 text-sm"
                 >
-                  Wyślij kolejną wiadomość
+                  {d.form.successButton}
                 </button>
               </div>
             ) : (
@@ -166,7 +167,7 @@ export default function ContactSection() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Imię"
+                    placeholder={d.form.placeholders.name}
                     {...register("name")}
                     className={`${inputBase} ${errors.name ? inputError : ""}`}
                   />
@@ -176,7 +177,7 @@ export default function ContactSection() {
                 <div>
                   <input
                     type="email"
-                    placeholder="E-mail"
+                    placeholder={d.form.placeholders.email}
                     {...register("email")}
                     className={`${inputBase} ${errors.email ? inputError : ""}`}
                   />
@@ -185,14 +186,14 @@ export default function ContactSection() {
 
                 <input
                   type="tel"
-                  placeholder="Numer telefonu (opcjonalnie)"
+                  placeholder={d.form.placeholders.phone}
                   {...register("phone")}
                   className={inputBase}
                 />
 
                 <input
                   type="text"
-                  placeholder="Kod miejscowości"
+                  placeholder={d.form.placeholders.postalCode}
                   {...register("postalCode")}
                   className={inputBase}
                 />
@@ -204,13 +205,10 @@ export default function ContactSection() {
                       {...register("category")}
                       className={`h-[42px] w-full appearance-none border border-dark/15 bg-white px-5 pr-10 text-sm text-dark outline-none focus:ring-1 focus:ring-pink ${errors.category ? inputError : ""}`}
                     >
-                      <option value="">Wybierz z listy czego dotyczy zapytanie</option>
-                      <option value="Okna">Okna</option>
-                      <option value="Drzwi">Drzwi</option>
-                      <option value="Rolety">Rolety</option>
-                      <option value="Bramy garażowe">Bramy garażowe</option>
-                      <option value="Pergole">Pergole</option>
-                      <option value="Inne">Inne</option>
+                      <option value="">{d.form.placeholders.categoryDefault}</option>
+                      {d.form.categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
                     </select>
                     <svg
                       className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-pink"
@@ -232,7 +230,7 @@ export default function ContactSection() {
                 {/* Textarea */}
                 <div>
                   <textarea
-                    placeholder="Napisz nam, czego dokładnie potrzebujesz"
+                    placeholder={d.form.placeholders.message}
                     rows={7}
                     {...register("message")}
                     className={`w-full bg-[#d9d9d9]/50 p-5 text-sm leading-relaxed text-dark outline-none placeholder:text-dark/70 focus:ring-1 focus:ring-pink ${errors.message ? inputError : ""}`}
@@ -242,8 +240,7 @@ export default function ContactSection() {
 
                 {/* Info text */}
                 <p className="text-sm leading-relaxed text-dark">
-                  Na wiadomości odpowiadamy zazwyczaj w ciągu 24 godzin w dni
-                  robocze. Jeśli sprawa jest pilna, najlepiej od razu zadzwoń.
+                  {d.form.infoText}
                 </p>
 
                 {/* Checkbox */}
@@ -255,10 +252,9 @@ export default function ContactSection() {
                       className="mt-1 size-4 shrink-0 appearance-none border border-pink checked:bg-pink"
                     />
                     <span className="text-sm leading-relaxed text-dark">
-                      Zapoznałem/am się i akceptuję informację dotyczące
-                      przetwarzania moich danych osobowych wyjaśnionych w{" "}
+                      {d.form.privacyText}{" "}
                       <a href="#" className="text-dark underline">
-                        Polityce Prywatności
+                        {d.form.privacyLink}
                       </a>
                     </span>
                   </label>
@@ -277,7 +273,7 @@ export default function ContactSection() {
                     disabled={status === "sending"}
                     className="btn-pink h-[55px] w-full px-[34px] text-sm sm:w-auto disabled:opacity-50"
                   >
-                    {status === "sending" ? "Wysyłanie..." : "Wyślij zapytanie"}
+                    {status === "sending" ? d.form.sendingButton : d.form.submitButton}
                   </button>
                 </div>
               </form>

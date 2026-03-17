@@ -9,27 +9,10 @@ import ContactSection from "../components/ContactSection";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const b2bTestimonials = [
-  {
-    image: "/images/opinie-b2b-1.jpg",
-    text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-    name: "Jan Kowalski,",
-    role: "prezes zarządu DevelopRes",
-  },
-  {
-    image: "/images/opinie-b2b-2.jpg",
-    text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-    name: "Jan Kowalski,",
-    role: "prezes zarządu DevelopRes",
-  },
-  {
-    image: "/images/opinie-b2b-3.jpg",
-    text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-    name: "Jan Kowalski,",
-    role: "prezes zarządu DevelopRes",
-  },
-];
+const opinie = MOCKUP_DATA.pages.opinie;
+const cta = MOCKUP_DATA.global.cta;
 
 export default function OpiniePage() {
   return (
@@ -40,8 +23,8 @@ export default function OpiniePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[714px]">
         <Image
-          src="/images/opinie-hero.jpg"
-          alt="Opinie klientów Trendhomes"
+          src={opinie.hero.image}
+          alt={opinie.hero.titleLines.join(" ")}
           fill
           sizes="100vw"
           priority
@@ -57,28 +40,26 @@ export default function OpiniePage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {opinie.hero.breadcrumb[0]}
             </Link>
             <span>|</span>
-            <span className="text-white">opinie</span>
+            <span className="text-white">{opinie.hero.breadcrumb[1]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Opinie, które mówią
+            {opinie.hero.titleLines[0]}
             <br />
-            więcej niż 1000 słów
+            {opinie.hero.titleLines[1]}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Zanim zaprosisz ekipę do domu, mieszkania albo lokalu, chcesz
-            wiedzieć, jak poradziła sobie u innych. Tutaj znajdziesz opinie
-            klientów Trendhomes z Sanoka i okolic.
+            {opinie.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Skontaktuj się z Nami
+              {cta.skontaktujSie}
             </Link>
           </div>
         </div>
@@ -94,11 +75,11 @@ export default function OpiniePage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Tak o współpracy", "mówią klienci B2B"]}
+              lines={opinie.b2b.heading}
             />
 
             <div className="mt-10 flex flex-col gap-12 md:mt-16 md:gap-16">
-              {b2bTestimonials.map((item, i) => {
+              {opinie.b2b.testimonials.map((item, i) => {
                 const imageBlock = (
                   <div
                     key="img"

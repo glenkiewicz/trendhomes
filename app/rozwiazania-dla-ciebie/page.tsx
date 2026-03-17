@@ -6,51 +6,11 @@ import SectionHeading from "../components/SectionHeading";
 import BrandsSection from "../components/BrandsSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const solutions = [
-  {
-    heading: ["Buduję nowy dom:", "rozwiązania od Trendhomes"],
-    text: "Nowy dom to milion decyzji naraz. My bierzemy na siebie temat stolarki: dobieramy okna, rolety i drzwi tak, żeby pasowały do projektu, warunków zabudowy i Twojego budżetu. Ustalamy jeden termin montażu i koordynujemy prace z innymi ekipami, żeby nie blokować budowy.",
-    image: "/images/rozwiazania-dom.jpg",
-    banner: "Sprawdź pakiet okna + rolety + drzwi dla swojego projektu",
-    imageRight: true,
-  },
-  {
-    heading: ["Remontuję mieszkanie:", "rozwiązania od Trendhomes"],
-    text: "Chcesz wymienić kilka okien w bloku i mieć to za sobą w 1 dzień, bez tygodniowego bałaganu. Planujemy prace tak, żeby nie paraliżować życia domowego i nie konfliktować Cię z sąsiadami. Dbamy o zabezpieczenie mieszkania, szybki montaż i wywóz starych okien.",
-    image: "/images/rozwiazania-remont.jpg",
-    banner: "Zobacz, jak wygląda wymiana okien w mieszkaniu krok po kroku",
-    imageRight: false,
-  },
-  {
-    heading: ["Prowadzę biznes:", "rozwiązania od Trendhomes"],
-    text: "W lokalu liczy się pierwsze wrażenie, bezpieczeństwo i przepisy. Projektujemy i montujemy witryny, drzwi wejściowe i stolarkę p.poż tak, żeby było jednocześnie estetycznie, zgodnie z wymaganiami i na czas otwarcia. Ustalamy prace tak, aby jak najmniej ograniczać działanie Twojej firmy.",
-    image: "/images/rozwiazania-biznes.jpg",
-    banner: "Poznaj rozwiązania dla sklepów, biur, gabinetów i lokali usługowych",
-    imageRight: true,
-  },
-];
-
-const businessCards = [
-  {
-    title: "Dla właścicieli lokali usługowych, sklepów, gabinetów czy biur",
-    image: "/images/rozwiazania-biz-1.jpg",
-  },
-  {
-    title: "Dla deweloperów i całych wspólnot mieszkaniowych",
-    image: "/images/rozwiazania-biz-2.jpg",
-  },
-  {
-    title: "Dla dużych inwestorów i obiektów publicznych m. in. szkół czy urzędów",
-    image: "/images/rozwiazania-biz-3.jpg",
-  },
-];
-
-const pergolaGallery = [
-  "/images/rozwiazania-gallery-1.jpg",
-  "/images/rozwiazania-gallery-2.jpg",
-  "/images/rozwiazania-gallery-3.jpg",
-];
+const { hero, solutions, businessCards, businessHeading, pergola } =
+  MOCKUP_DATA.pages.rozwiazania;
+const { cta } = MOCKUP_DATA.global;
 
 export default function RozwiazaniaPage() {
   return (
@@ -61,8 +21,8 @@ export default function RozwiazaniaPage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/rozwiazania-hero.jpg"
-          alt="Rozwiązania dopasowane do Twoich potrzeb"
+          src={hero.image}
+          alt={hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -77,28 +37,26 @@ export default function RozwiazaniaPage() {
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
             <Link href="/" className="transition-colors hover:text-white">
-              home
+              {hero.breadcrumb[0]}
             </Link>
             <span>|</span>
-            <span className="text-white">rozwiązania dla ciebie</span>
+            <span className="text-white">{hero.breadcrumb[1]}</span>
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Rozwiązania dopasowane
+            {hero.titleLines[0]}
             <br />
-            do Twoich potrzeb
+            {hero.titleLines[1]}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Niezależnie od tego, czy budujesz nowy dom, remontujesz mieszkanie,
-            prowadzisz biznes, czy planujesz pergolę — dobieramy stolarkę i
-            rozwiązania dopasowane do Twojej sytuacji.
+            {hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Umów pomiar w 48 h
+              {cta.umowPomiar48h}
             </Link>
           </div>
         </div>
@@ -158,7 +116,7 @@ export default function RozwiazaniaPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Rozwiązania", "dla biznesu"]} />
+            <SectionHeading lines={businessHeading} />
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
               {businessCards.map((card, i) => (
@@ -191,20 +149,14 @@ export default function RozwiazaniaPage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
-                <SectionHeading
-                  lines={["Dom z pergolą", "rozwiązania od Trendhomes"]}
-                />
+                <SectionHeading lines={pergola.heading} />
                 <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
-                  Pergola albo ogród zimowy to dodatkowy pokój, który żyje razem
-                  z Twoim ogrodem. Pomagamy dobrać konstrukcję, przeszklenia i
-                  zacienienie tak, żeby dało się tam odpocząć i latem, i w
-                  chłodniejsze dni. Patrzymy na całość: bryła domu, taras, sposób
-                  użytkowania.
+                  {pergola.description}
                 </p>
               </div>
               <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[500px]">
                 <Image
-                  src="/images/rozwiazania-pergola.jpg"
+                  src={pergola.image}
                   alt="Pergola ogrodowa"
                   fill
                   className="object-cover"
@@ -220,7 +172,7 @@ export default function RozwiazaniaPage() {
         <div className="bg-pink">
           <div className="mx-auto max-w-[1440px] px-3 py-5 md:px-5 md:py-7">
             <p className="text-center text-base font-normal text-white md:text-[26px]">
-              Zobacz, jak projektujemy pergole i ogrody zimowe w okolicach Sanoka
+              {pergola.banner}
             </p>
           </div>
         </div>
@@ -230,12 +182,10 @@ export default function RozwiazaniaPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={["Zobacz jakie pergole", "stworzyliśmy dla klientów"]}
-            />
+            <SectionHeading lines={pergola.galleryHeading} />
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
-              {pergolaGallery.map((img, i) => (
+              {pergola.gallery.map((img, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="group relative h-[300px] overflow-hidden sm:h-[380px] lg:h-[464px]">
                     <Image

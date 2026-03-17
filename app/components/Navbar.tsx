@@ -4,21 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { productCategories } from "../lib/products-data";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const menuItems = [
-	{ label: "Produkty", href: "/produkty/okna", hasDropdown: true },
-	{ label: "Rozwiązania dla Ciebie", href: "/rozwiazania-dla-ciebie" },
-	{
-		label: "Stolarka dla biznesu",
-		href: "/stolarka-dla-biznesu",
-		bold: true,
-	},
-	{ label: "Realizacje", href: "/realizacje" },
-	{ label: "Strefa wiedzy", href: "/blog" },
-	{ label: "Opinie", href: "/opinie" },
-	{ label: "O nas", href: "/o-nas" },
-	{ label: "Kontakt", href: "/kontakt" },
-];
+const menuItems = MOCKUP_DATA.navigation.menuItems as readonly { label: string; href: string; hasDropdown?: boolean; bold?: boolean }[];
 
 export default function Navbar() {
 	const [open, setOpen] = useState(false);
@@ -166,7 +154,7 @@ export default function Navbar() {
 					href="/kontakt"
 					className="btn-pink hidden shrink-0 px-5 py-2.5 text-sm font-normal md:block md:px-8 md:py-2.5.5 md:text-sm"
 				>
-					Umów pomiar
+					{MOCKUP_DATA.global.cta.umowPomiar}
 				</Link>
 
 				{/* Mobile hamburger */}
@@ -350,11 +338,11 @@ export default function Navbar() {
 						onClick={() => setOpen(false)}
 						className="mb-6 inline-flex h-[52px] w-full items-center justify-center bg-pink text-sm text-white transition-opacity hover:opacity-90 sm:w-auto sm:px-10"
 					>
-						Umów pomiar
+						{MOCKUP_DATA.global.cta.umowPomiar}
 					</Link>
 					<div className="flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:gap-6">
-						<span>735 721 222</span>
-						<span>kontakt@trendhomes.pl</span>
+						<span>{MOCKUP_DATA.global.phone}</span>
+						<span>{MOCKUP_DATA.global.email}</span>
 					</div>
 				</div>
 			</div>

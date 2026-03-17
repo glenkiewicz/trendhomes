@@ -3,60 +3,11 @@
 import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const steps = [
-	{
-		number: "1.",
-		title: "Kontakt i wstępna rozmowa",
-		description:
-			"Daj nam znać, w jakiej jesteś sytuacji: nowy dom, remont mieszkania, lokal usługowy albo pergola przy domu. Podczas krótkiej rozmowy telefonicznej lub mailowej pytamy o podstawowe informacje, termin, zakres prac i budżet. Na tej podstawie umawiamy pomiar lub prosimy o przesłanie zdjęć i rzutów.",
-	},
-	{
-		number: "2.",
-		title: "Pomiar i doradztwo na miejscu",
-		description:
-			"Przyjeżdżamy na miejsce inwestycji w umówionym terminie. Wykonujemy dokładny pomiar okien, drzwi, bramy lub przestrzeni pod pergolę, a po drodze doradzamy rozwiązania dopasowane do projektu, przepisów i Twojego sposobu użytkowania. Na tym etapie omawiamy też wstępny harmonogram montażu i możliwości podziału prac.",
-	},
-	{
-		number: "3.",
-		title: "Oferta i podpisanie umowy",
-		description:
-			"Na podstawie pomiaru przygotowujemy szczegółową ofertę z rozpisaniem zakresu, materiałów i kosztów. Po akceptacji ustalamy konkretny termin montażu i zapisujemy go w umowie. Dzięki temu wiesz, kiedy ekipa wejdzie na budowę lub do mieszkania i możesz spokojnie zaplanować kolejne etapy prac.",
-	},
-	{
-		number: "4.",
-		title: "Produkcja i dostawa",
-		description:
-			"Uruchamiamy produkcję i na bieżąco informujemy o postępach. Stolarkę dowozimy we wskazane miejsce, pilnując, żeby nic się nie uszkodziło.",
-	},
-	{
-		number: "5.",
-		title: "Montaż i odbiór",
-		description:
-			"Stałe, przeszkolone ekipy montują stolarkę zgodnie z normami. Po montażu wspólnie sprawdzamy efekt pracy, pokazujemy obsługę i przekazujemy dokumenty.",
-	},
-];
-
-const investments = [
-	{
-		icon: "/images/home-icon.svg",
-		title: "Nowy dom",
-		description:
-			"Pilnujemy terminów powiązanych z zamknięciem stanu surowego, pracami wykończeniowymi i przeprowadzką. Ustalamy montaż tak, aby nie blokować innych ekip.",
-	},
-	{
-		icon: "/images/floor-plan-icon.svg",
-		title: "Remont mieszkania lub domu",
-		description:
-			"Planujemy prace tak, żeby dało się normalnie funkcjonować w zamieszkałym wnętrzu. Zabezpieczamy pomieszczenia, ograniczamy kurz i umawiamy montaż na konkretne dni.",
-	},
-	{
-		icon: "/images/apartment-icon.svg",
-		title: "Lokal usługowy",
-		description:
-			"Dobieramy stolarkę pod przepisy i odbiory, a montaż planujemy poza godzinami pracy lub w przerwie między sezonami, żeby ograniczyć przestój w biznesie.",
-	},
-];
+const d = MOCKUP_DATA.home.steps;
+const steps = d.items;
+const investments = d.investments.items;
 
 const GAP_LG = 32;
 const GAP_SM = 24;
@@ -126,7 +77,7 @@ export default function StepsSection() {
 				{/* Header with nav arrows */}
 				<div className="flex items-start justify-between">
 					<SectionHeading
-						lines={["Współpraca dopasowana", "w każdym profilu"]}
+						lines={[...d.heading]}
 					/>
 					<div className="mt-6 flex items-center gap-3 md:mt-8">
 						<button
@@ -170,10 +121,7 @@ export default function StepsSection() {
 
 				{/* Subtitle */}
 				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-					Niezależnie od tego, czy budujesz nowy dom, remontujesz
-					mieszkanie, czy przygotowujesz lokal usługowy - proces
-					zawsze trzymamy w ryzach. Dzięki temu wiesz, na jakim etapie
-					jesteśmy i czego możesz się spodziewać.
+					{d.subtitle}
 				</p>
 
 				{/* Steps carousel */}
@@ -252,7 +200,7 @@ export default function StepsSection() {
 				{/* "Różne inwestycje" sub-section */}
 				<div className="mt-16 md:mt-24">
 					<SectionHeading
-						lines={["Różne inwestycje,", "ten sam doskonały efekt"]}
+						lines={[...d.investments.heading]}
 					/>
 
 					<div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:gap-12">

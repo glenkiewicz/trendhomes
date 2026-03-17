@@ -3,39 +3,10 @@
 import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const solutions = [
-	{
-		title: "Buduję nowy dom",
-		description:
-			"Szukasz kompletnego pakietu okna + rolety zewnętrzne + drzwi z jednym terminem montażu przed przeprowadzką.",
-		image: "/images/card-new-home.jpg",
-	},
-	{
-		title: "Remontuję mieszkanie",
-		description:
-			"Potrzebujesz cichej, szybkiej i czystej wymiany okien i drzwi bez konfliktu z sąsiadami i problemów we wspólnocie.",
-		image: "/images/card-renovation.jpg",
-	},
-	{
-		title: "Trendhomes\ndla biznesu",
-		description:
-			"Trwała stolarka do lokalu, zgodna z przepisami ppoż. i odbiorem technicznym oraz z pewnym terminem wykonania.",
-		image: "/images/card-business.jpg",
-	},
-	{
-		title: "Dom z ogrodem (Pergola / Ogród zimowy)",
-		description:
-			"Wygodna strefa wypoczynku z dopasowaną konstrukcją, podłożem i odwodnieniem, która będzie estetyczna i komfortowa przez cały sezon.",
-		image: "/images/card-new-home.jpg",
-	},
-	{
-		title: "Remontuję dom jednorodzinny",
-		description:
-			"Wymiana okien, drzwi i bramy w zamieszkałym domu przeprowadzona przez jednego, sprawdzonego wykonawcę.",
-		image: "/images/card-renovation.jpg",
-	},
-];
+const d = MOCKUP_DATA.home.solutions;
+const solutions = d.items;
 
 // gap in px matching lg:gap-8 (32px), fallback gap-6 (24px)
 const GAP_LG = 32;
@@ -114,7 +85,7 @@ export default function SolutionsSection() {
 			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				<div className="flex items-center justify-between">
 					<SectionHeading
-						lines={["Rozwiązania dopasowane", "do Twoich potrzeb"]}
+						lines={[...d.heading]}
 					/>
 					<div className="flex items-center gap-3">
 						<button

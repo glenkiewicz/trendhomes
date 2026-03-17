@@ -2,7 +2,7 @@ export default function SectionHeading({
   lines,
   light,
 }: {
-  lines: string[];
+  lines: readonly string[];
   light?: boolean;
 }) {
   return (

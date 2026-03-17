@@ -2,71 +2,10 @@
 
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const faqItems = [
-  {
-    question: "Czy zdążycie z montażem okien i drzwi przed przeprowadzką?",
-    answer:
-      "Terminy montażu ustalamy z wyprzedzeniem już na etapie wyceny i pomiaru. Bierzemy pod uwagę harmonogram innych ekip wykończeniowych i realne możliwości produkcji. W umowie wpisujemy konkretny termin montażu, dzięki czemu możesz dopiąć przeprowadzkę i kolejne etapy prac.",
-  },
-  {
-    question:
-      "Na jakim etapie budowy najlepiej montować okna i drzwi zewnętrzne?",
-    answer:
-      "Najlepszy moment to etap po zamknięciu stanu surowego otwartego, przed rozpoczęciem prac wykończeniowych. Okna chronią wnętrze przed warunkami atmosferycznymi i pozwalają kontynuować prace wewnątrz.",
-  },
-  {
-    question:
-      "Czy wymiana okien w mieszkaniu naprawdę może odbyć się w 1 dzień?",
-    answer:
-      "Tak – standardowa wymiana 3–4 okien w mieszkaniu trwa jeden dzień roboczy. Wieczorem możesz już normalnie korzystać z pomieszczeń.",
-  },
-  {
-    question:
-      "Jak wygląda kwestia kurzu i sprzątania po wymianie okien lub drzwi?",
-    answer:
-      "Zabezpieczamy strefę pracy folią, ograniczamy pylenie i po zakończeniu montażu sprzątamy po sobie. Dbamy o to, żeby uciążliwości były jak najmniejsze.",
-  },
-  {
-    question: "Czy potrzebuję zgody wspólnoty na wymianę okien w bloku?",
-    answer:
-      "W większości przypadków wymiana okien na takie same lub zbliżone wizualnie nie wymaga zgody wspólnoty. Warto jednak sprawdzić regulamin i poinformować zarząd o planowanych pracach.",
-  },
-  {
-    question:
-      "Czy stolarka do lokalu usługowego musi spełniać specjalne wymagania?",
-    answer:
-      "Tak – w zależności od rodzaju działalności mogą obowiązywać przepisy ppoż., normy akustyczne lub wymagania związane z odbiorem technicznym. Dobieramy stolarkę zgodną z przepisami.",
-  },
-  {
-    question:
-      "Jak zorganizować montaż stolarki, żeby nie zatrzymać całkowicie pracy lokalu?",
-    answer:
-      "Planujemy montaż poza godzinami pracy lub etapami – tak, żeby ograniczyć przestój w biznesie do minimum.",
-  },
-  {
-    question: "Czy wycena i pomiar są płatne?",
-    answer:
-      "Pomiar i wycena są bezpłatne. Przyjeżdżamy na miejsce inwestycji, wykonujemy dokładne pomiary i przygotowujemy szczegółową ofertę bez żadnych zobowiązań.",
-  },
-  {
-    question:
-      "Czy pod pergolę lub ogród zimowy potrzebny jest specjalny fundament?",
-    answer:
-      "To zależy od konstrukcji i podłoża. W wielu przypadkach wystarczy istniejąca nawierzchnia – oceniamy to na miejscu podczas pomiaru i doradzamy optymalne rozwiązanie.",
-  },
-  {
-    question:
-      "Czy z pergoli albo ogrodu zimowego można korzystać cały rok?",
-    answer:
-      "Pergole z ruchomymi lamelami i ogrzewaniem pozwalają na użytkowanie przez większość roku. Ogrody zimowe z odpowiednim przeszkleniem i ogrzewaniem sprawdzają się również zimą.",
-  },
-  {
-    question: "Jak działa gwarancja i co obejmuje serwis po montażu?",
-    answer:
-      "Po zakończeniu prac nie znikamy. Zapewniamy gwarancję na produkty i montaż. Regulacje, drobne poprawki i serwis gwarancyjny – wystarczy telefon.",
-  },
-];
+const d = MOCKUP_DATA.home.faq;
+const faqItems = d.items;
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -78,7 +17,7 @@ export default function FaqSection() {
   return (
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <SectionHeading lines={["Masz wątpliwości?", "Sprawdź FAQ"]} />
+        <SectionHeading lines={[...d.heading]} />
 
         {/* Accordion */}
         <div className="mx-auto mt-8 max-w-[954px] md:mt-12">
@@ -130,7 +69,7 @@ export default function FaqSection() {
             href="#kontakt"
             className="btn-pink h-12 px-[34px] text-sm"
           >
-            Masz więcej pytań? Skontaktuj się
+            {d.cta}
           </a>
         </div>
       </div>

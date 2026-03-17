@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const d = MOCKUP_DATA.topBar;
 
 export default function TopBar() {
   return (
@@ -13,11 +16,11 @@ export default function TopBar() {
             className="shrink-0"
           />
           <span className="text-xs font-bold text-light sm:text-sm md:text-sm">
-            Skorzystaj z dofinansowania &quot;Czyste powietrze&quot;
+            {d.text}
           </span>
         </div>
         <span className="hidden text-sm font-bold text-light md:block">
-          nowości w ofercie | aktualności
+          {d.rightText}
         </span>
       </div>
     </div>

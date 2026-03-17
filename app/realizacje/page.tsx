@@ -10,87 +10,11 @@ import ContactSection from "../components/ContactSection";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const newBuilds = [
-  {
-    title: "Dom jednorodzinny\nw Sanoku",
-    image: "/images/realizacje-1.jpg",
-  },
-  {
-    title: "Dom typu stodoła\nw Zagórzu",
-    image: "/images/realizacje-2.jpg",
-  },
-  {
-    title: "Loft w centrum\nSanoka",
-    image: "/images/realizacje-3.jpg",
-  },
-  {
-    title: "Dom jednorodzinny\nw Lesku",
-    image: "/images/realizacje-4.jpg",
-  },
-  {
-    title: "Dom jednorodzinny\nw Sanoku",
-    image: "/images/realizacje-1.jpg",
-  },
-  {
-    title: "Dom typu stodoła\nw Zagórzu",
-    image: "/images/realizacje-2.jpg",
-  },
-];
-
-const renovations = [
-  {
-    title: "Wymiana okien\nw bloku w Sanoku",
-    image: "/images/realizacje-5.jpg",
-  },
-  {
-    title: "Modernizacja stolarki\nw kamienicy",
-    image: "/images/realizacje-6.jpg",
-  },
-  {
-    title: "Remont mieszkania\nw Lesku",
-    image: "/images/realizacje-hero.jpg",
-  },
-  {
-    title: "Wymiana okien\nw domu jednorodzinnym",
-    image: "/images/realizacje-7.jpg",
-  },
-  {
-    title: "Wymiana okien\nw bloku w Sanoku",
-    image: "/images/realizacje-5.jpg",
-  },
-  {
-    title: "Modernizacja stolarki\nw kamienicy",
-    image: "/images/realizacje-6.jpg",
-  },
-];
-
-const b2bProjects = [
-  {
-    title: "Lokal usługowy\nw Sanoku",
-    image: "/images/realizacje-5.jpg",
-  },
-  {
-    title: "Biurowiec\nw Rzeszowie",
-    image: "/images/realizacje-6.jpg",
-  },
-  {
-    title: "Szkoła podstawowa\nw Zagórzu",
-    image: "/images/realizacje-hero.jpg",
-  },
-  {
-    title: "Galeria handlowa\nw Sanoku",
-    image: "/images/realizacje-7.jpg",
-  },
-  {
-    title: "Lokal usługowy\nw Sanoku",
-    image: "/images/realizacje-5.jpg",
-  },
-  {
-    title: "Biurowiec\nw Rzeszowie",
-    image: "/images/realizacje-6.jpg",
-  },
-];
+const { hero, newBuilds, banner, renovations, products, b2b } =
+  MOCKUP_DATA.pages.realizacje;
+const { cta } = MOCKUP_DATA.global;
 
 const GAP_LG = 32;
 const GAP_SM = 24;
@@ -99,8 +23,8 @@ function ProjectCarousel({
   items,
   heading,
 }: {
-  items: { title: string; image: string }[];
-  heading: string[];
+  items: readonly { readonly title: string; readonly image: string }[];
+  heading: readonly string[];
 }) {
   const [current, setCurrent] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -251,8 +175,8 @@ export default function RealizacjePage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/realizacje-hero.jpg"
-          alt="Realizacje Trendhomes"
+          src={hero.image}
+          alt={hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -266,30 +190,40 @@ export default function RealizacjePage() {
         />
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
-            <Link href="/" className="transition-colors hover:text-white">
-              home
-            </Link>
-            <span>|</span>
-            <span className="text-white">realizacje</span>
+            {hero.breadcrumb.map((item, i) => (
+              <span key={i} className="flex items-center gap-2">
+                {i > 0 && <span>|</span>}
+                {i === 0 ? (
+                  <Link
+                    href="/"
+                    className="transition-colors hover:text-white"
+                  >
+                    {item}
+                  </Link>
+                ) : (
+                  <span className="text-white">{item}</span>
+                )}
+              </span>
+            ))}
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Realizacje Trendhomes:
-            <br />
-            przestrze&#324; w najlepszej oprawie
+            {hero.titleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Ka&#380;dy projekt to inny dom, inne mieszkanie i inne potrzeby.
-            Zobacz wybrane realizacje Trendhomes w Sanoku i okolicach &ndash; od
-            nowych dom&oacute;w jednorodzinnych, przez mieszkania w blokach,
-            a&#380; po lokale us&#322;ugowe i pergole w ogrodzie.
+            {hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Um&oacute;w pomiar w 48 h
+              {cta.umowPomiar48h}
             </Link>
           </div>
         </div>
@@ -298,8 +232,8 @@ export default function RealizacjePage() {
       {/* Nowopowstałe obiekty */}
       <AnimateOnScroll>
         <ProjectCarousel
-          items={newBuilds}
-          heading={["Realizacje Trendhomes:", "nowopowstałe obiekty"]}
+          items={newBuilds.items}
+          heading={newBuilds.heading}
         />
       </AnimateOnScroll>
 
@@ -321,26 +255,16 @@ export default function RealizacjePage() {
           />
         </div>
         <div className="relative z-10 mx-auto max-w-[1440px] px-3 py-16 md:px-5 md:py-24">
-          <SectionHeading
-            lines={[
-              "Rozwiązania all in one:",
-              "spójność i prostota",
-            ]}
-            light
-          />
+          <SectionHeading lines={banner.heading} light />
           <p className="mt-6 max-w-[728px] text-sm leading-relaxed text-white md:text-xl">
-            Coraz wi&#281;cej klient&oacute;w decyduje si&#281; na kompletny
-            pakiet stolarki z jednego &x17A;r&oacute;d&#322;a. Okna, drzwi
-            wej&#347;ciowe, rolety zewn&#281;trzne, brama gara&#380;owa &ndash;
-            wszystko dopasowane kolorystycznie i technicznie, zamontowane
-            w jednym terminie, z jednym punktem kontaktu.
+            {banner.description}
           </p>
           <div className="mt-8">
             <Link
               href="/produkty/okna"
               className="btn-light h-[52px] px-[34px] text-sm"
             >
-              Okna PVC
+              {banner.cta}
             </Link>
           </div>
         </div>
@@ -349,8 +273,8 @@ export default function RealizacjePage() {
       {/* Remonty i modernizacje */}
       <AnimateOnScroll>
         <ProjectCarousel
-          items={renovations}
-          heading={["Remonty i modernizacje", "w realizacjach Trendhomes"]}
+          items={renovations.items}
+          heading={renovations.heading}
         />
       </AnimateOnScroll>
 
@@ -360,41 +284,25 @@ export default function RealizacjePage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
-                <SectionHeading
-                  lines={[
-                    "Produkty, które",
-                    "dopasowują się do Ciebie",
-                  ]}
-                />
+                <SectionHeading lines={products.heading} />
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-xl">
-                  <p>
-                    Ka&#380;da realizacja zaczyna si&#281; od dobrego doboru
-                    materia&#322;&oacute;w. W Trendhomes pracujemy ze sprawdzonymi
-                    systemami profili okiennych, drzwiowych, roletowych
-                    i bram gara&#380;owych, kt&oacute;re dobieramy pod konkretny
-                    obiekt.
-                  </p>
-                  <p>
-                    Nie proponujemy jednego rozwi&#261;zania dla wszystkich.
-                    Zamiast tego dopasowujemy system, kolor, szklenie
-                    i akcesoria do Twoich potrzeb &ndash; niezale&#380;nie
-                    od tego, czy budujesz nowy dom, remontujesz mieszkanie
-                    czy urz&#261;dzasz lokal us&#322;ugowy.
-                  </p>
+                  {products.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                 </div>
                 <div className="mt-8">
                   <Link
                     href="/produkty/okna"
                     className="btn-pink h-[52px] px-[34px] text-sm"
                   >
-                    Zobacz produkty dla Ciebie
+                    {products.cta}
                   </Link>
                 </div>
               </div>
               <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[600px]">
                 <Image
-                  src="/images/realizacje-products.jpg"
-                  alt="Produkty Trendhomes"
+                  src={products.image.src}
+                  alt={products.image.alt}
                   fill
                   className="object-cover"
                 />
@@ -406,10 +314,7 @@ export default function RealizacjePage() {
 
       {/* Realizacje B2B */}
       <AnimateOnScroll>
-        <ProjectCarousel
-          items={b2bProjects}
-          heading={["Realizacje B2B", "od Trendhomes"]}
-        />
+        <ProjectCarousel items={b2b.items} heading={b2b.heading} />
       </AnimateOnScroll>
 
       {/* Contact */}

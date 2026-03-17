@@ -8,45 +8,13 @@ import ContactSection from "../components/ContactSection";
 import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const steps = [
-  {
-    number: "1.",
-    title: "Rozmowa i plan",
-    text: "Najpierw słuchamy, w jakiej jesteś sytuacji - budujesz nowy dom, remontujesz mieszkanie, wymieniasz stolarkę w domu jednorodzinnym czy urządzasz lokal usługowy. Na tym etapie często od razu widać, które rozwiązania odpadają.",
-    opacity: "",
-  },
-  {
-    number: "2.",
-    title: "Pomiar i doradztwo na miejscu",
-    text: "Przyjeżdżamy, mierzymy, sprawdzamy realne warunki. Tłumaczymy różnice między PVC, aluminium, drewnem, rodzajami rolet czy bram tak, żeby dało się to zrozumieć bez słownika technicznego.",
-    opacity: "opacity-80",
-  },
-  {
-    number: "3.",
-    title: "Wycena i termin",
-    text: "Dostajesz konkretną wycenę wraz z zakresem prac i terminem montażu. Bez \u201Emoże w przyszłym tygodniu\u201D - ustalamy dzień, który wpisujemy w kalendarz.",
-    opacity: "opacity-60",
-  },
-];
+const { hero, about, howWeWork, whyTrendhomes, whereWeWork } =
+  MOCKUP_DATA.pages.oNas;
+const { cta } = MOCKUP_DATA.global;
 
-const team = [
-  {
-    name: "Mateusz: właściciel i doradca",
-    text: "Mateusz jest twarzą firmy i pierwszym kontaktem przy większości inwestycji. Przyjeżdża na pomiar, ogląda budowę lub mieszkanie, zadaje dużo pytań i pomaga poukładać temat stolarki tak, żeby pasował do projektu i etapu prac. Nie sprzedaje \u201Enajdroższego, bo najdroższe jest najlepsze\u201D, tylko szuka rozwiązań, które mają sens na lata. Pilnuje też, żeby to, co ustalicie na początku, nie rozmyło się po drodze.",
-    image: "/images/onas-person.png",
-  },
-  {
-    name: "Monika: wyceny, terminy, kontakt",
-    text: "Monika jest tą osobą, która sprawia, że wszystko się spina w kalendarzu i w dokumentach. Dopina zamówienia, dzwoni w sprawie terminów. Jeśli chcesz wiedzieć, na jakim etapie jest Twoje zlecenie i kiedy dokładnie będzie montaż - najczęściej rozmawiasz właśnie z nią. Dba o to, żeby informacje nie ginęły \u201Epomiędzy\u201D, tylko wracały do klienta na czas.",
-    image: "/images/onas-person.png",
-  },
-  {
-    name: "Krystian - pomiar, montaże i szczegóły na budowie",
-    text: "Krystian odpowiada za kontakt z Klientem, oferty i pomiary. Dodatkowo koordynuje ekipy montażowe i techniczne detale. To on patrzy, czy dane rozwiązanie da się zamontować tak, żeby było szczelnie, bezpiecznie i zgodnie ze sztuką. Na budowie często trzeba podejmować szybkie decyzje - Krystian robi to w taki sposób, żeby efekt końcowy był dobry zarówno wizualnie, jak i technicznie.",
-    image: "/images/onas-person.png",
-  },
-];
+const stepOpacities = ["", "opacity-80", "opacity-60"];
 
 export default function ONasPage() {
   return (
@@ -57,8 +25,8 @@ export default function ONasPage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/onas-hero.png"
-          alt="Trendhomes: ludzie i lokalność"
+          src={hero.image}
+          alt={hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -72,29 +40,40 @@ export default function ONasPage() {
         />
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
-            <Link href="/" className="transition-colors hover:text-white">
-              home
-            </Link>
-            <span>|</span>
-            <span className="text-white">o nas</span>
+            {hero.breadcrumb.map((item, i) => (
+              <span key={i} className="flex items-center gap-2">
+                {i > 0 && <span>|</span>}
+                {i === 0 ? (
+                  <Link
+                    href="/"
+                    className="transition-colors hover:text-white"
+                  >
+                    {item}
+                  </Link>
+                ) : (
+                  <span className="text-white">{item}</span>
+                )}
+              </span>
+            ))}
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Trendhomes:
-            <br />
-            ludzie i lokalność
+            {hero.titleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Trendhomes to ekipa ze stolarką z Sanoka. Pomagamy ogarnąć okna,
-            drzwi, rolety, bramy i pergole w jednym miejscu, tak żeby temat był
-            po prostu zrobiony, a nie wisiał miesiącami w powietrzu.
+            {hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="#kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Skontaktuj się z Nami
+              {cta.skontaktujSie}
             </Link>
           </div>
         </div>
@@ -106,35 +85,15 @@ export default function ONasPage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
-                <SectionHeading
-                  lines={[
-                    "Ludzie od stolarki, którzy",
-                    "wolą dowozić niż obiecywać",
-                  ]}
-                />
+                <SectionHeading lines={about.heading} />
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
-                  <p>
-                    Pracujemy lokalnie - w Sanoku, Bieszczadach i okolicznych
-                    miejscowościach. Dzięki temu znamy tutejsze projekty, typowe
-                    problemy przy remontach i budowach oraz to, jak wygląda
-                    prawdziwe życie na budowie, a nie tylko w katalogu.
-                  </p>
-                  <p>
-                    Trendhomes powstał z bardzo prostej obserwacji: klienci są
-                    zmęczeni gonieniem ekip, przekładanymi terminami i sytuacją,
-                    w której nikt nie czuje się odpowiedzialny za całość. U nas
-                    od pierwszej rozmowy do montażu odpowiada jedna firma.
-                  </p>
-                  <p>Nie obiecujemy cudów. Zamiast tego wolimy:</p>
+                  {about.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                   <ul className="list-disc space-y-2 pl-5">
-                    <li>
-                      powiedzieć uczciwie, co ma sens przy Twoim budżecie,
-                    </li>
-                    <li>
-                      dobrać systemy tak, żeby pasowały do projektu, a nie tylko
-                      do cennika,
-                    </li>
-                    <li>umówić realny termin i się go trzymać.</li>
+                    {about.listItems.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="mt-8">
@@ -148,8 +107,8 @@ export default function ONasPage() {
               </div>
               <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[672px]">
                 <Image
-                  src="/images/onas-team.png"
-                  alt="Zespół Trendhomes"
+                  src={about.image.src}
+                  alt={about.image.alt}
                   fill
                   className="object-cover"
                 />
@@ -163,22 +122,17 @@ export default function ONasPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={["Jak pracujemy", "dostarczając Ci stolarkę"]}
-            />
+            <SectionHeading lines={howWeWork.heading} />
             <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
-              Niezależnie od tego, czy budujesz nowy dom, remontujesz mieszkanie,
-              czy przygotowujesz lokal usługowy - proces zawsze trzymamy w
-              ryzach. Dzięki temu wiesz, na jakim etapie jesteśmy i czego możesz
-              się spodziewać.
+              {howWeWork.description}
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-3 md:gap-10">
-              {steps.map((step, i) => (
+              {howWeWork.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="border-t-2 border-pink/30 pt-5">
                     <span
-                      className={`text-3xl font-black text-pink ${step.opacity}`}
+                      className={`text-3xl font-black text-pink ${stepOpacities[i] || ""}`}
                     >
                       {step.number}
                     </span>
@@ -200,17 +154,13 @@ export default function ONasPage() {
       <AnimateOnScroll>
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading
-              lines={["Dlaczego warto", "wybrać Trendhomes"]}
-            />
+            <SectionHeading lines={whyTrendhomes.heading} />
             <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">
-              Za Trendhomes stoją konkretne osoby, z którymi rozmawiasz po
-              imieniu. To ważne szczególnie dla klientów, którzy chcą wiedzieć,
-              kto realnie odpowiada za ich inwestycję.
+              {whyTrendhomes.description}
             </p>
 
             <div className="mt-10 space-y-0 md:mt-14">
-              {team.map((member, i) => (
+              {whyTrendhomes.team.map((member, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div
                     className={`grid grid-cols-1 gap-6 border-b border-dark/10 py-6 last:border-b-0 md:grid-cols-[1fr_342px] md:gap-10 md:py-8 ${
@@ -251,7 +201,7 @@ export default function ONasPage() {
                 href="#kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {cta.skontaktujSie}
               </Link>
             </div>
           </div>
@@ -264,32 +214,24 @@ export default function ONasPage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
               <div>
-                <SectionHeading
-                  lines={["Zobacz gdzie działamy", "i zróbmy coś razem"]}
-                />
+                <SectionHeading lines={whereWeWork.heading} />
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
-                  <p>Skupiamy się na regionie, który znamy najlepiej:</p>
+                  {whereWeWork.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                   <ul className="list-disc space-y-2 pl-5">
-                    <li>Sanok i najbliższe okolice,</li>
-                    <li>miejscowości w kierunku Bieszczad,</li>
-                    <li>
-                      sąsiednie gminy, gdzie trudno o solidną, lokalną ekipę od
-                      stolarki.
-                    </li>
+                    {whereWeWork.listItems.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
-                  <p>
-                    Pracujemy lokalnie - w Sanoku, Bieszczadach i okolicznych
-                    miejscowościach. Dzięki temu znamy tutejsze projekty, typowe
-                    problemy przy remontach i budowach oraz to, jak wygląda
-                    prawdziwe życie na budowie, a nie tylko w katalogu.
-                  </p>
+                  <p>{whereWeWork.additionalText}</p>
                 </div>
                 <div className="mt-8">
                   <Link
                     href="#kontakt"
                     className="btn-pink h-[52px] px-[34px] text-sm"
                   >
-                    Umów pomiar w 48 h
+                    {cta.umowPomiar48h}
                   </Link>
                 </div>
               </div>

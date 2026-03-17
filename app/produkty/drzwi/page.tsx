@@ -10,169 +10,10 @@ import ContactSection from "../../components/ContactSection";
 import MapSection from "../../components/MapSection";
 import Footer from "../../components/Footer";
 import AnimateOnScroll from "../../components/AnimateOnScroll";
+import { MOCKUP_DATA } from "../../lib/mockup-data";
 
-const manufacturers = [
-  {
-    id: "erkado",
-    name: "Erkado",
-    description:
-      "Drzwi zewnętrzne Erkado dobrze sprawdzają się w domach jednorodzinnych i mieszkaniach, gdzie liczy się połączenie wyglądu z rozsądną ceną. W ofercie znajdziesz zarówno proste, klasyczne wzory, jak i bardziej nowoczesne skrzydła z przeszkleniami. Na etapie wyceny wybieramy kilka konkretnych modeli, które pasują do elewacji, koloru okien i bramy, zamiast przerzucać na Ciebie wybieranie z całego katalogu.",
-    features: [
-      {
-        name: "Szeroki wybór kolorów i oklein",
-        description:
-          "Erkado oferuje szeroką gamę kolorów i oklein, dzięki czemu łatwo dopasować drzwi do elewacji, okien i bramy garażowej.",
-      },
-      {
-        name: "Wersje z naświetlami bocznymi i górnymi",
-        description:
-          "Możliwość zamówienia drzwi z naświetlami bocznymi lub górnymi, co pozwala doświetlić wejście i optycznie powiększyć przestrzeń.",
-      },
-      {
-        name: "Różne klasy wyposażenia pod kątem bezpieczeństwa",
-        description:
-          "Drzwi Erkado dostępne są w różnych klasach wyposażenia, co pozwala dobrać poziom bezpieczeństwa do potrzeb i budżetu.",
-      },
-    ],
-  },
-  {
-    id: "setto",
-    name: "Setto",
-    description:
-      "Setto to dobry kierunek dla inwestorów, którzy szukają drzwi zewnętrznych o nowocześniejszym wyglądzie, ale dalej w rozsądnym budżecie. Wzornictwo dobrze pasuje do prostych brył domów, popularnych projektów katalogowych i budynków modernizowanych.",
-    features: [
-      {
-        name: "Różne warianty przeszkleń i listew ozdobnych",
-        description:
-          "Setto oferuje wiele wariantów przeszkleń i listew ozdobnych, dzięki czemu drzwi można dopasować do stylu budynku.",
-      },
-      {
-        name: "Możliwość dopasowania klamek i pochwytów do stylu budynku",
-        description:
-          "Szeroki wybór klamek i pochwytów pozwala dopełnić wygląd drzwi i dopasować je do charakteru całej elewacji.",
-      },
-    ],
-  },
-  {
-    id: "wegrzyn",
-    name: "Węgrzyn",
-    description:
-      "Drzwi drewniane zewnętrzne Węgrzyn kierujemy głównie do klientów, którzy cenią solidny, bardziej tradycyjny charakter stolarki. Dobrze odnajdują się w domach o klasycznej architekturze, budynkach z dachem wielospadowym, elewacjami z cegły lub tynku strukturalnego.",
-    features: [
-      {
-        name: "Mocniejszy, \u201Epełniejszy\u201D wygląd skrzydeł",
-        description:
-          "Drzwi Węgrzyn wyróżniają się solidną konstrukcją i pełnym, masywnym wyglądem, który dobrze komponuje się z tradycyjną architekturą.",
-      },
-      {
-        name: "Dobre dopasowanie do tradycyjnej architektury i domów modernizowanych",
-        description:
-          "Wzornictwo i materiały idealnie pasują do domów o klasycznym charakterze oraz budynków poddawanych modernizacji.",
-      },
-    ],
-  },
-  {
-    id: "doorsy",
-    name: "Doorsy",
-    description:
-      "Doorsy to producent, którego drzwi zewnętrzne drewniane często wybieramy do nowoczesnych domów i bardziej wymagających wizualnie projektów. Charakterystyczne wzory, szerokie przeszklenia i dopracowane detale sprawiają, że samo wejście staje się ważnym elementem elewacji.",
-    features: [
-      {
-        name: "Szeroka gama nowoczesnych wzorów",
-        description:
-          "Doorsy oferuje bogatą kolekcję nowoczesnych wzorów, które wyróżniają wejście do budynku i nadają mu indywidualny charakter.",
-      },
-      {
-        name: "Opcje z dużymi pochwytami",
-        description:
-          "Możliwość wyposażenia drzwi w duże, efektowne pochwyty, które podkreślają nowoczesny styl i ułatwiają codzienne użytkowanie.",
-      },
-    ],
-  },
-  {
-    id: "gerda",
-    name: "Gerda",
-    description:
-      "Drzwi zewnętrzne Gerda polecamy szczególnie tam, gdzie priorytetem jest bezpieczeństwo i poczucie kontroli nad wejściem do budynku. To dobry wybór do mieszkań w blokach, domów w gęstej zabudowie oraz wszędzie tam, gdzie chcesz mieć wyższy standard zabezpieczeń.",
-    features: [
-      {
-        name: "Modele z podwyższoną odpornością na włamanie",
-        description:
-          "Gerda oferuje drzwi o podwyższonej klasie antywłamaniowej, co zapewnia większe bezpieczeństwo domownikom.",
-      },
-      {
-        name: "Możliwość dopasowania wyposażenia (zamki, wkładki, okucia)",
-        description:
-          "Szeroki wybór zamków, wkładek i okuć pozwala skonfigurować drzwi dokładnie pod indywidualne wymagania bezpieczeństwa.",
-      },
-    ],
-  },
-];
-
-const whyItems = [
-  {
-    icon: "/images/icon-profile.svg",
-    title: "Kilku producentów, jedno miejsce kontaktu",
-    description:
-      "Pracujemy na ofercie kilku marek, dzięki czemu możemy dobrać drzwi do konkretnej sytuacji, a nie wciskać jednego \u201Eulubionego\u201D katalogu.",
-  },
-  {
-    icon: "/images/icon-measure.svg",
-    title: "Dobór pod cały budynek, nie tylko pod otwór w ścianie",
-    description:
-      "Patrzymy na drzwi razem z oknami, roletami i bramą. Chodzi o to, żeby całość wyglądała spójnie i działała sensownie pod względem cieplnym.",
-  },
-  {
-    icon: "/images/icon-helmet.svg",
-    title: "Lokalna ekipa montażowa",
-    description:
-      "Przyjeżdżamy na pomiar, montujemy drzwi i wracamy, kiedy trzeba je wyregulować. Nie znikamy po odbiorze.",
-  },
-  {
-    icon: "/images/icon-profile.svg",
-    title: "Jasny zakres prac i odpowiedzialności",
-    description:
-      "Już w ofercie rozpisujemy, co dokładnie obejmuje montaż: demontaż starych drzwi, przygotowanie otworu, obróbki, wykończenie. Dzięki temu nie ma \u201Eukrytych\u201D pozycji.",
-  },
-];
-
-const forWhom = [
-  {
-    label: "Dom jednorodzinny – nowy lub remontowany",
-    text: "Dobieramy drzwi, które pasują do elewacji, okien i bramy, a przy tym spełniają wymagania cieplne i bezpieczeństwa. Ustalamy termin montażu tak, żeby nie blokować ekip wykończeniowych ani Twoich planów z przeprowadzką.",
-  },
-  {
-    label: "Mieszkanie w bloku",
-    text: "W mieszkaniach liczy się wygoda, akustyka i poczucie bezpieczeństwa. Proponujemy drzwi, które poprawią komfort na klatce schodowej, nie będą kłócić się z wytycznymi wspólnoty, a montaż postaramy się zamknąć w jednym dniu.",
-  },
-  {
-    label: "Lokal usługowy / biuro",
-    text: "Drzwi muszą dobrze wyglądać od ulicy, wytrzymać intensywne użytkowanie i ułatwiać klientom wejście do środka. Dobieramy rozwiązania z myślą o charakterze biznesu, godzinach pracy i ruchu klientów.",
-  },
-  {
-    label: "Inwestor, który chce mieć święty spokój",
-    text: "To opcja dla osób, które wolą powierzyć temat jednemu wykonawcy: od doboru modelu, przez montaż, po serwis. Ustalamy zakres, termin i po prostu dowozimy.",
-  },
-];
-
-const montazSteps = [
-  {
-    number: "1",
-    title: "Pomiar na miejscu",
-  },
-  {
-    number: "2",
-    title: "Oferta z jasno opisanym zakresem",
-  },
-  {
-    number: "3",
-    title: "Montaż w umówionym terminie",
-  },
-  {
-    number: "4",
-    title: "Regulacja i opieka po montażu",
-  },
-];
+const pageData = MOCKUP_DATA.pages.produktyDrzwi;
+const cta = MOCKUP_DATA.global.cta;
 
 function FeatureAccordion({
   feature,
@@ -224,7 +65,7 @@ function FeatureAccordion({
 export default function DrzwiPage() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const activeManufacturer = manufacturers[activeTab];
+  const activeManufacturer = pageData.manufacturers.items[activeTab];
 
   return (
     <>
@@ -234,8 +75,8 @@ export default function DrzwiPage() {
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Drzwi zewnętrzne z montażem od Trendhomes"
+          src={pageData.hero.image}
+          alt={pageData.hero.titleLines.join(" ")}
           fill
           priority
           className="object-cover"
@@ -249,34 +90,39 @@ export default function DrzwiPage() {
         />
         <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-center px-3 md:px-5">
           <nav className="mb-6 flex items-center gap-2 text-sm uppercase text-white/80 md:text-sm">
-            <Link href="/" className="transition-colors hover:text-white">
-              home
-            </Link>
-            <span>|</span>
-            <span>Produkty</span>
-            <span>|</span>
-            <span className="text-white">Drzwi</span>
+            {pageData.hero.breadcrumb.map((crumb, i) => (
+              <span key={i} className="flex items-center gap-2">
+                {i > 0 && <span>|</span>}
+                {i === 0 ? (
+                  <Link href="/" className="transition-colors hover:text-white">
+                    {crumb}
+                  </Link>
+                ) : i === pageData.hero.breadcrumb.length - 1 ? (
+                  <span className="text-white">{crumb}</span>
+                ) : (
+                  <span>{crumb}</span>
+                )}
+              </span>
+            ))}
           </nav>
 
           <h1 className="max-w-[660px] text-[22px] font-semibold leading-[1.15] text-white sm:text-[29px] md:text-[35px] lg:text-[42px]">
-            Drzwi zewnętrzne
-            <br />
-            z montażem
+            {pageData.hero.titleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 max-w-[552px] text-sm leading-relaxed text-white sm:text-sm md:mt-6 md:text-lg">
-            Drzwi zewnętrzne to pierwsza rzecz, z którą spotykają się
-            domownicy, goście i klienci. W Trendhomes pomagamy dobrać drzwi do
-            domu jednorodzinnego, mieszkania w bloku albo lokalu usługowego, a
-            potem bierzemy na siebie pomiar, montaż i późniejszą regulację.
-            Pracujemy na sprawdzonych producentach, dzięki czemu możesz dobrać
-            wygląd, parametry i budżet do swojej inwestycji, a nie odwrotnie.
+            {pageData.hero.description}
           </p>
           <div className="mt-6 md:mt-8">
             <Link
               href="/kontakt"
               className="btn-pink h-11 px-5 text-sm sm:h-[52px] sm:px-8 sm:text-sm"
             >
-              Umów pomiar w 48 h
+              {cta.umowPomiar48h}
             </Link>
           </div>
         </div>
@@ -287,11 +133,11 @@ export default function DrzwiPage() {
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={["Dla kogo są nasze", "drzwi zewnętrzne"]}
+              lines={[...pageData.forWhom.heading]}
             />
 
             <div className="mt-8 md:mt-12">
-              {forWhom.map((item, i) => (
+              {pageData.forWhom.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 80}>
                   <div className="grid grid-cols-1 gap-4 border-b border-dark/10 py-5 last:border-b-0 md:grid-cols-[240px_1fr] md:gap-8 md:py-6">
                     <h3 className="text-lg font-bold text-dark md:text-xl">
@@ -310,7 +156,7 @@ export default function DrzwiPage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Skontaktuj się z Nami
+                {cta.skontaktujSie}
               </Link>
             </div>
           </div>
@@ -322,14 +168,11 @@ export default function DrzwiPage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Dlaczego warto zamówić",
-                "drzwi zewnętrzne w Trendhomes",
-              ]}
+              lines={[...pageData.why.heading]}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
-              {whyItems.map((item, i) => (
+              {pageData.why.items.map((item, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col">
                     <div className="relative size-[80px] md:size-[100px]">
@@ -356,7 +199,7 @@ export default function DrzwiPage() {
                 href="/kontakt"
                 className="btn-pink h-[52px] px-[34px] text-sm"
               >
-                Umów pomiar w 48 h
+                {cta.umowPomiar48h}
               </Link>
             </div>
           </div>
@@ -368,10 +211,7 @@ export default function DrzwiPage() {
         <div className="mx-auto max-w-[1440px] px-3 md:px-5">
           <AnimateOnScroll>
             <SectionHeading
-              lines={[
-                "Producenci drzwi zewnętrznych,",
-                "z którymi pracujemy",
-              ]}
+              lines={[...pageData.manufacturers.heading]}
             />
           </AnimateOnScroll>
 
@@ -379,7 +219,7 @@ export default function DrzwiPage() {
           <AnimateOnScroll delay={100}>
             <div className="mt-8 overflow-x-auto scrollbar-hide md:mt-12">
               <div className="flex min-w-max items-center gap-1 bg-card px-2.5 py-2.5 md:gap-2 md:px-3">
-                {manufacturers.map((m, i) => (
+                {pageData.manufacturers.items.map((m, i) => (
                   <button
                     key={m.id}
                     onClick={() => setActiveTab(i)}
@@ -411,13 +251,13 @@ export default function DrzwiPage() {
                     href="/kontakt"
                     className="btn-pink h-[52px] px-[34px] text-sm"
                   >
-                    Napisz do nas
+                    {cta.napisz}
                   </Link>
                 </div>
               </div>
               <div>
                 <h4 className="mb-2 text-base font-semibold text-dark/60 uppercase tracking-wide md:text-sm">
-                  Cechy wyróżniające
+                  {pageData.manufacturers.featuresLabel}
                 </h4>
                 <div className="border-t border-dark/10">
                   {activeManufacturer.features.map((feature) => (
@@ -435,14 +275,11 @@ export default function DrzwiPage() {
         <section className="bg-section-light py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <SectionHeading
-              lines={[
-                "Montaż i serwis",
-                "drzwi zewnętrznych",
-              ]}
+              lines={[...pageData.montaz.heading]}
             />
 
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
-              {montazSteps.map((step, i) => (
+              {pageData.montaz.steps.map((step, i) => (
                 <AnimateOnScroll key={i} delay={i * 100}>
                   <div className="flex flex-col items-start">
                     <span className="flex size-[56px] items-center justify-center rounded-full bg-pink text-xl font-bold text-white">
@@ -465,17 +302,14 @@ export default function DrzwiPage() {
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <div className="mx-auto max-w-[800px] text-center">
               <p className="text-sm leading-relaxed text-dark md:text-lg">
-                Szukasz drzwi zewnętrznych do domu, mieszkania albo lokalu w
-                Sanoku i okolicy? Przygotujemy dla Ciebie propozycje na bazie
-                drzwi Erkado, Setto, Węgrzyn, Doorsy i Gerda, dopasowane do
-                budynku, budżetu i terminu inwestycji.
+                {pageData.ctaSection}
               </p>
               <div className="mt-8">
                 <Link
                   href="/kontakt"
                   className="btn-pink h-[52px] px-[34px] text-sm"
                 >
-                  Umów pomiar w 48 h
+                  {cta.umowPomiar48h}
                 </Link>
               </div>
             </div>

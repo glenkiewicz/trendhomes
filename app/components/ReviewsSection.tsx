@@ -3,51 +3,10 @@
 import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
 
-const reviews = [
-	{
-		avatar: "/images/avatar-ania.jpg",
-		name: "Ania Hania",
-		text: "Zamówiłam w TRENDHOMES rolety i okna do całego domu i wszystko przebiegło bezproblemowo. Produkty są solidne, estetyczne i idealnie dopasowane. Ekipa montażowa bardzo profesjonalna i punktualna. Zdecydowanie polecam tę firmę każdemu, kto ceni jakość i dobrą obsługę.",
-		date: "2 miesiące temu",
-		rating: 5,
-	},
-	{
-		avatar: "/images/avatar-pawel.svg",
-		name: "Paweł Okarma",
-		text: "Jesteśmy bardzo zadowoleni z usługi wymiany okien! Cały proces przebiega zawsze sprawnie i bezproblemowo. Zespół pracuje profesjonalnie, dbając o czystość i minimalizując uciążliwości. Nowe okna prezentują się świetnie. Serdecznie polecam!",
-		date: "4 miesiące temu",
-		rating: 5,
-	},
-	{
-		avatar: "/images/avatar-monika.jpg",
-		name: "Monika Zych",
-		text: "Współpraca na najwyższym poziomie! Szczerze polecam :) Gdybym mogła to dałabym dużo więcej gwiazdek. Z firmy Trendhomes mam okna, drzwi wejściowe, drzwi do kotłowni, rolety zewnętrzne i ozdobne do wewnątrz oraz panel winylowy. Jakość naprawdę świetna, moje oczekiwania zostały spełnione :) Dodatkowo super kontakt z Panem Mateuszem, montaż w ustalonym terminie realizacji.",
-		date: "6 miesięcy temu",
-		rating: 5,
-	},
-	{
-		avatar: "/images/avatar-ania.jpg",
-		name: "Ania Haniaeee",
-		text: "Zamówiłam w TRENDHOMES rolety i okna do całego domu i wszystko przebiegło bezproblemowo. Produkty są solidne, estetyczne i idealnie dopasowane. Ekipa montażowa bardzo profesjonalna i punktualna. Zdecydowanie polecam tę firmę każdemu, kto ceni jakość i dobrą obsługę.",
-		date: "2 miesiące temu",
-		rating: 5,
-	},
-	{
-		avatar: "/images/avatar-pawel.svg",
-		name: "Paweł Okarmafrgrg",
-		text: "Jesteśmy bardzo zadowoleni z usługi wymiany okien! Cały proces przebiega zawsze sprawnie i bezproblemowo. Zespół pracuje profesjonalnie, dbając o czystość i minimalizując uciążliwości. Nowe okna prezentują się świetnie. Serdecznie polecam!",
-		date: "4 miesiące temu",
-		rating: 5,
-	},
-	{
-		avatar: "/images/avatar-monika.jpg",
-		name: "Monika Zychgrgr ds",
-		text: "Współpraca na najwyższym poziomie! Szczerze polecam :) Gdybym mogła to dałabym dużo więcej gwiazdek. Z firmy Trendhomes mam okna, drzwi wejściowe, drzwi do kotłowni, rolety zewnętrzne i ozdobne do wewnątrz oraz panel winylowy. Jakość naprawdę świetna, moje oczekiwania zostały spełnione :) Dodatkowo super kontakt z Panem Mateuszem, montaż w ustalonym terminie realizacji.",
-		date: "6 miesięcy temu",
-		rating: 5,
-	},
-];
+const d = MOCKUP_DATA.home.reviews;
+const reviews = d.items;
 
 const GAP_LG = 32;
 const GAP_SM = 24;
@@ -142,7 +101,7 @@ export default function ReviewsSection() {
 			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				{/* Header with nav */}
 				<div className="flex items-start justify-between">
-					<SectionHeading lines={["Opinie naszych", "klientów"]} />
+					<SectionHeading lines={[...d.heading]} />
 					<div className="mt-6 flex items-center gap-3 md:mt-8">
 						<button
 							onClick={prev}
@@ -185,10 +144,7 @@ export default function ReviewsSection() {
 
 				{/* Subtitle */}
 				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-					Przy wyborze wykonawcy stolarki liczy się nie tylko oferta
-					na papierze, ale też doświadczenia innych. Dlatego
-					zachęcamy, żeby sprawdzić, co o współpracy z Trendhomes
-					mówią klienci z Sanoka i okolic.
+					{d.subtitle}
 				</p>
 
 				{/* Slider */}

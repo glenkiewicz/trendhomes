@@ -1,5 +1,8 @@
 import Image from "next/image";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const d = MOCKUP_DATA.home.brands;
 
 export default function BrandsSection() {
   return (
@@ -9,39 +12,28 @@ export default function BrandsSection() {
           {/* Left — text */}
           <div>
             <SectionHeading
-              lines={["O Trendhomes:", "ludzie i lokalność"]}
+              lines={[...d.heading]}
             />
 
-            <p className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
-              Trendhomes to lokalna firma z Sanoka, która od lat pomaga
-              właścicielom domów, mieszkań i lokali usługowych dobrze
-              zaplanować i bezpiecznie zamontować stolarkę okienną, drzwiową,
-              rolety, bramy oraz pergole. Łączymy doradztwo na miejscu
-              inwestycji, solidny montaż i opiekę po zakończeniu prac.
-            </p>
-
-            <p className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
-              Pracujemy głównie w Sanoku, Bieszczadach i najbliższej okolicy.
-              Dzięki temu znamy specyfikę lokalnych inwestycji – od domów
-              jednorodzinnych, przez mieszkania w blokach, po małe i większe
-              lokale usługowe. Współpracujemy zarówno z osobami prywatnymi,
-              jak i przedsiębiorcami, dla których kluczowe są terminy,
-              porządek na budowie i wsparcie przy formalnościach.
-            </p>
+            {d.paragraphs.map((text, i) => (
+              <p key={i} className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
+                {text}
+              </p>
+            ))}
 
             <a
               href="#kontakt"
               className="btn-pink mt-8 h-12 px-[34px] text-sm"
             >
-              Poznaj nasz zespół
+              {d.cta}
             </a>
           </div>
 
           {/* Right — image */}
           <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[634px]">
             <Image
-              src="/images/about-team.jpg"
-              alt="Zespół Trendhomes w salonie w Sanoku"
+              src={d.image.src}
+              alt={d.image.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               loading="lazy"
