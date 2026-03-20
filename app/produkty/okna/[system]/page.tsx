@@ -45,8 +45,10 @@ export default async function SystemDetailPage({
 
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <TopBar />
+        <Navbar />
+      </div>
 
       <main className="bg-white">
         {/* Breadcrumb + Heading */}

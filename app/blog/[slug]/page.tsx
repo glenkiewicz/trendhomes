@@ -35,8 +35,10 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <TopBar />
+        <Navbar />
+      </div>
       <main className="bg-white py-10 md:py-20">
         <article className="mx-auto max-w-[1440px] px-3 md:px-5">
           {/* Back link */}

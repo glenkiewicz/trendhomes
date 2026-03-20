@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { productCategories } from "../lib/products-data";
 import { MOCKUP_DATA } from "../lib/mockup-data";
 
@@ -12,6 +13,7 @@ const hoverUnderline =
 	"relative after:absolute after:-bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-pink after:transition-all after:duration-300 after:ease-out hover:after:w-full";
 
 export default function Navbar() {
+	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
@@ -52,6 +54,12 @@ export default function Navbar() {
 		return () => document.removeEventListener("mousedown", handleClick);
 	}, [dropdownOpen]);
 
+	const isActive = (href: string, hasDropdown?: boolean) => {
+		if (hasDropdown) return pathname.startsWith("/produkty");
+		if (href === "/") return pathname === "/";
+		return pathname.startsWith(href);
+	};
+
 	const handleDropdownEnter = () => {
 		if (timeoutRef.current) clearTimeout(timeoutRef.current);
 		setDropdownOpen(true);
@@ -86,7 +94,7 @@ export default function Navbar() {
 								onMouseLeave={handleDropdownLeave}
 							>
 								<button
-									className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-pink ${hoverUnderline}`}
+									className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-pink ${hoverUnderline} ${isActive(item.href, true) ? "text-pink after:!w-full" : ""}`}
 									onClick={() => setDropdownOpen((v) => !v)}
 								>
 									{item.label}
@@ -154,7 +162,7 @@ export default function Navbar() {
 								href={item.href}
 								className={`whitespace-nowrap transition-colors hover:text-pink ${hoverUnderline} ${
 									item.bold ? "font-semibold" : "font-normal"
-								}`}
+								} ${isActive(item.href) ? "text-pink after:!w-full" : ""}`}
 							>
 								{item.label}
 							</Link>

@@ -17,8 +17,10 @@ const cta = MOCKUP_DATA.global.cta;
 export default function OpiniePage() {
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <TopBar />
+        <Navbar />
+      </div>
 
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[714px]">
