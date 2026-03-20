@@ -1026,7 +1026,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyDrzwi: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         breadcrumb: ["home", "Produkty", "Drzwi"],
         titleLines: ["Drzwi zewnętrzne", "z montażem"],
         description:
@@ -1391,7 +1391,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyDrzwiTarasowe: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Drzwi tarasowe od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Drzwi tarasowe"],
         heading: ["Drzwi tarasowe", "przesuwne"],
@@ -1487,7 +1487,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyOknaAluminiowe: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Okna aluminiowe od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Okna Aluminiowe"],
         heading: "Okna aluminiowe",
@@ -1554,7 +1554,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyDrzwiAluminiowe: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Drzwi aluminiowe od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Drzwi Aluminiowe"],
         heading: "Drzwi aluminiowe",
@@ -1640,7 +1640,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyDrzwiWewnetrzne: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Drzwi wewnętrzne z montażem od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Drzwi Wewnętrzne"],
         heading: ["Drzwi wewnętrzne", "z montażem"],
@@ -1812,7 +1812,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyOknaDrewniane: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Okna drewniane od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Okna Drewniane"],
         heading: "Okna drewniane",
@@ -1931,7 +1931,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyOknaStalowe: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Okna stalowe i loftowe od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Okna Stalowe"],
         heading: ["Okna stalowe", "i loftowe"],
@@ -1975,7 +1975,7 @@ export const MOCKUP_DATA = {
     // ──────────────────────────────────────────────────────────
     produktyDrzwiStalowe: {
       hero: {
-        image: "/images/hero-bg.jpg",
+        image: "/images/okna-hero.png",
         imageAlt: "Drzwi stalowe i loftowe od Trendhomes",
         breadcrumbs: ["home", "Produkty", "Drzwi Stalowe"],
         heading: ["Drzwi stalowe", "i loftowe na wymiar"],

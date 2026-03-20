@@ -5,6 +5,9 @@ import { MOCKUP_DATA } from "../lib/mockup-data";
 const g = MOCKUP_DATA.global;
 const f = MOCKUP_DATA.footer;
 
+const hoverUnderline =
+	"relative after:absolute after:-bottom-0.5 after:left-1/2 after:h-[1.5px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-white/60 after:transition-all after:duration-300 after:ease-out hover:after:w-full";
+
 export default function Footer() {
 	return (
 		<footer
@@ -43,7 +46,7 @@ export default function Footer() {
 								<li key={link.label}>
 									<Link
 										href={link.href}
-										className="text-sm text-light transition-colors hover:text-white"
+										className={`text-sm text-light transition-colors hover:text-white ${hoverUnderline}`}
 									>
 										{link.label}
 									</Link>
@@ -62,7 +65,7 @@ export default function Footer() {
 								<li key={link.label}>
 									<Link
 										href={link.href}
-										className="text-sm text-light transition-colors hover:text-white"
+										className={`text-sm text-light transition-colors hover:text-white ${hoverUnderline}`}
 									>
 										{link.label}
 									</Link>

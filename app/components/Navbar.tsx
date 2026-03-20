@@ -8,12 +8,24 @@ import { MOCKUP_DATA } from "../lib/mockup-data";
 
 const menuItems = MOCKUP_DATA.navigation.menuItems as readonly { label: string; href: string; hasDropdown?: boolean; bold?: boolean }[];
 
+const hoverUnderline =
+	"relative after:absolute after:-bottom-1 after:left-1/2 after:h-[2px] after:w-0 after:-translate-x-1/2 after:rounded-full after:bg-pink after:transition-all after:duration-300 after:ease-out hover:after:w-full";
+
 export default function Navbar() {
 	const [open, setOpen] = useState(false);
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+	const [mobileCategoryOpen, setMobileCategoryOpen] = useState<string | null>(null);
+	const [scrolled, setScrolled] = useState(false);
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+	useEffect(() => {
+		const handleScroll = () => setScrolled(window.scrollY > 10);
+		handleScroll();
+		window.addEventListener("scroll", handleScroll, { passive: true });
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	useEffect(() => {
 		if (open) {
@@ -50,15 +62,15 @@ export default function Navbar() {
 	};
 
 	return (
-		<nav className="sticky top-0 z-50 border-b border-gray-100 bg-white">
-			<div className="mx-auto flex max-w-[1440px] items-center justify-between px-3 py-2.5 md:px-5 md:py-3">
+		<nav className="border-b border-gray-100 bg-white transition-all duration-300">
+			<div className={`mx-auto flex max-w-[1440px] items-center justify-between px-3 md:px-5 transition-all duration-300 ${scrolled ? "py-1 md:py-1.5" : "py-2.5 md:py-3"}`}>
 				<Link href="/" className="shrink-0">
 					<Image
 						src="/images/logo.svg"
 						alt="Trendhomes"
 						width={125}
 						height={82}
-						className="h-[50px] w-auto md:h-[70px]"
+						className={`w-auto transition-all duration-300 ${scrolled ? "h-[36px] md:h-[46px]" : "h-[50px] md:h-[70px]"}`}
 					/>
 				</Link>
 
@@ -74,7 +86,7 @@ export default function Navbar() {
 								onMouseLeave={handleDropdownLeave}
 							>
 								<button
-									className="flex items-center gap-1 whitespace-nowrap transition-colors hover:text-pink"
+									className={`flex items-center gap-1 whitespace-nowrap transition-colors hover:text-pink ${hoverUnderline}`}
 									onClick={() => setDropdownOpen((v) => !v)}
 								>
 									{item.label}
@@ -110,7 +122,7 @@ export default function Navbar() {
 												<span className="block px-5 pb-2.5 text-xs font-semibold uppercase tracking-wider text-dark/40">
 													{group.group}
 												</span>
-												{group.items.map((product) => (
+												{group.items.map((product, idx) => (
 													<Link
 														key={product.name}
 														href={product.href}
@@ -119,7 +131,7 @@ export default function Navbar() {
 																false,
 															)
 														}
-														className="flex items-center gap-3 px-5 py-2 text-[12px] text-dark transition-colors hover:bg-section-light hover:text-pink"
+														className={`flex items-center gap-3 px-5 py-2 text-[12px] text-dark transition-colors hover:bg-section-light hover:text-pink ${idx === 0 && group.group === "Okna" ? "font-semibold" : ""}`}
 													>
 														<Image
 															src={product.image}
@@ -140,7 +152,7 @@ export default function Navbar() {
 							<Link
 								key={item.label}
 								href={item.href}
-								className={`whitespace-nowrap transition-colors hover:text-pink ${
+								className={`whitespace-nowrap transition-colors hover:text-pink ${hoverUnderline} ${
 									item.bold ? "font-semibold" : "font-normal"
 								}`}
 							>
@@ -252,7 +264,7 @@ export default function Navbar() {
 									</svg>
 								</button>
 
-								{/* Mobile product sub-links grouped */}
+								{/* Mobile product sub-links with per-category dropdowns */}
 								<div
 									className={`grid transition-all duration-300 ${
 										mobileProductsOpen
@@ -264,29 +276,61 @@ export default function Navbar() {
 										<div className="flex flex-col border-b border-white/10 py-2">
 											{productCategories.map((group) => (
 												<div key={group.group}>
-													<span className="block px-3 pb-1 pt-2.5 text-xs font-semibold uppercase tracking-wider text-white/30">
+													<button
+														onClick={() =>
+															setMobileCategoryOpen(
+																mobileCategoryOpen === group.group
+																	? null
+																	: group.group,
+															)
+														}
+														className="flex w-full items-center justify-between px-3 pb-1 pt-2.5 text-xs font-semibold uppercase tracking-wider text-white/30 transition-colors hover:text-white/60"
+													>
 														{group.group}
-													</span>
-													{group.items.map(
-														(product) => (
-															<Link
-																key={
-																	product.name
-																}
-																href={
-																	product.href
-																}
-																onClick={() =>
-																	setOpen(
-																		false,
-																	)
-																}
-																className="py-1.5 pl-3 text-sm text-white/70 transition-colors hover:pl-5 hover:text-pink sm:text-base md:text-lg block"
-															>
-																{product.name}
-															</Link>
-														),
-													)}
+														<svg
+															width="10"
+															height="10"
+															viewBox="0 0 10 10"
+															fill="none"
+															className={`shrink-0 transition-transform duration-200 ${mobileCategoryOpen === group.group ? "rotate-180" : ""}`}
+														>
+															<path
+																d="M2 4L5 7L8 4"
+																stroke="currentColor"
+																strokeWidth="1.5"
+															/>
+														</svg>
+													</button>
+													<div
+														className={`grid transition-all duration-300 ${
+															mobileCategoryOpen === group.group
+																? "grid-rows-[1fr] opacity-100"
+																: "grid-rows-[0fr] opacity-0"
+														}`}
+													>
+														<div className="overflow-hidden">
+															{group.items.map(
+																(product, idx) => (
+																	<Link
+																		key={
+																			product.name
+																		}
+																		href={
+																			product.href
+																		}
+																		onClick={() =>
+																			setOpen(
+																				false,
+																			)
+																		}
+																		className={`py-1.5 pl-3 text-sm text-white/70 transition-colors hover:pl-5 hover:text-pink sm:text-base md:text-lg block ${idx === 0 && group.group === "Okna" ? "font-semibold" : ""}`}
+																	>
+																		{product.name}
+																	</Link>
+																),
+															)}
+														</div>
+													</div>
 												</div>
 											))}
 										</div>
