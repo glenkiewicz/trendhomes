@@ -13,6 +13,7 @@ import {
   getRelatedSystems,
 } from "../../../lib/product-systems";
 import ColorCarousel from "../../../components/ColorCarousel";
+import ProductImageTabs from "../../../components/ProductImageTabs";
 
 export function generateStaticParams() {
   return pvcSystems.map((s) => ({ system: s.slug }));
@@ -119,17 +120,12 @@ export default async function SystemDetailPage({
                 </div>
               </div>
 
-              {/* Right: image */}
-              <div className="relative aspect-square w-full overflow-hidden bg-gray-50">
-                <Image
-                  src={system.image}
-                  alt={system.fullName}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain p-6"
-                  priority
-                />
-              </div>
+              {/* Right: image with tab toggle */}
+              <ProductImageTabs
+                image={system.image}
+                alt={system.fullName}
+                crossSection={system.crossSection}
+              />
             </div>
           </div>
         </section>

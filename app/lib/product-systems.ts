@@ -19,6 +19,7 @@ export interface ProductSystem {
 	features: { label: string; value: string }[];
 	manufacturerDescription: string;
 	manufacturerLogo?: string;
+	crossSection?: string;
 	ctaText: string;
 	colors: ColorSwatch[];
 	featureSections: {
@@ -123,7 +124,8 @@ export const woodenWindowColors: ColorSwatch[] = [
 export const pvcSystems: ProductSystem[] = [
 	{
 		slug: "system-76",
-		manufacturer: "Salamander",
+		crossSection: "/images/products/przekroje/system-76.svg",
+		manufacturer:"Salamander",
 		name: "BluEvolution System 76",
 		fullName: "Salamander System 76",
 		image: "/images/products/salamander-greenevolution-flex.webp",
@@ -169,6 +171,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "system-82",
+		crossSection: "/images/products/przekroje/system-82.svg",
 		manufacturer: "Salamander",
 		name: "BluEvolution System 82",
 		fullName: "Salamander System 82",
@@ -215,6 +218,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "system-92",
+		crossSection: "/images/products/przekroje/system-92.svg",
 		manufacturer: "Salamander",
 		name: "BluEvolution System 92",
 		fullName: "Salamander System 92",
@@ -261,6 +265,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "synego",
+		crossSection: "/images/products/przekroje/synego.svg",
 		manufacturer: "Rehau",
 		name: "SYNEGO",
 		fullName: "Rehau SYNEGO",
@@ -310,6 +315,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ideal-4000",
+		crossSection: "/images/products/przekroje/ideal-4000.svg",
 		manufacturer: "Aluplast",
 		name: "Ideal 4000",
 		fullName: "Aluplast Ideal 4000",
@@ -350,6 +356,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ideal-neo",
+		crossSection: "/images/products/przekroje/ideal-neo.svg",
 		manufacturer: "Aluplast",
 		name: "Ideal Neo",
 		fullName: "Aluplast Ideal Neo",
@@ -396,6 +403,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ideal-8000",
+		crossSection: "/images/products/przekroje/ideal-8000.svg",
 		manufacturer: "Aluplast",
 		name: "Ideal 8000",
 		fullName: "Aluplast Ideal 8000",
@@ -442,6 +450,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ekosun-70",
+		crossSection: "/images/products/przekroje/ekosun-70.png",
 		manufacturer: "EkoSun",
 		name: "EkoSun 70",
 		fullName: "EkoSun 70",
@@ -482,6 +491,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ekosun-6",
+		crossSection: "/images/products/przekroje/ekosun-6.png",
 		manufacturer: "EkoSun",
 		name: "EkoSun 6",
 		fullName: "EkoSun 6",
@@ -528,6 +538,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "ekosun-7",
+		crossSection: "/images/products/przekroje/ekosun-7.png",
 		manufacturer: "EkoSun",
 		name: "EkoSun 7",
 		fullName: "EkoSun 7",
@@ -574,6 +585,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "s8000",
+		crossSection: "/images/products/przekroje/s8000.png",
 		manufacturer: "Gealan",
 		name: "S8000",
 		fullName: "Gealan S8000",
@@ -614,6 +626,7 @@ export const pvcSystems: ProductSystem[] = [
 	},
 	{
 		slug: "s9000",
+		crossSection: "/images/products/przekroje/s9000.png",
 		manufacturer: "Gealan",
 		name: "S9000",
 		fullName: "Gealan S9000",
@@ -672,6 +685,7 @@ export interface WoodenWindowSystem {
 	description: string;
 	features: { label: string; value: string }[];
 	manufacturerDescription: string;
+	crossSection?: string;
 	ctaText: string;
 	colors: ColorSwatch[];
 	featureSections: {
