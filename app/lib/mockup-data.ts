@@ -350,7 +350,7 @@ export const MOCKUP_DATA = {
 					title: "Bezpieczeństwo i normy prawne",
 					description:
 						"Przy lokalach usługowych i inwestycjach biznesowych zwracamy szczególną uwagę na wymagania ppoż. i odbiory techniczne. Dobieramy stolarkę tak, żeby spełniała normy, a dokumenty i parametry produktu były przygotowane do kontroli i odbioru.",
-					image: "/images/why-4.jpg",
+					image: "/images/why-4a.jpg",
 				},
 				{
 					title: "Porządek na budowie i przy remoncie",
@@ -800,36 +800,32 @@ export const MOCKUP_DATA = {
 				heading: ["Realizacje Trendhomes:", "okna i rolety"],
 				items: [
 					{
-						title: "Dom jednorodzinny\nGolcowa",
-						image: "/images/realizacje/okna-1.jpg",
+						title: "Realizacja\nw Polańczyku",
+						image: "/images/realizacje/okna-polanczyk.jpg",
 					},
 					{
-						title: "Dom jednorodzinny\nOchłowce",
-						image: "/images/realizacje/okna-2.jpg",
+						title: "Domki\nw Bieszczadach",
+						image: "/images/realizacje/okna-bieszczady.jpg",
 					},
 					{
-						title: "Dom jednorodzinny\nRybnik",
-						image: "/images/realizacje/okna-3.jpg",
+						title: "Dom\nw Sanoku",
+						image: "/images/realizacje/okna-sanok-1.jpg",
 					},
 					{
-						title: "Jabłonki SPA\nJanków",
-						image: "/images/realizacje/okna-4.jpg",
+						title: "Dom\nw Sanoku",
+						image: "/images/realizacje/okna-sanok-2.jpg",
 					},
 					{
-						title: "Klinika\nDąbrówka",
-						image: "/images/realizacje/okna-5.jpg",
+						title: "Dom\nw Krakowie",
+						image: "/images/realizacje/okna-krakow.jpg",
 					},
 					{
-						title: "Biblioteka\nKomańcza",
-						image: "/images/realizacje/okna-6.jpg",
+						title: "Dom\nw Kostarowcach",
+						image: "/images/realizacje/okna-kostarowce.jpg",
 					},
 					{
-						title: "Dom jednorodzinny\nKorczyna",
-						image: "/images/realizacje/okna-7.jpg",
-					},
-					{
-						title: "Obiekt\nUstrzyki",
-						image: "/images/realizacje/okna-8.jpg",
+						title: "Dom\nw Ustrzykach Dolnych",
+						image: "/images/realizacje/okna-ustrzyki.jpg",
 					},
 				],
 			},
@@ -843,28 +839,16 @@ export const MOCKUP_DATA = {
 				heading: ["Pergole i ogrody", "zimowe"],
 				items: [
 					{
-						title: "Ogród zimowy\nPisarowce",
-						image: "/images/realizacje/pergola-1.jpg",
+						title: "Realizacja\nw Bieszczadach",
+						image: "/images/realizacje/pergola-bieszczady.jpg",
 					},
 					{
-						title: "Ogród zimowy\nPisarowce",
-						image: "/images/realizacje/pergola-2.jpg",
+						title: "Pergola\npod Rzeszowem",
+						image: "/images/realizacje/pergola-rzeszow.jpg",
 					},
 					{
-						title: "Ogród zimowy\nSanok",
-						image: "/images/realizacje/pergola-3.jpg",
-					},
-					{
-						title: "Ogród zimowy\nSanok",
-						image: "/images/realizacje/pergola-4.jpg",
-					},
-					{
-						title: "Ogród zimowy\nSanok",
-						image: "/images/realizacje/pergola-5.jpg",
-					},
-					{
-						title: "Pergola\nSanok",
-						image: "/images/realizacje/pergola-6.jpg",
+						title: "Ogród zimowy\nw Krośnie",
+						image: "/images/realizacje/pergola-krosno.jpg",
 					},
 				],
 			},
@@ -884,28 +868,36 @@ export const MOCKUP_DATA = {
 				heading: ["Realizacje B2B", "od Trendhomes"],
 				items: [
 					{
-						title: "Stacja benzynowa\nADAP",
-						image: "/images/realizacje/b2b-1.jpg",
+						title: "Caritas\nw Myczkowcach",
+						image: "/images/realizacje/b2b-caritas.jpg",
 					},
 					{
-						title: "Stacja benzynowa\nADAP",
-						image: "/images/realizacje/b2b-2.jpg",
+						title: "Biuro zarządu browaru\nVAN PUR w Rakszawie",
+						image: "/images/realizacje/b2b-vanpur.jpg",
 					},
 					{
-						title: "Hala produkcyjna\nSanok",
-						image: "/images/realizacje/b2b-3.jpg",
+						title: "Laboratorium Rubber Company\nw Sanoku",
+						image: "/images/realizacje/b2b-rubber-company.jpg",
 					},
 					{
-						title: "Hala produkcyjna\nSanok",
-						image: "/images/realizacje/b2b-4.jpg",
+						title: "Szpital\nw Lesku",
+						image: "/images/realizacje/b2b-szpital-lesko.jpg",
 					},
 					{
-						title: "Schronisko PTTK\nWetlina",
-						image: "/images/realizacje/b2b-5.jpg",
+						title: "OSP\nw Iwoniczu",
+						image: "/images/realizacje/b2b-osp-iwonicz.jpg",
 					},
 					{
-						title: "Schronisko PTTK\nWetlina",
-						image: "/images/realizacje/b2b-6.jpg",
+						title: "Zajazd Pod Lipą\nw Humiskach",
+						image: "/images/realizacje/b2b-zajazd-humiski.jpg",
+					},
+					{
+						title: "Centrum bankietowe\nRoyal Palace w Sanoku",
+						image: "/images/realizacje/b2b-royal-palace.jpg",
+					},
+					{
+						title: "Delikatesy Centrum\nw Sanoku",
+						image: "/images/realizacje/b2b-delikatesy.jpg",
 					},
 				],
 			},

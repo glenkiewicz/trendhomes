@@ -103,12 +103,12 @@ export default function ContactSection() {
                 {d.contactHeading}
               </h3>
               <div className="mt-4 text-lg leading-relaxed text-dark">
-                <p>Telefon: {g.branches.sanok.phone}</p>
-                <p>E-mail: {g.branches.sanok.email}</p>
+                <p>Telefon: <a href={`tel:${g.branches.sanok.phone.replace(/\s/g, '')}`} className="hover:text-pink transition-colors">{g.branches.sanok.phone}</a></p>
+                <p>E-mail: <a href={`mailto:${g.branches.sanok.email}`} className="hover:text-pink transition-colors">{g.branches.sanok.email}</a></p>
               </div>
               <div className="mt-3 text-lg leading-relaxed text-dark">
-                <p>Telefon: {g.phoneMobile}</p>
-                <p>E-mail: {g.branches.rzeszow.email}</p>
+                <p>Telefon: <a href={`tel:${g.phoneMobile.replace(/\s/g, '')}`} className="hover:text-pink transition-colors">{g.phoneMobile}</a></p>
+                <p>E-mail: <a href={`mailto:${g.branches.rzeszow.email}`} className="hover:text-pink transition-colors">{g.branches.rzeszow.email}</a></p>
               </div>
             </div>
 

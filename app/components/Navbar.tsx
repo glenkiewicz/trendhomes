@@ -393,8 +393,8 @@ export default function Navbar() {
 						{MOCKUP_DATA.global.cta.umowPomiar}
 					</Link>
 					<div className="flex flex-col gap-1 text-sm text-white/50 sm:flex-row sm:gap-6">
-						<span>{MOCKUP_DATA.global.phone}</span>
-						<span>{MOCKUP_DATA.global.email}</span>
+						<a href={`tel:${MOCKUP_DATA.global.phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">{MOCKUP_DATA.global.phone}</a>
+						<a href={`mailto:${MOCKUP_DATA.global.email}`} className="hover:text-white transition-colors">{MOCKUP_DATA.global.email}</a>
 					</div>
 				</div>
 			</div>

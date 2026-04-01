@@ -81,13 +81,13 @@ export default function Footer() {
 						</h3>
 						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light md:mt-6">
 							<p>{g.address.street}, {g.address.city}</p>
-							<p>E-mail: {g.branches.sanok.email}</p>
-							<p>Telefon: {g.branches.sanok.phone}</p>
+							<p>E-mail: <a href={`mailto:${g.branches.sanok.email}`} className="hover:text-white transition-colors">{g.branches.sanok.email}</a></p>
+							<p>Telefon: <a href={`tel:${g.branches.sanok.phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">{g.branches.sanok.phone}</a></p>
 						</div>
 						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light">
 							<p>{g.branches.rzeszow.label}</p>
-							<p>E-mail: {g.branches.rzeszow.email}</p>
-							<p>Telefon: {g.branches.rzeszow.phone} </p>
+							<p>E-mail: <a href={`mailto:${g.branches.rzeszow.email}`} className="hover:text-white transition-colors">{g.branches.rzeszow.email}</a></p>
+							<p>Telefon: <a href={`tel:${g.branches.rzeszow.phone.replace(/\s/g, '')}`} className="hover:text-white transition-colors">{g.branches.rzeszow.phone}</a></p>
 						</div>
 						<div className="mt-4 space-y-1 text-sm leading-relaxed text-light">
 							<p>NIP {g.legal.nip}</p>

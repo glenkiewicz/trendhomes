@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     const errMsg = error instanceof Error ? error.message : String(error);
     console.error("Contact form error:", errMsg, error);
     return NextResponse.json(
-      { error: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.", debug: process.env.NODE_ENV === "development" ? errMsg : undefined },
+      { error: "Nie udało się wysłać wiadomości. Spróbuj ponownie później." },
       { status: 500 }
     );
   }
