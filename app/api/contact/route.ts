@@ -46,9 +46,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Contact form error:", error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error("Contact form error:", errMsg, error);
     return NextResponse.json(
-      { error: "Nie udało się wysłać wiadomości. Spróbuj ponownie później." },
+      { error: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.", debug: process.env.NODE_ENV === "development" ? errMsg : undefined },
       { status: 500 }
     );
   }
