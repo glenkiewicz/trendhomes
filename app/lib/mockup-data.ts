@@ -350,7 +350,7 @@ export const MOCKUP_DATA = {
 					title: "Bezpieczeństwo i normy prawne",
 					description:
 						"Przy lokalach usługowych i inwestycjach biznesowych zwracamy szczególną uwagę na wymagania ppoż. i odbiory techniczne. Dobieramy stolarkę tak, żeby spełniała normy, a dokumenty i parametry produktu były przygotowane do kontroli i odbioru.",
-					image: "/images/why-4a.jpg",
+					image: "/images/why-4b.webp",
 				},
 				{
 					title: "Porządek na budowie i przy remoncie",
