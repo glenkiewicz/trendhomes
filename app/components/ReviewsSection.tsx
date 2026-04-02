@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
 import { MOCKUP_DATA } from "../lib/mockup-data";
@@ -11,21 +10,49 @@ const reviews = d.items;
 const GAP_LG = 32;
 const GAP_SM = 24;
 
-function Stars() {
+const GOOGLE_COLORS = ["#4285F4", "#EA4335", "#FBBC05", "#34A853", "#FF6D01", "#46BDC6"];
+
+function getInitials(name: string) {
+	return name
+		.split(" ")
+		.map((w) => w[0])
+		.join("")
+		.toUpperCase()
+		.slice(0, 2);
+}
+
+function getColor(name: string) {
+	let hash = 0;
+	for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+	return GOOGLE_COLORS[Math.abs(hash) % GOOGLE_COLORS.length];
+}
+
+function Stars({ rating }: { rating: number }) {
 	return (
-		<div className="flex gap-1">
+		<div className="flex gap-0.5">
 			{Array.from({ length: 5 }).map((_, i) => (
 				<svg
 					key={i}
-					width="20"
-					height="20"
-					viewBox="0 0 20 20"
-					fill="#f5a623"
+					width="18"
+					height="18"
+					viewBox="0 0 18 18"
+					fill={i < rating ? "#FBBC05" : "#E0E0E0"}
 				>
-					<path d="M10 1l2.47 5.56L18 7.28l-4 4.08 1 5.94L10 14.56l-5 2.74 1-5.94-4-4.08 5.53-.72L10 1z" />
+					<path d="M9 1l2.22 5L16.2 6.55l-3.6 3.67.9 5.35L9 13.1l-4.5 2.47.9-5.35-3.6-3.67L7.78 6 9 1z" />
 				</svg>
 			))}
 		</div>
+	);
+}
+
+function GoogleIcon() {
+	return (
+		<svg width="20" height="20" viewBox="0 0 48 48">
+			<path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+			<path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+			<path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.76-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/>
+			<path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/>
+		</svg>
 	);
 }
 
@@ -168,60 +195,71 @@ export default function ReviewsSection() {
 											: "100%",
 								}}
 							>
-								{/* Avatar + name */}
-								<div className="flex items-center gap-4">
-									<div className="relative size-[46px] shrink-0 overflow-hidden rounded-full bg-dark/10">
-										<Image
-											src={review.avatar}
-											alt={review.name}
-											fill
-											sizes="46px"
-											className="object-cover"
-										/>
+								{/* Avatar + name + Google icon */}
+								<div className="flex items-center justify-between">
+									<div className="flex items-center gap-3">
+										<div
+											className="flex size-[40px] shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
+											style={{ backgroundColor: getColor(review.name) }}
+										>
+											{getInitials(review.name)}
+										</div>
+										<div>
+											<span className="text-base font-bold text-dark md:text-lg">
+												{review.name}
+											</span>
+											<p className="text-xs text-dark/50">
+												{review.date}
+											</p>
+										</div>
 									</div>
-									<span className="text-lg font-bold text-dark md:text-xl">
-										{review.name}
-									</span>
+									<GoogleIcon />
 								</div>
 
 								{/* Stars */}
-								<Stars />
+								<Stars rating={review.rating} />
 
 								{/* Review text */}
 								<p className="flex-1 text-sm leading-relaxed text-dark md:text-base">
 									{review.text}
 								</p>
-
-								{/* Date */}
-								<span className="text-sm text-dark/50 md:text-sm">
-									{review.date}
-								</span>
 							</div>
 						))}
 					</div>
 				</div>
 
-				{/* Pagination dots */}
-				{totalDots > 1 && (
-					<div className="mt-8 flex items-center justify-center gap-3 md:mt-12">
-						{Array.from({ length: totalDots }).map((_, i) => (
-							<button
-								key={i}
-								onClick={() => setCurrent(i)}
-								aria-label={`Pozycja ${i + 1}`}
-								className="flex h-6 items-center py-2"
-							>
-								<span
-									className={`block h-[3px] rounded-full transition-all duration-300 ${
-										i === current
-											? "w-10 bg-pink"
-											: "w-6 bg-dark/20 hover:bg-dark/40"
-									}`}
-								/>
-							</button>
-						))}
-					</div>
-				)}
+				{/* Pagination dots + Google link */}
+				<div className="mt-8 flex flex-col items-center gap-6 md:mt-12">
+					{totalDots > 1 && (
+						<div className="flex items-center gap-3">
+							{Array.from({ length: totalDots }).map((_, i) => (
+								<button
+									key={i}
+									onClick={() => setCurrent(i)}
+									aria-label={`Pozycja ${i + 1}`}
+									className="flex h-6 items-center py-2"
+								>
+									<span
+										className={`block h-[3px] rounded-full transition-all duration-300 ${
+											i === current
+												? "w-10 bg-pink"
+												: "w-6 bg-dark/20 hover:bg-dark/40"
+										}`}
+									/>
+								</button>
+							))}
+						</div>
+					)}
+					<a
+						href={d.googleMapsUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="inline-flex items-center gap-2 text-sm font-medium text-dark/70 transition-colors hover:text-dark"
+					>
+						<GoogleIcon />
+						Zobacz wszystkie opinie w Google
+					</a>
+				</div>
 			</div>
 		</section>
 	);
