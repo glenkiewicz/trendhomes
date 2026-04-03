@@ -230,7 +230,10 @@ export const MOCKUP_DATA = {
 		},
 		bottomBar: {
 			legalLinks: [
-				{ label: "Polityka prywatności", href: "/polityka-prywatnosci" },
+				{
+					label: "Polityka prywatności",
+					href: "/polityka-prywatnosci",
+				},
 				{ label: "Polityka cookies", href: "/polityka-cookies" },
 				{ label: "Regulamin strony", href: "/regulamin" },
 			],
@@ -781,20 +784,20 @@ export const MOCKUP_DATA = {
 					{
 						image: "/images/opinie-b2b-1.jpg",
 						text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-						name: "Jan Kowalski,",
-						role: "prezes zarządu DevelopRes",
+						name: "",
+						role: "",
 					},
 					{
 						image: "/images/opinie-b2b-2.jpg",
 						text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-						name: "Jan Kowalski,",
-						role: "prezes zarządu DevelopRes",
+						name: "",
+						role: "",
 					},
 					{
 						image: "/images/opinie-b2b-3.jpg",
 						text: "Nunc nunc molestie sit risus nec at ac tristique lectus. Adipiscing elementum commodo sit turpis. Ut sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.\n\nAliquet in ac sodales porttitor ornare id nibh rhoncus tempus. Eget ac hac nunc nec malesuada pretium feugiat euismod.\n\nUt sed imperdiet pulvinar quis iaculis. Odio consequat eget dignissim molestie facilisi malesuada aliquam justo leo.",
-						name: "Jan Kowalski,",
-						role: "prezes zarządu DevelopRes",
+						name: "",
+						role: "",
 					},
 				],
 			},
