@@ -253,7 +253,7 @@ export default function ContactSection() {
                     />
                     <span className="text-sm leading-relaxed text-dark">
                       {d.form.privacyText}{" "}
-                      <a href="#" className="text-dark underline">
+                      <a href="/polityka-prywatnosci" className="text-dark underline">
                         {d.form.privacyLink}
                       </a>
                     </span>

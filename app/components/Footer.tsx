@@ -123,7 +123,17 @@ export default function Footer() {
 				{/* Bottom bar */}
 				<div className="mt-10 flex flex-col gap-3 border-t border-white/20 py-5 sm:flex-row sm:items-center sm:justify-between md:mt-16">
 					<p className="text-sm text-light md:text-base">
-						{f.bottomBar.legal}
+						{f.bottomBar.legalLinks.map((link, i) => (
+							<span key={link.href}>
+								{i > 0 && " | "}
+								<Link
+									href={link.href}
+									className={`transition-colors hover:text-white ${hoverUnderline}`}
+								>
+									{link.label}
+								</Link>
+							</span>
+						))}
 					</p>
 					<p className="text-sm text-light md:text-base">
 						{f.bottomBar.copyright}

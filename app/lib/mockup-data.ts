@@ -229,7 +229,11 @@ export const MOCKUP_DATA = {
 			},
 		},
 		bottomBar: {
-			legal: "Polityka prywatności | Polityka cookies | Regulamin strony",
+			legalLinks: [
+				{ label: "Polityka prywatności", href: "/polityka-prywatnosci" },
+				{ label: "Polityka cookies", href: "/polityka-cookies" },
+				{ label: "Regulamin strony", href: "/regulamin" },
+			],
 			copyright: "\u00A9 2026 Trendhomes. Wszelkie prawa zastrzeżone.",
 		},
 	},
