@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: "Trendhomes - Okna, drzwi i rolety z montażem",
   description:
     "Projektujemy, dostarczamy i montujemy stolarkę okienną oraz drzwiową dla nowych domów, remontów i lokali usługowych w Bieszczadach.",
+  verification: {
+    google: "iaevyNZvkLCyv6pH6NKGXcHDFmkN79cH6MXYAF0h1KA",
+  },
 };
 
 export default function RootLayout({
