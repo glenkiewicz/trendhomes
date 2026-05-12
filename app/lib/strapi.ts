@@ -3,6 +3,7 @@ import type {
   StrapiList,
   StrapiMedia,
   StrapiOne,
+  StrapiProductSystem,
 } from "../types/strapi";
 
 const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
@@ -103,4 +104,87 @@ export async function listArticleSlugs(): Promise<{ slug: string; updatedAt: str
 export function formatPlDate(iso: string): string {
   const [y, m, d] = iso.split("-");
   return `${d}.${m}.${y}`;
+}
+
+const PRODUCT_POPULATE = {
+  "populate[0]": "mainImage",
+  "populate[1]": "crossSection",
+  "populate[2]": "gallery",
+  "populate[3]": "manufacturer",
+  "populate[4]": "manufacturer.logo",
+  "populate[5]": "features",
+  "populate[6]": "featureSections",
+  "populate[7]": "featureSections.blocks",
+  "populate[8]": "featureSections.blocks.image",
+  "populate[9]": "colors",
+  "populate[10]": "colors.image",
+  "populate[11]": "seo",
+  "populate[12]": "seo.ogImage",
+} as const;
+
+export async function getProductSystemBySlug(
+  slug: string,
+  productType?: "pvc" | "wooden" | "aluminum" | "steel"
+): Promise<StrapiProductSystem | null> {
+  const query: Record<string, string | number> = {
+    ...PRODUCT_POPULATE,
+    "filters[slug][$eq]": slug,
+    "pagination[pageSize]": 1,
+  };
+  if (productType) query["filters[productType][$eq]"] = productType;
+  const data = await strapiFetch<StrapiList<StrapiProductSystem>>("/product-systems", {
+    query,
+    tags: [`product:${slug}`, "products"],
+  });
+  return data.data[0] ?? null;
+}
+
+export async function listProductSystems(
+  productType: "pvc" | "wooden" | "aluminum" | "steel"
+): Promise<StrapiProductSystem[]> {
+  const data = await strapiFetch<StrapiList<StrapiProductSystem>>("/product-systems", {
+    query: {
+      ...PRODUCT_POPULATE,
+      "filters[productType][$eq]": productType,
+      sort: "name:asc",
+      "pagination[pageSize]": 100,
+    },
+    tags: ["products"],
+  });
+  return data.data;
+}
+
+export async function listProductSystemSlugs(
+  productType?: "pvc" | "wooden" | "aluminum" | "steel"
+): Promise<{ slug: string; productType: string; updatedAt: string }[]> {
+  const query: Record<string, string | number> = {
+    "fields[0]": "slug",
+    "fields[1]": "productType",
+    "fields[2]": "updatedAt",
+    "pagination[pageSize]": 1000,
+  };
+  if (productType) query["filters[productType][$eq]"] = productType;
+  const data = await strapiFetch<StrapiList<{ slug: string; productType: string; updatedAt: string }>>(
+    "/product-systems",
+    { query, tags: ["products"] }
+  );
+  return data.data;
+}
+
+export async function getRelatedProductSystems(
+  excludeSlug: string,
+  productType: "pvc" | "wooden" | "aluminum" | "steel",
+  limit = 3
+): Promise<StrapiProductSystem[]> {
+  const data = await strapiFetch<StrapiList<StrapiProductSystem>>("/product-systems", {
+    query: {
+      ...PRODUCT_POPULATE,
+      "filters[productType][$eq]": productType,
+      "filters[slug][$ne]": excludeSlug,
+      "pagination[pageSize]": limit,
+      sort: "name:asc",
+    },
+    tags: ["products"],
+  });
+  return data.data;
 }

@@ -51,6 +51,75 @@ export type StrapiArticle = {
   updatedAt: string;
 };
 
+export type StrapiManufacturer = {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  logo: StrapiMedia | null;
+};
+
+export type StrapiColorSwatch = {
+  id: number;
+  documentId: string;
+  code: string;
+  slug: string;
+  name: string | null;
+  image: StrapiMedia;
+  paletteTag: "standard" | "wooden";
+  sortOrder: number;
+  manufacturer?: StrapiManufacturer | null;
+};
+
+export type StrapiFeatureBlock = {
+  id: number;
+  title: string;
+  text: string;
+  image: StrapiMedia | null;
+};
+
+export type StrapiFeatureSection = {
+  id: number;
+  headingLines: string[];
+  blocks: StrapiFeatureBlock[];
+};
+
+export type StrapiFeatureRow = {
+  id: number;
+  label: string;
+  value: string;
+};
+
+export type StrapiProductSystem = {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  fullName: string;
+  productType: "pvc" | "wooden" | "aluminum" | "steel";
+  manufacturer: StrapiManufacturer | null;
+  mainImage: StrapiMedia;
+  crossSection: StrapiMedia | null;
+  gallery: StrapiMedia[];
+  depth: string | null;
+  glazing: string | null;
+  seals: string | null;
+  chambers: string | null;
+  layers: string | null;
+  uw: string | null;
+  uwNote: string | null;
+  description: string;
+  manufacturerDescription: string | null;
+  features: StrapiFeatureRow[];
+  featureSections: StrapiFeatureSection[];
+  colors: StrapiColorSwatch[];
+  ctaText: string | null;
+  seo: StrapiSEO;
+  publishedAt: string;
+  updatedAt: string;
+};
+
 export type StrapiList<T> = {
   data: T[];
   meta: { pagination: { page: number; pageSize: number; pageCount: number; total: number } };
