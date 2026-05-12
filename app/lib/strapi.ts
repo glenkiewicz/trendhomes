@@ -4,6 +4,8 @@ import type {
   StrapiMedia,
   StrapiOne,
   StrapiProductSystem,
+  StrapiRealization,
+  StrapiReview,
 } from "../types/strapi";
 
 const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
@@ -185,6 +187,39 @@ export async function getRelatedProductSystems(
       sort: "name:asc",
     },
     tags: ["products"],
+  });
+  return data.data;
+}
+
+export async function listRealizations(
+  category?: "residential" | "pergola" | "b2b" | "various" | "office"
+): Promise<StrapiRealization[]> {
+  const query: Record<string, string | number> = {
+    "populate[0]": "image",
+    sort: "sortOrder:asc",
+    "pagination[pageSize]": 200,
+  };
+  if (category) query["filters[category][$eq]"] = category;
+  const data = await strapiFetch<StrapiList<StrapiRealization>>("/realizations", {
+    query,
+    tags: ["realizations", category ? `realizations:${category}` : "realizations"],
+  });
+  return data.data;
+}
+
+export async function listReviews(
+  opts: { featured?: boolean; source?: "google" | "manual" | "b2b"; limit?: number } = {}
+): Promise<StrapiReview[]> {
+  const query: Record<string, string | number | boolean> = {
+    "populate[0]": "image",
+    sort: "sortOrder:asc",
+    "pagination[pageSize]": opts.limit ?? 100,
+  };
+  if (opts.featured !== undefined) query["filters[featured][$eq]"] = opts.featured;
+  if (opts.source) query["filters[source][$eq]"] = opts.source;
+  const data = await strapiFetch<StrapiList<StrapiReview>>("/reviews", {
+    query,
+    tags: ["reviews"],
   });
   return data.data;
 }

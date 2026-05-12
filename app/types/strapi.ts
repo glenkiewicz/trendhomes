@@ -120,6 +120,41 @@ export type StrapiProductSystem = {
   updatedAt: string;
 };
 
+export type StrapiRealization = {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string | null;
+  slug: string;
+  description: string | null;
+  location: string | null;
+  category: "residential" | "pergola" | "b2b" | "various" | "office";
+  image: StrapiMedia;
+  gallery: StrapiMedia[];
+  date: string | null;
+  featured: boolean;
+  sortOrder: number;
+  publishedAt: string;
+  updatedAt: string;
+};
+
+export type StrapiReview = {
+  id: number;
+  documentId: string;
+  authorName: string;
+  text: string;
+  date: string;
+  rating: number;
+  source: "google" | "manual" | "b2b";
+  featured: boolean;
+  sortOrder: number;
+  location: string | null;
+  role: string | null;
+  image: StrapiMedia | null;
+  publishedAt: string;
+  updatedAt: string;
+};
+
 export type StrapiList<T> = {
   data: T[];
   meta: { pagination: { page: number; pageSize: number; pageCount: number; total: number } };

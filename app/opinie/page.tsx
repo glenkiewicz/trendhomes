@@ -10,11 +10,15 @@ import MapSection from "../components/MapSection";
 import Footer from "../components/Footer";
 import AnimateOnScroll from "../components/AnimateOnScroll";
 import { MOCKUP_DATA } from "../lib/mockup-data";
+import { listReviews } from "../lib/strapi";
 
 const opinie = MOCKUP_DATA.pages.opinie;
 const cta = MOCKUP_DATA.global.cta;
+const reviewsCopy = MOCKUP_DATA.home.reviews;
 
-export default function OpiniePage() {
+export default async function OpiniePage() {
+  const reviews = await listReviews({ featured: true });
+
   return (
     <>
       <div className="sticky top-0 z-50">
@@ -69,7 +73,17 @@ export default function OpiniePage() {
 
       {/* Reviews carousel */}
       <AnimateOnScroll>
-        <ReviewsSection />
+        <ReviewsSection
+          heading={reviewsCopy.heading}
+          subtitle={reviewsCopy.subtitle}
+          googleMapsUrl={reviewsCopy.googleMapsUrl}
+          reviews={reviews.map((r) => ({
+            name: r.authorName,
+            text: r.text,
+            date: r.date,
+            rating: r.rating,
+          }))}
+        />
       </AnimateOnScroll>
 
       {/* B2B testimonials */}

@@ -16,8 +16,14 @@ import BrandsSection from "./components/BrandsSection";
 import ContactSection from "./components/ContactSection";
 import MapSection from "./components/MapSection";
 import Footer from "./components/Footer";
+import { MOCKUP_DATA } from "./lib/mockup-data";
+import { listReviews } from "./lib/strapi";
 
-export default function Home() {
+const reviewsCopy = MOCKUP_DATA.home.reviews;
+
+export default async function Home() {
+  const reviews = await listReviews({ featured: true });
+
   return (
     <>
       <div className="sticky top-0 z-50">
@@ -47,7 +53,17 @@ export default function Home() {
         <RealizationsSection />
       </AnimateOnScroll>
       <AnimateOnScroll>
-        <ReviewsSection />
+        <ReviewsSection
+          heading={reviewsCopy.heading}
+          subtitle={reviewsCopy.subtitle}
+          googleMapsUrl={reviewsCopy.googleMapsUrl}
+          reviews={reviews.map((r) => ({
+            name: r.authorName,
+            text: r.text,
+            date: r.date,
+            rating: r.rating,
+          }))}
+        />
       </AnimateOnScroll>
       <AnimateOnScroll>
         <BlogSection />
