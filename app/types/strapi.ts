@@ -155,6 +155,214 @@ export type StrapiReview = {
   updatedAt: string;
 };
 
+// ─── Dynamic Zone block types ───────────────────────────────────────────────
+
+export type BlockHero = {
+  __component: "blocks.hero";
+  id: number;
+  slides: { id: number; image: StrapiMedia; titleLines: string[]; description: string }[];
+  bottomTabs: string[] | null;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
+export type BlockFeatureGrid = {
+  __component: "blocks.feature-grid";
+  id: number;
+  variant: "solutions" | "why" | "investments" | "generic";
+  headingLines: string[];
+  intro: string | null;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+  items: { id: number; title: string; description: string; image: StrapiMedia | null; icon: StrapiMedia | null }[];
+};
+
+export type BlockStepsList = {
+  __component: "blocks.steps-list";
+  id: number;
+  headingLines: string[];
+  subtitle: string | null;
+  steps: { id: number; number: string; title: string; description: string }[];
+  investmentsHeading: string[] | null;
+  investments: { id: number; icon: StrapiMedia; title: string; description: string }[];
+};
+
+export type BlockCtaBanner = {
+  __component: "blocks.cta-banner";
+  id: number;
+  variant: "cleanAir" | "pergola" | "generic";
+  headingLines: string[];
+  description: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  background: StrapiMedia | null;
+};
+
+export type BlockProductGrid = {
+  __component: "blocks.product-grid";
+  id: number;
+  headingLines: string[];
+  filter: "pvc" | "wooden" | "aluminum" | "steel" | "all";
+  limit: number;
+  selected: StrapiProductSystem[];
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
+export type BlockRealizationsGrid = {
+  __component: "blocks.realizations-grid";
+  id: number;
+  headingLines: string[];
+  description: string | null;
+  category: "residential" | "pergola" | "b2b" | "various" | "office" | "all";
+  images: { id: number; image: StrapiMedia; alt: string; caption: string | null }[];
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
+export type BlockReviewsCarousel = {
+  __component: "blocks.reviews-carousel";
+  id: number;
+  headingLines: string[];
+  subtitle: string | null;
+  googleMapsUrl: string | null;
+  source: "all" | "google" | "manual" | "b2b";
+};
+
+export type BlockBlogList = {
+  __component: "blocks.blog-list";
+  id: number;
+  headingLines: string[];
+  description: string | null;
+  limit: number;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
+export type BlockFaq = {
+  __component: "blocks.faq";
+  id: number;
+  headingLines: string[];
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+  items: { id: number; question: string; answer: string }[];
+  emitJsonLd: boolean;
+};
+
+export type BlockBrandsStrip = {
+  __component: "blocks.brands-strip";
+  id: number;
+  headingLines: string[] | null;
+  description: string | null;
+  logos: { id: number; name: string; logo: StrapiMedia; url: string | null }[];
+};
+
+export type BlockContactForm = {
+  __component: "blocks.contact-form";
+  id: number;
+  variant: "default" | "business";
+  headingLines: string[];
+  description: string | null;
+};
+
+export type BlockTwoColumn = {
+  __component: "blocks.two-column";
+  id: number;
+  image: StrapiMedia;
+  imageAlt: string | null;
+  imagePosition: "left" | "right";
+  headingLines: string[];
+  paragraphs: string[] | null;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
+export type BlockRichText = {
+  __component: "blocks.rich-text";
+  id: number;
+  headingLines: string[] | null;
+  body: string;
+};
+
+export type BlockGallery = {
+  __component: "blocks.gallery";
+  id: number;
+  headingLines: string[] | null;
+  columns: number;
+  images: { id: number; image: StrapiMedia; alt: string; caption: string | null }[];
+};
+
+export type BlockColorCarousel = {
+  __component: "blocks.color-carousel";
+  id: number;
+  headingLines: string[];
+  wooden: boolean;
+  manufacturerSlug: string | null;
+};
+
+export type AnyBlock =
+  | BlockHero
+  | BlockFeatureGrid
+  | BlockStepsList
+  | BlockCtaBanner
+  | BlockProductGrid
+  | BlockRealizationsGrid
+  | BlockReviewsCarousel
+  | BlockBlogList
+  | BlockFaq
+  | BlockBrandsStrip
+  | BlockContactForm
+  | BlockTwoColumn
+  | BlockRichText
+  | BlockGallery
+  | BlockColorCarousel;
+
+export type StrapiHomePage = {
+  id: number;
+  documentId: string;
+  title: string;
+  sections: AnyBlock[];
+  seo: StrapiSEO;
+  publishedAt: string;
+  updatedAt: string;
+};
+
+export type StrapiPage = {
+  id: number;
+  documentId: string;
+  title: string;
+  slug: string;
+  kind: "standard" | "legal";
+  heroImage: StrapiMedia | null;
+  heroHeadingLines: string[] | null;
+  heroDescription: string | null;
+  heroCtaLabel: string | null;
+  heroCtaUrl: string | null;
+  breadcrumb: string[] | null;
+  sections: AnyBlock[];
+  seo: StrapiSEO;
+  publishedAt: string;
+  updatedAt: string;
+};
+
+export type StrapiProductCategoryPage = {
+  id: number;
+  documentId: string;
+  title: string;
+  slug: string;
+  primaryProductType: string;
+  heroImage: StrapiMedia | null;
+  heroHeadingLines: string[] | null;
+  heroDescription: string | null;
+  heroCtaLabel: string | null;
+  heroCtaUrl: string | null;
+  breadcrumb: string[] | null;
+  sections: AnyBlock[];
+  seo: StrapiSEO;
+  publishedAt: string;
+  updatedAt: string;
+};
+
 export type StrapiList<T> = {
   data: T[];
   meta: { pagination: { page: number; pageSize: number; pageCount: number; total: number } };
