@@ -3,9 +3,10 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
-import { blogPosts } from "../lib/blog-data";
 import BlogContent from "./BlogContent";
 import { MOCKUP_DATA } from "../lib/mockup-data";
+import { listArticles, mediaUrl, formatPlDate } from "../lib/strapi";
+import type { BlogPost, BlogCategory } from "../lib/blog-data";
 
 const d = MOCKUP_DATA.pages.blog;
 
@@ -14,8 +15,18 @@ export const metadata = {
   description: d.metadata.description,
 };
 
-export default function BlogPage() {
-  const featured = blogPosts[0];
+export default async function BlogPage() {
+  const articles = await listArticles();
+  const posts: BlogPost[] = articles.map((a) => ({
+    slug: a.slug,
+    image: mediaUrl(a.coverImage, "large"),
+    title: a.title,
+    excerpt: a.excerpt,
+    content: a.content,
+    category: (a.category?.name ?? "Porady") as BlogCategory,
+    date: formatPlDate(a.publishedDate),
+  }));
+  const featured = posts[0];
 
   return (
     <>
@@ -63,19 +74,21 @@ export default function BlogPage() {
             <p className="max-w-[552px] text-sm leading-relaxed text-white md:text-base lg:text-lg">
               {d.hero.description}
             </p>
-            <div>
-              <Link
-                href={`/blog/${featured.slug}`}
-                className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-8 sm:text-base"
-              >
-                {d.hero.cta}
-              </Link>
-            </div>
+            {featured && (
+              <div>
+                <Link
+                  href={`/blog/${featured.slug}`}
+                  className="btn-pink h-11 px-6 text-sm sm:h-[52px] sm:px-8 sm:text-base"
+                >
+                  {d.hero.cta}
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      <BlogContent posts={blogPosts} />
+      <BlogContent posts={posts} />
 
       <Footer />
     </>
