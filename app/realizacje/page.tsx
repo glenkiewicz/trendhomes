@@ -1,34 +1,18 @@
-import type { StrapiRealization } from "../types/strapi";
-import RealizacjeContent, { type RealizationItem } from "./RealizacjeContent";
-import { listRealizations, mediaUrl } from "../lib/strapi";
-import { MOCKUP_DATA } from "../lib/mockup-data";
+import { notFound } from "next/navigation";
+import { getPageBySlug } from "../lib/strapi";
+import { toMetadata } from "../lib/seo";
+import PageRenderer from "../components/blocks/PageRenderer";
 
-const meta = MOCKUP_DATA.pages.realizacje;
+const SLUG = "realizacje";
 
-export const metadata = {
-  title: "Realizacje Trendhomes – portfolio okien, drzwi i pergoli",
-  description: meta.hero.description,
-};
-
-function toRealItem(r: StrapiRealization): RealizationItem {
-  return {
-    title: r.subtitle ? `${r.title}\n${r.subtitle}` : r.title,
-    image: mediaUrl(r.image, "medium"),
-  };
+export async function generateMetadata() {
+  const page = await getPageBySlug(SLUG);
+  if (!page) return {};
+  return toMetadata(page.seo, `/${SLUG}`);
 }
 
-export default async function RealizacjePage() {
-  const [residential, pergola, business] = await Promise.all([
-    listRealizations("residential"),
-    listRealizations("pergola"),
-    listRealizations("b2b"),
-  ]);
-
-  return (
-    <RealizacjeContent
-      residential={residential.map(toRealItem)}
-      pergola={pergola.map(toRealItem)}
-      business={business.map(toRealItem)}
-    />
-  );
+export default async function Page() {
+  const page = await getPageBySlug(SLUG);
+  if (!page) notFound();
+  return <PageRenderer page={page} />;
 }
