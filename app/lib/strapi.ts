@@ -210,34 +210,38 @@ export async function listRealizations(
   return data.data;
 }
 
-/**
- * Populate spec for any DZ-bearing page (HomePage, Page, ProductCategoryPage).
- * Walks every block component and pulls media + nested relations.
- */
-const PAGE_POPULATE: Record<string, string> = {
-  "populate[seo][populate]": "ogImage",
-  "populate[heroImage]": "true",
-  "populate[sections][on][blocks.hero][populate][slides][populate]": "image",
-  "populate[sections][on][blocks.feature-grid][populate][items][populate]": "image,icon",
-  "populate[sections][on][blocks.steps-list][populate][steps]": "true",
-  "populate[sections][on][blocks.steps-list][populate][investments][populate]": "icon",
-  "populate[sections][on][blocks.cta-banner][populate]": "background",
-  "populate[sections][on][blocks.product-grid][populate][selected][populate]": "mainImage,manufacturer",
-  "populate[sections][on][blocks.realizations-grid][populate][images][populate]": "image",
+/** Sections populate — shared between any DZ-bearing entity.
+ *  Uses Strapi v5's "on each component" syntax so each block type gets the
+ *  populate path it actually needs. `*` at the deepest level pulls all media. */
+const SECTIONS_POPULATE: Record<string, string> = {
+  "populate[seo][populate]": "*",
+  "populate[sections][on][blocks.hero][populate][slides][populate]": "*",
+  "populate[sections][on][blocks.feature-grid][populate][items][populate]": "*",
+  "populate[sections][on][blocks.steps-list][populate][steps][populate]": "*",
+  "populate[sections][on][blocks.steps-list][populate][investments][populate]": "*",
+  "populate[sections][on][blocks.cta-banner][populate]": "*",
+  "populate[sections][on][blocks.product-grid][populate][selected][populate]": "*",
+  "populate[sections][on][blocks.realizations-grid][populate][images][populate]": "*",
   "populate[sections][on][blocks.reviews-carousel][populate]": "*",
   "populate[sections][on][blocks.blog-list][populate]": "*",
-  "populate[sections][on][blocks.faq][populate]": "items",
-  "populate[sections][on][blocks.brands-strip][populate][logos][populate]": "logo",
+  "populate[sections][on][blocks.faq][populate]": "*",
+  "populate[sections][on][blocks.brands-strip][populate][logos][populate]": "*",
   "populate[sections][on][blocks.contact-form][populate]": "*",
-  "populate[sections][on][blocks.two-column][populate]": "image",
+  "populate[sections][on][blocks.two-column][populate]": "*",
   "populate[sections][on][blocks.rich-text][populate]": "*",
-  "populate[sections][on][blocks.gallery][populate][images][populate]": "image",
+  "populate[sections][on][blocks.gallery][populate][images][populate]": "*",
   "populate[sections][on][blocks.color-carousel][populate]": "*",
+};
+
+/** Adds heroImage on top of sections populate — for Page + ProductCategoryPage. */
+const PAGE_POPULATE: Record<string, string> = {
+  ...SECTIONS_POPULATE,
+  "populate[heroImage]": "true",
 };
 
 export async function getHomePage(): Promise<StrapiHomePage | null> {
   const data = await strapiFetch<StrapiOne<StrapiHomePage>>("/home-page", {
-    query: PAGE_POPULATE,
+    query: SECTIONS_POPULATE,
     tags: ["home"],
   });
   return data.data ?? null;
