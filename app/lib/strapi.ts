@@ -271,6 +271,24 @@ export async function getProductCategoryPageBySlug(slug: string): Promise<Strapi
   return data.data[0] ?? null;
 }
 
+export async function listColorSwatches(
+  opts: { paletteTag?: "standard" | "wooden"; manufacturerSlug?: string } = {}
+): Promise<{ id: number; code: string; image: StrapiMedia; sortOrder: number }[]> {
+  const query: Record<string, string | number> = {
+    "populate[0]": "image",
+    sort: "sortOrder:asc",
+    "pagination[pageSize]": 500,
+  };
+  if (opts.paletteTag) query["filters[paletteTag][$eq]"] = opts.paletteTag;
+  if (opts.manufacturerSlug)
+    query["filters[manufacturer][slug][$eq]"] = opts.manufacturerSlug;
+  const data = await strapiFetch<StrapiList<{ id: number; code: string; image: StrapiMedia; sortOrder: number }>>(
+    "/color-swatches",
+    { query, tags: ["colors"] }
+  );
+  return data.data;
+}
+
 export async function listReviews(
   opts: { featured?: boolean; source?: "google" | "manual" | "b2b"; limit?: number } = {}
 ): Promise<StrapiReview[]> {

@@ -1,24 +1,28 @@
 /**
- * Dynamic Zone renderer.
+ * Dynamic Zone renderer — maps every Strapi `__component` to its frontend block.
  *
- * Maps a Strapi block's `__component` string to a frontend React component.
- * Blocks that don't yet have a CMS-driven implementation fall back to the
- * existing MOCKUP_DATA-backed section component, so the page keeps rendering
- * while individual sections migrate to CMS one by one.
+ * Reviews carousel is provided via the `reviewsRender` callback because it
+ * needs server-side review data + a heading override; the host page already
+ * fetches reviews and passes them down.
+ *
+ * Contact form delegates to the existing ContactSection (which still reads
+ * MOCKUP_DATA for form copy — moves to CMS in Phase 5 with GlobalSettings).
  */
 import type { AnyBlock } from "../../types/strapi";
+import BlogListBlock from "./BlogListBlock";
+import BrandsStripBlock from "./BrandsStripBlock";
+import ColorCarouselBlock from "./ColorCarouselBlock";
 import CtaBannerBlock from "./CtaBannerBlock";
 import FaqBlock from "./FaqBlock";
+import FeatureGridBlock from "./FeatureGridBlock";
+import GalleryBlock from "./GalleryBlock";
+import HeroBlock from "./HeroBlock";
+import ProductGridBlock from "./ProductGridBlock";
+import RealizationsGridBlock from "./RealizationsGridBlock";
+import RichTextBlock from "./RichTextBlock";
+import StepsListBlock from "./StepsListBlock";
+import TwoColumnBlock from "./TwoColumnBlock";
 
-// Section fallbacks (still read from MOCKUP_DATA — migrate gradually).
-import Hero from "../Hero";
-import SolutionsSection from "../SolutionsSection";
-import ProductsSection from "../ProductsSection";
-import WhySection from "../WhySection";
-import StepsSection from "../StepsSection";
-import RealizationsSection from "../RealizationsSection";
-import BlogSection from "../BlogSection";
-import BrandsSection from "../BrandsSection";
 import ContactSection from "../ContactSection";
 
 type Props = {
@@ -33,29 +37,33 @@ export default function DynamicZone({ sections, reviewsRender }: Props) {
         const key = `${block.__component}-${block.id ?? idx}`;
         switch (block.__component) {
           case "blocks.hero":
-            // Hero still reads MOCKUP_DATA — see TODO in Phase 4b
-            return <Hero key={key} />;
+            return <HeroBlock key={key} block={block} />;
           case "blocks.feature-grid":
-            if (block.variant === "solutions") return <SolutionsSection key={key} />;
-            if (block.variant === "why") return <WhySection key={key} />;
-            return null;
+            return <FeatureGridBlock key={key} block={block} />;
           case "blocks.product-grid":
-            return <ProductsSection key={key} />;
+            return <ProductGridBlock key={key} block={block} />;
           case "blocks.cta-banner":
             return <CtaBannerBlock key={key} block={block} />;
           case "blocks.steps-list":
-            return <StepsSection key={key} />;
+            return <StepsListBlock key={key} block={block} />;
           case "blocks.realizations-grid":
-            return <RealizationsSection key={key} />;
+            return <RealizationsGridBlock key={key} block={block} />;
           case "blocks.reviews-carousel":
             return reviewsRender ? <div key={key}>{reviewsRender(block)}</div> : null;
           case "blocks.blog-list":
-            return <BlogSection key={key} />;
+            return <BlogListBlock key={key} block={block} />;
           case "blocks.faq":
             return <FaqBlock key={key} block={block} />;
+          case "blocks.brands-strip":
+            return <BrandsStripBlock key={key} block={block} />;
           case "blocks.two-column":
-            // Used for home "about" section — fallback to BrandsSection for now
-            return <BrandsSection key={key} />;
+            return <TwoColumnBlock key={key} block={block} />;
+          case "blocks.rich-text":
+            return <RichTextBlock key={key} block={block} />;
+          case "blocks.gallery":
+            return <GalleryBlock key={key} block={block} />;
+          case "blocks.color-carousel":
+            return <ColorCarouselBlock key={key} block={block} />;
           case "blocks.contact-form":
             return <ContactSection key={key} />;
           default:
