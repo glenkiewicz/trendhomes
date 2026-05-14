@@ -196,6 +196,30 @@ export async function getRelatedProductSystems(
   return data.data;
 }
 
+export async function listPageSlugs(): Promise<{ slug: string; updatedAt: string }[]> {
+  const data = await strapiFetch<StrapiList<{ slug: string; updatedAt: string }>>("/pages", {
+    query: {
+      "fields[0]": "slug",
+      "fields[1]": "updatedAt",
+      "pagination[pageSize]": 200,
+    },
+    tags: ["pages"],
+  });
+  return data.data;
+}
+
+export async function listProductCategoryPageSlugs(): Promise<{ slug: string; updatedAt: string }[]> {
+  const data = await strapiFetch<StrapiList<{ slug: string; updatedAt: string }>>("/product-category-pages", {
+    query: {
+      "fields[0]": "slug",
+      "fields[1]": "updatedAt",
+      "pagination[pageSize]": 200,
+    },
+    tags: ["product-category-pages"],
+  });
+  return data.data;
+}
+
 export async function listRealizations(
   category?: "residential" | "pergola" | "b2b" | "various" | "office"
 ): Promise<StrapiRealization[]> {

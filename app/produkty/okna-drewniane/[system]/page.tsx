@@ -13,6 +13,9 @@ import {
   mediaUrl,
 } from "../../../lib/strapi";
 import { toMetadata } from "../../../lib/seo";
+import { productJsonLd, breadcrumbJsonLd, jsonLdScript } from "../../../lib/jsonld";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
 
 export async function generateStaticParams() {
   const items = await listProductSystemSlugs("wooden");
@@ -49,8 +52,22 @@ export default async function WoodenSystemDetailPage({
   const featureSection = system.featureSections[0];
   const manufacturerName = system.manufacturer?.name ?? "";
 
+  const breadcrumbs = [
+    { name: "Strona główna", url: `${SITE_URL}/` },
+    { name: "Okna drewniane", url: `${SITE_URL}/produkty/okna-drewniane` },
+    { name: system.name, url: `${SITE_URL}/produkty/okna-drewniane/${system.slug}` },
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(productJsonLd(system, "/produkty/okna-drewniane")) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbs)) }}
+      />
       <main className="bg-white">
         {/* Breadcrumb + Heading */}
         <section className="pt-6 md:pt-10">

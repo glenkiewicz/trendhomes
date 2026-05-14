@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SectionHeading from "../SectionHeading";
 import type { BlockFaq } from "../../types/strapi";
+import { faqJsonLd, jsonLdScript } from "../../lib/jsonld";
 
 export default function FaqBlock({ block }: { block: BlockFaq }) {
   const [openIndex, setOpenIndex] = useState(0);
@@ -15,6 +16,16 @@ export default function FaqBlock({ block }: { block: BlockFaq }) {
   return (
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        {block.emitJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: jsonLdScript(
+                faqJsonLd(block.items.map((it) => ({ question: it.question, answer: it.answer })))
+              ),
+            }}
+          />
+        )}
         <SectionHeading lines={block.headingLines} />
         <div className="mx-auto mt-8 max-w-[954px] md:mt-12">
           {block.items.map((item, i) => (

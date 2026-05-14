@@ -6,6 +6,7 @@ import TopBar from "./components/TopBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { getGlobalSettings, getNavigation } from "./lib/strapi";
+import { localBusinessJsonLd, jsonLdScript } from "./lib/jsonld";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -42,6 +43,12 @@ export default async function RootLayout({
     <html lang="pl">
       <GoogleTagManager gtmId="GTM-MZZRRFM7" />
       <body className={`${inter.variable} antialiased`}>
+        {global && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: jsonLdScript(localBusinessJsonLd(global)) }}
+          />
+        )}
         {global && navigation && (
           <div className="sticky top-0 z-50">
             <TopBar global={global} />

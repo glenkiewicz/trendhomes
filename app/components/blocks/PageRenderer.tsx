@@ -13,8 +13,14 @@ import DynamicZone from "./DynamicZone";
 import { listReviews, mediaUrl } from "../../lib/strapi";
 import type { StrapiPage, StrapiProductCategoryPage } from "../../types/strapi";
 import { MOCKUP_DATA } from "../../lib/mockup-data";
+import { breadcrumbJsonLd, jsonLdScript } from "../../lib/jsonld";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
 const reviewsCopy = MOCKUP_DATA.home.reviews;
+
+function isProductCategoryPage(p: StrapiPage | StrapiProductCategoryPage): p is StrapiProductCategoryPage {
+  return "primaryProductType" in p;
+}
 
 type Props = { page: StrapiPage | StrapiProductCategoryPage };
 
@@ -25,8 +31,22 @@ export default async function PageRenderer({ page }: Props) {
   const titleLines = page.heroHeadingLines ?? [page.title];
   const breadcrumb = page.breadcrumb ?? [];
 
+  const basePath = isProductCategoryPage(page) ? `/produkty/${page.slug}` : `/${page.slug}`;
+  const breadcrumbItems = [
+    { name: "Strona główna", url: `${SITE_URL}/` },
+    ...breadcrumb.slice(1, -1).map((label, i) => ({
+      name: label,
+      url: isProductCategoryPage(page) && i === 0 ? `${SITE_URL}/produkty/okna` : `${SITE_URL}${basePath}`,
+    })),
+    { name: page.title, url: `${SITE_URL}${basePath}` },
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbItems)) }}
+      />
       {heroImageUrl && (
         <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
           <Image

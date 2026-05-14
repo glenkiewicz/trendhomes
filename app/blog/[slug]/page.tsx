@@ -8,6 +8,9 @@ import {
   formatPlDate,
 } from "../../lib/strapi";
 import { toMetadata } from "../../lib/seo";
+import { articleJsonLd, breadcrumbJsonLd, jsonLdScript } from "../../lib/jsonld";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
 
 export async function generateStaticParams() {
   const items = await listArticleSlugs();
@@ -37,8 +40,22 @@ export default async function BlogPostPage({
   const imageSrc = mediaUrl(article.coverImage, "xlarge");
   const categoryLabel = article.category?.name ?? "Porady";
 
+  const breadcrumbs = [
+    { name: "Strona główna", url: `${SITE_URL}/` },
+    { name: "Blog", url: `${SITE_URL}/blog` },
+    { name: article.title, url: `${SITE_URL}/blog/${article.slug}` },
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd(article)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbs)) }}
+      />
       {/* Hero section with image */}
       <section className="relative h-[300px] w-full sm:h-[400px] md:h-[500px]">
         <Image
