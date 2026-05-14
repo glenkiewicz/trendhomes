@@ -363,6 +363,90 @@ export type StrapiProductCategoryPage = {
   updatedAt: string;
 };
 
+// ─── Phase 5: GlobalSettings + Navigation ───────────────────────────────────
+
+export type StrapiBranch = {
+  id: number;
+  name: string;
+  label: string | null;
+  phone: string | null;
+  email: string | null;
+  address: string | null;
+  googleMapsUrl: string | null;
+};
+
+export type StrapiSharedLink = {
+  id: number;
+  label: string;
+  href: string;
+  external: boolean;
+  bold: boolean;
+};
+
+export type StrapiGlobalSettings = {
+  id: number;
+  documentId: string;
+  companyName: string;
+  phone: string;
+  phoneMobile: string | null;
+  email: string;
+  addressStreet: string | null;
+  addressCity: string | null;
+  nip: string | null;
+  regon: string | null;
+  openingHoursWeekdays: string | null;
+  openingHoursSaturday: string | null;
+  socialFacebook: string | null;
+  socialInstagram: string | null;
+  googleMapsUrl: string | null;
+  branches: StrapiBranch[];
+  ctaUmowPomiar: string;
+  ctaUmowPomiar48h: string;
+  ctaSkontaktujSie: string;
+  ctaNapisz: string;
+  topBarLeft: string | null;
+  topBarRight: string | null;
+  footerDescription: string[] | null;
+  footerBottomLinks: StrapiSharedLink[];
+  copyright: string | null;
+};
+
+export type StrapiMenuItem = {
+  id: number;
+  label: string;
+  href: string;
+  hasDropdown: boolean;
+  bold: boolean;
+};
+
+export type StrapiProductLink = {
+  id: number;
+  name: string;
+  href: string;
+  image: StrapiMedia | null;
+};
+
+export type StrapiMenuGroup = {
+  id: number;
+  group: string;
+  items: StrapiProductLink[];
+};
+
+export type StrapiFooterColumn = {
+  id: number;
+  heading: string;
+  links: StrapiSharedLink[];
+};
+
+export type StrapiNavigation = {
+  id: number;
+  documentId: string;
+  mainMenu: StrapiMenuItem[];
+  productCategories: StrapiMenuGroup[];
+  mainProducts: StrapiProductLink[];
+  footerColumns: StrapiFooterColumn[];
+};
+
 export type StrapiList<T> = {
   data: T[];
   meta: { pagination: { page: number; pageSize: number; pageCount: number; total: number } };

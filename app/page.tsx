@@ -1,8 +1,5 @@
-import TopBar from "./components/TopBar";
-import Navbar from "./components/Navbar";
 import AnimateOnScroll from "./components/AnimateOnScroll";
 import MapSection from "./components/MapSection";
-import Footer from "./components/Footer";
 import ReviewsSection from "./components/ReviewsSection";
 import DynamicZone from "./components/blocks/DynamicZone";
 import { getHomePage, listReviews } from "./lib/strapi";
@@ -29,11 +26,6 @@ export default async function Home() {
 
   return (
     <>
-      <div className="sticky top-0 z-50">
-        <TopBar />
-        <Navbar />
-      </div>
-
       <DynamicZone
         sections={sections}
         reviewsRender={(block) => (
@@ -54,7 +46,6 @@ export default async function Home() {
       />
 
       <MapSection />
-      <Footer />
     </>
   );
 }

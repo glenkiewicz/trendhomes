@@ -1,15 +1,12 @@
 /**
- * Renders a Page or ProductCategoryPage: chrome + hero + Dynamic Zone sections.
+ * Renders a Page or ProductCategoryPage: hero + Dynamic Zone sections.
  *
- * Hero is rendered inline from the entity's heroImage/heroHeadingLines fields
- * rather than as a block, because every page has exactly one hero and the
- * shape is consistent. Sections drive everything below the hero.
+ * Chrome (TopBar/Navbar/Footer) is now rendered in app/layout.tsx so this
+ * component only emits the page-specific body. Hero is inline (every page
+ * has exactly one) and sections drive everything below.
  */
 import Image from "next/image";
 import Link from "next/link";
-import TopBar from "../TopBar";
-import Navbar from "../Navbar";
-import Footer from "../Footer";
 import AnimateOnScroll from "../AnimateOnScroll";
 import ReviewsSection from "../ReviewsSection";
 import DynamicZone from "./DynamicZone";
@@ -30,11 +27,6 @@ export default async function PageRenderer({ page }: Props) {
 
   return (
     <>
-      <div className="sticky top-0 z-50">
-        <TopBar />
-        <Navbar />
-      </div>
-
       {heroImageUrl && (
         <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
           <Image
@@ -119,8 +111,6 @@ export default async function PageRenderer({ page }: Props) {
           </AnimateOnScroll>
         )}
       />
-
-      <Footer />
     </>
   );
 }

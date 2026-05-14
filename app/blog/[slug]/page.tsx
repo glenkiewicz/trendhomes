@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Navbar from "../../components/Navbar";
-import TopBar from "../../components/TopBar";
-import Footer from "../../components/Footer";
 import {
   getArticleBySlug,
   listArticleSlugs,
@@ -42,11 +39,6 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <div className="sticky top-0 z-50">
-        <TopBar />
-        <Navbar />
-      </div>
-
       {/* Hero section with image */}
       <section className="relative h-[300px] w-full sm:h-[400px] md:h-[500px]">
         <Image
@@ -161,7 +153,6 @@ export default async function BlogPostPage({
           </div>
         </article>
       </main>
-      <Footer />
     </>
   );
 }

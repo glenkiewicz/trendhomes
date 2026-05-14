@@ -2,6 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
+import TopBar from "./components/TopBar";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { getGlobalSettings, getNavigation } from "./lib/strapi";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -24,15 +28,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [global, navigation] = await Promise.all([
+    getGlobalSettings(),
+    getNavigation(),
+  ]);
+
   return (
     <html lang="pl">
       <GoogleTagManager gtmId="GTM-MZZRRFM7" />
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} antialiased`}>
+        {global && navigation && (
+          <div className="sticky top-0 z-50">
+            <TopBar global={global} />
+            <Navbar global={global} navigation={navigation} />
+          </div>
+        )}
+        {children}
+        {global && navigation && <Footer global={global} navigation={navigation} />}
+      </body>
     </html>
   );
 }

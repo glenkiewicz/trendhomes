@@ -1,8 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import TopBar from "../components/TopBar";
-import Footer from "../components/Footer";
 import BlogContent from "./BlogContent";
 import { MOCKUP_DATA } from "../lib/mockup-data";
 import { listArticles, mediaUrl, formatPlDate } from "../lib/strapi";
@@ -30,11 +27,6 @@ export default async function BlogPage() {
 
   return (
     <>
-      <div className="sticky top-0 z-50">
-        <TopBar />
-        <Navbar />
-      </div>
-
       {/* Hero */}
       <section className="relative h-[400px] w-full overflow-hidden sm:h-[500px] md:h-[600px] lg:h-[714px]">
         <Image
@@ -89,8 +81,6 @@ export default async function BlogPage() {
       </section>
 
       <BlogContent posts={posts} />
-
-      <Footer />
     </>
   );
 }

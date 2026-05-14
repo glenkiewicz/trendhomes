@@ -1,12 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import TopBar from "../../../components/TopBar";
-import Navbar from "../../../components/Navbar";
 import SectionHeading from "../../../components/SectionHeading";
 import ContactSection from "../../../components/ContactSection";
 import MapSection from "../../../components/MapSection";
-import Footer from "../../../components/Footer";
 import ColorCarousel from "../../../components/ColorCarousel";
 import ProductImageTabs from "../../../components/ProductImageTabs";
 import {
@@ -54,11 +51,6 @@ export default async function SystemDetailPage({
 
   return (
     <>
-      <div className="sticky top-0 z-50">
-        <TopBar />
-        <Navbar />
-      </div>
-
       <main className="bg-white">
         {/* Breadcrumb + Heading */}
         <section className="pt-6 md:pt-10">
@@ -285,8 +277,6 @@ export default async function SystemDetailPage({
         <ContactSection />
         <MapSection />
       </main>
-
-      <Footer />
     </>
   );
 }

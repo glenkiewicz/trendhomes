@@ -1,8 +1,10 @@
 import type {
   StrapiArticle,
+  StrapiGlobalSettings,
   StrapiHomePage,
   StrapiList,
   StrapiMedia,
+  StrapiNavigation,
   StrapiOne,
   StrapiPage,
   StrapiProductCategoryPage,
@@ -269,6 +271,30 @@ export async function getProductCategoryPageBySlug(slug: string): Promise<Strapi
     tags: [`product-category-page:${slug}`, "product-category-pages"],
   });
   return data.data[0] ?? null;
+}
+
+export async function getGlobalSettings(): Promise<StrapiGlobalSettings | null> {
+  const data = await strapiFetch<StrapiOne<StrapiGlobalSettings>>("/global-setting", {
+    query: {
+      "populate[branches]": "true",
+      "populate[footerBottomLinks]": "true",
+    },
+    tags: ["global"],
+  });
+  return data.data ?? null;
+}
+
+export async function getNavigation(): Promise<StrapiNavigation | null> {
+  const data = await strapiFetch<StrapiOne<StrapiNavigation>>("/navigation", {
+    query: {
+      "populate[mainMenu]": "true",
+      "populate[productCategories][populate][items][populate]": "image",
+      "populate[mainProducts][populate]": "image",
+      "populate[footerColumns][populate]": "links",
+    },
+    tags: ["global"],
+  });
+  return data.data ?? null;
 }
 
 export async function listColorSwatches(
