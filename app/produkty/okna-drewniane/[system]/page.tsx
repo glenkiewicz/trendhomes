@@ -1,26 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import TopBar from "../../../components/TopBar";
+import Navbar from "../../../components/Navbar";
 import SectionHeading from "../../../components/SectionHeading";
 import ContactSection from "../../../components/ContactSection";
 import MapSection from "../../../components/MapSection";
+import Footer from "../../../components/Footer";
+import {
+  woodenSystems,
+  getWoodenSystemBySlug,
+  getRelatedWoodenSystems,
+} from "../../../lib/product-systems";
 import ColorCarousel from "../../../components/ColorCarousel";
 import ProductImageTabs from "../../../components/ProductImageTabs";
-import {
-  getGlobalSettings,
-  getProductSystemBySlug,
-  getRelatedProductSystems,
-  listProductSystemSlugs,
-  mediaUrl,
-} from "../../../lib/strapi";
-import { toMetadata } from "../../../lib/seo";
-import { productJsonLd, breadcrumbJsonLd, jsonLdScript } from "../../../lib/jsonld";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
-
-export async function generateStaticParams() {
-  const items = await listProductSystemSlugs("wooden");
-  return items.map((item) => ({ system: item.slug }));
+export function generateStaticParams() {
+  return woodenSystems.map((s) => ({ system: s.slug }));
 }
 
 export async function generateMetadata({
@@ -29,9 +25,12 @@ export async function generateMetadata({
   params: Promise<{ system: string }>;
 }) {
   const { system: slug } = await params;
-  const system = await getProductSystemBySlug(slug, "wooden");
-  if (!system) return { title: "Nie znaleziono – Trendhomes" };
-  return toMetadata(system.seo, `/produkty/okna-drewniane/${system.slug}`);
+  const system = getWoodenSystemBySlug(slug);
+  if (!system) return {};
+  return {
+    title: `${system.fullName} – Okna drewniane | Trendhomes`,
+    description: system.description,
+  };
 }
 
 export default async function WoodenSystemDetailPage({
@@ -40,45 +39,27 @@ export default async function WoodenSystemDetailPage({
   params: Promise<{ system: string }>;
 }) {
   const { system: slug } = await params;
-  const [system, global] = await Promise.all([
-    getProductSystemBySlug(slug, "wooden"),
-    getGlobalSettings(),
-  ]);
+  const system = getWoodenSystemBySlug(slug);
   if (!system) notFound();
-  if (!global) return <p className="p-10">Global settings missing — check Strapi.</p>;
 
-  const related = await getRelatedProductSystems(slug, "wooden", 3);
-
-  const mainImageUrl = mediaUrl(system.mainImage, "large");
-  const crossSectionUrl = system.crossSection ? mediaUrl(system.crossSection) : undefined;
-  const carouselColors = system.colors
-    .sort((a, b) => a.sortOrder - b.sortOrder)
-    .map((c) => ({ code: c.code, image: mediaUrl(c.image, "small") }));
-  const featureSection = system.featureSections[0];
-  const manufacturerName = system.manufacturer?.name ?? "";
-
-  const breadcrumbs = [
-    { name: "Strona główna", url: `${SITE_URL}/` },
-    { name: "Okna drewniane", url: `${SITE_URL}/produkty/okna-drewniane` },
-    { name: system.name, url: `${SITE_URL}/produkty/okna-drewniane/${system.slug}` },
-  ];
+  const related = getRelatedWoodenSystems(slug);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(productJsonLd(system, "/produkty/okna-drewniane")) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbs)) }}
-      />
+      <div className="sticky top-0 z-50">
+        <TopBar />
+        <Navbar />
+      </div>
+
       <main className="bg-white">
         {/* Breadcrumb + Heading */}
         <section className="pt-6 md:pt-10">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
             <nav className="flex items-center gap-2 text-xs uppercase text-dark/50 md:text-sm">
-              <Link href="/" className="transition-colors hover:text-dark">
+              <Link
+                href="/"
+                className="transition-colors hover:text-dark"
+              >
                 Produkty
               </Link>
               <span>|</span>
@@ -92,7 +73,9 @@ export default async function WoodenSystemDetailPage({
               <span className="text-dark">{system.name}</span>
             </nav>
 
-            <SectionHeading lines={[manufacturerName, system.name]} />
+            <SectionHeading
+              lines={[system.manufacturer, system.name]}
+            />
           </div>
         </section>
 
@@ -112,12 +95,15 @@ export default async function WoodenSystemDetailPage({
                     </h3>
 
                     <div className="mt-6 flex flex-col gap-4 md:mt-8 md:gap-5">
-                      {system.features.map((f) => (
+                      {system.features.map((f, i) => (
                         <p
-                          key={f.id}
+                          key={i}
                           className="text-sm text-dark md:text-base"
                         >
-                          <span className="font-bold">{f.label}</span>: {f.value}
+                          <span className="font-bold">
+                            {f.label}
+                          </span>
+                          : {f.value}
                         </p>
                       ))}
                     </div>
@@ -136,9 +122,9 @@ export default async function WoodenSystemDetailPage({
 
               {/* Right: image with tab toggle */}
               <ProductImageTabs
-                image={mainImageUrl}
+                image={system.image}
                 alt={system.fullName}
-                crossSection={crossSectionUrl}
+                crossSection={system.crossSection}
               />
             </div>
           </div>
@@ -159,66 +145,68 @@ export default async function WoodenSystemDetailPage({
               <span className="text-2xl font-black text-pink md:text-[32px]">
                 {system.seals}
               </span>
-              <span className="text-xs text-dark md:text-sm">Uszczelki</span>
+              <span className="text-xs text-dark md:text-sm">
+                Uszczelki
+              </span>
             </div>
             <div className="flex flex-col items-center gap-1 px-2 text-center md:gap-2">
               <span className="text-2xl font-black text-pink md:text-[32px]">
                 {system.layers}
               </span>
-              <span className="text-xs text-dark md:text-sm">Warstwy drewna</span>
+              <span className="text-xs text-dark md:text-sm">
+                Warstwy drewna
+              </span>
             </div>
           </div>
         </section>
 
         {/* Dostępne kolory */}
-        {carouselColors.length > 0 && (
+        {system.colors.length > 0 && (
           <section className="py-10 md:py-20">
             <div className="mx-auto max-w-[1440px] px-3 md:px-5">
               <SectionHeading lines={["Dostępne kolory"]} />
               <div className="mt-8 md:mt-12">
-                <ColorCarousel colors={carouselColors} />
+                <ColorCarousel colors={system.colors} />
               </div>
             </div>
           </section>
         )}
 
         {/* Feature Sections */}
-        {featureSection && (
-          <section className="py-10 md:py-20">
-            <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-              <SectionHeading lines={featureSection.headingLines} />
+        <section className="py-10 md:py-20">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+            <SectionHeading lines={system.featureSections.heading} />
 
-              <div className="mt-8 flex flex-col gap-8 md:mt-12 md:gap-0">
-                {featureSection.blocks.map((block, i) => (
-                  <div
-                    key={block.id}
-                    className={`grid grid-cols-1 gap-6 border-t border-dark/10 py-6 md:grid-cols-2 md:gap-12 md:py-8 ${
-                      i % 2 === 1 ? "md:direction-rtl" : ""
-                    }`}
-                  >
-                    <div>
-                      <h3 className="text-xl font-light text-dark md:text-2xl lg:text-[28px]">
-                        {block.title}
-                      </h3>
-                      <p className="mt-4 text-sm leading-relaxed text-dark md:text-base">
-                        {block.text}
-                      </p>
-                    </div>
-                    <div className="relative h-[200px] w-full overflow-hidden bg-gray-50 md:h-[212px]">
-                      <Image
-                        src={block.image ? mediaUrl(block.image, "medium") : mainImageUrl}
-                        alt={block.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-contain p-4"
-                      />
-                    </div>
+            <div className="mt-8 flex flex-col gap-8 md:mt-12 md:gap-0">
+              {system.featureSections.blocks.map((block, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-1 gap-6 border-t border-dark/10 py-6 md:grid-cols-2 md:gap-12 md:py-8 ${
+                    i % 2 === 1 ? "md:direction-rtl" : ""
+                  }`}
+                >
+                  <div>
+                    <h3 className="text-xl font-light text-dark md:text-2xl lg:text-[28px]">
+                      {block.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-dark md:text-base">
+                      {block.text}
+                    </p>
                   </div>
-                ))}
-              </div>
+                  <div className="relative h-[200px] w-full overflow-hidden bg-gray-50 md:h-[212px]">
+                    <Image
+                      src={system.image}
+                      alt={block.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-contain p-4"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
 
         {/* Manufacturer Info */}
         <section className="py-10 md:py-20">
@@ -226,7 +214,7 @@ export default async function WoodenSystemDetailPage({
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
               <div>
                 <h3 className="text-2xl font-bold italic text-pink md:text-3xl">
-                  {manufacturerName.toUpperCase()}
+                  {system.manufacturer.toUpperCase()}
                 </h3>
                 <p className="mt-6 whitespace-pre-line text-sm leading-relaxed text-dark md:text-base">
                   {system.manufacturerDescription}
@@ -242,8 +230,8 @@ export default async function WoodenSystemDetailPage({
               </div>
               <div className="relative h-[300px] w-full overflow-hidden md:h-[400px] lg:h-full">
                 <Image
-                  src={mainImageUrl}
-                  alt={manufacturerName}
+                  src={system.image}
+                  alt={system.manufacturer}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-contain p-6"
@@ -256,7 +244,9 @@ export default async function WoodenSystemDetailPage({
         {/* Related Products */}
         <section className="bg-white py-10 md:py-20">
           <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-            <SectionHeading lines={["Sprawdź nasze", "pozostałe produkty"]} />
+            <SectionHeading
+              lines={["Sprawdź nasze", "pozostałe produkty"]}
+            />
 
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:gap-8">
               {related.map((rel) => (
@@ -267,7 +257,7 @@ export default async function WoodenSystemDetailPage({
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50">
                     <Image
-                      src={mediaUrl(rel.mainImage, "medium")}
+                      src={rel.image}
                       alt={rel.fullName}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -283,7 +273,8 @@ export default async function WoodenSystemDetailPage({
                         Głębokość zabudowy: {rel.depth}
                       </p>
                       <p className="mt-1 text-sm text-dark">
-                        Szklenie pakietami o szerokości {rel.glazing}
+                        Szklenie pakietami o szerokości{" "}
+                        {rel.glazing}
                       </p>
                       <p className="mt-1 text-sm text-dark">
                         {rel.seals} uszczelki, {rel.layers} warstwy drewna
@@ -296,9 +287,11 @@ export default async function WoodenSystemDetailPage({
           </div>
         </section>
 
-        <ContactSection global={global} />
+        <ContactSection />
         <MapSection />
       </main>
+
+      <Footer />
     </>
   );
 }

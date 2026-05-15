@@ -1,54 +1,68 @@
+import TopBar from "./components/TopBar";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 import AnimateOnScroll from "./components/AnimateOnScroll";
-import MapSection from "./components/MapSection";
+import SolutionsSection from "./components/SolutionsSection";
+import ProductsSection from "./components/ProductsSection";
+import CleanAirSection from "./components/CleanAirSection";
+import WhySection from "./components/WhySection";
+import StepsSection from "./components/StepsSection";
+import PergolaSection from "./components/PergolaSection";
+import RealizationsSection from "./components/RealizationsSection";
 import ReviewsSection from "./components/ReviewsSection";
-import DynamicZone from "./components/blocks/DynamicZone";
-import { getGlobalSettings, getHomePage, listReviews } from "./lib/strapi";
-import { toMetadata } from "./lib/seo";
+import BlogSection from "./components/BlogSection";
+import FaqSection from "./components/FaqSection";
+import BrandsSection from "./components/BrandsSection";
+import ContactSection from "./components/ContactSection";
+import MapSection from "./components/MapSection";
+import Footer from "./components/Footer";
 
-export async function generateMetadata() {
-  const home = await getHomePage();
-  if (!home?.seo) {
-    return { title: "Trendhomes - Okna, drzwi i rolety z montażem" };
-  }
-  return toMetadata(home.seo, "/");
-}
-
-export default async function Home() {
-  const [home, reviews, global] = await Promise.all([
-    getHomePage(),
-    listReviews({ featured: true }),
-    getGlobalSettings(),
-  ]);
-
-  if (!global) {
-    return <p className="p-10">Global settings missing — check Strapi.</p>;
-  }
-
-  const sections = home?.sections ?? [];
-
+export default function Home() {
   return (
     <>
-      <DynamicZone
-        sections={sections}
-        global={global}
-        reviewsRender={(block) => (
-          <AnimateOnScroll>
-            <ReviewsSection
-              heading={block.headingLines as readonly string[]}
-              subtitle={block.subtitle ?? ""}
-              googleMapsUrl={block.googleMapsUrl ?? ""}
-              reviews={reviews.map((r) => ({
-                name: r.authorName,
-                text: r.text,
-                date: r.date,
-                rating: r.rating,
-              }))}
-            />
-          </AnimateOnScroll>
-        )}
-      />
-
+      <div className="sticky top-0 z-50">
+        <TopBar />
+        <Navbar />
+      </div>
+      <Hero />
+      <AnimateOnScroll>
+        <SolutionsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <ProductsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <CleanAirSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <WhySection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <StepsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <PergolaSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <RealizationsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <ReviewsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <BlogSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <FaqSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <BrandsSection />
+      </AnimateOnScroll>
+      <AnimateOnScroll>
+        <ContactSection />
+      </AnimateOnScroll>
       <MapSection />
+      <Footer />
     </>
   );
 }

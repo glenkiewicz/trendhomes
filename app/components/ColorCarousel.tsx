@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useState, useCallback, useEffect, useRef } from "react";
-
-export type ColorSwatch = { code: string; image: string };
+import type { ColorSwatch } from "../lib/product-systems";
 
 const GAP = 12;
 

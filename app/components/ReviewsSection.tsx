@@ -2,25 +2,15 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "./SectionHeading";
+import { MOCKUP_DATA } from "../lib/mockup-data";
+
+const d = MOCKUP_DATA.home.reviews;
+const reviews = d.items;
 
 const GAP_LG = 32;
 const GAP_SM = 24;
 
 const GOOGLE_COLORS = ["#4285F4", "#EA4335", "#FBBC05", "#34A853", "#FF6D01", "#46BDC6"];
-
-export type ReviewItem = {
-	name: string;
-	text: string;
-	date: string;
-	rating: number;
-};
-
-export type ReviewsSectionProps = {
-	heading: readonly string[];
-	subtitle: string;
-	googleMapsUrl: string;
-	reviews: ReviewItem[];
-};
 
 function getInitials(name: string) {
 	return name
@@ -66,12 +56,7 @@ function GoogleIcon() {
 	);
 }
 
-export default function ReviewsSection({
-	heading,
-	subtitle,
-	googleMapsUrl,
-	reviews,
-}: ReviewsSectionProps) {
+export default function ReviewsSection() {
 	const [current, setCurrent] = useState(0);
 	const trackRef = useRef<HTMLDivElement>(null);
 	const [itemWidth, setItemWidth] = useState(0);
@@ -143,7 +128,7 @@ export default function ReviewsSection({
 			<div className="mx-auto max-w-[1440px] px-3 md:px-5">
 				{/* Header with nav */}
 				<div className="flex items-start justify-between">
-					<SectionHeading lines={[...heading]} />
+					<SectionHeading lines={[...d.heading]} />
 					<div className="mt-6 flex items-center gap-3 md:mt-8">
 						<button
 							onClick={prev}
@@ -186,7 +171,7 @@ export default function ReviewsSection({
 
 				{/* Subtitle */}
 				<p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-					{subtitle}
+					{d.subtitle}
 				</p>
 
 				{/* Slider */}
@@ -266,7 +251,7 @@ export default function ReviewsSection({
 						</div>
 					)}
 					<a
-						href={googleMapsUrl}
+						href={d.googleMapsUrl}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-flex items-center gap-2 text-sm font-medium text-dark/70 transition-colors hover:text-dark"
