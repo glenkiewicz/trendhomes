@@ -2,11 +2,8 @@ import AnimateOnScroll from "./components/AnimateOnScroll";
 import MapSection from "./components/MapSection";
 import ReviewsSection from "./components/ReviewsSection";
 import DynamicZone from "./components/blocks/DynamicZone";
-import { getHomePage, listReviews } from "./lib/strapi";
+import { getGlobalSettings, getHomePage, listReviews } from "./lib/strapi";
 import { toMetadata } from "./lib/seo";
-import { MOCKUP_DATA } from "./lib/mockup-data";
-
-const reviewsCopy = MOCKUP_DATA.home.reviews;
 
 export async function generateMetadata() {
   const home = await getHomePage();
@@ -17,10 +14,15 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const [home, reviews] = await Promise.all([
+  const [home, reviews, global] = await Promise.all([
     getHomePage(),
     listReviews({ featured: true }),
+    getGlobalSettings(),
   ]);
+
+  if (!global) {
+    return <p className="p-10">Global settings missing — check Strapi.</p>;
+  }
 
   const sections = home?.sections ?? [];
 
@@ -28,12 +30,13 @@ export default async function Home() {
     <>
       <DynamicZone
         sections={sections}
+        global={global}
         reviewsRender={(block) => (
           <AnimateOnScroll>
             <ReviewsSection
               heading={block.headingLines as readonly string[]}
-              subtitle={block.subtitle ?? reviewsCopy.subtitle}
-              googleMapsUrl={block.googleMapsUrl ?? reviewsCopy.googleMapsUrl}
+              subtitle={block.subtitle ?? ""}
+              googleMapsUrl={block.googleMapsUrl ?? ""}
               reviews={reviews.map((r) => ({
                 name: r.authorName,
                 text: r.text,

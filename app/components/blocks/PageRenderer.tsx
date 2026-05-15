@@ -1,7 +1,7 @@
 /**
  * Renders a Page or ProductCategoryPage: hero + Dynamic Zone sections.
  *
- * Chrome (TopBar/Navbar/Footer) is now rendered in app/layout.tsx so this
+ * Chrome (TopBar/Navbar/Footer) is rendered in app/layout.tsx so this
  * component only emits the page-specific body. Hero is inline (every page
  * has exactly one) and sections drive everything below.
  */
@@ -10,22 +10,33 @@ import Link from "next/link";
 import AnimateOnScroll from "../AnimateOnScroll";
 import ReviewsSection from "../ReviewsSection";
 import DynamicZone from "./DynamicZone";
-import { listReviews, mediaUrl } from "../../lib/strapi";
+import {
+  getGlobalSettings,
+  listReviews,
+  mediaUrl,
+} from "../../lib/strapi";
 import type { StrapiPage, StrapiProductCategoryPage } from "../../types/strapi";
-import { MOCKUP_DATA } from "../../lib/mockup-data";
 import { breadcrumbJsonLd, jsonLdScript } from "../../lib/jsonld";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
-const reviewsCopy = MOCKUP_DATA.home.reviews;
 
-function isProductCategoryPage(p: StrapiPage | StrapiProductCategoryPage): p is StrapiProductCategoryPage {
+function isProductCategoryPage(
+  p: StrapiPage | StrapiProductCategoryPage
+): p is StrapiProductCategoryPage {
   return "primaryProductType" in p;
 }
 
 type Props = { page: StrapiPage | StrapiProductCategoryPage };
 
 export default async function PageRenderer({ page }: Props) {
-  const reviews = await listReviews({ featured: true });
+  const [reviews, global] = await Promise.all([
+    listReviews({ featured: true }),
+    getGlobalSettings(),
+  ]);
+
+  if (!global) {
+    return <p className="p-10">Global settings missing — check Strapi.</p>;
+  }
 
   const heroImageUrl = page.heroImage ? mediaUrl(page.heroImage, "xlarge") : null;
   const titleLines = page.heroHeadingLines ?? [page.title];
@@ -36,7 +47,10 @@ export default async function PageRenderer({ page }: Props) {
     { name: "Strona główna", url: `${SITE_URL}/` },
     ...breadcrumb.slice(1, -1).map((label, i) => ({
       name: label,
-      url: isProductCategoryPage(page) && i === 0 ? `${SITE_URL}/produkty/okna` : `${SITE_URL}${basePath}`,
+      url:
+        isProductCategoryPage(page) && i === 0
+          ? `${SITE_URL}/produkty/okna`
+          : `${SITE_URL}${basePath}`,
     })),
     { name: page.title, url: `${SITE_URL}${basePath}` },
   ];
@@ -49,14 +63,7 @@ export default async function PageRenderer({ page }: Props) {
       />
       {heroImageUrl && (
         <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
-          <Image
-            src={heroImageUrl}
-            alt={titleLines.join(" ")}
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover"
-          />
+          <Image src={heroImageUrl} alt={titleLines.join(" ")} fill sizes="100vw" priority className="object-cover" />
           <div
             className="absolute inset-0"
             style={{
@@ -75,9 +82,7 @@ export default async function PageRenderer({ page }: Props) {
                         {item}
                       </Link>
                     ) : (
-                      <span className={i === breadcrumb.length - 1 ? "text-white" : "text-white/80"}>
-                        {item}
-                      </span>
+                      <span className={i === breadcrumb.length - 1 ? "text-white" : "text-white/80"}>{item}</span>
                     )}
                   </span>
                 ))}
@@ -115,12 +120,13 @@ export default async function PageRenderer({ page }: Props) {
 
       <DynamicZone
         sections={page.sections}
+        global={global}
         reviewsRender={(block) => (
           <AnimateOnScroll>
             <ReviewsSection
               heading={block.headingLines as readonly string[]}
-              subtitle={block.subtitle ?? reviewsCopy.subtitle}
-              googleMapsUrl={block.googleMapsUrl ?? reviewsCopy.googleMapsUrl}
+              subtitle={block.subtitle ?? ""}
+              googleMapsUrl={block.googleMapsUrl ?? ""}
               reviews={reviews.map((r) => ({
                 name: r.authorName,
                 text: r.text,

@@ -7,6 +7,7 @@ import MapSection from "../../../components/MapSection";
 import ColorCarousel from "../../../components/ColorCarousel";
 import ProductImageTabs from "../../../components/ProductImageTabs";
 import {
+  getGlobalSettings,
   getProductSystemBySlug,
   getRelatedProductSystems,
   listProductSystemSlugs,
@@ -39,8 +40,12 @@ export default async function SystemDetailPage({
   params: Promise<{ system: string }>;
 }) {
   const { system: slug } = await params;
-  const system = await getProductSystemBySlug(slug, "pvc");
+  const [system, global] = await Promise.all([
+    getProductSystemBySlug(slug, "pvc"),
+    getGlobalSettings(),
+  ]);
   if (!system) notFound();
+  if (!global) return <p className="p-10">Global settings missing — check Strapi.</p>;
 
   const related = await getRelatedProductSystems(slug, "pvc", 3);
 
@@ -291,7 +296,7 @@ export default async function SystemDetailPage({
           </div>
         </section>
 
-        <ContactSection />
+        <ContactSection global={global} />
         <MapSection />
       </main>
     </>

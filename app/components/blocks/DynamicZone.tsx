@@ -2,13 +2,13 @@
  * Dynamic Zone renderer — maps every Strapi `__component` to its frontend block.
  *
  * Reviews carousel is provided via the `reviewsRender` callback because it
- * needs server-side review data + a heading override; the host page already
- * fetches reviews and passes them down.
+ * needs server-side review data + a heading override; the host page fetches
+ * reviews and passes them down.
  *
- * Contact form delegates to the existing ContactSection (which still reads
- * MOCKUP_DATA for form copy — moves to CMS in Phase 5 with GlobalSettings).
+ * Contact form receives GlobalSettings (address, phones, opening hours, socials)
+ * forwarded from the host page's already-fetched global.
  */
-import type { AnyBlock } from "../../types/strapi";
+import type { AnyBlock, StrapiGlobalSettings } from "../../types/strapi";
 import BlogListBlock from "./BlogListBlock";
 import BrandsStripBlock from "./BrandsStripBlock";
 import ColorCarouselBlock from "./ColorCarouselBlock";
@@ -27,10 +27,11 @@ import ContactSection from "../ContactSection";
 
 type Props = {
   sections: AnyBlock[];
+  global: StrapiGlobalSettings;
   reviewsRender?: (block: Extract<AnyBlock, { __component: "blocks.reviews-carousel" }>) => React.ReactNode;
 };
 
-export default function DynamicZone({ sections, reviewsRender }: Props) {
+export default function DynamicZone({ sections, global, reviewsRender }: Props) {
   return (
     <>
       {sections.map((block, idx) => {
@@ -65,7 +66,7 @@ export default function DynamicZone({ sections, reviewsRender }: Props) {
           case "blocks.color-carousel":
             return <ColorCarouselBlock key={key} block={block} />;
           case "blocks.contact-form":
-            return <ContactSection key={key} />;
+            return <ContactSection key={key} global={global} />;
           default:
             return null;
         }
