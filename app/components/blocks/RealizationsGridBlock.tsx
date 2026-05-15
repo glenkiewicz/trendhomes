@@ -2,12 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "../SectionHeading";
 import AnimateOnScroll from "../AnimateOnScroll";
-import { mediaUrl } from "../../lib/strapi";
+import { listRealizations, mediaUrl } from "../../lib/strapi";
 import type { BlockRealizationsGrid } from "../../types/strapi";
 
-export default function RealizationsGridBlock({ block }: { block: BlockRealizationsGrid }) {
-  const imgs = block.images;
-  if (imgs.length === 0) return null;
+type GridImage = { id: number; image: BlockRealizationsGrid["images"][number]["image"]; alt: string };
+
+export default async function RealizationsGridBlock({ block }: { block: BlockRealizationsGrid }) {
+  let imgs: GridImage[] = block.images.map((i) => ({ id: i.id, image: i.image, alt: i.alt }));
+
+  if (imgs.length === 0) {
+    const category = block.category && block.category !== "all" ? block.category : undefined;
+    const list = await listRealizations(category);
+    imgs = list.slice(0, 7).map((r) => ({ id: r.id, image: r.image, alt: r.title }));
+    if (imgs.length === 0) return null;
+  }
 
   return (
     <section id="realizacje" className="bg-white py-10 md:py-20">
