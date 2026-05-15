@@ -37,19 +37,27 @@ export async function strapiFetch<T>(
     );
   }
   const url = `${STRAPI_URL}/api${path}${qs(opts.query || {})}`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${STRAPI_TOKEN}` },
-    next: {
-      tags: opts.tags,
-      revalidate: opts.revalidate,
-    },
-  });
-  if (!res.ok) {
-    throw new Error(
-      `Strapi ${path} ${res.status} ${res.statusText}: ${await res.text()}`
-    );
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${STRAPI_TOKEN}` },
+        next: {
+          tags: opts.tags,
+          revalidate: opts.revalidate,
+        },
+      });
+      if (!res.ok) {
+        throw new Error(`Strapi ${path} ${res.status} ${res.statusText}: ${await res.text()}`);
+      }
+      return res.json() as Promise<T>;
+    } catch (err) {
+      lastErr = err;
+      if (attempt === 5) break;
+      await new Promise((r) => setTimeout(r, attempt * 500));
+    }
   }
-  return res.json() as Promise<T>;
+  throw lastErr;
 }
 
 /** Resolve a Strapi media URL — Strapi v5 returns relative paths from local provider. */
