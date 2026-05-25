@@ -7,13 +7,15 @@ import type { BlockRealizationsGrid } from "../../types/strapi";
 
 type GridImage = { id: number; image: BlockRealizationsGrid["images"][number]["image"]; alt: string };
 
+const DEFAULT_LIMIT = 14;
+
 export default async function RealizationsGridBlock({ block }: { block: BlockRealizationsGrid }) {
   let imgs: GridImage[] = block.images.map((i) => ({ id: i.id, image: i.image, alt: i.alt }));
 
   if (imgs.length === 0) {
     const category = block.category && block.category !== "all" ? block.category : undefined;
     const list = await listRealizations(category);
-    imgs = list.slice(0, 7).map((r) => ({ id: r.id, image: r.image, alt: r.title }));
+    imgs = list.slice(0, DEFAULT_LIMIT).map((r) => ({ id: r.id, image: r.image, alt: r.title }));
     if (imgs.length === 0) return null;
   }
 
@@ -30,12 +32,11 @@ export default async function RealizationsGridBlock({ block }: { block: BlockRea
 
         <AnimateOnScroll>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
-            {imgs.slice(0, 3).map((img, i) => (
+            {imgs.map((img, i) => (
               <div
                 key={img.id}
-                className={`group relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[464px] ${
-                  i === 2 ? "sm:col-span-2 lg:col-span-1" : ""
-                }`}
+                className="group relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[400px]"
+                style={{ animationDelay: `${Math.min(i, 5) * 80}ms` }}
               >
                 <Image
                   src={mediaUrl(img.image, "medium")}
@@ -45,64 +46,15 @@ export default async function RealizationsGridBlock({ block }: { block: BlockRea
                   loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                {img.alt && (
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark/70 to-transparent px-4 py-3">
+                    <p className="text-sm font-semibold text-white sm:text-base">{img.alt}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </AnimateOnScroll>
-
-        {imgs.length >= 5 && (
-          <AnimateOnScroll delay={150}>
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3">
-              <div className="group relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[464px]">
-                <Image
-                  src={mediaUrl(imgs[3].image, "medium")}
-                  alt={imgs[3].alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="group relative h-[280px] overflow-hidden sm:col-span-2 sm:h-[320px] lg:h-[464px]">
-                <Image
-                  src={mediaUrl(imgs[4].image, "large")}
-                  alt={imgs[4].alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-            </div>
-          </AnimateOnScroll>
-        )}
-
-        {imgs.length >= 7 && (
-          <AnimateOnScroll delay={300}>
-            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3">
-              <div className="group relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[464px]">
-                <Image
-                  src={mediaUrl(imgs[5].image, "medium")}
-                  alt={imgs[5].alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="group relative h-[280px] overflow-hidden sm:col-span-2 sm:h-[320px] lg:h-[464px]">
-                <Image
-                  src={mediaUrl(imgs[6].image, "large")}
-                  alt={imgs[6].alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-            </div>
-          </AnimateOnScroll>
-        )}
 
         {block.ctaLabel && block.ctaUrl && (
           <AnimateOnScroll delay={100}>
