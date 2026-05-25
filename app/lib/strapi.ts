@@ -265,6 +265,7 @@ const SECTIONS_POPULATE: Record<string, string> = {
   "populate[sections][on][blocks.rich-text][populate]": "*",
   "populate[sections][on][blocks.gallery][populate][images][populate]": "*",
   "populate[sections][on][blocks.color-carousel][populate]": "*",
+  "populate[sections][on][blocks.accordion][populate][items][populate]": "*",
 };
 
 /** Adds heroImage on top of sections populate — for Page + ProductCategoryPage. */
