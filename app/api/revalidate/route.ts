@@ -96,8 +96,11 @@ export async function POST(req: NextRequest) {
       break;
 
     case "page":
+      if (slug) revalidatePath(`/${slug}`);
+      break;
+
     case "product-category-page":
-      if (slug) revalidatePath(`/${slug}`.replace(/^\/\//, "/"));
+      if (slug) revalidatePath(`/produkty/${slug}`);
       break;
 
     default:
