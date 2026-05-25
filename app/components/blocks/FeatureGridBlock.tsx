@@ -361,27 +361,38 @@ function WhyIconGrid({ block }: { block: BlockFeatureGrid }) {
 }
 
 // ────────────────────────────────────────────────────────────────────────────
-// ManufacturersTabs — tabbed UI: pill buttons + active manufacturer content.
-// Used on /produkty/{drzwi,drzwi-wewnetrzne,okna} "Producenci…" sections.
-// Items shape: title=name, description="<long text>\n\nCechy wyróżniające:\n• …"
+// ManufacturersTabs — segmented tab bar + 2-col panel (text/CTA | accordion).
+// Layout 1:1 z prod https://trendhomes.pl/produkty/drzwi-wewnetrzne.
+// Items shape: title=name, description="<text>\n\nCechy wyróżniające:\n• <name> — <desc>\n..."
 // ────────────────────────────────────────────────────────────────────────────
 function ManufacturersTabs({ block }: { block: BlockFeatureGrid }) {
   const [active, setActive] = useState(0);
+  const [expanded, setExpanded] = useState<number | null>(null);
   const items = block.items;
+
+  // Reset accordion state when switching tabs.
+  useEffect(() => { setExpanded(null); }, [active]);
+
   if (items.length === 0) return null;
   const current = items[active] ?? items[0];
 
-  // Split description into main paragraph + "Cechy wyróżniające" bullets
-  // (seed produces this exact format via buildManufacturersGrid).
+  // Parse description → main paragraph + "Cechy wyróżniające" entries as
+  // { title, description } (seed emits "• <name> — <description>\n…").
   const split = (text: string) => {
-    const idx = text.indexOf("\n\nCechy wyróżniające:\n");
-    if (idx === -1) return { main: text.trim(), features: [] as string[] };
+    const sentinel = "\n\nCechy wyróżniające:\n";
+    const idx = text.indexOf(sentinel);
+    if (idx === -1) return { main: text.trim(), features: [] as { title: string; description: string }[] };
     const main = text.slice(0, idx).trim();
-    const list = text.slice(idx + "\n\nCechy wyróżniające:\n".length)
+    const features = text.slice(idx + sentinel.length)
       .split("\n")
-      .map((l) => l.replace(/^[•\-\s]+/, "").trim())
-      .filter(Boolean);
-    return { main, features: list };
+      .map((line) => {
+        const cleaned = line.replace(/^[•\-\s]+/, "").trim();
+        const dashIdx = cleaned.indexOf(" — ");
+        if (dashIdx === -1) return cleaned ? { title: cleaned, description: "" } : null;
+        return { title: cleaned.slice(0, dashIdx).trim(), description: cleaned.slice(dashIdx + 3).trim() };
+      })
+      .filter((f): f is { title: string; description: string } => f !== null);
+    return { main, features };
   };
   const { main, features } = split(current.description || "");
 
@@ -390,48 +401,80 @@ function ManufacturersTabs({ block }: { block: BlockFeatureGrid }) {
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <SectionHeading lines={block.headingLines} />
 
-        <div className="mt-8 flex flex-wrap gap-2 md:mt-12 md:gap-3">
-          {items.map((it, i) => (
-            <button
-              key={it.id}
-              type="button"
-              onClick={() => setActive(i)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors md:px-5 md:py-2.5 md:text-base ${
-                i === active
-                  ? "border-pink bg-pink text-white"
-                  : "border-dark/15 bg-white text-dark hover:border-pink hover:text-pink"
-              }`}
-              aria-pressed={i === active}
-            >
-              {it.title}
-            </button>
-          ))}
+        {/* Segmented tab bar inside bg-card chip */}
+        <div className="mt-8 overflow-x-auto scrollbar-hide md:mt-12">
+          <div className="flex min-w-max items-center gap-1 bg-card px-2.5 py-2.5 md:gap-2 md:px-3">
+            {items.map((it, i) => (
+              <button
+                key={it.id}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-pressed={i === active}
+                className={`whitespace-nowrap rounded-sm px-4 py-2.5 text-sm transition-all duration-200 md:px-5 md:text-lg ${
+                  i === active
+                    ? "bg-white font-semibold text-dark shadow-sm"
+                    : "text-dark/50 hover:bg-white/60 hover:text-dark/80"
+                }`}
+              >
+                {it.title}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-8 bg-card p-6 md:mt-10 md:p-10">
-          <h3 className="text-2xl font-bold text-dark md:text-[32px]">{current.title}</h3>
-          {main && (
-            <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-lg">{main}</p>
-          )}
-          {features.length > 0 && (
-            <div className="mt-6 md:mt-8">
-              <p className="text-sm font-semibold uppercase tracking-wider text-dark/60 md:text-base">
-                Cechy wyróżniające
-              </p>
-              <ul className="mt-3 space-y-2 md:mt-4">
-                {features.map((f, i) => (
-                  <li key={i} className="flex gap-3 text-sm leading-relaxed text-dark/80 md:text-base">
-                    <span className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-pink" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
+        {/* 2-col panel: text + CTA (left) | "Cechy wyróżniające" accordion (right) */}
+        <div className="mt-8 md:mt-12">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <h3 className="text-xl font-bold text-dark md:text-[26px]">{current.title}</h3>
+              {main && (
+                <p className="mt-4 text-sm leading-relaxed text-dark/80 md:text-base">{main}</p>
+              )}
+              <div className="mt-6">
+                <Link href="/kontakt" className="btn-pink h-[52px] px-[34px] text-sm">
+                  Napisz do nas
+                </Link>
+              </div>
             </div>
-          )}
-          <div className="mt-6 md:mt-8">
-            <Link href="/kontakt" className="btn-pink h-11 px-6 text-sm">
-              Napisz do nas
-            </Link>
+            {features.length > 0 && (
+              <div>
+                <h4 className="mb-2 text-base font-semibold uppercase tracking-wide text-dark/60 md:text-sm">
+                  Cechy wyróżniające
+                </h4>
+                <div className="border-t border-dark/10">
+                  {features.map((f, i) => {
+                    const open = expanded === i;
+                    return (
+                      <div key={i} className="border-b border-dark/10">
+                        <button
+                          type="button"
+                          onClick={() => setExpanded(open ? null : i)}
+                          aria-expanded={open}
+                          className="flex w-full items-center justify-between py-4 text-left"
+                        >
+                          <h4 className="text-base font-bold text-dark md:text-lg">{f.title}</h4>
+                          <svg
+                            width="14" height="14" viewBox="0 0 14 14" fill="none"
+                            className={`shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                          >
+                            <path d="M3 5L7 9L11 5" stroke="currentColor" strokeWidth="1.5" />
+                          </svg>
+                        </button>
+                        {f.description && (
+                          <div className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                            <div className="overflow-hidden">
+                              <p className="pb-4 text-sm leading-relaxed text-dark/80 md:text-base">
+                                {f.description}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
