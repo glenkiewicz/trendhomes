@@ -80,14 +80,19 @@ function AudienceCarousel({ block }: { block: BlockFeatureGrid }) {
             {items.map((it) => (
               <div
                 key={it.id}
-                className="group shrink-0 cursor-pointer overflow-hidden bg-card transition-shadow duration-300 hover:shadow-lg hover:shadow-dark/10"
+                className="group flex shrink-0 cursor-pointer flex-col overflow-hidden bg-card transition-shadow duration-300 hover:shadow-lg hover:shadow-dark/10"
                 style={{ width: itemWidth > 0 ? `${itemWidth}px` : "100%" }}
               >
-                <div className="p-5 pb-0 md:p-8 md:pb-0">
-                  <h3 className="text-[22px] font-bold leading-tight text-dark md:text-[26px]">{it.title}</h3>
+                <div className="flex-1 p-5 md:p-8">
+                  <h3 className="whitespace-pre-line text-[22px] font-bold leading-tight text-dark md:text-[26px]">{it.title}</h3>
+                  {it.description && (
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-base">
+                      {it.description}
+                    </p>
+                  )}
                 </div>
                 {it.image && (
-                  <div className="relative mt-6 h-[160px] w-full overflow-hidden md:mt-8 md:h-[180px]">
+                  <div className="relative h-[160px] w-full shrink-0 overflow-hidden md:h-[180px]">
                     <Image src={mediaUrl(it.image, "medium")} alt={it.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                 )}
@@ -222,8 +227,14 @@ function WhyList({ block }: { block: BlockFeatureGrid }) {
 
         <div className="mt-10">
           {block.items.map((benefit, i) => {
+            const hasIcon = !!benefit.icon && !benefit.image;
             const textBlock = (
               <div className="flex flex-col gap-3 p-3 md:gap-6 md:p-5" key="text">
+                {hasIcon && (
+                  <div className="relative size-[60px] md:size-[80px]">
+                    <Image src={mediaUrl(benefit.icon, "small")} alt="" fill sizes="80px" className="object-contain" />
+                  </div>
+                )}
                 <h3 className="text-xl font-light text-dark sm:text-2xl md:text-[29px]">{benefit.title}</h3>
                 <p className="text-sm leading-relaxed text-dark/80 md:text-lg">{benefit.description}</p>
               </div>
@@ -233,6 +244,15 @@ function WhyList({ block }: { block: BlockFeatureGrid }) {
                 <Image src={mediaUrl(benefit.image, "medium")} alt={benefit.title} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" className="object-cover" />
               </div>
             ) : null;
+
+            // Brak grafiki cards (icon-only) → pełna szerokość tekstu.
+            if (!imageBlock) {
+              return (
+                <AnimateOnScroll key={benefit.id} delay={i * 100} direction={i % 2 === 0 ? "left" : "right"}>
+                  <div className="border-t border-dark/10 py-8">{textBlock}</div>
+                </AnimateOnScroll>
+              );
+            }
 
             return (
               <AnimateOnScroll key={benefit.id} delay={i * 100} direction={i % 2 === 0 ? "left" : "right"}>

@@ -87,7 +87,9 @@ export default function StepsListBlock({ block }: { block: BlockStepsList }) {
                   </span>
                   <h3 className="text-xl font-light text-dark md:text-[29px]">{step.title}</h3>
                 </div>
-                <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">{step.description}</p>
+                {step.description && (
+                  <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">{step.description}</p>
+                )}
                 <div className="mt-6 h-[3px] w-full bg-pink" />
               </div>
             ))}
