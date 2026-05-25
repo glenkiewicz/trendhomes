@@ -300,6 +300,19 @@ export type BlockColorCarousel = {
   manufacturerSlug: string | null;
 };
 
+export type BlockAccordion = {
+  __component: "blocks.accordion";
+  id: number;
+  headingLines: string[];
+  items: {
+    id: number;
+    title: string;
+    body: string;
+    ctaLabel: string | null;
+    ctaUrl: string | null;
+  }[];
+};
+
 export type AnyBlock =
   | BlockHero
   | BlockFeatureGrid
@@ -315,7 +328,8 @@ export type AnyBlock =
   | BlockTwoColumn
   | BlockRichText
   | BlockGallery
-  | BlockColorCarousel;
+  | BlockColorCarousel
+  | BlockAccordion;
 
 export type StrapiHomePage = {
   id: number;

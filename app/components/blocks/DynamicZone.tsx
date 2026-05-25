@@ -9,6 +9,7 @@
  * forwarded from the host page's already-fetched global.
  */
 import type { AnyBlock, StrapiGlobalSettings } from "../../types/strapi";
+import AccordionBlock from "./AccordionBlock";
 import BlogListBlock from "./BlogListBlock";
 import BrandsStripBlock from "./BrandsStripBlock";
 import ColorCarouselBlock from "./ColorCarouselBlock";
@@ -67,6 +68,8 @@ export default function DynamicZone({ sections, global, reviewsRender }: Props) 
             return <ColorCarouselBlock key={key} block={block} />;
           case "blocks.contact-form":
             return <ContactSection key={key} global={global} />;
+          case "blocks.accordion":
+            return <AccordionBlock key={key} block={block} />;
           default:
             return null;
         }
