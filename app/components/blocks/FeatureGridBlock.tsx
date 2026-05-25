@@ -11,13 +11,68 @@ import type { BlockFeatureGrid } from "../../types/strapi";
 const GAP_LG = 32;
 const GAP_SM = 24;
 
+type Variant = BlockFeatureGrid["variant"] | "manufacturers";
+
 export default function FeatureGridBlock({ block }: { block: BlockFeatureGrid }) {
-  if (block.variant === "solutions") return <SolutionsCarousel block={block} />;
-  if (block.variant === "why") return <WhyList block={block} />;
-  if (block.variant === "audience") return <AudienceCarousel block={block} />;
+  const variant = block.variant as Variant;
+
+  // Audience: if items carry images → carousel (stolarka-dla-biznesu, /o-nas team);
+  // otherwise plain 2x2 grid (forWhom on /produkty/*).
+  if (variant === "audience") {
+    const hasImages = block.items.some((it) => !!it.image);
+    return hasImages ? <AudienceCarousel block={block} /> : <AudienceGrid block={block} />;
+  }
+  if (variant === "solutions") return <SolutionsCarousel block={block} />;
+  if (variant === "why") {
+    const hasImages = block.items.some((it) => !!it.image);
+    return hasImages ? <WhyAlternating block={block} /> : <WhyIconGrid block={block} />;
+  }
+  if (variant === "manufacturers") return <ManufacturersTabs block={block} />;
   return <GenericGrid block={block} />;
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// AudienceGrid — 2x2 grid plain cards (used by /produkty/* "Dla kogo są…").
+// ────────────────────────────────────────────────────────────────────────────
+function AudienceGrid({ block }: { block: BlockFeatureGrid }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        {block.intro && (
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">{block.intro}</p>
+        )}
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 md:gap-8">
+          {block.items.map((it, i) => (
+            <AnimateOnScroll key={it.id} delay={i * 80}>
+              <div className="bg-card p-6 md:p-8 h-full">
+                <h3 className="whitespace-pre-line text-xl font-bold leading-tight text-dark md:text-[26px]">
+                  {it.title}
+                </h3>
+                {it.description && (
+                  <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-lg">
+                    {it.description}
+                  </p>
+                )}
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+        {block.ctaLabel && block.ctaUrl && (
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link href={block.ctaUrl} className="btn-pink h-12 px-[34px] text-sm">
+              {block.ctaLabel}
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// AudienceCarousel — used by stolarka-dla-biznesu + /o-nas team (items have images).
+// ────────────────────────────────────────────────────────────────────────────
 function AudienceCarousel({ block }: { block: BlockFeatureGrid }) {
   const items = block.items;
   const subheading = block.headingLines?.[0] ?? "";
@@ -86,9 +141,7 @@ function AudienceCarousel({ block }: { block: BlockFeatureGrid }) {
                 <div className="flex-1 p-5 md:p-8">
                   <h3 className="whitespace-pre-line text-[22px] font-bold leading-tight text-dark md:text-[26px]">{it.title}</h3>
                   {it.description && (
-                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-base">
-                      {it.description}
-                    </p>
+                    <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-base">{it.description}</p>
                   )}
                 </div>
                 {it.image && (
@@ -115,6 +168,9 @@ function AudienceCarousel({ block }: { block: BlockFeatureGrid }) {
   );
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// SolutionsCarousel — homepage variant (3 main "Rozwiązania dopasowane…").
+// ────────────────────────────────────────────────────────────────────────────
 function SolutionsCarousel({ block }: { block: BlockFeatureGrid }) {
   const items = block.items;
   const [current, setCurrent] = useState(0);
@@ -214,27 +270,22 @@ function SolutionsCarousel({ block }: { block: BlockFeatureGrid }) {
   );
 }
 
-function WhyList({ block }: { block: BlockFeatureGrid }) {
+// ────────────────────────────────────────────────────────────────────────────
+// WhyAlternating — homepage "Dlaczego Trendhomes" (items have image, alternating).
+// ────────────────────────────────────────────────────────────────────────────
+function WhyAlternating({ block }: { block: BlockFeatureGrid }) {
   return (
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
         <SectionHeading lines={block.headingLines} />
         {block.intro && (
-          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
-            {block.intro}
-          </p>
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">{block.intro}</p>
         )}
 
         <div className="mt-10">
           {block.items.map((benefit, i) => {
-            const hasIcon = !!benefit.icon && !benefit.image;
             const textBlock = (
               <div className="flex flex-col gap-3 p-3 md:gap-6 md:p-5" key="text">
-                {hasIcon && (
-                  <div className="relative size-[60px] md:size-[80px]">
-                    <Image src={mediaUrl(benefit.icon, "small")} alt="" fill sizes="80px" className="object-contain" />
-                  </div>
-                )}
                 <h3 className="text-xl font-light text-dark sm:text-2xl md:text-[29px]">{benefit.title}</h3>
                 <p className="text-sm leading-relaxed text-dark/80 md:text-lg">{benefit.description}</p>
               </div>
@@ -244,15 +295,6 @@ function WhyList({ block }: { block: BlockFeatureGrid }) {
                 <Image src={mediaUrl(benefit.image, "medium")} alt={benefit.title} fill sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" className="object-cover" />
               </div>
             ) : null;
-
-            // Brak grafiki cards (icon-only) → pełna szerokość tekstu.
-            if (!imageBlock) {
-              return (
-                <AnimateOnScroll key={benefit.id} delay={i * 100} direction={i % 2 === 0 ? "left" : "right"}>
-                  <div className="border-t border-dark/10 py-8">{textBlock}</div>
-                </AnimateOnScroll>
-              );
-            }
 
             return (
               <AnimateOnScroll key={benefit.id} delay={i * 100} direction={i % 2 === 0 ? "left" : "right"}>
@@ -279,6 +321,127 @@ function WhyList({ block }: { block: BlockFeatureGrid }) {
   );
 }
 
+// ────────────────────────────────────────────────────────────────────────────
+// WhyIconGrid — 2x2 grid: icon on top + title + description.
+// Used on /produkty/* "Dlaczego warto…" sections (items have icon SVG, no image).
+// ────────────────────────────────────────────────────────────────────────────
+function WhyIconGrid({ block }: { block: BlockFeatureGrid }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        {block.intro && (
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">{block.intro}</p>
+        )}
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:mt-12 md:gap-10">
+          {block.items.map((it, i) => (
+            <AnimateOnScroll key={it.id} delay={i * 80}>
+              <div className="flex flex-col">
+                {(it.icon || it.image) && (
+                  <div className="relative size-[60px] md:size-[80px]">
+                    <Image src={mediaUrl(it.icon ?? it.image, "small")} alt="" fill sizes="80px" className="object-contain" />
+                  </div>
+                )}
+                <h3 className="mt-5 text-xl font-bold text-dark md:mt-6 md:text-[22px]">{it.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-dark/80 md:text-base">{it.description}</p>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+        {block.ctaLabel && block.ctaUrl && (
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link href={block.ctaUrl} className="btn-pink h-12 px-[34px] text-sm">
+              {block.ctaLabel}
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// ManufacturersTabs — tabbed UI: pill buttons + active manufacturer content.
+// Used on /produkty/{drzwi,drzwi-wewnetrzne,okna} "Producenci…" sections.
+// Items shape: title=name, description="<long text>\n\nCechy wyróżniające:\n• …"
+// ────────────────────────────────────────────────────────────────────────────
+function ManufacturersTabs({ block }: { block: BlockFeatureGrid }) {
+  const [active, setActive] = useState(0);
+  const items = block.items;
+  if (items.length === 0) return null;
+  const current = items[active] ?? items[0];
+
+  // Split description into main paragraph + "Cechy wyróżniające" bullets
+  // (seed produces this exact format via buildManufacturersGrid).
+  const split = (text: string) => {
+    const idx = text.indexOf("\n\nCechy wyróżniające:\n");
+    if (idx === -1) return { main: text.trim(), features: [] as string[] };
+    const main = text.slice(0, idx).trim();
+    const list = text.slice(idx + "\n\nCechy wyróżniające:\n".length)
+      .split("\n")
+      .map((l) => l.replace(/^[•\-\s]+/, "").trim())
+      .filter(Boolean);
+    return { main, features: list };
+  };
+  const { main, features } = split(current.description || "");
+
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+
+        <div className="mt-8 flex flex-wrap gap-2 md:mt-12 md:gap-3">
+          {items.map((it, i) => (
+            <button
+              key={it.id}
+              type="button"
+              onClick={() => setActive(i)}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors md:px-5 md:py-2.5 md:text-base ${
+                i === active
+                  ? "border-pink bg-pink text-white"
+                  : "border-dark/15 bg-white text-dark hover:border-pink hover:text-pink"
+              }`}
+              aria-pressed={i === active}
+            >
+              {it.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-card p-6 md:mt-10 md:p-10">
+          <h3 className="text-2xl font-bold text-dark md:text-[32px]">{current.title}</h3>
+          {main && (
+            <p className="mt-4 text-sm leading-relaxed text-dark/80 md:mt-6 md:text-lg">{main}</p>
+          )}
+          {features.length > 0 && (
+            <div className="mt-6 md:mt-8">
+              <p className="text-sm font-semibold uppercase tracking-wider text-dark/60 md:text-base">
+                Cechy wyróżniające
+              </p>
+              <ul className="mt-3 space-y-2 md:mt-4">
+                {features.map((f, i) => (
+                  <li key={i} className="flex gap-3 text-sm leading-relaxed text-dark/80 md:text-base">
+                    <span className="mt-2 inline-block size-1.5 shrink-0 rounded-full bg-pink" />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="mt-6 md:mt-8">
+            <Link href="/kontakt" className="btn-pink h-11 px-6 text-sm">
+              Napisz do nas
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// GenericGrid — fallback 3-col grid.
+// ────────────────────────────────────────────────────────────────────────────
 function GenericGrid({ block }: { block: BlockFeatureGrid }) {
   return (
     <section className="bg-white py-10 md:py-20">

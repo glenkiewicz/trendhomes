@@ -10,6 +10,46 @@ const GAP_LG = 32;
 const GAP_SM = 24;
 
 export default function StepsListBlock({ block }: { block: BlockStepsList }) {
+  // When NO step has a description (short montaz/processSteps from /produkty/*) → vertical list.
+  // Otherwise → carousel (used on /o-nas + stolarka-dla-biznesu where each step has detailed text).
+  const anyDescription = block.steps.some((s) => !!s.description);
+  return anyDescription ? <StepsCarousel block={block} /> : <StepsVerticalList block={block} />;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// StepsVerticalList — 4-col responsive grid with big pink numbers (like prod).
+// ────────────────────────────────────────────────────────────────────────────
+function StepsVerticalList({ block }: { block: BlockStepsList }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        {block.subtitle && (
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
+            {block.subtitle}
+          </p>
+        )}
+
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 md:gap-8 lg:grid-cols-4">
+          {block.steps.map((step) => (
+            <div key={step.id} className="flex flex-col">
+              <div className="flex items-baseline gap-3">
+                <span className="text-3xl font-black text-pink md:text-4xl">{step.number}</span>
+                <h3 className="text-lg font-bold text-dark md:text-xl">{step.title}</h3>
+              </div>
+              <div className="mt-4 h-[3px] w-full bg-pink/30" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// StepsCarousel — used when steps carry detailed descriptions.
+// ────────────────────────────────────────────────────────────────────────────
+function StepsCarousel({ block }: { block: BlockStepsList }) {
   const steps = block.steps;
   const [current, setCurrent] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
