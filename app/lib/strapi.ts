@@ -13,7 +13,20 @@ import type {
   StrapiReview,
 } from "../types/strapi";
 
-const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
+// Server-side fetching używa STRAPI_URL (internal API URL, może być prywatne).
+// Client-side rendering (np. ProductGridClient, AccordionBlock) musi mieć
+// PUBLIC URL — process.env.STRAPI_URL na kliencie jest undefined, fallback
+// dawał http://localhost:1337 stąd ERR_CONNECTION_REFUSED i znikające obrazki.
+// NEXT_PUBLIC_STRAPI_URL jest inlinowane do bundle w build time → klient widzi
+// poprawny Railway URL.
+const STRAPI_URL =
+  process.env.STRAPI_URL ||
+  process.env.NEXT_PUBLIC_STRAPI_URL ||
+  "http://localhost:1337";
+const STRAPI_MEDIA_URL =
+  process.env.NEXT_PUBLIC_STRAPI_URL ||
+  process.env.STRAPI_URL ||
+  "http://localhost:1337";
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
 type Query = Record<string, string | number | boolean | undefined>;
@@ -66,7 +79,7 @@ export function mediaUrl(media: StrapiMedia | null | undefined, format?: "small"
   const candidate = format && media.formats?.[format]?.url
     ? media.formats[format].url
     : media.url;
-  return candidate.startsWith("http") ? candidate : `${STRAPI_URL}${candidate}`;
+  return candidate.startsWith("http") ? candidate : `${STRAPI_MEDIA_URL}${candidate}`;
 }
 
 const ARTICLE_POPULATE = {
