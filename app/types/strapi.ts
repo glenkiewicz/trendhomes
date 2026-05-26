@@ -316,6 +316,15 @@ export type BlockAccordion = {
   }[];
 };
 
+export type BlockCategoryGrid = {
+  __component: "blocks.category-grid";
+  id: number;
+  headingLines: string[];
+  items: { id: number; name: string; href: string; image: StrapiMedia | null }[];
+  ctaLabel: string | null;
+  ctaUrl: string | null;
+};
+
 export type AnyBlock =
   | BlockHero
   | BlockFeatureGrid
@@ -332,7 +341,8 @@ export type AnyBlock =
   | BlockRichText
   | BlockGallery
   | BlockColorCarousel
-  | BlockAccordion;
+  | BlockAccordion
+  | BlockCategoryGrid;
 
 export type StrapiHomePage = {
   id: number;

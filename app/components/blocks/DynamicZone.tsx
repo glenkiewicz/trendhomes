@@ -11,6 +11,7 @@
 import type { AnyBlock, StrapiGlobalSettings } from "../../types/strapi";
 import AccordionBlock from "./AccordionBlock";
 import BlogListBlock from "./BlogListBlock";
+import CategoryGridBlock from "./CategoryGridBlock";
 import BrandsStripBlock from "./BrandsStripBlock";
 import ColorCarouselBlock from "./ColorCarouselBlock";
 import CtaBannerBlock from "./CtaBannerBlock";
@@ -70,6 +71,8 @@ export default function DynamicZone({ sections, global, reviewsRender }: Props) 
             return <ContactSection key={key} global={global} />;
           case "blocks.accordion":
             return <AccordionBlock key={key} block={block} />;
+          case "blocks.category-grid":
+            return <CategoryGridBlock key={key} block={block} />;
           default:
             return null;
         }
