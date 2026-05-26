@@ -11,12 +11,12 @@ import type { BlockFeatureGrid } from "../../types/strapi";
 const GAP_LG = 32;
 const GAP_SM = 24;
 
-type Variant = BlockFeatureGrid["variant"] | "manufacturers";
+type Variant = BlockFeatureGrid["variant"];
 
 export default function FeatureGridBlock({ block }: { block: BlockFeatureGrid }) {
   const variant = block.variant as Variant;
 
-  // Audience: if items carry images → carousel (stolarka-dla-biznesu, /o-nas team);
+  // Audience: if items carry images → carousel (stolarka-dla-biznesu);
   // otherwise plain 2x2 grid (forWhom on /produkty/*).
   if (variant === "audience") {
     const hasImages = block.items.some((it) => !!it.image);
@@ -28,7 +28,50 @@ export default function FeatureGridBlock({ block }: { block: BlockFeatureGrid })
     return hasImages ? <WhyAlternating block={block} /> : <WhyIconGrid block={block} />;
   }
   if (variant === "manufacturers") return <ManufacturersTabs block={block} />;
+  if (variant === "team") return <TeamList block={block} />;
   return <GenericGrid block={block} />;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// TeamList — pionowa lista członków zespołu (NIE karuzela). 1:1 z prod
+// https://trendhomes.pl/o-nas sekcja "Dlaczego warto wybrać Trendhomes".
+// Każda osoba: H3 nazwa + paragraph description, border-b między rzędami.
+// Bez obrazków (item.image w mockup to placeholder, prod ich nie pokazuje).
+// ────────────────────────────────────────────────────────────────────────────
+function TeamList({ block }: { block: BlockFeatureGrid }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        {block.intro && (
+          <p className="mt-6 text-sm leading-relaxed text-dark md:text-xl">{block.intro}</p>
+        )}
+
+        <div className="mt-10 md:mt-14">
+          {block.items.map((person, i) => (
+            <AnimateOnScroll key={person.id} delay={i * 100}>
+              <div className="grid grid-cols-1 gap-6 border-b border-dark/10 py-6 last:border-b-0 md:gap-10 md:py-8">
+                <div>
+                  <h3 className="text-xl font-bold text-dark md:text-3xl">{person.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-dark md:text-lg">
+                    {person.description}
+                  </p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+
+        {block.ctaLabel && block.ctaUrl && (
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link href={block.ctaUrl} className="btn-pink h-[52px] px-[34px] text-sm">
+              {block.ctaLabel}
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
 
 // ────────────────────────────────────────────────────────────────────────────

@@ -169,7 +169,7 @@ export type BlockHero = {
 export type BlockFeatureGrid = {
   __component: "blocks.feature-grid";
   id: number;
-  variant: "solutions" | "why" | "investments" | "generic" | "audience";
+  variant: "solutions" | "why" | "investments" | "generic" | "audience" | "manufacturers" | "team";
   headingLines: string[];
   intro: string | null;
   ctaLabel: string | null;
@@ -268,11 +268,14 @@ export type BlockContactForm = {
 export type BlockTwoColumn = {
   __component: "blocks.two-column";
   id: number;
-  image: StrapiMedia;
+  image: StrapiMedia | null;
   imageAlt: string | null;
   imagePosition: "left" | "right";
   headingLines: string[];
   paragraphs: string[] | null;
+  listItems: string[] | null;
+  additionalText: string | null;
+  mapEmbedUrl: string | null;
   ctaLabel: string | null;
   ctaUrl: string | null;
 };

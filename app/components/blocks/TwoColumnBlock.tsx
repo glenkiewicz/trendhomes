@@ -10,44 +10,79 @@ export default function TwoColumnBlock({ block }: { block: BlockTwoColumn }) {
   const textColumn = (
     <div>
       <SectionHeading lines={block.headingLines} />
-      {block.paragraphs?.map((text, i) => (
-        <p key={i} className="mt-6 text-sm leading-relaxed text-dark md:text-lg">
-          {text}
-        </p>
-      ))}
+      <div className="mt-6 space-y-4 text-sm leading-relaxed text-dark md:text-lg">
+        {block.paragraphs?.map((text, i) => (
+          <p key={i}>{text}</p>
+        ))}
+        {block.listItems && block.listItems.length > 0 && (
+          <ul className="list-disc space-y-2 pl-5">
+            {block.listItems.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        )}
+        {block.additionalText && <p>{block.additionalText}</p>}
+      </div>
       {block.ctaLabel && block.ctaUrl && (
-        <Link href={block.ctaUrl} className="btn-pink mt-8 inline-flex h-12 items-center px-[34px] text-sm">
+        <Link href={block.ctaUrl} className="btn-pink mt-8 inline-flex h-[52px] items-center px-[34px] text-sm">
           {block.ctaLabel}
         </Link>
       )}
     </div>
   );
 
-  const imageColumn = (
-    <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[634px]">
-      <Image
-        src={mediaUrl(block.image, "large")}
-        alt={block.imageAlt ?? ""}
-        fill
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        loading="lazy"
-        className="object-cover"
-      />
-    </div>
-  );
+  // Right column: map iframe (jeśli mapEmbedUrl) lub obrazek (jeśli image) — albo nic.
+  let rightColumn: React.ReactNode = null;
+  if (block.mapEmbedUrl) {
+    rightColumn = (
+      <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[574px]">
+        <iframe
+          src={block.mapEmbedUrl}
+          width="100%"
+          height="100%"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="absolute inset-0 border-0"
+        />
+      </div>
+    );
+  } else if (block.image) {
+    rightColumn = (
+      <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[634px]">
+        <Image
+          src={mediaUrl(block.image, "large")}
+          alt={block.imageAlt ?? ""}
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
+  // Bez prawej kolumny — pełna szerokość tylko tekst.
+  if (!rightColumn) {
+    return (
+      <section className="bg-white py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 md:px-5">{textColumn}</div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <div className="grid grid-cols-1 gap-10 md:gap-16 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-8 md:gap-12 lg:grid-cols-2">
           {imageOnRight ? (
             <>
               {textColumn}
-              {imageColumn}
+              {rightColumn}
             </>
           ) : (
             <>
-              {imageColumn}
+              {rightColumn}
               {textColumn}
             </>
           )}
