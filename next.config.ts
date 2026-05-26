@@ -2,14 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 300, 384],
-    // Next.js 16 wymaga jawnej listy dopuszczonych poziomów jakości.
-    // Browser żąda różnych q dla retina/standard — bez tego dostaje 400
-    // INVALID_IMAGE_OPTIMIZE_REQUEST i obrazek znika do następnego refresh.
-    qualities: [25, 50, 75, 90, 100],
-    minimumCacheTTL: 31536000,
+    // Custom loader = direct URL bez Vercel /_next/image proxy.
+    // Strapi już zwraca preoptymalizowane warianty (small/medium/large)
+    // i lokalne /images/* też nie wymagają proxy — eliminujemy race
+    // conditions, 400 INVALID_IMAGE_OPTIMIZE_REQUEST i timeouts.
+    loader: "custom",
+    loaderFile: "./app/image-loader.ts",
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
