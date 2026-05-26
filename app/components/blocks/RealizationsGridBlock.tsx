@@ -18,7 +18,11 @@ export default async function RealizationsGridBlock({ block }: { block: BlockRea
   if (imgs.length === 0) {
     const category = block.category && block.category !== "all" ? block.category : undefined;
     const list = await listRealizations(category);
-    imgs = list.map((r) => ({ id: r.id, image: r.image, alt: r.title }));
+    imgs = list.map((r) => ({
+      id: r.id,
+      image: r.image,
+      alt: r.subtitle ? `${r.title} ${r.subtitle}` : r.title,
+    }));
     if (imgs.length === 0) return null;
   }
 
