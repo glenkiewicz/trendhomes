@@ -190,11 +190,11 @@ export type BlockStepsList = {
 export type BlockCtaBanner = {
   __component: "blocks.cta-banner";
   id: number;
-  variant: "cleanAir" | "pergola" | "generic";
-  headingLines: string[];
-  description: string;
-  ctaLabel: string;
-  ctaUrl: string;
+  variant: "cleanAir" | "pergola" | "generic" | "pinkStrip";
+  headingLines: string[] | null;
+  description: string | null;
+  ctaLabel: string | null;
+  ctaUrl: string | null;
   background: StrapiMedia | null;
 };
 
@@ -278,6 +278,7 @@ export type BlockTwoColumn = {
   mapEmbedUrl: string | null;
   ctaLabel: string | null;
   ctaUrl: string | null;
+  compact: boolean | null;
 };
 
 export type BlockRichText = {

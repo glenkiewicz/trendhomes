@@ -48,8 +48,13 @@ export default function TwoColumnBlock({ block }: { block: BlockTwoColumn }) {
       </div>
     );
   } else if (block.image) {
+    // compact = mniejsze image (uzywane na /rozwiazania-dla-ciebie solutions);
+    // default = tall (uzywane na /o-nas about, outro).
+    const heightClass = block.compact
+      ? "h-[200px] sm:h-[260px] md:h-[212px]"
+      : "h-[300px] sm:h-[400px] lg:h-[634px]";
     rightColumn = (
-      <div className="relative h-[300px] overflow-hidden sm:h-[400px] lg:h-[634px]">
+      <div className={`relative overflow-hidden ${heightClass}`}>
         <Image
           src={mediaUrl(block.image, "large")}
           alt={block.imageAlt ?? ""}

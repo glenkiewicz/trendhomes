@@ -4,7 +4,8 @@ import SectionHeading from "../SectionHeading";
 import { mediaUrl } from "../../lib/strapi";
 import type { BlockCtaBanner } from "../../types/strapi";
 
-const VARIANT_BACKGROUNDS: Record<BlockCtaBanner["variant"], { image: string; alt: string; gradient: string }> = {
+type FullVariant = Exclude<BlockCtaBanner["variant"], "pinkStrip">;
+const VARIANT_BACKGROUNDS: Record<FullVariant, { image: string; alt: string; gradient: string }> = {
   pergola: {
     image: "/images/pergola-banner.jpg",
     alt: "Pergola ogrodowa",
@@ -25,8 +26,35 @@ const VARIANT_BACKGROUNDS: Record<BlockCtaBanner["variant"], { image: string; al
 };
 
 export default function CtaBannerBlock({ block }: { block: BlockCtaBanner }) {
-  const variant = VARIANT_BACKGROUNDS[block.variant];
+  // pinkStrip — solidny różowy pasek z centered text (i opcjonalnym CTA).
+  // Używany na /rozwiazania-dla-ciebie pod każdym solution two-column.
+  if (block.variant === "pinkStrip") {
+    return (
+      <section className="bg-pink">
+        <div className="mx-auto max-w-[1440px] px-3 py-5 md:px-5 md:py-7">
+          {block.description && (
+            <p className="text-center text-base font-normal text-white md:text-[26px]">
+              {block.description}
+            </p>
+          )}
+          {block.ctaLabel && block.ctaUrl && (
+            <div className="mt-4 flex justify-center md:mt-6">
+              <Link href={block.ctaUrl} className="btn-light h-[52px] px-[34px] text-sm font-normal">
+                {block.ctaLabel}
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  const variant = VARIANT_BACKGROUNDS[block.variant as FullVariant];
   const bgSrc = block.background ? mediaUrl(block.background) : variant.image;
+  const headingLines = block.headingLines ?? [];
+  const description = block.description ?? "";
+  const ctaUrl = block.ctaUrl ?? "/kontakt";
+  const ctaLabel = block.ctaLabel ?? "";
 
   return (
     <section className="relative overflow-hidden">
@@ -44,13 +72,13 @@ export default function CtaBannerBlock({ block }: { block: BlockCtaBanner }) {
       )}
       <div className="absolute inset-0" style={{ backgroundImage: variant.gradient }} />
       <div className="relative mx-auto max-w-[1440px] px-3 py-10 md:px-5 md:py-16">
-        <SectionHeading lines={block.headingLines} light />
+        <SectionHeading lines={headingLines} light />
         <p className="mt-6 max-w-[732px] text-base leading-relaxed text-white md:mt-8 md:text-xl">
-          {block.description}
+          {description}
         </p>
         <div className="mt-8 flex items-center gap-8 md:mt-10">
-          <Link href={block.ctaUrl} className="btn-light h-[52px] px-[34px] text-sm font-normal">
-            {block.ctaLabel}
+          <Link href={ctaUrl} className="btn-light h-[52px] px-[34px] text-sm font-normal">
+            {ctaLabel}
           </Link>
           {block.variant === "cleanAir" && (
             <div className="relative hidden h-[60px] w-[80px] sm:block">
