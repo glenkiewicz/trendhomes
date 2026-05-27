@@ -326,6 +326,14 @@ export type BlockCategoryGrid = {
   ctaUrl: string | null;
 };
 
+export type BlockMapEmbed = {
+  __component: "blocks.map-embed";
+  id: number;
+  embedUrl: string;
+  height: number | null;
+  title: string | null;
+};
+
 export type AnyBlock =
   | BlockHero
   | BlockFeatureGrid
@@ -343,7 +351,8 @@ export type AnyBlock =
   | BlockGallery
   | BlockColorCarousel
   | BlockAccordion
-  | BlockCategoryGrid;
+  | BlockCategoryGrid
+  | BlockMapEmbed;
 
 export type StrapiHomePage = {
   id: number;
