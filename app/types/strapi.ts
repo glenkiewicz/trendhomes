@@ -169,7 +169,7 @@ export type BlockHero = {
 export type BlockFeatureGrid = {
   __component: "blocks.feature-grid";
   id: number;
-  variant: "solutions" | "why" | "investments" | "generic" | "audience" | "manufacturers" | "team";
+  variant: "solutions" | "why" | "investments" | "generic" | "audience" | "manufacturers" | "team" | "image-cards";
   headingLines: string[];
   intro: string | null;
   ctaLabel: string | null;

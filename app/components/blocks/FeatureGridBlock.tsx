@@ -29,7 +29,48 @@ export default function FeatureGridBlock({ block }: { block: BlockFeatureGrid })
   }
   if (variant === "manufacturers") return <ManufacturersTabs block={block} />;
   if (variant === "team") return <TeamList block={block} />;
+  if (variant === "image-cards") return <ImageCardsGrid block={block} />;
   return <GenericGrid block={block} />;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// ImageCardsGrid — 3-col grid kart z H3 + image pod (bez description).
+// 1:1 z prod /rozwiazania-dla-ciebie sekcja "Rozwiązania dla biznesu":
+// 3 karty (właściciele lokali / deweloperzy / inwestorzy publiczni).
+// ────────────────────────────────────────────────────────────────────────────
+function ImageCardsGrid({ block }: { block: BlockFeatureGrid }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
+          {block.items.map((it, i) => (
+            <AnimateOnScroll key={it.id} delay={i * 100}>
+              <div className="group flex flex-col bg-card">
+                <div className="p-5 pb-0 md:p-8 md:pb-0">
+                  <h3 className="text-lg font-bold leading-tight text-dark md:text-[26px] md:leading-[42px]">
+                    {it.title}
+                  </h3>
+                </div>
+                {it.image && (
+                  <div className="relative mt-6 h-[180px] w-full overflow-hidden md:mt-8">
+                    <Image
+                      src={mediaUrl(it.image, "medium")}
+                      alt={it.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+              </div>
+            </AnimateOnScroll>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // ────────────────────────────────────────────────────────────────────────────
