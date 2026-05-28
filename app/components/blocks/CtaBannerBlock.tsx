@@ -4,7 +4,7 @@ import SectionHeading from "../SectionHeading";
 import { mediaUrl } from "../../lib/strapi";
 import type { BlockCtaBanner } from "../../types/strapi";
 
-type FullVariant = Exclude<BlockCtaBanner["variant"], "pinkStrip">;
+type FullVariant = Exclude<BlockCtaBanner["variant"], "pinkStrip" | "centered">;
 const VARIANT_BACKGROUNDS: Record<FullVariant, { image: string; alt: string; gradient: string }> = {
   pergola: {
     image: "/images/pergola-banner.jpg",
@@ -28,6 +28,30 @@ const VARIANT_BACKGROUNDS: Record<FullVariant, { image: string; alt: string; gra
 export default function CtaBannerBlock({ block }: { block: BlockCtaBanner }) {
   // pinkStrip — solidny różowy pasek z centered text (i opcjonalnym CTA).
   // Używany na /rozwiazania-dla-ciebie pod każdym solution two-column.
+  // centered — prosty centered CTA na bg-section-light z paragrafem +
+  // pink CTA buttonem. Używany na /produkty/* na końcu strony jako
+  // zachęta do kontaktu (1:1 z prod /produkty/okna-aluminiowe).
+  if (block.variant === "centered") {
+    return (
+      <section className="bg-section-light py-10 md:py-20">
+        <div className="mx-auto max-w-[1440px] px-3 text-center md:px-5">
+          {block.description && (
+            <p className="mx-auto max-w-[720px] text-base leading-relaxed text-dark md:text-xl">
+              {block.description}
+            </p>
+          )}
+          {block.ctaLabel && block.ctaUrl && (
+            <div className="mt-8 flex justify-center">
+              <Link href={block.ctaUrl} className="btn-pink h-[52px] px-[34px] text-sm">
+                {block.ctaLabel}
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
+
   if (block.variant === "pinkStrip") {
     return (
       <section className="bg-pink">

@@ -190,7 +190,7 @@ export type BlockStepsList = {
 export type BlockCtaBanner = {
   __component: "blocks.cta-banner";
   id: number;
-  variant: "cleanAir" | "pergola" | "generic" | "pinkStrip";
+  variant: "cleanAir" | "pergola" | "generic" | "pinkStrip" | "centered";
   headingLines: string[] | null;
   description: string | null;
   ctaLabel: string | null;
