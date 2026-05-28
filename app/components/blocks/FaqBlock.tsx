@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import SectionHeading from "./SectionHeading";
-import { MOCKUP_DATA } from "../lib/mockup-data";
+import Link from "next/link";
+import SectionHeading from "../SectionHeading";
+import type { BlockFaq } from "../../types/strapi";
+import { faqJsonLd, jsonLdScript } from "../../lib/jsonld";
 
-const d = MOCKUP_DATA.home.faq;
-const faqItems = d.items;
-
-export default function FaqSection() {
+export default function FaqBlock({ block }: { block: BlockFaq }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggle = (i: number) => {
@@ -17,19 +16,25 @@ export default function FaqSection() {
   return (
     <section className="bg-white py-10 md:py-20">
       <div className="mx-auto max-w-[1440px] px-3 md:px-5">
-        <SectionHeading lines={[...d.heading]} />
-
-        {/* Accordion */}
+        {block.emitJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: jsonLdScript(
+                faqJsonLd(block.items.map((it) => ({ question: it.question, answer: it.answer })))
+              ),
+            }}
+          />
+        )}
+        <SectionHeading lines={block.headingLines} />
         <div className="mx-auto mt-8 max-w-[954px] md:mt-12">
-          {faqItems.map((item, i) => (
-            <div key={i} className="border-b border-pink/30">
+          {block.items.map((item, i) => (
+            <div key={item.id} className="border-b border-pink/30">
               <button
                 onClick={() => toggle(i)}
                 className="flex w-full items-center justify-between gap-4 py-4 text-left md:py-5"
               >
-                <span className="text-base text-dark md:text-xl">
-                  {item.question}
-                </span>
+                <span className="text-base text-dark md:text-xl">{item.question}</span>
                 <svg
                   width="14"
                   height="14"
@@ -39,18 +44,12 @@ export default function FaqSection() {
                     openIndex === i ? "rotate-180" : ""
                   }`}
                 >
-                  <path
-                    d="M3 5L7 9L11 5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  />
+                  <path d="M3 5L7 9L11 5" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
               </button>
               <div
                 className={`grid transition-all duration-300 ${
-                  openIndex === i
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
+                  openIndex === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden">
@@ -62,16 +61,13 @@ export default function FaqSection() {
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="mt-10 flex justify-center md:mt-14">
-          <a
-            href="#kontakt"
-            className="btn-pink h-12 px-[34px] text-sm"
-          >
-            {d.cta}
-          </a>
-        </div>
+        {block.ctaLabel && block.ctaUrl && (
+          <div className="mt-10 flex justify-center md:mt-14">
+            <Link href={block.ctaUrl} className="btn-pink h-12 px-[34px] text-sm">
+              {block.ctaLabel}
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

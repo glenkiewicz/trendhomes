@@ -1,7 +1,3 @@
-import { MOCKUP_DATA } from "../lib/mockup-data";
-
-const g = MOCKUP_DATA.global;
-
 export default function MapSection() {
 	return (
 		<section className="w-full">
