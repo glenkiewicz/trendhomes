@@ -215,6 +215,7 @@ export type BlockRealizationsGrid = {
   headingLines: string[];
   description: string | null;
   category: "residential" | "pergola" | "b2b" | "various" | "office" | "all";
+  layout: "carousel" | "grid" | null;
   images: { id: number; image: StrapiMedia; alt: string; caption: string | null }[];
   ctaLabel: string | null;
   ctaUrl: string | null;

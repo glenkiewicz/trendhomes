@@ -1,6 +1,7 @@
 import { listRealizations } from "../../lib/strapi";
 import type { BlockRealizationsGrid } from "../../types/strapi";
 import RealizationsCarousel from "./RealizationsCarousel";
+import RealizationsGrid from "./RealizationsGrid";
 
 export type RealizationsCarouselImage = {
   id: number;
@@ -26,13 +27,18 @@ export default async function RealizationsGridBlock({ block }: { block: BlockRea
     if (imgs.length === 0) return null;
   }
 
-  return (
-    <RealizationsCarousel
-      headingLines={block.headingLines}
-      description={block.description ?? null}
-      ctaLabel={block.ctaLabel ?? null}
-      ctaUrl={block.ctaUrl ?? null}
-      imgs={imgs}
-    />
-  );
+  const commonProps = {
+    headingLines: block.headingLines,
+    description: block.description ?? null,
+    ctaLabel: block.ctaLabel ?? null,
+    ctaUrl: block.ctaUrl ?? null,
+    imgs,
+  };
+
+  // layout=grid → asymetryczny 3-col grid bez podpisów (used on /home);
+  // layout=carousel (default) → karuzela z tytułami pod kafelkami (/realizacje).
+  if (block.layout === "grid") {
+    return <RealizationsGrid {...commonProps} />;
+  }
+  return <RealizationsCarousel {...commonProps} />;
 }
