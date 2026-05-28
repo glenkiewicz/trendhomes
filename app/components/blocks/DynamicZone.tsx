@@ -13,6 +13,7 @@ import AccordionBlock from "./AccordionBlock";
 import BlogListBlock from "./BlogListBlock";
 import CategoryGridBlock from "./CategoryGridBlock";
 import MapEmbedBlock from "./MapEmbedBlock";
+import NumberedListBlock from "./NumberedListBlock";
 import BrandsStripBlock from "./BrandsStripBlock";
 import ColorCarouselBlock from "./ColorCarouselBlock";
 import CtaBannerBlock from "./CtaBannerBlock";
@@ -76,6 +77,8 @@ export default function DynamicZone({ sections, global, reviewsRender }: Props) 
             return <CategoryGridBlock key={key} block={block} />;
           case "blocks.map-embed":
             return <MapEmbedBlock key={key} block={block} />;
+          case "blocks.numbered-list":
+            return <NumberedListBlock key={key} block={block} />;
           default:
             return null;
         }

@@ -10,10 +10,46 @@ const GAP_LG = 32;
 const GAP_SM = 24;
 
 export default function StepsListBlock({ block }: { block: BlockStepsList }) {
+  // Layout = compact5 → 5-col grid z pink numbers 38px (jak prod
+  // /produkty/dla-biznesu "Jak wygląda współpraca").
+  if (block.layout === "compact5") return <StepsCompact5 block={block} />;
   // When NO step has a description (short montaz/processSteps from /produkty/*) → vertical list.
   // Otherwise → carousel (used on /o-nas + stolarka-dla-biznesu where each step has detailed text).
   const anyDescription = block.steps.some((s) => !!s.description);
   return anyDescription ? <StepsCarousel block={block} /> : <StepsVerticalList block={block} />;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// StepsCompact5 — 5-col responsive grid: pink number (38px) + h3 + description.
+// Brak tła per krok, brak linii pink. Używane na /produkty/dla-biznesu
+// sekcja "Jak wygląda współpraca przy stolarce dla biznesu".
+// ────────────────────────────────────────────────────────────────────────────
+function StepsCompact5({ block }: { block: BlockStepsList }) {
+  return (
+    <section className="bg-white py-10 md:py-20">
+      <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+        <SectionHeading lines={block.headingLines} />
+        {block.subtitle && (
+          <p className="mt-4 max-w-[867px] text-base leading-relaxed text-dark md:mt-6 md:text-xl">
+            {block.subtitle}
+          </p>
+        )}
+        <div className="mt-8 space-y-6 md:mt-12 md:space-y-0 md:grid md:grid-cols-5 md:gap-6">
+          {block.steps.map((step) => (
+            <div key={step.id} className="flex flex-col">
+              <span className="text-[26px] font-bold leading-none text-pink md:text-[38px]">
+                {step.number}
+              </span>
+              <h3 className="mt-3 text-base font-bold text-dark md:text-lg">{step.title}</h3>
+              {step.description && (
+                <p className="mt-2 text-sm leading-relaxed text-dark/80">{step.description}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // ────────────────────────────────────────────────────────────────────────────

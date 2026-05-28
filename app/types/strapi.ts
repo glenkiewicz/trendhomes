@@ -181,6 +181,7 @@ export type BlockStepsList = {
   __component: "blocks.steps-list";
   id: number;
   headingLines: string[];
+  layout: "auto" | "compact5" | null;
   subtitle: string | null;
   steps: { id: number; number: string; title: string; description: string }[];
   investmentsHeading: string[] | null;
@@ -335,6 +336,13 @@ export type BlockMapEmbed = {
   title: string | null;
 };
 
+export type BlockNumberedList = {
+  __component: "blocks.numbered-list";
+  id: number;
+  headingLines: string[];
+  items: { id: number; text: string }[];
+};
+
 export type AnyBlock =
   | BlockHero
   | BlockFeatureGrid
@@ -353,7 +361,8 @@ export type AnyBlock =
   | BlockColorCarousel
   | BlockAccordion
   | BlockCategoryGrid
-  | BlockMapEmbed;
+  | BlockMapEmbed
+  | BlockNumberedList;
 
 export type StrapiHomePage = {
   id: number;
