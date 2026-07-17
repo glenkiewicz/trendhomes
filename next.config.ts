@@ -7,7 +7,7 @@ const legacyRedirects: Array<{ source: string; destination: string }> = [
   { source: "/okna-sanok/pcv/salamnder", destination: "/produkty/okna" },
   { source: "/okna-sanok/pcv/gealan", destination: "/produkty/okna" },
   { source: "/okna-sanok/pcv/eko-sun", destination: "/produkty/okna/ekosun-6" },
-  { source: "/okna-sanok/drewniane/naruto-76", destination: "/produkty/okna-drewniane/naruto-68" },
+  { source: "/okna-sanok/drewniane/naruto-76", destination: "/produkty/okna-drewniane" },
   { source: "/drzwi-produkcja/wejsciowe-2", destination: "/produkty/drzwi" },
   { source: "/stolarka-aluminiowa/systemy-fasadowe", destination: "/produkty/dla-biznesu" },
   { source: "/stolarka-aluminiowa/systemy-okienno-drzwiowe-zimne", destination: "/produkty/dla-biznesu" },
