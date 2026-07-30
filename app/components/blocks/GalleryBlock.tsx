@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SectionHeading from "../SectionHeading";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { BlockGallery } from "../../types/strapi";
 
 const GRID_CLASSES: Record<number, string> = {
@@ -23,7 +23,7 @@ export default function GalleryBlock({ block }: { block: BlockGallery }) {
             <div key={img.id} className="relative aspect-square overflow-hidden">
               <Image
                 src={mediaUrl(img.image, "medium")}
-                alt={img.alt}
+                alt={mediaAlt(img.image, img.alt, img.caption)}
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
                 loading="lazy"

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SectionHeading from "../SectionHeading";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { RealizationsCarouselImage } from "./RealizationsGridBlock";
 
 const GAP_LG = 32;
@@ -94,7 +94,7 @@ export default function RealizationsCarousel({ headingLines, description, ctaLab
                 <div className="relative aspect-square overflow-hidden">
                   <Image
                     src={mediaUrl(img.image, "medium")}
-                    alt={img.alt}
+                    alt={mediaAlt(img.image, img.alt, "Realizacja Trendhomes")}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"

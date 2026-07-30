@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "../SectionHeading";
 import AnimateOnScroll from "../AnimateOnScroll";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { BlockCategoryGrid } from "../../types/strapi";
 
 /**
@@ -28,7 +28,7 @@ export default function CategoryGridBlock({ block }: { block: BlockCategoryGrid 
                   {cat.image && (
                     <Image
                       src={mediaUrl(cat.image, "medium")}
-                      alt={cat.name}
+                      alt={mediaAlt(cat.image, cat.name)}
                       width={300}
                       height={280}
                       sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 300px"

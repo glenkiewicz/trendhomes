@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "../SectionHeading";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { BlockTwoColumn } from "../../types/strapi";
 
 export default function TwoColumnBlock({ block }: { block: BlockTwoColumn }) {
@@ -57,7 +57,7 @@ export default function TwoColumnBlock({ block }: { block: BlockTwoColumn }) {
       <div className={`relative overflow-hidden ${heightClass}`}>
         <Image
           src={mediaUrl(block.image, "large")}
-          alt={block.imageAlt ?? ""}
+          alt={mediaAlt(block.image, block.imageAlt, block.headingLines?.[0])}
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           loading="lazy"

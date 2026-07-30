@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "../SectionHeading";
 import AnimateOnScroll from "../AnimateOnScroll";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { RealizationsCarouselImage } from "./RealizationsGridBlock";
 
 type Props = {
@@ -31,7 +31,7 @@ export default function RealizationsGrid({ headingLines, description, ctaLabel, 
     <div key={img.id} className={`group relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[464px] ${className}`}>
       <Image
         src={mediaUrl(img.image, "medium")}
-        alt={img.alt}
+        alt={mediaAlt(img.image, img.alt, "Realizacja Trendhomes")}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         loading={i === 0 ? "eager" : "lazy"}

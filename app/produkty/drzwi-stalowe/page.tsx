@@ -8,7 +8,7 @@ const SLUG = "drzwi-stalowe";
 export async function generateMetadata() {
   const page = await getProductCategoryPageBySlug(SLUG);
   if (!page) return {};
-  return toMetadata(page.seo, `/produkty/${SLUG}`);
+  return toMetadata(page.seo, `/produkty/${SLUG}`, { fallbackImage: page.heroImage });
 }
 
 export default async function Page() {

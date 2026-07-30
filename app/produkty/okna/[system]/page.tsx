@@ -31,7 +31,9 @@ export async function generateMetadata({
   const { system: slug } = await params;
   const system = await getProductSystemBySlug(slug, "pvc");
   if (!system) return { title: "Nie znaleziono – Trendhomes" };
-  return toMetadata(system.seo, `/produkty/okna/${system.slug}`);
+  return toMetadata(system.seo, `/produkty/okna/${system.slug}`, {
+    fallbackImage: system.mainImage,
+  });
 }
 
 export default async function SystemDetailPage({
@@ -92,7 +94,7 @@ export default async function SystemDetailPage({
               <span className="text-dark">{system.name}</span>
             </nav>
 
-            <SectionHeading lines={[manufacturerName, system.name]} />
+            <SectionHeading lines={[manufacturerName, system.name]} as="h1" />
           </div>
         </section>
 

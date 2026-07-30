@@ -82,6 +82,22 @@ export function mediaUrl(media: StrapiMedia | null | undefined, format?: "small"
   return candidate.startsWith("http") ? candidate : `${STRAPI_MEDIA_URL}${candidate}`;
 }
 
+/**
+ * Pick the first non-empty alt from: block-level override → media.alternativeText → fallbacks.
+ * Returns "" only when nothing usable exists — treat empty as decorative.
+ */
+export function mediaAlt(
+  media: StrapiMedia | null | undefined,
+  ...fallbacks: (string | null | undefined)[]
+): string {
+  const candidates = [media?.alternativeText, ...fallbacks];
+  for (const c of candidates) {
+    const trimmed = c?.trim();
+    if (trimmed) return trimmed;
+  }
+  return "";
+}
+
 const ARTICLE_POPULATE = {
   "populate[0]": "coverImage",
   "populate[1]": "category",

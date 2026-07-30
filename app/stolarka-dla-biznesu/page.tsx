@@ -8,7 +8,7 @@ const SLUG = "stolarka-dla-biznesu";
 export async function generateMetadata() {
   const page = await getPageBySlug(SLUG);
   if (!page) return {};
-  return toMetadata(page.seo, `/${SLUG}`);
+  return toMetadata(page.seo, `/${SLUG}`, { fallbackImage: page.heroImage });
 }
 
 export default async function Page() {

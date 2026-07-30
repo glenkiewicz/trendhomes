@@ -61,6 +61,37 @@ export default async function PageRenderer({ page }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd(breadcrumbItems)) }}
       />
+      {!heroImageUrl && (
+        <section className="bg-white pt-8 md:pt-12">
+          <div className="mx-auto max-w-[1440px] px-3 md:px-5">
+            {breadcrumb.length > 0 && (
+              <nav className="mb-4 flex items-center gap-2 text-xs uppercase text-dark/60 md:text-sm">
+                {breadcrumb.map((item, i) => (
+                  <span key={i} className="flex items-center gap-2">
+                    {i > 0 && <span>|</span>}
+                    {i === 0 ? (
+                      <Link href="/" className="transition-colors hover:text-dark">
+                        {item}
+                      </Link>
+                    ) : (
+                      <span className={i === breadcrumb.length - 1 ? "text-dark" : "text-dark/60"}>{item}</span>
+                    )}
+                  </span>
+                ))}
+              </nav>
+            )}
+            <h1 className="max-w-[900px] text-[26px] font-bold leading-tight text-dark sm:text-[32px] md:text-[42px]">
+              {titleLines.map((line, i) => (
+                <span key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </span>
+              ))}
+            </h1>
+          </div>
+        </section>
+      )}
+
       {heroImageUrl && (
         <section className="relative h-[400px] w-full overflow-hidden sm:h-[480px] md:h-[560px] lg:h-[620px]">
           <Image src={heroImageUrl} alt={titleLines.join(" ")} fill sizes="100vw" priority className="object-cover" />

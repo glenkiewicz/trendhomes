@@ -10,7 +10,9 @@ export async function generateMetadata() {
   if (!home?.seo) {
     return { title: "Trendhomes - Okna, drzwi i rolety z montażem" };
   }
-  return toMetadata(home.seo, "/");
+  const heroBlock = home.sections.find((s) => s.__component === "blocks.hero");
+  const heroImage = heroBlock?.slides?.[0]?.image ?? null;
+  return toMetadata(home.seo, "/", { fallbackImage: heroImage });
 }
 
 export default async function Home() {

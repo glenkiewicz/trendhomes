@@ -25,7 +25,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
   if (!article) return { title: "Nie znaleziono – Trendhomes" };
-  return toMetadata(article.seo, `/blog/${article.slug}`);
+  return toMetadata(article.seo, `/blog/${article.slug}`, {
+    fallbackImage: article.coverImage,
+    ogType: "article",
+    article: {
+      publishedTime: article.publishedDate,
+      modifiedTime: article.updatedAt,
+      author: article.author,
+      section: article.category?.name,
+    },
+  });
 }
 
 export default async function BlogPostPage({

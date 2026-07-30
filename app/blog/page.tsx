@@ -3,11 +3,7 @@ import Link from "next/link";
 import BlogContent, { type BlogPost, type BlogCategory } from "./BlogContent";
 import { listArticles, mediaUrl, formatPlDate } from "../lib/strapi";
 
-export const metadata = {
-	title: "Blog – Trendhomes",
-	description:
-		"Porady, inspiracje i aktualności od ekipy Trendhomes z Sanoka. Sprawdź, na co zwrócić uwagę przy wyborze okien, drzwi, rolet czy pergoli.",
-};
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://trendhomes.pl";
 
 const HERO = {
 	image: "/images/blog-hero.png",
@@ -16,6 +12,32 @@ const HERO = {
 	description:
 		"Zanim podejmiesz decyzję o oknach, drzwiach, roletach czy pergoli, warto wiedzieć, na co zwrócić uwagę. W naszych materiałach pokazujemy praktyczne przykłady z budowy, remontów i lokali usługowych w Sanoku i okolicach.",
 	cta: "Przeczytaj nasz najnowszy artykuł",
+};
+
+const OG_IMAGE = `${SITE_URL}${HERO.image}`;
+
+export const metadata = {
+	title: "Blog – Trendhomes",
+	description:
+		"Porady, inspiracje i aktualności od ekipy Trendhomes z Sanoka. Sprawdź, na co zwrócić uwagę przy wyborze okien, drzwi, rolet czy pergoli.",
+	alternates: { canonical: `${SITE_URL}/blog` },
+	openGraph: {
+		type: "website" as const,
+		url: `${SITE_URL}/blog`,
+		title: "Blog – Trendhomes",
+		description:
+			"Porady, inspiracje i aktualności od ekipy Trendhomes z Sanoka. Sprawdź, na co zwrócić uwagę przy wyborze okien, drzwi, rolet czy pergoli.",
+		images: [{ url: OG_IMAGE, width: 1200, height: 630 }],
+		siteName: "Trendhomes",
+		locale: "pl_PL",
+	},
+	twitter: {
+		card: "summary_large_image" as const,
+		title: "Blog – Trendhomes",
+		description:
+			"Porady, inspiracje i aktualności od ekipy Trendhomes z Sanoka. Sprawdź, na co zwrócić uwagę przy wyborze okien, drzwi, rolet czy pergoli.",
+		images: [OG_IMAGE],
+	},
 };
 
 export default async function BlogPage() {
@@ -35,7 +57,7 @@ export default async function BlogPage() {
 			<section className="relative h-[400px] w-full overflow-hidden sm:h-[500px] md:h-[600px] lg:h-[714px]">
 				<Image
 					src={HERO.image}
-					alt=""
+					alt="Strefa wiedzy Trendhomes — porady o oknach, drzwiach i roletach"
 					fill
 					sizes="100vw"
 					className="object-cover"

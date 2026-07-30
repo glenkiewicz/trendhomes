@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useCallback, useEffect, useRef } from "react";
 import SectionHeading from "../SectionHeading";
 import AnimateOnScroll from "../AnimateOnScroll";
-import { mediaUrl } from "../../lib/strapi";
+import { mediaUrl, mediaAlt } from "../../lib/strapi";
 import type { BlockFeatureGrid } from "../../types/strapi";
 
 const GAP_LG = 32;
@@ -423,7 +423,7 @@ function WhyIconGrid({ block }: { block: BlockFeatureGrid }) {
               <div className="flex flex-col">
                 {(it.icon || it.image) && (
                   <div className="relative size-[60px] md:size-[80px]">
-                    <Image src={mediaUrl(it.icon ?? it.image, "small")} alt="" fill sizes="80px" className="object-contain" />
+                    <Image src={mediaUrl(it.icon ?? it.image, "small")} alt={mediaAlt(it.icon ?? it.image, it.title)} fill sizes="80px" className="object-contain" />
                   </div>
                 )}
                 <h3 className="mt-5 text-xl font-bold text-dark md:mt-6 md:text-[22px]">{it.title}</h3>
